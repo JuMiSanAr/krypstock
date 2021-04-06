@@ -13,10 +13,10 @@ function App() {
   return (
     <ThemeProvider theme={themeMode}>
         <>
-      <GlobalStyles/>
+          <GlobalStyles/>
 
-     <Toggle theme={theme} toggleTheme={themeToggler} />
-     <h1> Welcome to KrypStock Tracker</h1>
+          <Toggle theme={theme} toggleTheme={themeToggler} />
+          <h1> Welcome to KrypStock Tracker</h1>
           <OurRouter/>
         </>
     </ThemeProvider>

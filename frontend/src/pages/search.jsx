@@ -1,14 +1,14 @@
 import React from 'react';
 import FooterNav from '../components/footerNav';
 
-const Portfolio = () => {
+const Search = () => {
 
     return (
         <>
-            <h1>Portfolio</h1>
-            <FooterNav />
+            <h1>Search</h1>
+            <FooterNav/>
         </>
     )
 }
 
-export default Portfolio
+export default Search;
