@@ -27,17 +27,25 @@ class NewTransaction(CreateAPIView):
                             status=status.HTTP_401_UNAUTHORIZED)
 
         transactions = Transaction.objects.filter(user=self.request.user, symbol=request.data['symbol'])
-        balance = reduce(lambda acc, trans:
-                         acc + (int(trans.number_bought) * int(trans.price_bought))
-                         if trans.buy_sell == 'B'
-                         else acc - (int(trans.number_bought) * int(trans.price_bought))
-                         , transactions
-                         , 0
-                         )
 
-        transaction_amount = int(self.request.data['number_bought']) * int(self.request.data['price_bought'])
+        previous_total_invested = 0
+        previous_quantity = 0
 
-        if balance - transaction_amount < 0 and self.request.data['buy_sell'] == 'S':
+        for transaction in transactions:
+            if transaction.buy_sell == 'B':
+                previous_total_invested += int(transaction.quantity) * int(transaction.price)
+                previous_quantity += int(transaction.quantity)
+            else:
+                previous_total_invested -= int(transaction.quantity) * int(transaction.price)
+                previous_quantity -= int(transaction.quantity)
+
+        if previous_quantity - self.request.data['quantity'] < 0 and self.request.data['buy_sell'] == 'S':
+            return Response({'error': 'Cannot sell more items than the user currently owns'},
+                            status=status.HTTP_403_FORBIDDEN)
+
+        transaction_amount = int(self.request.data['quantity']) * int(self.request.data['price'])
+
+        if previous_total_invested - transaction_amount < 0 and self.request.data['buy_sell'] == 'S':
             return Response({'error': 'Cannot sell for a higher amount than the user currently owns'},
                             status=status.HTTP_403_FORBIDDEN)
 
@@ -48,7 +56,7 @@ class NewTransaction(CreateAPIView):
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
     def perform_create(self, serializer, portfolio, transaction_amount):
-        serializer.save(user=self.request.user, total_amount=transaction_amount, portfolio=portfolio)
+        serializer.save(user=self.request.user, cost=transaction_amount, portfolio=portfolio)
 
 
 class AllUserTransactions(ListAPIView):

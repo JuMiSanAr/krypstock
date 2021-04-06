@@ -17,9 +17,9 @@ class Transaction(models.Model):
 
     symbol = models.CharField(max_length=10)
 
-    total_amount = models.CharField(max_length=20, blank=True)
-    number_bought = models.CharField(max_length=20)
-    price_bought = models.CharField(max_length=20)
+    cost = models.CharField(max_length=20, blank=True)
+    quantity = models.CharField(max_length=20)
+    price = models.CharField(max_length=20)
 
     exec_time = models.DateTimeField(auto_now_add=True)
 
