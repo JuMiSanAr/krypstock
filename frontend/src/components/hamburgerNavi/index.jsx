@@ -18,7 +18,7 @@ import {
 
 
 export const HumburgerNavi = () => {
-    const [toggleState, setToggleState] = useState(2);
+    const [toggleState, setToggleState] = useState(1);
    
     const toggleTab = (index) => {
         setToggleState(index);
@@ -28,11 +28,11 @@ export const HumburgerNavi = () => {
         <>
         
         <MainWrapper>
-        <MenuIcon className={toggleState === 2 ? " active-content" : "content"} onClick={() => toggleTab(1)}/>
-        <MenuWrapper className={toggleState === 1 ? " active-content" : "content"}> 
+        <MenuIcon className={toggleState === 1 ? " active-content" : "content"} onClick={() => toggleTab(2)}/>
+        <MenuWrapper className={toggleState === 2 ? " active-content" : "content"}>
             <LogoIconWrapper>
                 <img src={Logo} alt="logo"/>
-                <MenuIcon  onClick={() => toggleTab(2)}/>
+                <MenuIcon  onClick={() => toggleTab(1)}/>
             </LogoIconWrapper>
             <MenuContentWrapper>
                 <img src='https://res.cloudinary.com/tennam/image/upload/v1613260389/Propulsion/Tenzin.png' alt="logo"/>
