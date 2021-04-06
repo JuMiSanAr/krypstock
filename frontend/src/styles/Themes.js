@@ -1,3 +1,5 @@
+import { withTheme } from "@material-ui/core"
+
 export const lightTheme = {
     body: '#FFF',
     text: '#363537',
