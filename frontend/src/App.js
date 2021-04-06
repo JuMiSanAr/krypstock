@@ -3,6 +3,7 @@ import {darkTheme, lightTheme} from "./styles/Themes";
 import {ThemeProvider} from "styled-components";
 import {GlobalStyles} from "./styles/GlobalStyles";
 import Toggle from "./components/darkLightmode/toggler";
+import OurRouter from './routes';
 
 function App() {
 
@@ -10,15 +11,17 @@ function App() {
   const themeMode = theme === 'light' ? lightTheme : darkTheme;
   if(!mountedComponent) return <div/>
   return (
-      <ThemeProvider theme={themeMode}>
+    <ThemeProvider theme={themeMode}>
         <>
       <GlobalStyles/>
 
      <Toggle theme={theme} toggleTheme={themeToggler} />
      <h1> Welcome to KrypStock Tracker</h1>
-           </>
-      </ThemeProvider>
+          <OurRouter/>
+        </>
+    </ThemeProvider>
   );
 }
 
 export default App;
+
