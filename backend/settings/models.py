@@ -3,6 +3,7 @@ from django.db import models
 
 User = get_user_model()
 
+
 class Settings(models.Model):
 
     light_theme = models.BooleanField(default=True)
