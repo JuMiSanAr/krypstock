@@ -1,24 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import {UseDarkMode} from "./components/darkLightmode/useDarkMode";
+import {darkTheme, lightTheme} from "./styles/Themes";
+import {ThemeProvider} from "styled-components";
+import {GlobalStyles} from "./styles/GlobalStyles";
+import Toggle from "./components/darkLightmode/toggler";
 
 function App() {
+
+  const [theme, themeToggler, mountedComponent] = UseDarkMode();
+  const themeMode = theme === 'light' ? lightTheme : darkTheme;
+  if(!mountedComponent) return <div/>
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <ThemeProvider theme={themeMode}>
+        <>
+      <GlobalStyles/>
+
+     <Toggle theme={theme} toggleTheme={themeToggler} />
+     <h1> Welcome to KrypStock Tracker</h1>
+           </>
+      </ThemeProvider>
   );
 }
 
