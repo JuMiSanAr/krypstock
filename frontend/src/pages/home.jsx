@@ -1,11 +1,10 @@
-import FooterNav from '../components/FooterNav'
-import { HumburgerNavi } from '../components/hamburgerNavi';
+import FooterNav from '../components/footerNav'
 
 const Home = () => {
 
     return (
         <>
-            <HumburgerNavi/>
+            <h1>Home</h1>
             <FooterNav/>
         </>
     )

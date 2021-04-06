@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-
+from datetime import timedelta
 from pathlib import Path
 import ast 
 import os
@@ -27,7 +27,7 @@ SECRET_KEY = 'yh1hq2mvd4e0a5gf%!!l6ntj!$83)$0@v^+q*4x2p3$f$z#fl+'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = ast.literal_eval(os.environ.get('DJANGO_DEBUG'))
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['krypstock.propulsion-learn.ch', '0.0.0.0', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -39,11 +39,21 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'drf_yasg',
+    'rest_framework',
+    'corsheaders',
+
+    'user',
+    'settings',
+    'portfolio',
+    'transaction'
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -130,3 +140,24 @@ STATIC_ROOT = '/static-files/'
 MEDIA_URL = '/media-files/'
 MEDIA_ROOT = '/media-files/'
 
+AUTH_USER_MODEL = 'user.User'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 20,
+}
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=15),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=15)
+}
+
+CORS_ALLOWED_ORIGINS = ['http://localhost:8000',
+                        'http://localhost:3000',
+                        'https://krypstock.propulsion-learn.ch']
