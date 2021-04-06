@@ -1,4 +1,4 @@
-import FooterNav from '../components/FooterNav'
+import FooterNav from '../components/footerNav'
 
 const Home = () => {
 
