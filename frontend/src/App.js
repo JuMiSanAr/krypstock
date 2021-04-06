@@ -4,6 +4,7 @@ import {ThemeProvider} from "styled-components";
 import {GlobalStyles} from "./styles/GlobalStyles";
 import Toggle from "./components/darkLightmode/toggler";
 import OurRouter from './routes';
+// import { HumburgerNavi } from "./components/hamburgerNavi";
 
 function App() {
 
@@ -14,10 +15,9 @@ function App() {
     <ThemeProvider theme={themeMode}>
         <>
       <GlobalStyles/>
-
-     <Toggle theme={theme} toggleTheme={themeToggler} />
-     <h1> Welcome to KrypStock Tracker</h1>
-          <OurRouter/>
+        <Toggle theme={theme} toggleTheme={themeToggler} />
+        <h1> Welcome to KrypStock Tracker</h1>
+        <OurRouter/>
         </>
     </ThemeProvider>
   );
