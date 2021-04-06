@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  backend:
+    image: registry.gitlab.propulsion-home.ch/full-stack/batch-15-february-2021/final-projects/krypstock-tracker:latest
+    restart: always
+    env_file:
+      - ./envs/dev.env
+    command: 'sh /scripts/dev.sh'
+    volumes:
+      - ./backend:/backend
+      - media-files:/media-files
+      - static-files:/static-files
+    ports:
+      - '8000:8000'
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:latest
+    ports:
+      - '5432:5432'
+
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    env_file:
+      - ./envs/dev.env
+
+volumes:
+  postgres:
+  media-files:
+  static-files:
