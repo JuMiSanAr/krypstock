@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     'user',
     'settings',
     'portfolio',
-    'transaction'
+    'transaction',
+    'signup'
 ]
 
 MIDDLEWARE = [
@@ -161,3 +162,24 @@ SIMPLE_JWT = {
 CORS_ALLOWED_ORIGINS = ['http://localhost:8000',
                         'http://localhost:3000',
                         'https://krypstock.propulsion-learn.ch']
+
+SWAGGER_SETTINGS = {
+    'USE_SESSION_AUTH': False,  # Change settings to True to enable Django Login option
+    'LOGIN_URL': 'admin/',  # URL For Django Login
+    'LOGOUT_URL': 'admin/logout/',  # URL For Django Logout
+    'SECURITY_DEFINITIONS': { # Allows usage of Access token to make requests on the docs.
+        'Bearer': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header'
+        }
+    }
+}
+
+# SEND REGISTRATION EMAIL
+DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL')
+EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS')
+EMAIL_HOST = os.environ.get('EMAIL_HOST')
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = os.environ.get('EMAIL_PORT')
