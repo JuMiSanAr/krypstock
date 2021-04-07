@@ -51,6 +51,7 @@ const LoginPage = () => {
                                             placeholder='Email'
                                         />
                                     </WrapDivSI>
+                                    <WrapDivSI>
                                        <input
                                             required
                                             onChange={event => setPassword(event.target.value)}
@@ -60,6 +61,7 @@ const LoginPage = () => {
                                             placeholder='Password'
                                             onKeyUp={ event => event.key === 'Enter' ? loginHandler() : ''}
                                         />
+                                    </WrapDivSI>
                                 </div>
                             <WrapDivSI>
                             <div>
