@@ -20,8 +20,8 @@
     "redux-thunk": "^2.3.0",
     "styled-components": "^5.2.3",
     "web-vitals": "^1.0.1",
-    "yarn": "^1.22.10",
-    "kaktana-react-lightweight-charts": "^1.1.5"
+    "wscat": "^4.0.1",
+    "yarn": "^1.22.10"
   },
   "scripts": {
     "start": "react-scripts start",

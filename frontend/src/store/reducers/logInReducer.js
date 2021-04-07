@@ -6,7 +6,7 @@ const initialState = {
 }
 
 export const logInReducer =( state= initialState, action)=>{
-    if (action.type==LOGIN){
+    if (action.type===LOGIN){
         return{
             ...state,
             token: action.payload.token,
