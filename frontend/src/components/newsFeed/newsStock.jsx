@@ -21,7 +21,7 @@ const NewsStock = (props) => {
                 setAllNews(data);
             });
     }
-    console.log(allNews)
+
     return (
         <div>
             {allNews.length > 0 ? allNews.map((news, index) => {
