@@ -13,46 +13,46 @@ export const TransactionHistory = () => {
                 <thead>
                     <tr>
                     <th>Currency</th>
+                    <th>Date</th>
                     <th>Price</th>
-                    <th>Change %</th>
-                    <th>Volume</th>
+                    <th>Transaction</th>
                     </tr>
                 </thead>
         <tbody>
             <tr>
             <td>Bitcoin</td>
-            <td>57304</td>
-            <td>7.20%</td>
+            <td>12.04.21</td>
+            <td>5200</td>
             <td>Buy</td>
             </tr>
             <tr>
             <td>Monero</td>
-            <td>57304</td>
-            <td>7.20%</td>
+            <td>12.04.21</td>
+            <td>5200</td>
             <td>Sell</td>
             </tr>
             <tr>
             <td>LiteCoin</td>
-            <td>57304</td>
-            <td>7.20%</td>
+            <td>12.04.21</td>
+            <td>5200</td>
             <td>Buy</td>
             </tr>
             <tr>
             <td>Etherum</td>
-            <td>57304</td>
-            <td>7.20%</td>
+            <td>12.04.21</td>
+            <td>5200</td>
             <td>Buy</td>
             </tr>
             <tr>
             <td>Etherum</td>
-            <td>57304</td>
-            <td>7.20%</td>
+            <td>12.04.21</td>
+            <td>5200</td>
             <td>Buy</td>
             </tr>
             <tr>
             <td>Etherum</td>
-            <td>57304</td>
-            <td>7.20%</td>
+            <td>12.04.21</td>
+            <td>5200</td>
             <td>Buy</td>
             </tr>
         </tbody>
