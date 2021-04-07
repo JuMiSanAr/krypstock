@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {createChart, CrosshairMode} from "lightweight-charts";
-import {ShrinkingComponentWrapper} from "../../styles/globalParts/containerStyles";
+// import {ShrinkingComponentWrapper} from "../../styles/globalParts/containerStyles";
 
 
 const CandlestickStockHistorical = (props) => {
@@ -119,9 +119,9 @@ const CandlestickStockHistorical = (props) => {
 
     return (
         <>
-            <ShrinkingComponentWrapper>
+            {/* <ShrinkingComponentWrapper> */}
                 <div id="chartStockHistorical"/>
-            </ShrinkingComponentWrapper>
+            {/* </ShrinkingComponentWrapper> */}
         </>
     )
 }

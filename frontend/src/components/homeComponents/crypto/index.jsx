@@ -9,11 +9,11 @@ import { QuickTrade } from './quickTrade';
 export const Crypto = () => {
     return (
         <AllComponentsWrapper>
-        <BitCoin />
-        <PriceToday/>
-        <TransactionHistory/>
-        <CryptoNews/>
-        <QuickTrade/>
+            <BitCoin />
+            <PriceToday/>
+            <TransactionHistory/>
+            <CryptoNews/>
+            <QuickTrade/>
         </AllComponentsWrapper>
     )
 }
