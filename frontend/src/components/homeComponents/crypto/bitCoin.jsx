@@ -1,7 +1,7 @@
 import React from 'react'
 import {ShrinkingComponentWrapper } from '../../../styles/globalParts/containerStyles';
 import {FormSelectWrapper, GraphWrapper, RadioWrapper} from "../../../styles/components/cryptoStyles/bitCoinStyles";
-import CandlestickChart from '../../charts/candlesticks'
+import CandlestickStockHistorical from '../../charts/candlesticksStockHistorical'
 
 
 export const BitCoin = () => {
@@ -35,7 +35,7 @@ export const BitCoin = () => {
             </form>
            </RadioWrapper> 
            <GraphWrapper>
-               <CandlestickChart/>
+               <CandlestickStockHistorical/>
            </GraphWrapper>
                 
         </ShrinkingComponentWrapper>
