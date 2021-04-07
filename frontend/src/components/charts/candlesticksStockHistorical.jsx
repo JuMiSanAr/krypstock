@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {createChart, CrosshairMode} from "lightweight-charts";
+import {ShrinkingComponentWrapper} from "../../styles/globalParts/containerStyles";
 
 
 const CandlestickStockHistorical = (props) => {
@@ -39,7 +40,7 @@ const CandlestickStockHistorical = (props) => {
 
     useEffect(() => {
         if (fetchedData.length > 0) {
-            const chart = createChart(document.getElementById('chart'), {
+            const chart = createChart(document.getElementById('chartStockHistorical'), {
                 width: 300,
                 height: 200,
                 layout: {
@@ -80,7 +81,9 @@ const CandlestickStockHistorical = (props) => {
 
     return (
         <>
-            <div id="chart"/>
+            <ShrinkingComponentWrapper>
+                <div id="chartStockHistorical"/>
+            </ShrinkingComponentWrapper>
         </>
     )
 }

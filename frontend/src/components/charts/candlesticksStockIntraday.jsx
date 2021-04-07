@@ -1,13 +1,15 @@
 import React, {useEffect, useState} from 'react';
-import {createChart, CrosshairMode} from "lightweight-charts";
+import {createChart, CrosshairMode, isBusinessDay} from "lightweight-charts";
+import {ShrinkingComponentWrapper} from "../../styles/globalParts/containerStyles";
 
 
 const CandlestickStockIntraday = (props) => {
 
     // TEMP (Data will come from props)
     const [fetchedData, setData] = useState([]);
-    const symbol = 'twtr';
-    const charLast = '20';
+    const symbol = 'aapl';
+    const chartLast = '20';
+    const market = 'NASDAQ';
 
     useEffect(() => {
         fetchStock();
@@ -15,7 +17,7 @@ const CandlestickStockIntraday = (props) => {
 
     const fetchStock = () => {
         const API_KEY = 'Tpk_fec97062db224c2fb7b0b3836ab0e365';
-        const API_Call = `https://sandbox.iexapis.com/stable/stock/${symbol}/intraday-prices?token=${API_KEY}&chartLast=${charLast}`;
+        const API_Call = `https://sandbox.iexapis.com/stable/stock/${symbol}/intraday-prices?token=${API_KEY}`;
 
         fetch(API_Call)
             .then(res => res.json())
@@ -45,7 +47,7 @@ const CandlestickStockIntraday = (props) => {
 
     useEffect(() => {
         if (fetchedData.length > 0) {
-            const chart = createChart(document.getElementById('chart'), {
+            const chart = createChart(document.getElementById('chartStockIntraday'), {
                 width: 300,
                 height: 200,
                 layout: {
@@ -76,8 +78,39 @@ const CandlestickStockIntraday = (props) => {
                 borderDownColor: 'rgb(0,0,0)',
                 borderUpColor: 'rgb(0,0,0)',
                 wickDownColor: 'rgb(131,14,14)',
-                wickUpColor: 'rgb(39,148,0)',
+                wickUpColor: 'rgb(39,148,0)'
             });
+
+            chart.applyOptions({
+                watermark: {
+                    color: 'rgba(255, 255, 255, 0.4)',
+                    visible: true,
+                    text: `Market: ${market}`,
+                    fontSize: 10,
+                    horzAlign: 'left',
+                    vertAlign: 'bottom',
+                },
+                priceScale: {
+                    autoScale: false,
+                    invertScale: true,
+                    alignLabels: false,
+                    borderVisible: false,
+                    borderColor: '#555ffd',
+                    scaleMargins: {
+                        top: 0.30,
+                        bottom: 0.25,
+                    },
+                },
+                timeScale: {
+                    fixRightEdge: true,
+                    lockVisibleTimeRangeOnResize: true,
+                    borderVisible: false,
+                    borderColor: '#fff000',
+                    visible: true,
+                    timeVisible: true,
+                    secondsVisible: false,
+                },
+            })
 
             candleSeries.setData(fetchedData);
         }
@@ -86,7 +119,9 @@ const CandlestickStockIntraday = (props) => {
 
     return (
         <>
-            <div id="chart"/>
+            <ShrinkingComponentWrapper>
+                <div id="chartStockIntraday"/>
+            </ShrinkingComponentWrapper>
         </>
     )
 }

@@ -1,4 +1,6 @@
 import React, {useEffect, useState} from 'react';
+import {ShrinkingComponentWrapper} from "../../styles/globalParts/containerStyles";
+import {NewsWrapper} from "../../styles/components/stockStyles/newsStyles";
 
 const NewsStock = (props) => {
 
@@ -23,15 +25,20 @@ const NewsStock = (props) => {
     }
 
     return (
-        <div>
+        <>
+            <h3>Latest news about {symbol}</h3>
             {allNews.length > 0 ? allNews.map((news, index) => {
                 return (
-                    <h1 key={index}>{news.headline}</h1>
+                    <ShrinkingComponentWrapper key={index}>
+                        <NewsWrapper>
+                            <h3>{news.headline}</h3>
+                        </NewsWrapper>
+                    </ShrinkingComponentWrapper>
                 )
             })
             : ''
             }
-        </div>
+        </>
     )
 }
 
