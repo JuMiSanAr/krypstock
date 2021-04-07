@@ -43,19 +43,20 @@ class NewTransaction(CreateAPIView):
             return Response({'error': 'Cannot sell more items than the user currently owns'},
                             status=status.HTTP_403_FORBIDDEN)
 
-        transaction_amount = int(self.request.data['quantity']) * int(self.request.data['price'])
-
-        if previous_total_invested - transaction_amount < 0 and self.request.data['buy_sell'] == 'S':
-            return Response({'error': 'Cannot sell for a higher amount than the user currently owns'},
-                            status=status.HTTP_403_FORBIDDEN)
+        # transaction_amount = int(self.request.data['quantity']) * int(self.request.data['price'])
+        #
+        # if previous_total_invested - transaction_amount < 0 and self.request.data['buy_sell'] == 'S':
+        #     return Response({'error': 'Cannot sell for a higher amount than the user currently owns'},
+        #                     status=status.HTTP_403_FORBIDDEN)
 
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        self.perform_create(serializer, portfolio, transaction_amount)
+        self.perform_create(serializer, portfolio)
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
-    def perform_create(self, serializer, portfolio, transaction_amount):
+    def perform_create(self, serializer, portfolio):
+        transaction_amount = int(self.request.data['quantity']) * int(self.request.data['price'])
         serializer.save(user=self.request.user, cost=transaction_amount, portfolio=portfolio)
 
 
