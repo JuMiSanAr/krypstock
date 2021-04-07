@@ -1,6 +1,28 @@
 import styled from "styled-components";
+import {darkTheme, lightTheme} from "../../Themes";
 
-export const MainWrapper = styled.div`
+
+export const StyledMenu = styled.nav`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: ${({ theme }) => theme === lightTheme ? darkTheme.body : lightTheme.body};
+  transform: ${({ open }) => open ? 'translateX(0)' : 'translateX(-100%)'};
+  height: 100vh;
+  text-align: left;
+  padding: 2rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: transform 0.3s ease-in-out;
+
+
+  @media (max-width: ${({ theme }) => theme.mobile}) {
+      width: 100%;
+    }
+ `;
+
+/*export const MainWrapper = styled.div`
      .content {
             display: none;
         }
@@ -8,12 +30,12 @@ export const MainWrapper = styled.div`
         display:flex;
         flex-direction:column;
     }
-`;
+`;*/
 export const MenuWrapper = styled.div `
-    width: 70vw;
-    height: 80vh;
-    border: 1px solid #f2f2eb;
-    border-width:1px 1px 1px 0;
+  /*  width: 70vw;
+    height: 80vh;*/
+  /*  border: 1px solid #f2f2eb;
+    border-width:1px 1px 1px 0;*/
     padding: 0 20px 0  20px ;
 `;
 
@@ -40,11 +62,12 @@ export const LogoIconWrapper = styled.div`
     justify-content: space-between;
     align-items: center;
     img{
-        height: 100px;
+        height: 180px;
     }
 `;
 
 export const MenuContentWrapper = styled.div `
+ color: ${({ theme }) => theme === lightTheme ? darkTheme.text : lightTheme.text};
     img{
         height: 100px;
         width: 100px;
