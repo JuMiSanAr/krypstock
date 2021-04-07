@@ -1,15 +1,16 @@
-import FooterNav from '../components/footerNav'
-
+import Button from '../styles/components/buttonStyles';
+import FooterNav from '../components/footerNav';
+import MarketOverview from '../components/homeComponents/marketOverview';
 
 const Home = () => {
 
     return (
         <>
-            <h1>Home</h1>
+            {/* <Button/> */}
+            <MarketOverview/>
             <FooterNav/>
         </>
     )
-
 }
 
 export default Home;
