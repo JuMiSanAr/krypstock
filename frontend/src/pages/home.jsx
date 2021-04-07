@@ -1,5 +1,6 @@
 import FooterNav from '../components/footerNav'
 import {HumburgerNavi} from "../components/hamburgerNavi";
+import MarketOverview from '../components/homeComponents/marketOverview';
 
 const Home = () => {
 
@@ -7,11 +8,10 @@ const Home = () => {
         <>
             <HumburgerNavi/>
             <h1>Home</h1>
-            
+            <MarketOverview/>
             <FooterNav/>
         </>
     )
-
 }
 
 export default Home;
