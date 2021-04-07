@@ -93,7 +93,6 @@ const Home = () => {
             </div>
             </MainContentWrapper>
             <FooterNav/>
-
         </>
     )
 }
