@@ -21,7 +21,7 @@ function OurRouter() {
         <Route path="/" exact component={Home} />
         <Route path="/sign-in/" exact component={SignIn} />
         <Route path="/sign-up/" exact component={SignUp} />
-         <Route path="/sign-up/registration" exact component={Registration}/>
+        <Route path="/sign-up/registration" exact component={Registration}/>
         <Route path="/sign-up/congratulation" exact component={Congratulation}/>
         <Route path="/sign-up/verification" exact component={Verification} />
         <Route path="/portfolio/" exact component={Portfolio} />
