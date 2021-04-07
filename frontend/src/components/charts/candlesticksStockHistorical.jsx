@@ -2,18 +2,21 @@ import React, {useEffect, useState} from 'react';
 import {createChart, CrosshairMode} from "lightweight-charts";
 
 
-const CandlestickChart = (props) => {
+const CandlestickStockHistorical = (props) => {
 
     // TEMP (Data will come from props)
-    const [fetchedData, setData] = useState([])
+    const [fetchedData, setData] = useState([]);
+
+    const symbol = 'twtr';
+    const range = '1y';
 
     useEffect(() => {
         fetchStock();
     }, []);
 
     const fetchStock = () => {
-        const API_KEY = 'pk_f999055e78bd448c98560aa04b177782';
-        const API_Call = `https://cloud.iexapis.com/stable/stock/BAC/intraday-prices?token=${API_KEY}&chartLast=20`;
+        const API_KEY = 'Tpk_fec97062db224c2fb7b0b3836ab0e365';
+        const API_Call = `https://sandbox.iexapis.com/stable/stock/${symbol}/chart/${range}?token=${API_KEY}`;
 
         fetch(API_Call)
             .then(res => res.json())
@@ -21,15 +24,8 @@ const CandlestickChart = (props) => {
 
                 const allData = data.map(obj => {
 
-                    const ddmmyy = obj['date'].split('-');
-                    const hours = obj['minute'].split(':');
-
-                    const date = new Date(Date.UTC(ddmmyy[0],ddmmyy[1]-1,ddmmyy[2],hours[0],hours[1]));
-
-                    const timestamp = date.getTime()/1000;
-
                     return {
-                        time: timestamp,
+                        time: obj['date'],
                         open: obj['open'],
                         high: obj['high'],
                         low: obj['low'],
@@ -79,10 +75,8 @@ const CandlestickChart = (props) => {
 
             candleSeries.setData(fetchedData);
         }
+
     }, [fetchedData]);
-
-
-
 
     return (
         <>
@@ -91,4 +85,4 @@ const CandlestickChart = (props) => {
     )
 }
 
-export default CandlestickChart
+export default CandlestickStockHistorical
