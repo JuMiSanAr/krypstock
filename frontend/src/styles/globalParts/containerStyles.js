@@ -10,7 +10,7 @@ export const AllComponentsWrapper = styled.div`
 
 export const FullWidthComponentWrapper = styled.div`
     width: 90%;
-    height: 350px;
+    //height: 350px;
 /* dont forget to change the height */
     /* border: solid 1px #3B3363;  */
     border-radius: 15px;
