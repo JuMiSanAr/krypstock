@@ -1,13 +1,23 @@
 import React from 'react'
 import {ShrinkingComponentWrapper } from '../../../styles/globalParts/containerStyles';
-import {TableWrapper} from '../../../styles/components/cryptoStyles/transactionHistoryStyles'
+// import {TableWrapper} from '../../../styles/components/cryptoStyles/transactionHistoryStyles'
+import {Table} from '../../../styles/components/cryptoStyles/cryptoTablesStyles'
 
 
 export const TransactionHistory = () => {
     return (
         <ShrinkingComponentWrapper> 
         <h2>Transaction History</h2>
-        <TableWrapper>
+        {/* <TableWrapper> */}
+        <Table id="trans-history">
+                <thead>
+                    <tr>
+                    <th>Currency</th>
+                    <th>Price</th>
+                    <th>Change %</th>
+                    <th>Volume</th>
+                    </tr>
+                </thead>
         <tbody>
             <tr>
             <td>Bitcoin</td>
@@ -46,7 +56,7 @@ export const TransactionHistory = () => {
             <td>Buy</td>
             </tr>
         </tbody>
-        </TableWrapper>
+        </Table>
     </ShrinkingComponentWrapper>
     )
 }

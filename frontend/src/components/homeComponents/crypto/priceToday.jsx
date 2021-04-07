@@ -1,13 +1,13 @@
 import React from 'react';
 import {ShrinkingComponentWrapper } from '../../../styles/globalParts/containerStyles';
-import {Table} from '../../../styles/components/cryptoStyles/priceTodayStyles'
+import {Table} from '../../../styles/components/cryptoStyles/cryptoTablesStyles'
 
 
 export const PriceToday = () => {
     return (
         <ShrinkingComponentWrapper> 
             <h2>Price Today</h2>
-            <Table>
+            <Table id="crypto">
                 <thead>
                     <tr>
                     <th>Currency</th>
