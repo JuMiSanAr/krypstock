@@ -1,42 +1,33 @@
-/*
 import React from 'react';
-import Logo from '../../assets/logo/logo_with_name.png';
-import MenuIcon from '@material-ui/icons/Menu';
-import DashboardIcon from '@material-ui/icons/Dashboard';
-import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import FolderIcon from '@material-ui/icons/Folder';
-import SettingsIcon from '@material-ui/icons/Settings';
-import { useState } from "react";
+import DashboardIcon from "@material-ui/icons/Dashboard";
+import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import {
     LogoIconWrapper,
-    MainWrapper,
+   StyledMenu,
     MenuContentWrapper,
     MenuItemWrapper,
     MenuWrapper
-} from "../../styles/components/naviStyles";
+} from "../../styles/components/naviStyles/menuStyles";
+import Logo from "../../assets/logo/logo_with_name.png";
+import MenuIcon from "@material-ui/icons/Menu";
+import FolderIcon from "@material-ui/icons/Folder";
+import SettingsIcon from "@material-ui/icons/Settings";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 
 
+const Menu = ({open}) => {
+  
+  const isHidden = open ? true : false;
+/*  const tabIndex = isHidden ? 0 : -1;*/
 
-export const HumburgerNavi = () => {
-    const [toggleState, setToggleState] = useState(1);
-   
-    const toggleTab = (index) => {
-        setToggleState(index);
-      };
-
-    return (
-        <>
-        
-        <MainWrapper>
-        <MenuIcon className={toggleState === 1 ? " active-content" : "content"} onClick={() => toggleTab(2)}/>
-        <MenuWrapper className={toggleState === 2 ? " active-content" : "content"}>
+  return (
+    <StyledMenu open={open} aria-hidden={!isHidden}>
+         <MenuWrapper>
             <LogoIconWrapper>
                 <img src={Logo} alt="logo"/>
-                <MenuIcon  onClick={() => toggleTab(1)}/>
+                <MenuIcon/>
             </LogoIconWrapper>
             <MenuContentWrapper>
-                <img src='https://res.cloudinary.com/tennam/image/upload/v1613260389/Propulsion/Tenzin.png' alt="logo"/>
                 <h2>Hello, Cindy</h2>
                 <MenuItemWrapper>
                 <DashboardIcon/>
@@ -60,8 +51,8 @@ export const HumburgerNavi = () => {
                 </MenuItemWrapper>
             </MenuContentWrapper>
         </MenuWrapper>
-        </MainWrapper>
-        </>
-    )
+    </StyledMenu>
+  )
 }
-*/
+
+export default Menu;
