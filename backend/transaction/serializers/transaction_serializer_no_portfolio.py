@@ -12,4 +12,5 @@ class TransactionSerializerNoPortfolio(serializers.ModelSerializer):
                   'cost',
                   'quantity',
                   'price',
-                  'exec_time']
+                  'exec_time',
+                  'active']

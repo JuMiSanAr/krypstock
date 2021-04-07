@@ -12,6 +12,8 @@ import Portfolio from "../pages/portfolio";
 import AddRemove from "../pages/addRemove";
 import Search from "../pages/search";
 import News from "../pages/news";
+import StockPage from "../pages/stockPage";
+import CryptoPage from "../pages/cryptoPage";
 
 
 function OurRouter() {
@@ -28,6 +30,8 @@ function OurRouter() {
         <Route path="/add-remove/" exact component={AddRemove} />
         <Route path="/search/" exact component={Search} />
         <Route path="/news/" exact component={News} />
+        <Route path="/stock/" exact component={StockPage} />
+        <Route path="/crypto/" exact component={CryptoPage} />
         <Route path="*" component={() => "404 NOT FOUND"} />
       </Switch>
     </Router>

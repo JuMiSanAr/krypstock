@@ -13,4 +13,8 @@ export const FooterWrapper = styled.div`
             cursor: pointer;
         }
     }
+
+    @media (min-width: 450px) {
+        display: none;
+    }
 `
