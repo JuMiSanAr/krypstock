@@ -8,10 +8,6 @@ export const lightTheme = {
     secondBackground:'#7970A3',
     mobile: '576px',
     footerBackground: '#2C254A',
-    orange: '#eb8153',
-    purple: '#6747bf',
-    blue: '#4a8cda',
-    green: '#62a838' 
 }
 
 export const darkTheme = {
@@ -21,8 +17,12 @@ export const darkTheme = {
     secondBackground:'#7970A3',
     mobile: '576px',
     footerBackground: '#7970A3',
-    orange: '#f89264',
+}
+
+export const allTheme = {
+    turquoise: '#05A49E',
+    orange: '#eb8153',
     purple: '#6747bf',
     blue: '#4a8cda',
-    green: '#71b945' 
+    green: '#62a838' 
 }

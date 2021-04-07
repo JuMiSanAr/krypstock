@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {darkTheme, lightTheme} from "../../Themes";
+import {darkTheme, lightTheme, allTheme} from "../../Themes";
 
 export const StockTable = styled.table`
     width: 100%;
@@ -10,7 +10,7 @@ export const StockTable = styled.table`
     color: ${({ theme }) => theme === lightTheme ? darkTheme.text : darkTheme.text};;
     
     thead{
-        background-color: ${props => props.id === 'trendy-stocks' ? lightTheme.orange : props.id === "transaction-history" ? lightTheme.blue : lightTheme.green};
+        background-color: ${props => props.id === 'trendy-stocks' ? allTheme.orange : props.id === "transaction-history" ? allTheme.turquoise : allTheme.green};
         /* border-bottom: 1px solid #ffcc00; */
         color: ${({ theme }) => theme === lightTheme ? darkTheme.text : darkTheme.text};
         tr{
