@@ -9,15 +9,21 @@ const CandlestickStockHistorical = (props) => {
     const [fetchedData, setData] = useState([]);
 
     const symbol = 'twtr';
-    const range = '1y';
+    const market = 'NASDAQ';
+
+    console.log(props.timeframe)
 
     useEffect(() => {
         fetchStock();
     }, []);
 
+    useEffect(() => {
+        fetchStock();
+    }, [props.timeframe])
+
     const fetchStock = () => {
         const API_KEY = 'Tpk_fec97062db224c2fb7b0b3836ab0e365';
-        const API_Call = `https://sandbox.iexapis.com/stable/stock/${symbol}/chart/${range}?token=${API_KEY}`;
+        const API_Call = `https://sandbox.iexapis.com/stable/stock/${symbol}/chart/${props.timeframe}?token=${API_KEY}`;
 
         fetch(API_Call)
             .then(res => res.json())
@@ -39,6 +45,7 @@ const CandlestickStockHistorical = (props) => {
     }
 
     useEffect(() => {
+        document.getElementById('chartStockHistorical').innerHTML = '';
         if (fetchedData.length > 0) {
             const chart = createChart(document.getElementById('chartStockHistorical'), {
                 width: 300,
@@ -72,6 +79,37 @@ const CandlestickStockHistorical = (props) => {
                 borderUpColor: 'rgb(0,0,0)',
                 wickDownColor: 'rgb(131,14,14)',
                 wickUpColor: 'rgb(39,148,0)',
+            });
+
+            chart.applyOptions({
+                watermark: {
+                    color: 'rgba(255, 255, 255, 0.4)',
+                    visible: true,
+                    text: `Market: ${market}`,
+                    fontSize: 10,
+                    horzAlign: 'left',
+                    vertAlign: 'bottom',
+                },
+                priceScale: {
+                    autoScale: false,
+                    invertScale: true,
+                    alignLabels: false,
+                    borderVisible: false,
+                    borderColor: '#555ffd',
+                    scaleMargins: {
+                        top: 0.30,
+                        bottom: 0.25,
+                    },
+                },
+                timeScale: {
+                    fixRightEdge: true,
+                    lockVisibleTimeRangeOnResize: true,
+                    borderVisible: false,
+                    borderColor: '#fff000',
+                    visible: true,
+                    timeVisible: true,
+                    secondsVisible: false,
+                },
             });
 
             candleSeries.setData(fetchedData);

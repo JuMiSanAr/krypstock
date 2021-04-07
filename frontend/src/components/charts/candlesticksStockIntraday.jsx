@@ -110,7 +110,7 @@ const CandlestickStockIntraday = (props) => {
                     timeVisible: true,
                     secondsVisible: false,
                 },
-            })
+            });
 
             candleSeries.setData(fetchedData);
         }
