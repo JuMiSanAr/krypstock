@@ -1,11 +1,11 @@
 import React from 'react'
 import {ShrinkingComponentWrapper } from '../../../styles/globalParts/containerStyles';
 import {FormSelectWrapper, GraphWrapper, RadioWrapper} from "../../../styles/components/cryptoStyles/bitCoinStyles";
-import CandlestickStockHistorical from '../../charts/candlesticksStockHistorical'
+import CandlestickStockHistorical from '../../charts/candlesticksStockHistorical';
+
 
 
 export const BitCoin = () => {
-
 
     return (
         <>
