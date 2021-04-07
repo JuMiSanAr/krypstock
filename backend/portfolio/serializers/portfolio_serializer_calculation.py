@@ -33,6 +33,7 @@ class PortfolioSerializerWithCalculation(serializers.ModelSerializer):
             active_transactions = []
 
             for transaction in this_symbol_transactions:
+
                 if transaction.active:
                     if transaction.buy_sell == 'B':
                         currently_invested += float(transaction.quantity) * float(transaction.price)
@@ -44,6 +45,7 @@ class PortfolioSerializerWithCalculation(serializers.ModelSerializer):
                         previous_balance += float(transaction.quantity) * float(transaction.price)
                         balance += float(transaction.quantity) * float(transaction.price)
                     active_transactions.append(transaction)
+
                 elif not transaction.active:
                     if transaction.buy_sell == 'B':
                         previous_balance -= float(transaction.quantity) * float(transaction.price)
