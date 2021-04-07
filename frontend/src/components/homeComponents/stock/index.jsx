@@ -3,6 +3,7 @@ import {AllComponentsWrapper} from '../../../styles/globalParts/containerStyles'
 import MarketOverview from './marketOverview.jsx';
 import News from './news';
 import TransactionHistory from './transactionHistory';
+import TrendyStocks from './trendyStocks';
 
 const Stock = () => {
 
@@ -11,6 +12,7 @@ const Stock = () => {
             <MarketOverview/>
             <News/>
             <TransactionHistory/>
+            <TrendyStocks/>
         </AllComponentsWrapper>
     )
 
