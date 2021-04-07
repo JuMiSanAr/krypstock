@@ -11,7 +11,6 @@ const Home = () => {
             <Stock/>
             <Crypto/>
             <FooterNav/>
-
         </>
     )
 }
