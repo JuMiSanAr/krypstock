@@ -29,9 +29,5 @@ export const GraphWrapper = styled.div`
     display: flex;
     justify-content: center;
     margin-top: 20px;
-    img{
-        height: 250px;
-        width: 250px;
-    }
-
+    overflow: hidden;
 `;
