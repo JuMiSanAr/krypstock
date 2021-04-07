@@ -1,17 +1,19 @@
 import React from 'react';
 import FooterNav from '../components/footerNav';
 import { AllComponentsWrapper, ShrinkingComponentWrapper } from '../styles/globalParts/containerStyles';
-import {InvestmentsContainer, OverviewContainer, HeadlineFont} from '../styles/components/portfolioStyles';
+import {InvestmentsContainer, OverviewBarBlue, OverviewBarGreen, OverviewBarYellow, OverviewBarOrange, HeadlineFont, CakeChartContainer} from '../styles/components/portfolioStyles';
+import { PieChart } from 'react-minimal-pie-chart';
+import Graph from '../assets/bit.png'
 
 const Portfolio = () => {
 
     return (
         <>
+        
             <AllComponentsWrapper>
                 <ShrinkingComponentWrapper>
                     <HeadlineFont>All investments</HeadlineFont >
                     <InvestmentsContainer>
-                        
                         <p>1000</p>
                         <p>4000</p>
                         <p>+- 10%</p>
@@ -19,21 +21,45 @@ const Portfolio = () => {
                 </ShrinkingComponentWrapper>
                 <ShrinkingComponentWrapper>
                     <HeadlineFont>Overview</HeadlineFont>
-                    <OverviewContainer>
+                    <OverviewBarGreen>
+                        <i class="fab fa-ethereum"></i>
                         <HeadlineFont>Etherium</HeadlineFont>
+                        <p>50'345</p>
+                        <p>+- 10%</p>
+                    </OverviewBarGreen>
+                    <OverviewBarBlue>
+                        <i class="fab fa-bitcoin"></i>
+                        <HeadlineFont>BitCoin</HeadlineFont>
                         <p>1'000'000</p>
                         <p>+- 10%</p>
-                    </OverviewContainer>
-                    <OverviewContainer>
+                    </OverviewBarBlue>
+                    <OverviewBarYellow>
                         <HeadlineFont>Etherium</HeadlineFont>
-                        <p>1'000'000</p>
+                        <p>32'000</p>
                         <p>+- 10%</p>
-                    </OverviewContainer>
-                    <OverviewContainer>
+                    </OverviewBarYellow>
+                    <OverviewBarOrange>
                         <HeadlineFont>Etherium</HeadlineFont>
-                        <p>1'000'000</p>
+                        <p>659'934</p>
                         <p>+- 10%</p>
-                    </OverviewContainer>
+                    </OverviewBarOrange>
+                </ShrinkingComponentWrapper>
+                <ShrinkingComponentWrapper>
+                    <CakeChartContainer>
+                        <HeadlineFont>My Investments</HeadlineFont>
+                        <PieChart
+                            data={[
+                                { title: 'One', value: 10, color: '#05a49e' },
+                                { title: 'Two', value: 15, color: '#384c98' },
+                                { title: 'Three', value: 20, color: '#fe772c' },
+                                { title: 'Three', value: 20, color: '#feaa2d' }
+                            ]}
+                        />
+                    </CakeChartContainer>
+                </ShrinkingComponentWrapper>
+                <ShrinkingComponentWrapper>
+                    <HeadlineFont>Total value over time</HeadlineFont>
+                    <img src={Graph}></img>     
                 </ShrinkingComponentWrapper>
             </AllComponentsWrapper>
             <FooterNav />
