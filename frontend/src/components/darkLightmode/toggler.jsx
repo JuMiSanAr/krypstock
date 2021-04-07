@@ -17,19 +17,20 @@ const Button = styled.button`
   border-style:none;
   margin-top: 10px;
   margin-left: 10px;
+  margin-right: 30px;
   }
 
 `;
 
 const Sun = styled.svg`
  height: auto;
- width: 1.5rem;
+ width: 1rem;
  transition: all 0.7s linear;
 `;
 
 const Moon = styled.svg`
   height: auto;
-  width: 1.5rem;
+  width: 1rem;
   transition: all 0.7s linear;
 `
 
