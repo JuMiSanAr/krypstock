@@ -1,5 +1,6 @@
 import React from 'react';
 import FooterNav from '../components/footerNav';
+import CandlestickCryptoIntraday from "../components/charts/candlesticksCryptoIntraday";
 
 const CryptoPage = () => {
 
@@ -7,6 +8,7 @@ const CryptoPage = () => {
         <>
             <h1>Crypto</h1>
             <FooterNav/>
+            <CandlestickCryptoIntraday/>
         </>
     )
 }

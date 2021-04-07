@@ -27,7 +27,6 @@ export const FullWidthComponentWrapper = styled.div`
     img {
         width: 80%;     
     }
-
 `
 
 
