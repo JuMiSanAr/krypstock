@@ -22,7 +22,7 @@ const QuickTrade = () => {
             </FormSelectWrapper>  
             <TransacWrapper>
                 <div className="company transacItem amountInput">
-                    <label for="company-input">Company</label>
+                    <label htmlFor="company-input">Company</label>
                     <input id="company-input" type="text" name="company" placeholder="company" />
                 </div>
                 <div className="transacItem">

@@ -24,5 +24,9 @@ export const allTheme = {
     orange: '#eb8153',
     purple: '#6747bf',
     blue: '#4a8cda',
-    green: '#62a838' 
+    green: '#62a838',
+    turquoiseGradient: 'linear-gradient(#90F7EC, #32CCBC)',
+    orangeGradient: 'linear-gradient(#FEB692, #EA5455)',
+    greenGradient: 'linear-gradient(#81FBB8, #28C76F)',
+    blueGradient: 'linear-gradient(#ABDCFF , #0396FF)'
 }
