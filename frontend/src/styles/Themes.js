@@ -1,9 +1,9 @@
 /*import { withTheme } from "@material-ui/core"*/
 
 export const lightTheme = {
-    body: '#FFF',
+    body: '#ebdefc',
     text: '#363537',
-    background: '#7970A3',
+    background: '#FFF',
     mobile: '576px',
     footerBackground: '#2C254A'
 }
