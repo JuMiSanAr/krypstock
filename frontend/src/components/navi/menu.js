@@ -9,7 +9,6 @@ import {
     MenuWrapper
 } from "../../styles/components/naviStyles/menuStyles";
 import Logo from "../../assets/logo/logo_with_name.png";
-import MenuIcon from "@material-ui/icons/Menu";
 import FolderIcon from "@material-ui/icons/Folder";
 import SettingsIcon from "@material-ui/icons/Settings";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
@@ -25,7 +24,6 @@ const Menu = ({open}) => {
          <MenuWrapper>
             <LogoIconWrapper>
                 <img src={Logo} alt="logo"/>
-                <MenuIcon/>
             </LogoIconWrapper>
             <MenuContentWrapper>
                 <h2>Hello, Cindy</h2>

@@ -1,6 +1,8 @@
 import React from 'react';
 import FooterNav from '../components/footerNav';
-import CandlestickChart from "../components/charts/candlesticks";
+import CandlestickStockIntraday from "../components/charts/candlesticksStockIntraday";
+import CandlestickStockHistorical from "../components/charts/candlesticksStockHistorical";
+import NewsStock from "../components/newsFeed/newsStock";
 
 const StockPage = () => {
 
@@ -8,7 +10,9 @@ const StockPage = () => {
         <>
             <h1>Stock</h1>
             <FooterNav/>
-            <CandlestickChart/>
+            <CandlestickStockIntraday/>
+            <CandlestickStockHistorical/>
+            <NewsStock/>
         </>
     )
 }
