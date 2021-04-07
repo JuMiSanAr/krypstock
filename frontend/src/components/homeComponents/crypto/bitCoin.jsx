@@ -5,8 +5,8 @@ import CandlestickStockHistorical from '../../charts/candlesticksStockHistorical
 import ChartTimeframeButton from "../../charts/chartSelectTimeframeButton";
 
 
-export const BitCoin = () => {
 
+export const BitCoin = () => {
 
     return (
         <>
