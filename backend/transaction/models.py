@@ -26,5 +26,7 @@ class Transaction(models.Model):
     user = models.ForeignKey(to=User, on_delete=models.CASCADE, related_name='transactions')
     portfolio = models.ForeignKey(to=Portfolio, on_delete=models.CASCADE, related_name='transactions')
 
+    active = models.BooleanField(default=True, blank=False)
+
     def __str__(self):
         return f'#{self.id} by {self.user} in portfolio {self.portfolio}'
