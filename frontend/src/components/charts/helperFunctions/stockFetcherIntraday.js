@@ -1,4 +1,4 @@
-import {iexSandboxKey} from "../../../store/constants";
+import {iexAPIKey, iexSandboxKey} from "../../../store/constants";
 
 export const stockFetcherIntraday = (symbol, updateState) => {
 
@@ -26,6 +26,19 @@ export const stockFetcherIntraday = (symbol, updateState) => {
                     }
                 })
 
-                updateState(allData);
+                let nullValues = false;
+
+                allData.forEach(obj => {
+                    if (obj['open'] === null) {
+                        nullValues = true;
+                    }
+                });
+
+                if (nullValues) {
+                    updateState(null);
+                }
+                else {
+                    updateState(allData);
+                }
             });
     }

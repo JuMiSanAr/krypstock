@@ -32,3 +32,22 @@ export const NewsWrapper = styled(FlexDiv)`
         margin-bottom: 0px;
     }
 `
+
+export const HeadlineWrapper = styled.div`
+    display: flex;
+    margin-bottom: 10px;
+    img{
+    height: 40px;
+    width: 40px;
+    margin-right: 10px;
+    }
+`;
+
+export const DateAuthorWrapper = styled.div`
+    margin-bottom: 8px;
+    span{
+    font-size: 10px;
+    margin-right: 10px;
+    }
+`;
+
