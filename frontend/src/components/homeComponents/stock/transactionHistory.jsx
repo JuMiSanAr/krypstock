@@ -44,7 +44,7 @@ const TransactionHistory = (props) => {
                 <tbody>
                     {   
                         allData ?
-                        allData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                        allData.filter(data => data.type === 'S').slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                         .map( (stockData, index) => 
                             <tr key={"Stock"+ index}>
                                 <td>{stockData.symbol}</td>
@@ -60,7 +60,6 @@ const TransactionHistory = (props) => {
                     }
                 </tbody>
             </StockTable>
-            
             {/* {
                 ({ theme }) => theme === lightTheme ?  */}
                 {/* <TablePagination 
