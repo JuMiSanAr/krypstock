@@ -7,15 +7,14 @@ const NewsStock = (props) => {
 
     const [allNews, setAllNews] = useState([]);
 
-    const last = '10';
-    const symbol = 'GOOGL';
+    const last = '5';
 
     useEffect(() => {
         fetchNews();
     }, []);
 
     const fetchNews = () => {
-        const API_Call = `https://sandbox.iexapis.com/stable/stock/${symbol}/news/last/${last}?token=${iexSandboxKey}`;
+        const API_Call = `https://sandbox.iexapis.com/stable/stock/${props.symbol}/news/last/${last}?token=${iexSandboxKey}`;
 
         fetch(API_Call)
             .then(res => res.json())
@@ -26,9 +25,8 @@ const NewsStock = (props) => {
 
     return (
         <>
-            <h3>Latest news about {symbol}</h3>
+            <h3>Latest news about {props.symbol}</h3>
             {allNews.length > 0 ? allNews.map((news, index) => {
-                console.log(news)
 
                 const date = new Date(news.datetime);
 
