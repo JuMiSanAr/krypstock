@@ -44,7 +44,7 @@ const CandlestickStockIntraday = (props) => {
                 setData(allData);
             });
     }
-
+console.log(fetchedData)
     useEffect(() => {
         if (fetchedData.length > 0) {
             const chart = createChart(document.getElementById('chartStockIntraday'), {
