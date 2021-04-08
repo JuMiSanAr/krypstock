@@ -24,9 +24,9 @@ export const DoubleButtonContainer = styled.div`
 
 export const LeftButton = styled.button`
     /* background-color: ${props => props.numberClicked === 1 ? darkTheme.secondBackground : '#6418C3'}; */
-    background: ${props => props.numberClicked === 1 ? darkTheme.secondBackground : allTheme.purpleGradient};
+    background: ${props => props.numberClicked === 1 ? allTheme.purpleGradient : darkTheme.secondBackground};
     text-transform: uppercase;
-    font-weight: ${props => props.numberClicked === 1 ? 1000 : 600};
+    font-weight: ${props => props.numberClicked === 1 ? 600 : 1000};
     font-size: 1rem;
     height: 50px;
     width: 46%;
@@ -49,9 +49,9 @@ export const LeftButton = styled.button`
 
 export const RightButton = styled(LeftButton)`
     /* background: ${props => props.numberClicked === 1 ? '#6418C3' : darkTheme.secondBackground}; */
-    background: ${props => props.numberClicked === 1 ? allTheme.purpleGradient : darkTheme.secondBackground};
+    background: ${props => props.numberClicked === 1 ? darkTheme.secondBackground : allTheme.purpleGradient};
     border-radius: 0 10px 10px 0;
-    font-weight: ${props => props.numberClicked === 1 ? 600 : 1000};
+    font-weight: ${props => props.numberClicked === 1 ? 1000 : 600};
     color: ${props => props.numberClicked === 1 ?  'white' : 'lightgray'};
     border-radius: 0 50px 50px 0;
 `;
