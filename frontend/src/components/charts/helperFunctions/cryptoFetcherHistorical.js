@@ -1,6 +1,6 @@
 import {iexSandboxKey} from "../../../store/constants";
 
-export const stockFetcherHistorical = (symbol, updateState, timeframe) => {
+export const cryptoFetcherHistorical = (symbol, updateState, timeframe) => {
 
         const API_Call = `https://sandbox.iexapis.com/stable/stock/${symbol}/chart/${timeframe}?token=${iexSandboxKey}`;
 
@@ -18,6 +18,7 @@ export const stockFetcherHistorical = (symbol, updateState, timeframe) => {
                         close: obj['close']
                     }
                 })
+
                 updateState(allData);
             });
     }

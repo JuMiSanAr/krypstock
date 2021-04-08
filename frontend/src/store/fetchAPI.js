@@ -12,10 +12,10 @@ export const fetchAPI = (url, body, method, headers = true, expectData = true, f
             body: JSON.stringify(body),
           }
     } else if (headers && !body && !fileExpected) {
-      config = {
-        headers: headers,
-        method: method
-      }
+        config = {
+          headers: headers,
+          method: method
+        }
     } else if (!headers && body && !fileExpected) {
         config = {
             method: method,
