@@ -4,15 +4,15 @@ import { StockTable } from "../../../styles/components/stockStyles/tableStyles"
 import { ShrinkingComponentWrapper } from "../../../styles/globalParts/containerStyles"
 
 
-const TopPerformingStocks = () => {
-
+const TopPerformingStocks = ({gain_stock}) => {
+ console.log("top performing stock", gain_stock)
     return (
         <ShrinkingComponentWrapper>
             <FormSelectWrapper>
                 <div className="title">
-                    <h3>Top-performing stocks</h3>
+                    <h3>Top 10 gain stocks</h3>
                 </div>
-                <SelectorWrapper>
+               {/* <SelectorWrapper>
                     <div className="buySell">
                         <select className="selector">
                             <option value="today">Today</option>
@@ -21,7 +21,7 @@ const TopPerformingStocks = () => {
                             <option value="one-year">1 Year</option>
                         </select>
                     </div>
-                </SelectorWrapper>
+                </SelectorWrapper>*/}
             </FormSelectWrapper>  
             <StockTable id="top-performing">
                 <thead>
@@ -33,7 +33,21 @@ const TopPerformingStocks = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+
+                {
+                    gain_stock.map((data, index) => {
+                        return (
+                            <tr key={index}>
+                        <td>{data.companyName}</td>
+                        <td>{data.latestPrice}</td>
+                        <td>{data.changePercent}</td>
+                        <td>{data.volume}</td>
+                    </tr>
+                        )
+                    })
+                }
+
+                  {/*  <tr>
                         <td>ABC</td>
                         <td>520</td>
                         <td>20.20%</td>
@@ -50,13 +64,7 @@ const TopPerformingStocks = () => {
                         <td>520</td>
                         <td>20.20%</td>
                         <td>1.3M</td>
-                    </tr>
-                    <tr>
-                        <td>ABC</td>
-                        <td>520</td>
-                        <td>20.20%</td>
-                        <td>1.3M</td>
-                    </tr>
+                    </tr>*/}
                 </tbody>
             </StockTable>
         </ShrinkingComponentWrapper>
