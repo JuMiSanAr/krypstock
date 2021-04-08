@@ -7,14 +7,14 @@ import TopPerformingStocks from './topPerforming';
 import TransactionHistory from './transactionHistory';
 import TrendyStocks from './trendyStocks';
 
-const Stock = () => {
+const Stock = (props) => {
 
     return (
         <AllComponentsWrapper>
             <MarketOverview/>
             <News/>
             <QuickTrade/>
-            <TransactionHistory/>
+            <TransactionHistory />
             <TrendyStocks/>
             <TopPerformingStocks/>
         </AllComponentsWrapper>
