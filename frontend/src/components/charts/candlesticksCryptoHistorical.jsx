@@ -1,6 +1,7 @@
 import React, {useEffect, useState, useCallback} from 'react';
 import {createChart, CrosshairMode} from "lightweight-charts";
 import {ShrinkingComponentWrapper} from "../../styles/globalParts/containerStyles";
+import {iexSandboxKey} from "../../store/constants";
 
 
 const CandlestickCryptoHistorical = (props) => {
@@ -10,36 +11,43 @@ const CandlestickCryptoHistorical = (props) => {
    // TEMP (Data will come from props)
     const [fetchedData, setData] = useState([]);
     const exchange = 'Bitcoin/USD';
-    const cryptoCurrency= 'btcusdt';
+    const cryptoCurrency= 'BTCUSDT';
+    const tick_interval = '1m';
+
     useEffect(() => {
-        fetchCrypto();
+        FetchCrypto();
     }, []);
 
-    const fetchCrypto = () => {
+    const FetchCrypto = () => {
         const API_KEY = 'hEONEAKmoUPGx9EyweXiP7WEJzbmJEihUzsJQ1THnOwnLRuWkr4vEw7qF0xqhh7u';
-     //   const API_Call = `https://sandbox.iexapis.com/stable/stock/${symbol}/intraday-prices?token=${API_KEY}`;
 
-        const binanceSocket = new WebSocket(`wss://stream.binance.com:9443/ws/${cryptoCurrency}@kline_1m`);
-            binanceSocket.onmessage = event => {
-                const lastdata= JSON.parse(event.data)
-                // console.log(event.data)
-              // console.log(lastdata["k"])
-                const timestamp = lastdata["E"]/1000;
-                  //  if(lastdata["E"]>=)
-                    console.log(fetchedData)
-                    const data = fetchedData.push({
-                       // time: lastdata["k"]['t'],
-                        time: timestamp,
-                        open: lastdata["k"]['o'],
-                        high: lastdata["k"]['h'],
-                        low: lastdata["k"]['l'],
-                        close: lastdata["k"]['c']
-                    })
-                    setData(data);
+           const API_Call = `https://api.binance.com/api/v3/klines?symbol=${cryptoCurrency}&interval=${tick_interval}`;
 
+        fetch(API_Call)
+            .then(res => res.json())
+            .then(data => {
 
-            document.getElementById('chartCryptoIntraday').innerHTML = '';
-            const chart = createChart(document.getElementById('chartCryptoIntraday'), {
+                const allData = data.map((obj,index) => {
+                        // console.log(data)
+                    let timeFix=obj[0]/1000
+                    return {
+                        time: timeFix,
+                        open: obj[1],
+                        high: obj[2],
+                        low: obj[3],
+                        close: obj[4]
+                    }
+                })
+                console.log(allData)
+                setData(allData);
+            });
+
+        }
+
+        useEffect(() => {
+        document.getElementById('chartCryptoHistorical').innerHTML = '';
+        if (fetchedData.length>0) {
+            const chart = createChart(document.getElementById('chartCryptoHistorical'), {
                 width: 300,
                 height: 200,
                 layout: {
@@ -48,7 +56,7 @@ const CandlestickCryptoHistorical = (props) => {
                 },
                 grid: {
                     vertLines: {
-                        color: 'rgba(197, 203, 206, 0.5)',
+                        color   : 'rgba(197, 203, 206, 0.5)',
                     },
                     horzLines: {
                         color: 'rgba(197, 203, 206, 0.5)',
@@ -70,22 +78,20 @@ const CandlestickCryptoHistorical = (props) => {
                 borderDownColor: 'rgb(0,0,0)',
                 borderUpColor: 'rgb(0,0,0)',
                 wickDownColor: 'rgb(131,14,14)',
-                wickUpColor: 'rgb(39,148,0)'
+                wickUpColor: 'rgb(39,148,0)',
             });
-            candleSeries.setData(fetchedData);
 
             chart.applyOptions({
                 watermark: {
                     color: 'rgba(255, 255, 255, 0.4)',
                     visible: true,
-                    text: `UTC  ${exchange}`,
+                    text: `Market: ${cryptoCurrency} Interval:${tick_interval}`,
                     fontSize: 10,
                     horzAlign: 'left',
                     vertAlign: 'bottom',
                 },
                 priceScale: {
                     autoScale: false,
-                    invertScale: false,
                     alignLabels: false,
                     borderVisible: false,
                     borderColor: '#555ffd',
@@ -105,17 +111,15 @@ const CandlestickCryptoHistorical = (props) => {
                 },
             });
 
-
+            candleSeries.setData(fetchedData);
         }
 
-    }
+    }, [fetchedData]);
 
-    // useEffect(useCallback(() => {
-    //
-    // }), [fetchedData]);
-        return (
-                <div id="chartCryptoIntraday"/>
 
+        return (<>
+                <div id="chartCryptoHistorical"/>
+                </>
         );
 }
 export default CandlestickCryptoHistorical
