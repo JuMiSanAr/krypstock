@@ -5,7 +5,6 @@ import { ShrinkingComponentWrapper } from "../../../styles/globalParts/container
 
 
 const TopPerformingStocks = ({gain_stock}) => {
- console.log("top performing stock", gain_stock)
     return (
         <ShrinkingComponentWrapper>
             <FormSelectWrapper>
@@ -39,8 +38,8 @@ const TopPerformingStocks = ({gain_stock}) => {
                         return (
                             <tr key={index}>
                         <td>{data.companyName}</td>
-                        <td>{data.latestPrice}</td>
-                        <td>{data.changePercent}</td>
+                        <td>{data.latestPrice.toFixed(2)}</td>
+                        <td>{data.changePercent.toFixed(2)}</td>
                         <td>{data.volume}</td>
                     </tr>
                         )

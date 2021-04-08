@@ -5,7 +5,6 @@ import { ShrinkingComponentWrapper } from "../../../styles/globalParts/container
 
 
 const WorstPerformingStocks = ({loss_stock}) => {
- console.log("top performing stock", loss_stock)
     return (
         <ShrinkingComponentWrapper>
             <FormSelectWrapper>
@@ -13,7 +12,7 @@ const WorstPerformingStocks = ({loss_stock}) => {
                     <h3>Top 10 loss stocks</h3>
                 </div>
             </FormSelectWrapper>
-            <StockTable id="top-performing">
+            <StockTable id="trendy-stocks">
                 <thead>
                     <tr>
                         <th>Company</th>
@@ -29,8 +28,8 @@ const WorstPerformingStocks = ({loss_stock}) => {
                         return (
                             <tr key={index}>
                                 <td>{data.companyName}</td>
-                                <td>{data.latestPrice}</td>
-                                <td>{data.changePercent}</td>
+                                <td>{data.latestPrice.toFixed(2)}</td>
+                                <td>{data.changePercent.toFixed(2)}</td>
                                 <td>{data.volume}</td>
                             </tr>
                         )
