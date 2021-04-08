@@ -1,7 +1,6 @@
-// import React, {useEffect, useState} from 'react';
-// import {createChart, CrosshairMode} from "lightweight-charts";
-// import useWebSocket, { ReadyState } from 'react-use-websocket';
-import React, { useState, useCallback, useMemo, useRef } from 'react';
+import React, {useEffect, useState} from 'react';
+import {createChart, CrosshairMode} from "lightweight-charts";
+
 
 const CandlestickCryptoIntraday = (props) => {
     const tradeDiv=document.getElementById('data')
