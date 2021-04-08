@@ -1,38 +1,55 @@
-import React from 'react';
+import React, {useState} from 'react';
 import FooterNav from '../components/footerNav';
 import { AllComponentsWrapper, ShrinkingComponentWrapper } from '../styles/globalParts/containerStyles';
-import {InvestmentsContainer, OverviewBarBlue, OverviewBarGreen, OverviewBarYellow, OverviewBarOrange, HeadlineFont, CakeChartContainer} from '../styles/components/portfolioStyles';
+import {InvestmentsContainer, PercentContainer, InvestmentFont, OverviewBarBlue, OverviewBarGreen, OverviewBarYellow, OverviewBarOrange, HeadlineFont, CakeChartContainer} from '../styles/components/portfolioStyles';
 import { PieChart } from 'react-minimal-pie-chart';
 import Graph from '../assets/bit.png'
+import CandlestickStockIntraday from "../components/charts/candlesticksStockIntraday";
+import CandlestickStockHistorical from "../components/charts/candlesticksStockHistorical"; 
+import ChartTimeframeButton from "../components/charts/chartSelectTimeframeButton";
+import { FormSelectWrapper, GraphWrapper } from "../styles/components/cryptoStyles/bitCoinStyles";
 
+const Portfolio = (props) => {
 
-const Portfolio = () => {
+    const [chart, setChart] = useState('day');
 
     return (
         <>
-        
             <AllComponentsWrapper>
                 <ShrinkingComponentWrapper>
                     <HeadlineFont>All investments</HeadlineFont >
                     <InvestmentsContainer>
-                        <p>1000</p>
-                        <p>4000</p>
-                        <p>+- 10%</p>
+                        <div>
+                            <p>invested</p>
+                            <InvestmentFont>13'987 $</InvestmentFont>
+                        </div>
+                        <div>
+                            <p>balance</p>
+                            <InvestmentFont>43'984 $</InvestmentFont>
+                        </div>
+                        <div>
+                            <p>this week</p>
+                            <PercentContainer>
+                                <i className="fas fa-angle-double-up"></i>
+                                {/* <i class="fas fa-angle-double-down"></i> */}
+                                <InvestmentFont>2.5%</InvestmentFont>
+                            </PercentContainer>
+                        </div>
                     </InvestmentsContainer>
                 </ShrinkingComponentWrapper>
                 <ShrinkingComponentWrapper>
                     <HeadlineFont>Overview</HeadlineFont>
                     <OverviewBarGreen>
-                        <i class="fab fa-ethereum"></i>
+                        <i className="fab fa-ethereum"></i>
                         <HeadlineFont>Etherium</HeadlineFont>
                         <p>50'345</p>
-                        <p>+- 10%</p>
+                        <p><i className="fas fa-angle-double-down"></i> 10%</p>
                     </OverviewBarGreen>
                     <OverviewBarBlue>
-                        <i class="fab fa-bitcoin"></i>
+                        <i className="fab fa-bitcoin"></i>
                         <HeadlineFont>BitCoin</HeadlineFont>
                         <p>1'000'000</p>
-                        <p>+- 10%</p>
+                        <p><i className="fas fa-angle-double-up"></i> 10%</p>
                     </OverviewBarBlue>
                     <OverviewBarYellow>
                         <HeadlineFont>Etherium</HeadlineFont>
@@ -60,7 +77,17 @@ const Portfolio = () => {
                 </ShrinkingComponentWrapper>
                 <ShrinkingComponentWrapper>
                     <HeadlineFont>Total value over time</HeadlineFont>
-                    <img src={Graph}></img>     
+                    <FormSelectWrapper>
+                    <div className="title">
+                        <h3>Price Chart</h3>
+                        </div>
+                        <div >
+                            <ChartTimeframeButton setChart={setChart}/>
+                        </div>
+                    </FormSelectWrapper>
+                    <GraphWrapper>
+                        {chart === 'day' ? <CandlestickStockIntraday/> : <CandlestickStockHistorical timeframe={chart}/>}
+                    </GraphWrapper>   
                 </ShrinkingComponentWrapper>
                 <ShrinkingComponentWrapper>
                     <HeadlineFont>Comparison</HeadlineFont>
