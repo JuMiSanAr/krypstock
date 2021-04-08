@@ -5,6 +5,7 @@ import {InvestmentsContainer, OverviewBarBlue, OverviewBarGreen, OverviewBarYell
 import { PieChart } from 'react-minimal-pie-chart';
 import Graph from '../assets/bit.png'
 
+
 const Portfolio = () => {
 
     return (
@@ -59,6 +60,10 @@ const Portfolio = () => {
                 </ShrinkingComponentWrapper>
                 <ShrinkingComponentWrapper>
                     <HeadlineFont>Total value over time</HeadlineFont>
+                    <img src={Graph}></img>     
+                </ShrinkingComponentWrapper>
+                <ShrinkingComponentWrapper>
+                    <HeadlineFont>Comparison</HeadlineFont>
                     <img src={Graph}></img>     
                 </ShrinkingComponentWrapper>
             </AllComponentsWrapper>
