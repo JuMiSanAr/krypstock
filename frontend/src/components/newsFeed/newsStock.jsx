@@ -25,7 +25,7 @@ const NewsStock = (props) => {
 
     return (
         <>
-            <h3>Latest news about {props.symbol}</h3>
+            <h3>Latest news about {props.companyName}</h3>
             {allNews.length > 0 ? allNews.map((news, index) => {
 
                 const date = new Date(news.datetime);
