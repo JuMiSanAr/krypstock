@@ -5,9 +5,9 @@ import CandlestickStockHistorical from "../components/charts/candlesticksStockHi
 import NewsStock from "../components/newsFeed/newsStock";
 import {AllComponentsWrapper, ShrinkingComponentWrapper} from "../styles/globalParts/containerStyles";
 import ChartTimeframeButton from "../components/charts/chartSelectTimeframeButton";
-import {FormSelectWrapper, GraphWrapper, RadioWrapper} from "../styles/components/cryptoStyles/bitCoinStyles";
+import { FormSelectWrapper, GraphWrapper } from "../styles/components/cryptoStyles/bitCoinStyles";
 
-const StockPage = () => {
+const StockPage = (props) => {
 
     const [chart, setChart] = useState('day');
 
@@ -31,7 +31,6 @@ const StockPage = () => {
             <NewsStock/>
             <FooterNav/>
     </AllComponentsWrapper>
-
         </>
     )
 }
