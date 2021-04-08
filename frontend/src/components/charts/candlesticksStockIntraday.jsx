@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {createChart, CrosshairMode, isBusinessDay} from "lightweight-charts";
 import {ShrinkingComponentWrapper} from "../../styles/globalParts/containerStyles";
+import {iexSandboxKey} from "../../store/constants";
 
 
 const CandlestickStockIntraday = (props) => {
@@ -16,8 +17,7 @@ const CandlestickStockIntraday = (props) => {
     }, []);
 
     const fetchStock = () => {
-        const API_KEY = 'Tpk_fec97062db224c2fb7b0b3836ab0e365';
-        const API_Call = `https://sandbox.iexapis.com/stable/stock/${symbol}/intraday-prices?token=${API_KEY}`;
+        const API_Call = `https://sandbox.iexapis.com/stable/stock/${symbol}/intraday-prices?token=${iexSandboxKey}`;
 
         fetch(API_Call)
             .then(res => res.json())

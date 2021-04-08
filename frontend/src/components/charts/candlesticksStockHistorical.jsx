@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {createChart, CrosshairMode} from "lightweight-charts";
+import {iexSandboxKey} from "../../store/constants";
 // import {ShrinkingComponentWrapper} from "../../styles/globalParts/containerStyles";
 
 
@@ -22,8 +23,7 @@ const CandlestickStockHistorical = (props) => {
     }, [props.timeframe])
 
     const fetchStock = () => {
-        const API_KEY = 'Tpk_fec97062db224c2fb7b0b3836ab0e365';
-        const API_Call = `https://sandbox.iexapis.com/stable/stock/${symbol}/chart/${props.timeframe}?token=${API_KEY}`;
+        const API_Call = `https://sandbox.iexapis.com/stable/stock/${symbol}/chart/${props.timeframe}?token=${iexSandboxKey}`;
 
         fetch(API_Call)
             .then(res => res.json())
