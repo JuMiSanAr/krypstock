@@ -1,5 +1,5 @@
 import React from 'react'
-import {MainContainer, Color, WrapDiv} from '../../styles/components/signUpStyles'
+import {MainContainer, WrapDiv} from '../../styles/components/signUpStyles'
 import logo from '../../assets/logo/logo_with_name.png'
 import {Link} from 'react-router-dom'
 const SignUp = () => {
@@ -8,7 +8,7 @@ const SignUp = () => {
         <>
         <MainContainer>
                     <WrapDiv>
-                    <img src={logo} out="logo"/>
+                    <img src={logo} out="logo" alt="logo"/>
                     </WrapDiv>
                     <WrapDiv>
                         <div>

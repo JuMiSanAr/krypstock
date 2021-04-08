@@ -13,7 +13,7 @@ const Verification = () => {
                     <h3>Set your password and username</h3>
                 </WrapDivV>
                 <WrapDivV>
-                    <img src={logo} out="logo"/>
+                    <img src={logo} out="logo" alt="logo"/>
                 </WrapDivV>
                 <WrapDivV>
                     <input name='verification_code' type='text' placeholder='Verification Code' required/>

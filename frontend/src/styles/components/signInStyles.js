@@ -17,7 +17,7 @@ export const MainContainerSI = styled.div`
     height: 250px;
   }
   
-  input[type=text] {
+  input[type=text], input[type=password]{
     width:250px;
     height: 30px;
     margin-bottom: 10px;

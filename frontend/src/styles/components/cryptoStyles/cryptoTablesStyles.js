@@ -1,16 +1,16 @@
 import styled from 'styled-components';
 import {darkTheme, lightTheme, allTheme} from "../../Themes";
 
-export const StockTable = styled.table`
+export const Table = styled.table`
     width: 100%;
     /* background-color: ${({ theme }) => theme === lightTheme ? darkTheme.body : lightTheme.body}; */
     border-collapse: collapse;
     /* border-width: 2px; */
     /* border-style: solid; */
-    color: ${({ theme }) => theme === lightTheme ? lightTheme.text : darkTheme.text};;
+    color: ${({ theme }) => theme === lightTheme ?lightTheme.text : darkTheme.text};;
     
     thead{
-        background: ${props => props.id === 'trendy-stocks' ? allTheme.orangeGradient : props.id === "transaction-history" ? allTheme.turquoiseGradient : allTheme.greenGradient};
+        background-color: ${props => props.id === 'crypto' ? allTheme.orange : props.id === "trans-history" ? allTheme.turquoise : allTheme.green};
         /* border-bottom: 1px solid #ffcc00; */
         color: ${({ theme }) => theme === lightTheme ? lightTheme.text : darkTheme.text};
         tr{

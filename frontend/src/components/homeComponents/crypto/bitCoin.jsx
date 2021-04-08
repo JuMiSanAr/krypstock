@@ -2,10 +2,11 @@ import React from 'react'
 import {ShrinkingComponentWrapper } from '../../../styles/globalParts/containerStyles';
 import {FormSelectWrapper, GraphWrapper, RadioWrapper} from "../../../styles/components/cryptoStyles/bitCoinStyles";
 import CandlestickStockHistorical from '../../charts/candlesticksStockHistorical'
+import ChartTimeframeButton from "../../charts/chartSelectTimeframeButton";
+
 
 
 export const BitCoin = () => {
-
 
     return (
         <>
@@ -14,12 +15,8 @@ export const BitCoin = () => {
            <div className="title">
                <h3>BitCoin</h3>
             </div>
-                <div >
-                <select className="selector">
-                <option value="month">Month</option>
-                <option value="week">Week</option>
-                <option value="day">Day</option>
-                </select>
+            <div >
+                <ChartTimeframeButton/>
             </div>
            </FormSelectWrapper>
            <RadioWrapper>
@@ -28,9 +25,9 @@ export const BitCoin = () => {
                 <input type="radio" name="bitcoin" value="btc" />
                 <label>ETH</label>
                 <input type="radio" name="ethereum" value="eth" />
-                <label for="other">LTC</label>
+                <label htmlFor="other">LTC</label>
                 <input type="radio" name="litecoin" value="ltc" />
-                <label for="other">XMR</label>
+                <label htmlFor="other">XMR</label>
                 <input type="radio" name="monero" value="xmr" />
             </form>
            </RadioWrapper> 
