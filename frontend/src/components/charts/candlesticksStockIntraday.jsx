@@ -55,6 +55,7 @@ const CandlestickStockIntraday = (props) => {
                 },
                 priceScale: {
                     autoScale: false,
+                    invertScale: true,
                     alignLabels: false,
                     borderVisible: false,
                     borderColor: '#555ffd',
