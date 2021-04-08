@@ -12,8 +12,6 @@ import {transactionsAction} from '../../../store/actions/transactionsAction';
 const TransactionHistory = (props) => {
 
     const dispatch = useDispatch();
-    let [stocksCryptoData, setStocksCryptoData] = useState([])
-    let stocksData = []
     const [page, setPage] = React.useState(1);
     const rowsPerPage = 4;
     const allData = useSelector(state => state.transactionsReducer.transactions);
@@ -22,23 +20,10 @@ const TransactionHistory = (props) => {
         transactionFetch()
         .then(data => {
             console.log("data.results", data.results);
-            // const stocksOnlyData = data.results.filter(stockData => stockData.type === "S")
-            // console.log("stocksOnlyData", stocksOnlyData)
             const action = transactionsAction(data.results)
             dispatch(action);
-            // setAllStocksData(stocksOnlyData);
         })     
     }, []);
-    
-    console.log('allData', allData)
-
-    // useEffect(() => {
-    //     setStocksCryptoData(allData)
-    //     console.log("stocksCryptoData", stocksCryptoData)
-    //     // stocksData = (stocksCryptoData !== [] ? stocksCryptoData.filter(data => data.type === "S") : []);
-    //     console.log('stocksData', stocksData)
-    // })
-    // const allStocksData = allData.filter(data => data.type === "S");
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -97,7 +82,6 @@ const TransactionHistory = (props) => {
                     rowsPerPageOptions={[]}
                     style={{color: darkTheme.text}}
                 />
-            {/* }        */}
         </ShrinkingComponentWrapper>
     )
 }
