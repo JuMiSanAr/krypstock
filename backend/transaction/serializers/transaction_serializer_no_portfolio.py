@@ -9,6 +9,7 @@ class TransactionSerializerNoPortfolio(serializers.ModelSerializer):
         fields = ['id',
                   'buy_sell',
                   'symbol',
+                  'type',
                   'cost',
                   'quantity',
                   'price',
