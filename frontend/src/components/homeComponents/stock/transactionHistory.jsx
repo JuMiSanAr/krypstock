@@ -55,26 +55,14 @@ const TransactionHistory = (props) => {
                         )
                         :
                         <tr>
-                            <td>No stocks available in your portfolio</td>
+                            <td>No stocks in your portfolio</td>
                         </tr>
                     }
                 </tbody>
             </StockTable>
-            {/* {
-                ({ theme }) => theme === lightTheme ?  */}
-                {/* <TablePagination 
-                    component="div"
-                    count={allStocksData.length}
-                    page={page}
-                    onChangePage={handleChangePage}
-                    rowsPerPage={rowsPerPage}
-                    rowsPerPageOptions={[]}
-                    style={{color: lightTheme.text}}
-                />
-                :  */}
                 <TablePagination 
                     component="div"
-                    count={allData.length}
+                    count={allData.filter(data => data.type === 'S').length}
                     page={page}
                     onChangePage={handleChangePage}
                     rowsPerPage={rowsPerPage}
