@@ -9,31 +9,36 @@ import { FormSelectWrapper, GraphWrapper } from "../styles/components/cryptoStyl
 import StockPageInfoCard from "../components/stockCards/stockPageInfoCard";
 import {stockFetcherIntraday} from "../components/charts/helperFunctions/stockFetcherIntraday";
 import {stockFetcherHistorical} from "../components/charts/helperFunctions/stockFetcherHistorical";
+import NoIntradayInfo from "../components/charts/noIntradayInfo";
 
 const StockPage = (props) => {
 
     const [chartTimeframe, setChartTimeframe] = useState('day');
 
+    const [companyName, setCompanyName] = useState('');
+
     const [intradayData, setIntradayData] = useState([]);
     const [historicalData, setHistoricalData] = useState([]);
 
     const symbol = 'AAPL';
+    const market = 'NASDAQ';
 
     useEffect(() => {
         stockFetcherIntraday(symbol, setIntradayData);
-        stockFetcherHistorical(symbol, setHistoricalData, chartTimeframe);
     }, []);
 
     useEffect(() => {
-        stockFetcherHistorical(symbol, setHistoricalData, chartTimeframe);
+        if (chartTimeframe !== 'day') {
+            stockFetcherHistorical(symbol, setHistoricalData, chartTimeframe);
+        }
     }, [chartTimeframe])
 
     return (
         <>
     <AllComponentsWrapper>
-        <h1>{symbol}</h1>
+        <h1>{companyName}</h1>
         <ShrinkingComponentWrapper>
-            <StockPageInfoCard data={symbol}/>
+            <StockPageInfoCard symbol={symbol} setCompanyName={setCompanyName}/>
         </ShrinkingComponentWrapper>
         <ShrinkingComponentWrapper>
             <FormSelectWrapper>
@@ -45,13 +50,27 @@ const StockPage = (props) => {
                 </div>
             </FormSelectWrapper>
             <GraphWrapper>
-               {chartTimeframe === 'day' ?
-                   <CandlestickStockIntraday data={intradayData}/>
-                   :
-                   <CandlestickStockHistorical data={historicalData}/>}
+                {
+                    chartTimeframe === 'day' && intradayData ?
+                        <CandlestickStockIntraday data={intradayData} market={market}/>
+                        :
+                        ''
+                }
+                {
+                    chartTimeframe === 'day' && intradayData === null ?
+                        <NoIntradayInfo symbol={symbol} market={market}/>
+                        :
+                        ''
+                }
+                {
+                    chartTimeframe !== 'day' ?
+                        <CandlestickStockHistorical data={historicalData} market={market}/>
+                        :
+                        ''
+                }
             </GraphWrapper>
         </ShrinkingComponentWrapper>
-        <NewsStock symbol={symbol}/>
+        <NewsStock symbol={symbol} companyName={companyName}/>
         <FooterNav/>
     </AllComponentsWrapper>
         </>

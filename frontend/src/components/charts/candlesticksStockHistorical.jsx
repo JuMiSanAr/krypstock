@@ -3,13 +3,13 @@ import {createChart, CrosshairMode} from "lightweight-charts";
 
 const CandlestickStockHistorical = (props) => {
 
-    // TEMP (market will come from props)
-    const market = 'NASDAQ';
-
     useEffect(() => {
         document.getElementById('chartStockHistorical').innerHTML = '';
         if (props.data) {
             const chart = createChart(document.getElementById('chartStockHistorical'), {
+                localization: {
+                    locale: 'en-US'
+                },
                 width: 300,
                 height: 200,
                 layout: {
@@ -37,8 +37,8 @@ const CandlestickStockHistorical = (props) => {
             const candleSeries = chart.addCandlestickSeries({
                 upColor: 'rgb(71,169,12)',
                 downColor: '#a91111',
-                borderDownColor: 'rgb(0,0,0)',
-                borderUpColor: 'rgb(0,0,0)',
+                // borderDownColor: 'rgb(0,0,0)',
+                // borderUpColor: 'rgb(0,0,0)',
                 wickDownColor: 'rgb(131,14,14)',
                 wickUpColor: 'rgb(39,148,0)',
             });
@@ -47,7 +47,7 @@ const CandlestickStockHistorical = (props) => {
                 watermark: {
                     color: 'rgba(255, 255, 255, 0.4)',
                     visible: true,
-                    text: `Market: ${market}`,
+                    text: `Market: ${props.market}`,
                     fontSize: 10,
                     horzAlign: 'left',
                     vertAlign: 'bottom',
