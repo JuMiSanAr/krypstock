@@ -13,9 +13,16 @@ class Transaction(models.Model):
         ('S', 'Sell')
     ]
 
+    TYPE = [
+        ('S', 'Stock'),
+        ('C', 'Crypto')
+    ]
+
     buy_sell = models.CharField(max_length=1, choices=BUYSELL_CHOICES, default='B')
 
     symbol = models.CharField(max_length=10)
+
+    type = models.CharField(max_length=1, choices=TYPE, default='S')
 
     cost = models.CharField(max_length=20, blank=True)
     quantity = models.CharField(max_length=20)

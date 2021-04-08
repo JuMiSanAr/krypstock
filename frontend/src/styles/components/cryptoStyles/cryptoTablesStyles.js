@@ -7,12 +7,12 @@ export const Table = styled.table`
     border-collapse: collapse;
     /* border-width: 2px; */
     /* border-style: solid; */
-    color: ${({ theme }) => theme === lightTheme ? darkTheme.text : darkTheme.text};;
+    color: ${({ theme }) => theme === lightTheme ?lightTheme.text : darkTheme.text};;
     
     thead{
         background-color: ${props => props.id === 'crypto' ? allTheme.orange : props.id === "trans-history" ? allTheme.turquoise : allTheme.green};
         /* border-bottom: 1px solid #ffcc00; */
-        color: ${({ theme }) => theme === lightTheme ? darkTheme.text : darkTheme.text};
+        color: ${({ theme }) => theme === lightTheme ? lightTheme.text : darkTheme.text};
         tr{
             height: 60px;
         }

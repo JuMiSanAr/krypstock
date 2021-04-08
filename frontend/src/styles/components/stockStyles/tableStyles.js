@@ -7,12 +7,12 @@ export const StockTable = styled.table`
     border-collapse: collapse;
     /* border-width: 2px; */
     /* border-style: solid; */
-    color: ${({ theme }) => theme === lightTheme ? darkTheme.text : darkTheme.text};;
+    color: ${({ theme }) => theme === lightTheme ? lightTheme.text : darkTheme.text};;
     
     thead{
         background: ${props => props.id === 'trendy-stocks' ? allTheme.orangeGradient : props.id === "transaction-history" ? allTheme.turquoiseGradient : allTheme.greenGradient};
         /* border-bottom: 1px solid #ffcc00; */
-        color: ${({ theme }) => theme === lightTheme ? darkTheme.text : darkTheme.text};
+        color: ${({ theme }) => theme === lightTheme ? lightTheme.text : darkTheme.text};
         tr{
             height: 60px;
         }
