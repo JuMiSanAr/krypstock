@@ -3,17 +3,16 @@ import FooterNav from '../components/footerNav';
 import CandlestickCryptoIntraday from "../components/charts/candlesticksCryptoIntraday";
 import {FormSelectWrapper, GraphWrapper} from "../styles/components/cryptoStyles/bitCoinStyles";
 import {AllComponentsWrapper, ShrinkingComponentWrapper} from "../styles/globalParts/containerStyles";
-import StockPageInfoCard from "../components/stockCards/stockPageInfoCard";
-import ChartTimeframeButton from "../components/charts/chartSelectTimeframeButton";
 import NewsCrypto from "../components/newsFeed/newsCrypto";
 import {cryptoFetcherIntraday} from "../components/charts/helperFunctions/cryptoFetcherIntraday";
 import {cryptoFetcherHistorical} from "../components/charts/helperFunctions/cryptoFetcherHistorical";
 import CandlestickCryptoHistorical from "../components/charts/candlesticksCryptoHistorical";
 import CryptoPageInfoCard from "../components/cryptoCards/cryptoPageInfoCard";
+import ChartTimeCryptoframeButton from "../components/charts/chartSelectTimeCryptoframeButton";
 
 const CryptoPage = (props) => {
 
-    const [chartTimeframe, setChartTimeframe] = useState('day');
+    const [chartTimeframe, setChartTimeframe] = useState('1m');
 
     const [intradayData, setIntradayData] = useState([]);
     const [historicalData, setHistoricalData] = useState([]);
@@ -21,7 +20,6 @@ const CryptoPage = (props) => {
     const symbol = 'BTCUSD';
 
     useEffect(() => {
-        cryptoFetcherIntraday(symbol, setIntradayData);
         cryptoFetcherHistorical(symbol, setHistoricalData, chartTimeframe);
     }, []);
 
@@ -43,11 +41,11 @@ const CryptoPage = (props) => {
                    <h3>Price Chart</h3>
                 </div>
                 <div >
-                    <ChartTimeframeButton setChart={setChartTimeframe}/>
+                    <ChartTimeCryptoframeButton setChart={setChartTimeframe}/>
                 </div>
               </FormSelectWrapper>
                  <GraphWrapper>
-               {chartTimeframe === 'day' ?
+               {chartTimeframe === '1m' ?
                    <CandlestickCryptoIntraday data={intradayData}/>
                    :
                    <CandlestickCryptoHistorical data={historicalData}/>}

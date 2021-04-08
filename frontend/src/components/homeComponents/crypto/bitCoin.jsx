@@ -2,7 +2,8 @@ import React from 'react'
 import {ShrinkingComponentWrapper } from '../../../styles/globalParts/containerStyles';
 import {FormSelectWrapper, GraphWrapper, RadioWrapper} from "../../../styles/components/cryptoStyles/bitCoinStyles";
 import CandlestickStockHistorical from '../../charts/candlesticksStockHistorical'
-import ChartTimeframeButton from "../../charts/chartSelectTimeframeButton";
+import ChartTimeCryptoframeButton from "../../charts/chartSelectTimeCryptoframeButton";
+import CandlestickCryptoIntraday from "../../charts/candlesticksCryptoIntraday";
 
 
 
@@ -16,7 +17,7 @@ export const BitCoin = () => {
                <h3>BitCoin</h3>
             </div>
             <div >
-                <ChartTimeframeButton/>
+                <ChartTimeCryptoframeButton/>
             </div>
            </FormSelectWrapper>
            <RadioWrapper>
@@ -32,7 +33,7 @@ export const BitCoin = () => {
             </form>
            </RadioWrapper> 
            <GraphWrapper>
-               <CandlestickStockHistorical/>
+               <CandlestickCryptoIntraday/>
            </GraphWrapper>
                 
         </ShrinkingComponentWrapper>
