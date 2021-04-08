@@ -7,7 +7,7 @@ const NewsStock = (props) => {
 
     const [allNews, setAllNews] = useState([]);
 
-    const last = '10';
+    const last = '5';
     const symbol = 'GOOGL';
 
     useEffect(() => {
