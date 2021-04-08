@@ -55,7 +55,7 @@ const TransactionHistory = (props) => {
                         )
                         :
                         <tr>
-                            <td>No stocks in your portfolio</td>
+                            <td colSpan="4">No stocks in your portfolio</td>
                         </tr>
                     }
                 </tbody>

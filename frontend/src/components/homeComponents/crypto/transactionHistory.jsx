@@ -44,7 +44,7 @@ export const TransactionHistory = () => {
                             )
                             :
                             <tr>
-                                <td>No crypto assets in your portfolio</td>
+                                <td colSpan="4">No crypto assets in your portfolio</td>
                             </tr>
                         }
                         <TablePagination 
