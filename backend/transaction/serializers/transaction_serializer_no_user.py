@@ -14,6 +14,7 @@ class TransactionSerializerNoUser(serializers.ModelSerializer):
                   'portfolio',
                   'buy_sell',
                   'symbol',
+                  'type',
                   'cost',
                   'quantity',
                   'price',

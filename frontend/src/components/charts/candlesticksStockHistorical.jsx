@@ -1,52 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import {createChart, CrosshairMode} from "lightweight-charts";
-import {iexSandboxKey} from "../../store/constants";
-// import {ShrinkingComponentWrapper} from "../../styles/globalParts/containerStyles";
-
 
 const CandlestickStockHistorical = (props) => {
 
-    // TEMP (Data will come from props)
-    const [fetchedData, setData] = useState([]);
-
-    const symbol = 'twtr';
+    // TEMP (market will come from props)
     const market = 'NASDAQ';
-
-    console.log(props.timeframe)
-
-    useEffect(() => {
-        fetchStock();
-    }, []);
-
-    useEffect(() => {
-        fetchStock();
-    }, [props.timeframe])
-
-    const fetchStock = () => {
-        const API_Call = `https://sandbox.iexapis.com/stable/stock/${symbol}/chart/${props.timeframe}?token=${iexSandboxKey}`;
-
-        fetch(API_Call)
-            .then(res => res.json())
-            .then(data => {
-
-                const allData = data.map(obj => {
-
-                    return {
-                        time: obj['date'],
-                        open: obj['open'],
-                        high: obj['high'],
-                        low: obj['low'],
-                        close: obj['close']
-                    }
-                })
-
-                setData(allData);
-            });
-    }
 
     useEffect(() => {
         document.getElementById('chartStockHistorical').innerHTML = '';
-        if (fetchedData.length > 0) {
+        if (props.data) {
             const chart = createChart(document.getElementById('chartStockHistorical'), {
                 width: 300,
                 height: 200,
@@ -92,7 +54,6 @@ const CandlestickStockHistorical = (props) => {
                 },
                 priceScale: {
                     autoScale: false,
-                    invertScale: true,
                     alignLabels: false,
                     borderVisible: false,
                     borderColor: '#555ffd',
@@ -112,16 +73,14 @@ const CandlestickStockHistorical = (props) => {
                 },
             });
 
-            candleSeries.setData(fetchedData);
+            candleSeries.setData(props.data);
         }
 
-    }, [fetchedData]);
+    }, [props.data]);
 
     return (
         <>
-            {/* <ShrinkingComponentWrapper> */}
-                <div id="chartStockHistorical"/>
-            {/* </ShrinkingComponentWrapper> */}
+            <div id="chartStockHistorical"/>
         </>
     )
 }
