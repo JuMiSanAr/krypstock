@@ -26,7 +26,7 @@ const CandlestickCryptoIntraday = (props) => {
               // console.log(lastdata["k"])
                 const timestamp = lastdata["E"]/1000;
                   //  if(lastdata["E"]>=)
-                    console.log(fetchedData)
+
                     const data = fetchedData.push({
                        // time: lastdata["k"]['t'],
                         time: timestamp,
@@ -113,9 +113,9 @@ const CandlestickCryptoIntraday = (props) => {
     // useEffect(useCallback(() => {
     //
     // }), [fetchedData]);
-        return (<ShrinkingComponentWrapper>
+        return (
                 <div id="chartCryptoIntraday"/>
-            </ShrinkingComponentWrapper>
+
         );
 }
 export default CandlestickCryptoIntraday
