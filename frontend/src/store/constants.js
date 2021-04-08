@@ -4,6 +4,8 @@
 export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
 
+export const CURRENT_STOCK = 'CURRENT_STOCK';
+
 // Base URLs to use for fetching
 export const baseUrlLocal = 'http://localhost:8000/api/';
 export const baseUrlServer = 'https://krypstock.propulsion-learn.ch/api/';
