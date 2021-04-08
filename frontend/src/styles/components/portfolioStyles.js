@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import {allTheme} from '../../styles/Themes';
 
 export const InvestmentsContainer = styled.div`
 display: flex;
@@ -9,7 +10,7 @@ export const OverviewBarGreen = styled.div`
 display: flex;
 align-items: center;
 justify-content: space-around;
-background-color: #05a49e;
+background-color: ${allTheme.vibrantturquoise};
 border-radius: 14px;
 margin: 10px 0;
 i{
@@ -21,7 +22,7 @@ export const OverviewBarBlue = styled.div`
 display: flex;
 align-items: center;
 justify-content: space-around;
-background-color: #384c98;
+background-color: ${allTheme.darkblue};
 border-radius: 14px;
 margin: 10px 0;
 i{
@@ -32,7 +33,7 @@ i{
 export const OverviewBarOrange = styled.div`
 display: flex;
 justify-content: space-around;
-background-color: #fe772c;
+background-color: ${allTheme.vibrantorange};
 border-radius: 14px;
 margin: 10px 0;
 `;
@@ -40,7 +41,7 @@ margin: 10px 0;
 export const OverviewBarYellow = styled.div`
 display: flex;
 justify-content: space-around;
-background-color: #feaa2d;
+background-color: ${allTheme.yellow};
 border-radius: 14px;
 margin: 10px 0;
 `;

@@ -24,5 +24,9 @@ export const allTheme = {
     orange: '#eb8153',
     purple: '#6747bf',
     blue: '#4a8cda',
-    green: '#62a838' 
+    green: '#62a838',
+    yellow: '#ffab2d',
+    vibrantorange: '#fe772b',
+    darkblue: '#374b97',
+    vibrantturquoise: '#01aca3'
 }
