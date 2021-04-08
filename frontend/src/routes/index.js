@@ -14,7 +14,7 @@ import Search from "../pages/search";
 import News from "../pages/news";
 import StockPage from "../pages/stockPage";
 import CryptoPage from "../pages/cryptoPage";
-import Cryptos from "../components/crypto";
+
 
 
 function OurRouter() {
@@ -33,7 +33,6 @@ function OurRouter() {
         <Route path="/news/" exact component={News} />
         <Route path="/stock/" exact component={StockPage} />
         <Route path="/crypto/" exact component={CryptoPage} />
-        <Route path="/cryptos/" exact component={Cryptos} />
         <Route path="*" component={() => "404 NOT FOUND"} />
       </Switch>
     </Router>

@@ -14,7 +14,7 @@ import {iexSandboxKey} from "../../../store/constants";
 
 
 
-const Stock = () => {
+const Stock = (props) => {
 
     const dispatch = useDispatch();
 
@@ -78,7 +78,7 @@ useEffect(()=>{
             <MarketOverview/>
             {topFiveNews ? <News stock_news={topFiveNews}/> : "...LOADING"}
             <QuickTrade/>
-            <TransactionHistory/>
+            <TransactionHistory />
             <TrendyStocks/>
             {gainData ? <TopPerformingStocks gain_stock={gainData}/> : "...LOADING"}
             {lossData ? <WorstPerformingStocks loss_stock={lossData}/> : "...LOADING"}
