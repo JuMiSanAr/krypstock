@@ -18,7 +18,6 @@ export const stockFetcherHistorical = (symbol, updateState, timeframe) => {
                         close: obj['close']
                     }
                 })
-
                 updateState(allData);
             });
     }
