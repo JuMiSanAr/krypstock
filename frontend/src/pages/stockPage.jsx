@@ -22,7 +22,7 @@ const StockPage = (props) => {
     const [intradayData, setIntradayData] = useState([]);
     const [historicalData, setHistoricalData] = useState([]);
 
-    const symbol = 'GOOGL';
+    const symbol = 'AAPL';
 
     useEffect(() => {
         stockFetcherIntraday(symbol, setIntradayData);

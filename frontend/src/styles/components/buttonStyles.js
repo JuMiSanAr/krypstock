@@ -56,7 +56,6 @@ border-radius: 0 10px 10px 0;
 border: none;
 color: #363537;
 
-
 :hover {
     background-color: #6418C3;
     color: white;
