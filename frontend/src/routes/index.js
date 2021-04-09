@@ -15,6 +15,7 @@ import News from "../pages/news";
 import StockPage from "../pages/stockPage";
 import CryptoPage from "../pages/cryptoPage";
 import CryptosPage from "../components/charts/candlesticksCryptoHistorical.jsx";
+import PortfolioList from "../pages/portfolioList";
 
 
 function OurRouter() {
@@ -34,6 +35,7 @@ function OurRouter() {
         <Route path="/stock/" exact component={StockPage} />
         <Route path="/crypto/" exact component={CryptoPage} />
         <Route path="/cryptos/" exact component={CryptosPage} />
+        <Route path="/portfolio-list/" exact component={PortfolioList} />
         <Route path="*" component={() => "404 NOT FOUND"} />
       </Switch>
     </Router>

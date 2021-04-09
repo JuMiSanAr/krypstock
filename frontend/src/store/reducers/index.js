@@ -10,7 +10,7 @@ const rootReducer = combineReducers({
     stocksReducer,
     transactionsReducer,
     topGainLossReducer,
-    portfoliosReducer
+    portfoliosReducer,
 });
 
 export default rootReducer;

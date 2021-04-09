@@ -1,7 +1,8 @@
-import {CURRENT_STOCK} from "../constants";
+import {CURRENT_STOCK, IEX_VOLUME} from "../constants";
 
 const initialState = {
-    current: null
+    current: null,
+    iexStockVolume:[],
 }
 
 export const stocksReducer =( state= initialState, action)=>{
@@ -9,6 +10,12 @@ export const stocksReducer =( state= initialState, action)=>{
         return{
             ...state,
             current: action.payload
+        }
+    }
+    else if (action.type === IEX_VOLUME){
+        return {
+            ...state,
+            iexStockVolume: action.payload
         }
     }
     return state;
