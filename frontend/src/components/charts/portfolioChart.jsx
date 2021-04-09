@@ -1,13 +1,14 @@
 import React, {useEffect} from 'react';
 import {createChart} from "lightweight-charts";
+import {allTheme} from '../../styles/Themes';
 
 const PortfolioChart = () => {
 
   useEffect(() => { 
     document.getElementById('portfolioChart').innerHTML = '';
     const chart = createChart(document.getElementById('portfolioChart'), {
-    width: 600,
-    height: 300,
+    width: 300,
+    height: 200,
     rightPriceScale: {
       borderVisible: false,
     },
@@ -17,12 +18,19 @@ const PortfolioChart = () => {
   });
   
   const areaSeries = chart.addAreaSeries({
-    topColor: 'rgba(33, 150, 243, 0.56)',
-    bottomColor: 'rgba(33, 150, 243, 0.04)',
-    lineColor: 'rgba(33, 150, 243, 1)',
+    topColor: '#05A49E',
+    bottomColor: 'rgba(1,173,163,0.04)',
+    lineColor: '#05A49E',
     lineWidth: 2,
   });
 
+  const background = chart.applyOptions({
+    layout: {
+        backgroundColor: 'rgb(59,52,99)',
+        textColor: 'white',
+        fontSize: 12,
+    },
+});
   
   areaSeries.setData([
     { time: '2018-10-19', value: 35.98 },
