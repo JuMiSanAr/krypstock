@@ -18,18 +18,20 @@ const StockPageInfoCard = (props) => {
 
     return (
         <StockPageInfoWrapper>
-            <StockPageInfoItemWrapper>
-                <p>Symbol: <span>{stockInfo.symbol}</span></p>
-            </StockPageInfoItemWrapper>
-            <StockPageInfoItemWrapper>
-                <p>Country: <span>{stockInfo.country}</span></p>
-            </StockPageInfoItemWrapper>
-            <StockPageInfoItemWrapper>
-                <p>Exchange: <span>{stockInfo.exchange}</span></p>
-            </StockPageInfoItemWrapper>
-            <StockPageInfoItemWrapper>
-                <p>Symbol: <span>{stockInfo.symbol}</span></p>
-            </StockPageInfoItemWrapper>
+            <tbody>
+                <tr>
+                    <p>Symbol: <span>{stockInfo.symbol}</span></p>
+                </tr>
+                <tr>
+                    <p>Country: <span>{stockInfo.country}</span></p>
+                </tr>
+                <tr>
+                    <p>Exchange: <span>{stockInfo.exchange}</span></p>
+                </tr>
+                <tr>
+                    <p>Symbol: <span>{stockInfo.symbol}</span></p>
+                </tr>
+            </tbody>
         </StockPageInfoWrapper>
     )
 }
