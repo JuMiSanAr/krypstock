@@ -1,6 +1,6 @@
-import {iexAPIKey, iexSandboxKey} from "../../../store/constants";
+import {iexSandboxKey} from "../../../store/constants";
 
-export const stockFetcherIntraday = (symbol, updateState) => {
+export const cryptoFetcherIntraday = (symbol, updateState) => {
 
         const API_Call = `https://sandbox.iexapis.com/stable/stock/${symbol}/intraday-prices?token=${iexSandboxKey}&chartInterval=5`;
 
@@ -26,19 +26,6 @@ export const stockFetcherIntraday = (symbol, updateState) => {
                     }
                 })
 
-                let nullValues = false;
-
-                allData.forEach(obj => {
-                    if (obj['open'] === null) {
-                        nullValues = true;
-                    }
-                });
-
-                if (nullValues) {
-                    updateState(null);
-                }
-                else {
-                    updateState(allData);
-                }
+                updateState(allData);
             });
     }

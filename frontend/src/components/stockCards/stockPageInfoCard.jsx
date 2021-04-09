@@ -1,18 +1,36 @@
-import React, {useEffect} from 'react';
-import {iexSandboxKey} from "../../store/constants";
+import React, {useEffect, useState} from 'react';
+import {stockFetcherInfo} from "../charts/helperFunctions/stockFetcherInfo";
+import {StockPageInfoItemWrapper, StockPageInfoWrapper} from "../../styles/components/stockStyles/stockPageInfoStyles";
 
 const StockPageInfoCard = (props) => {
 
+    const [stockInfo, setStockInfo] = useState({});
+
     useEffect(() => {
-        fetchStockInfo();
+        stockFetcherInfo(props.symbol, setStockInfo);
     }, []);
 
-    const fetchStockInfo = () => {
-        const API_Call = `https://sandbox.iexapis.com/stable/stock/${props.symbol}/intraday-prices?token=${iexSandboxKey}`;
-    }
+    useEffect(() => {
+        props.setCompanyName(stockInfo.companyName);
+    }, [stockInfo]);
+
+    console.log(stockInfo)
 
     return (
-        <h1>HELLOOO</h1>
+        <StockPageInfoWrapper>
+            <StockPageInfoItemWrapper>
+                <p>Symbol: <span>{stockInfo.symbol}</span></p>
+            </StockPageInfoItemWrapper>
+            <StockPageInfoItemWrapper>
+                <p>Country: <span>{stockInfo.country}</span></p>
+            </StockPageInfoItemWrapper>
+            <StockPageInfoItemWrapper>
+                <p>Exchange: <span>{stockInfo.exchange}</span></p>
+            </StockPageInfoItemWrapper>
+            <StockPageInfoItemWrapper>
+                <p>Symbol: <span>{stockInfo.symbol}</span></p>
+            </StockPageInfoItemWrapper>
+        </StockPageInfoWrapper>
     )
 }
 
