@@ -1,17 +1,12 @@
-import React, {useState} from 'react';
+import React, {useState, useDispatch, useHistory} from 'react';
 import FooterNav from '../components/footerNav';
 import { AllComponentsWrapper, ShrinkingComponentWrapper } from '../styles/globalParts/containerStyles';
 import {InvestmentsContainer, PercentContainer, InvestmentFont, OverviewBarBlue, OverviewBarGreen, OverviewBarYellow, OverviewBarOrange, HeadlineFont, CakeChartContainer} from '../styles/components/portfolioStyles';
 import { PieChart } from 'react-minimal-pie-chart';
 import Graph from '../assets/bit.png'
-import CandlestickStockIntraday from "../components/charts/candlesticksStockIntraday";
-import CandlestickStockHistorical from "../components/charts/candlesticksStockHistorical"; 
-import ChartTimeframeButton from "../components/charts/chartSelectTimeframeButton";
-import { FormSelectWrapper, GraphWrapper } from "../styles/components/cryptoStyles/bitCoinStyles";
+import PortfolioChart from '../components/charts/portfolioChart';
 
 const Portfolio = (props) => {
-
-    const [chart, setChart] = useState('day');
 
     return (
         <>
@@ -77,17 +72,7 @@ const Portfolio = (props) => {
                 </ShrinkingComponentWrapper>
                 <ShrinkingComponentWrapper>
                     <HeadlineFont>Total value over time</HeadlineFont>
-                    <FormSelectWrapper>
-                    <div className="title">
-                        <h3>Price Chart</h3>
-                        </div>
-                        <div >
-                            <ChartTimeframeButton setChart={setChart}/>
-                        </div>
-                    </FormSelectWrapper>
-                    <GraphWrapper>
-                        {chart === 'day' ? <CandlestickStockIntraday/> : <CandlestickStockHistorical timeframe={chart}/>}
-                    </GraphWrapper>   
+                    <PortfolioChart/>
                 </ShrinkingComponentWrapper>
                 <ShrinkingComponentWrapper>
                     <HeadlineFont>Comparison</HeadlineFont>
