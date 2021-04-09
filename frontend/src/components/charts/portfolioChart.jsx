@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {createChart} from "lightweight-charts";
 import {allTheme} from '../../styles/Themes';
 
-const PortfolioChart = () => {
+const PortfolioChart = (props) => {
 
   useEffect(() => { 
     document.getElementById('portfolioChart').innerHTML = '';
