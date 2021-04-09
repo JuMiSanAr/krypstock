@@ -32,7 +32,7 @@ const StockPage = (props) => {
         if (chartTimeframe !== 'day') {
             stockFetcherHistorical(symbol, setHistoricalData, chartTimeframe);
         }
-    }, [chartTimeframe])
+    }, [chartTimeframe]);
 
     return (
         <>
@@ -71,9 +71,7 @@ const StockPage = (props) => {
                 }
             </GraphWrapper>
         </ShrinkingComponentWrapper>
-        <ShrinkingComponentWrapper>
-            <PortfoliosWithStock symbol={symbol}/>
-        </ShrinkingComponentWrapper>
+        <PortfoliosWithStock symbol={symbol}/>
         <NewsStock symbol={symbol} companyName={companyName}/>
         <FooterNav/>
     </AllComponentsWrapper>
