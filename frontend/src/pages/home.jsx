@@ -19,10 +19,10 @@ const Home = () => {
             </DoubleButtonContainer>
             <MainContentWrapper>
                 <div className={toggleState === 1 ? "active-content" : "content"}>
-                    <Stock currentPage={toggleState} />
+                    <Stock />
                 </div>
                 <div className={toggleState === 2 ? "active-content" : "content"}>
-                    <Crypto currentPage={toggleState} />
+                    <Crypto />
                 </div>
             </MainContentWrapper>
             <FooterNav/>
