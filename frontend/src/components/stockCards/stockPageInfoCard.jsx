@@ -12,24 +12,33 @@ const StockPageInfoCard = (props) => {
 
     useEffect(() => {
         props.setCompanyName(stockInfo.companyName);
+        props.setCompanyMarket(stockInfo.exchange);
     }, [stockInfo]);
-
-    console.log(stockInfo)
 
     return (
         <StockPageInfoWrapper>
-            <StockPageInfoItemWrapper>
-                <p>Symbol: <span>{stockInfo.symbol}</span></p>
-            </StockPageInfoItemWrapper>
-            <StockPageInfoItemWrapper>
-                <p>Country: <span>{stockInfo.country}</span></p>
-            </StockPageInfoItemWrapper>
-            <StockPageInfoItemWrapper>
-                <p>Exchange: <span>{stockInfo.exchange}</span></p>
-            </StockPageInfoItemWrapper>
-            <StockPageInfoItemWrapper>
-                <p>Symbol: <span>{stockInfo.symbol}</span></p>
-            </StockPageInfoItemWrapper>
+            <tbody>
+                <tr>
+                    <td className='key'>Symbol:</td>
+                    <td>{stockInfo.symbol}</td>
+                </tr>
+                <tr>
+                    <td className='key'>Country:</td>
+                    <td>{stockInfo.country}</td>
+                </tr>
+                <tr>
+                    <td className='key'>Exchange:</td>
+                    <td>{stockInfo.exchange}</td>
+                </tr>
+                <tr>
+                    <td className='key'>Industry:</td>
+                    <td>{stockInfo.industry}</td>
+                </tr>
+                <tr>
+                    <td className='key'>Website:</td>
+                    <td><a href={stockInfo.website} target='_blank' rel='noreferrer'>Click here</a></td>
+                </tr>
+            </tbody>
         </StockPageInfoWrapper>
     )
 }

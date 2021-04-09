@@ -2,7 +2,7 @@ import {iexSandboxKey} from "../../../store/constants";
 
 export const cryptoFetcherIntraday = (symbol, updateState) => {
 
-        const API_Call = `https://sandbox.iexapis.com/stable/stock/${symbol}/intraday-prices?token=${iexSandboxKey}&chartInterval=5`;
+        const API_Call = `https://sandbox.iexapis.com/stable/stock/${symbol}/intraday-prices?token=${iexSandboxKey}`;
 
         fetch(API_Call)
             .then(res => res.json())

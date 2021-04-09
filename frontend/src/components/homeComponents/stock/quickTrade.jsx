@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import { portfoliossAction } from '../../../store/actions/portfoliosAction';
+import { portfoliosAction } from '../../../store/actions/portfoliosAction';
 import portfoliosFetch from '../../../store/fetches/portfoliosFetches';
 import { FormSelectWrapper } from '../../../styles/components/cryptoStyles/bitCoinStyles';
 import { ButtonWrapper, SelectorWrapper, TransacWrapper } from '../../../styles/components/cryptoStyles/quickTradeStyles';
