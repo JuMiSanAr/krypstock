@@ -2,7 +2,7 @@ import { StockTable } from "../../../styles/components/stockStyles/tableStyles"
 import { ShrinkingComponentWrapper } from "../../../styles/globalParts/containerStyles"
 
 
-const TrendyStocks = () => {
+const TrendyStocks = ({stock_volume}) => {
 
     return (
         <ShrinkingComponentWrapper>
@@ -17,7 +17,20 @@ const TrendyStocks = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                {
+                    stock_volume.map((company, index) => {
+                        return (
+                            <tr key={index}>
+                        <td>{company.companyName}</td>
+                        <td>{company.latestPrice.toFixed(2)}</td>
+                        <td>{company.changePercent.toFixed(2)}</td>
+                        <td>{company.volume}</td>
+                            </tr>
+                        )
+                    })
+                }
+
+                    {/*<tr>
                         <td>ABC</td>
                         <td>520</td>
                         <td>20.20%</td>
@@ -34,13 +47,7 @@ const TrendyStocks = () => {
                         <td>520</td>
                         <td>20.20%</td>
                         <td>1.3M</td>
-                    </tr>
-                    <tr>
-                        <td>ABC</td>
-                        <td>520</td>
-                        <td>20.20%</td>
-                        <td>1.3M</td>
-                    </tr>
+                    </tr>*/}
                 </tbody>
             </StockTable>
         </ShrinkingComponentWrapper>

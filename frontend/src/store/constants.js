@@ -11,6 +11,12 @@ export const CURRENT_STOCK = 'CURRENT_STOCK';
 export const ALL_TRANSACTIONS = 'ALL_TRANSACTION';
 export const ALL_PORTFOLIOS = 'ALL_PORTFOLIOS';
 
+export const USER_ALL_PORTFOLIO = 'USER_ALL_PORTFOLIO';
+
+export const DELETE_PORTFOLIO = 'DELETE_PORTFOLIO';
+
+export const IEX_VOLUME = 'IEX_VOLUME'
+
 // Base URLs to use for fetching
 export const baseUrlLocal = 'http://localhost:8000/api/';
 export const baseUrlServer = 'https://krypstock.propulsion-learn.ch/api/';
