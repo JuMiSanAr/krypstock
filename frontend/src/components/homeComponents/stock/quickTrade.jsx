@@ -1,9 +1,14 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { FormSelectWrapper } from '../../../styles/components/cryptoStyles/bitCoinStyles';
 import { ButtonWrapper, SelectorWrapper, TransacWrapper } from '../../../styles/components/cryptoStyles/quickTradeStyles';
 import { ShrinkingComponentWrapper } from '../../../styles/globalParts/containerStyles';
 
 const QuickTrade = () => {
+
+    // const [] = useState(0)
+    // const [] = useState(0)
+    // const [] = useState(0)
+    // const [] = useState(0)
 
     return(
         <ShrinkingComponentWrapper>
@@ -37,17 +42,6 @@ const QuickTrade = () => {
                     <p>Price</p>
                     <span>11,400 CHF</span>
                 </div>
-                <div className="transacItem amountInput">
-                    <p>Fee %</p>
-                    <div>
-                        <input placeholder="0.50"/>
-                        <span>%</span>
-                    </div>
-                </div>
-                <div className="transacItem">
-                    <p>Total Price</p>
-                    <span>11,400 CHF</span>
-                </div>
                 <div className="transacItem">
                     <p>Total Price</p>
                     <span>11,400 CHF</span>
@@ -56,9 +50,18 @@ const QuickTrade = () => {
             <ButtonWrapper>
                 <button type="submit">Submit</button>
             </ButtonWrapper>
-        
         </ShrinkingComponentWrapper>
     )
 }
 
 export default QuickTrade
+
+
+
+{/* <div className="transacItem amountInput">
+    <p>Fee %</p>
+    <div>
+        <input placeholder="0.50"/>
+        <span>%</span>
+    </div>
+</div> */}
