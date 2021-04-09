@@ -12,8 +12,6 @@ import {topGainAction, topLossAction} from '../../../store/actions/topGainLossAc
 import {iexSandboxKey} from "../../../store/constants";
 /*import SymbolFetch from "../../../store/fetches/symbolFetches";*/
 
-
-
 const Stock = (props) => {
 
     const dispatch = useDispatch();
