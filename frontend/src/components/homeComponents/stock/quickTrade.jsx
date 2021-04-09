@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import { portfoliossAction } from '../../../store/actions/portfoliosAction';
+import { portfoliosAction } from '../../../store/actions/portfoliosAction';
 import portfoliosFetch from '../../../store/fetches/portfoliosFetches';
 import { FormSelectWrapper } from '../../../styles/components/cryptoStyles/bitCoinStyles';
 import { ButtonWrapper, SelectorWrapper, TransacWrapper } from '../../../styles/components/cryptoStyles/quickTradeStyles';
@@ -20,7 +20,7 @@ const QuickTrade = () => {
         portfoliosFetch()
         .then(data => {
             console.log('in quick trade useEffect portfolios data.results', data.results)
-            dispatch(portfoliossAction(data.results))
+            dispatch(portfoliosAction(data.results))
         })
     }, [])
 
