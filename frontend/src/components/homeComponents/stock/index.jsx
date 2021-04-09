@@ -10,6 +10,7 @@ import TrendyStocks from './trendyStocks';
 import {useDispatch, useSelector} from "react-redux";
 import {topGainAction, topLossAction} from '../../../store/actions/topGainLossActions'
 import {iexSandboxKey} from "../../../store/constants";
+import {iexStockVolumeAction} from "../../../store/actions/stocksActions";
 /*import SymbolFetch from "../../../store/fetches/symbolFetches";*/
 
 
@@ -20,25 +21,26 @@ const Stock = (props) => {
 
      const gainData = useSelector(state => state.topGainLossReducer.top_gain.data);
      const lossData = useSelector(state => state.topGainLossReducer.top_loss.data);
+     const stockVolumeData = useSelector(state => state.stocksReducer.iexStockVolume.data);
      const [topFiveNews, setTopFiveNews] = useState([]);
 
 
-
-
-/*     console.log("from loss data", lossData)*/
 useEffect(()=>{
-      const API_Volume = `https://sandbox.iexapis.com/stable/stock/market/list/iexvolume?token=${iexSandboxKey}`;
+
+        const API_Volume = `https://sandbox.iexapis.com/stable/stock/market/list/iexvolume?token=${iexSandboxKey}`;
 
         fetch(API_Volume)
             .then(res => res.json())
             .then(data => {
-                console.log("volume data US",data)
+                const action = iexStockVolumeAction(data);
+                dispatch(action);
             });
     }, []
 );
 
     useEffect( () => {
-            const API_Call_News = `https://sandbox.iexapis.com/stable/stock/aapl/news/last/5?token=${iexSandboxKey}`;
+
+        const API_Call_News = `https://sandbox.iexapis.com/stable/stock/aapl/news/last/5?token=${iexSandboxKey}`;
 
         fetch(API_Call_News)
             .then(res => res.json())
@@ -50,7 +52,7 @@ useEffect(()=>{
     );
 
     useEffect(() => {
-     /*  const API_KEY = 'Tpk_fec97062db224c2fb7b0b3836ab0e365';*/
+
        const API_Call_Gain = `https://sandbox.iexapis.com/stable/stock/market/list/gainers?token=${iexSandboxKey}`;
        const API_Call_Loss = `https://sandbox.iexapis.com/stable/stock/market/list/losers?token=${iexSandboxKey}`;
 
@@ -66,7 +68,6 @@ useEffect(()=>{
             .then(data => {
                 const action = topLossAction(data);
                 dispatch(action);
-              /*  setGainFetchedData(data);*/
             });
 
     /*    SymbolFetch();*/
@@ -79,7 +80,7 @@ useEffect(()=>{
             {topFiveNews ? <News stock_news={topFiveNews}/> : "...LOADING"}
             <QuickTrade/>
             <TransactionHistory />
-            <TrendyStocks/>
+            {stockVolumeData ? <TrendyStocks stock_volume={stockVolumeData}/> : "...LOADING"}
             {gainData ? <TopPerformingStocks gain_stock={gainData}/> : "...LOADING"}
             {lossData ? <WorstPerformingStocks loss_stock={lossData}/> : "...LOADING"}
         </AllComponentsWrapper>
