@@ -1,21 +1,52 @@
 import React from 'react';
-import { NewsWrapper } from '../../../styles/components/stockStyles/newsStyles';
+import { NewsWrapper, HeadlineWrapper, DateAuthorWrapper } from '../../../styles/components/stockStyles/newsStyles';
 import { ShrinkingComponentWrapper } from '../../../styles/globalParts/containerStyles';
+import Graph from "../../../assets/stock_graph.png";
 
 
-const News = () => {
+const News = ({stock_news}) => {
 
     return (
         <ShrinkingComponentWrapper>
             <h3>Latest News</h3>
-            <NewsWrapper>
-                <a className="headline" href="https://finance.yahoo.com/news/stock-market-news-live-updates-april-7-2021-221305239-221231308.html">{"Stock market news live updates: Stock futures trade higher, shaking off earlier declines"}</a>
-                <a className="source" href="https://finance.yahoo.com/news/stock-market-news-live-updates-april-7-2021-221305239-221231308.html">{"Bloomberg"}</a>
-                <a className="headline" href="https://finance.yahoo.com/news/stock-market-news-live-updates-april-7-2021-221305239-221231308.html">{"Stock market news live updates: Stock futures trade higher, shaking off earlier declines"}</a>
-                <a className="source" href="https://finance.yahoo.com/news/stock-market-news-live-updates-april-7-2021-221305239-221231308.html">{"Bloomberg"}</a>
-                <a className="headline" href="https://finance.yahoo.com/news/stock-market-news-live-updates-april-7-2021-221305239-221231308.html">{"Stock market news live updates: Stock futures trade higher, shaking off earlier declines"}</a>
-                <a className="source" href="https://finance.yahoo.com/news/stock-market-news-live-updates-april-7-2021-221305239-221231308.html">{"Bloomberg"}</a>
-            </NewsWrapper>
+
+
+                {
+                    stock_news.map((news, index) => {
+
+                        const date = new Date(news.datetime);
+
+                        const dateOptions = {
+                            weekday: 'long',
+                            year: "numeric",
+                            month: "long",
+                            day: "numeric",
+                            hour: "2-digit",
+                            minute: "2-digit"
+                        }
+
+                    const publishDate = date.toLocaleString('en-US', dateOptions);
+
+                         return (
+                              <NewsWrapper key={index}>
+                                 <DateAuthorWrapper>
+                                     <span>{publishDate}</span>
+                                     <span>- By {news.source}</span>
+                                 </DateAuthorWrapper>
+                                 <HeadlineWrapper>
+                                      <img src={news.image} />
+                                     <a className="headline" href={news.url}>
+                                         {news.headline}
+                                     </a>
+                                 </HeadlineWrapper>
+                             </NewsWrapper>
+
+                         )
+                        }
+
+                    )
+                }
+
         </ShrinkingComponentWrapper>
     )
 }
