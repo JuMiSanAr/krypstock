@@ -4,11 +4,11 @@ import CandlestickCryptoIntraday from "../components/charts/candlesticksCryptoIn
 import {FormSelectWrapper, GraphWrapper} from "../styles/components/cryptoStyles/bitCoinStyles";
 import {AllComponentsWrapper, ShrinkingComponentWrapper} from "../styles/globalParts/containerStyles";
 import NewsCrypto from "../components/newsFeed/newsCrypto";
-import {cryptoFetcherIntraday} from "../components/charts/helperFunctions/cryptoFetcherIntraday";
 import {cryptoFetcherHistorical} from "../components/charts/helperFunctions/cryptoFetcherHistorical";
 import CandlestickCryptoHistorical from "../components/charts/candlesticksCryptoHistorical";
 import CryptoPageInfoCard from "../components/cryptoCards/cryptoPageInfoCard";
-import ChartTimeCryptoframeButton from "../components/charts/chartSelectTimeCryptoframeButton";
+import ChartTimeCryptoframeButton from "../components/charts/chartSelectTimeCryptoframeButton";import {stockFetcherIntraday} from "../components/charts/helperFunctions/stockFetcherIntraday";
+import {cryptoFetcherIntraday} from "../components/charts/helperFunctions/cryptoFetcherIntraday";
 
 const CryptoPage = (props) => {
 
@@ -20,7 +20,7 @@ const CryptoPage = (props) => {
     const symbol = 'BTCUSD';
 
     useEffect(() => {
-        cryptoFetcherHistorical(symbol, setHistoricalData, chartTimeframe);
+        cryptoFetcherIntraday(symbol, setIntradayData);
     }, []);
 
     useEffect(() => {
