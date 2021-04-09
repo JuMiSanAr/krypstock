@@ -10,4 +10,5 @@ const portfoliosFetch = () => {
     )
 }
 
-export default portfoliosFetch;
+export default portfoliosFetch
+
