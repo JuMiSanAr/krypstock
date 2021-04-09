@@ -13,8 +13,6 @@ import {iexSandboxKey} from "../../../store/constants";
 import {iexStockVolumeAction} from "../../../store/actions/stocksActions";
 /*import SymbolFetch from "../../../store/fetches/symbolFetches";*/
 
-
-
 const Stock = (props) => {
 
     const dispatch = useDispatch();

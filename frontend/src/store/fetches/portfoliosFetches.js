@@ -1,7 +1,7 @@
 import {fetchAPI} from "../fetchAPI";
 import {headersWithToken} from "../constants";
 
-const userPortfolioFetch = () => {
+const portfoliosFetch = () => {
     return fetchAPI(
         'portfolios/',
         undefined,
@@ -10,4 +10,4 @@ const userPortfolioFetch = () => {
     )
 }
 
-export default userPortfolioFetch;
+export default portfoliosFetch;

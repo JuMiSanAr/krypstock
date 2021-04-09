@@ -6,8 +6,8 @@ import { AllComponentsWrapper} from '../styles/globalParts/containerStyles';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import { Modal } from '../components/addPortfolioModal';
 import { PortfolioCollection } from '../components/portfolioCollection';
-import userPortfolioFetch from '../store/fetches/userPortfolioFetches';
-import { userPortfolioAction } from '../store/actions/userPortfolioActions';
+import portfoliosFetch from "../store/fetches/portfoliosFetches";
+import {portfoliosAction} from "../store/actions/portfoliosAction";
 
 
 
@@ -25,13 +25,13 @@ const PortfolioList = () => {
         };
 
     const dispatch = useDispatch();
-    const portfolioData = useSelector(state => state.userAllPortfolioReducer.portfolio_list.results);
+    const portfolioData = useSelector(state => state.portfoliosReducer.portfolios.results);
 
 
     useEffect(() => {
-      userPortfolioFetch()
+      portfoliosFetch()
         .then(data =>{
-            const action = userPortfolioAction(data);
+            const action = portfoliosAction(data);
             dispatch(action); 
         })
        
