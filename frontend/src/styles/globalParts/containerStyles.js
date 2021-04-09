@@ -5,6 +5,7 @@ export const AllComponentsWrapper = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    
     //  * {
     //     border: solid 1px red;
     // } 

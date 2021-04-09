@@ -8,7 +8,9 @@ export const stockFetcherIntraday = (symbol, updateState) => {
             .then(res => res.json())
             .then(data => {
 
-                const allData = data.map(obj => {
+                const allData = [];
+
+                data.forEach(obj => {
 
                     const ddmmyy = obj['date'].split('-');
                     const hours = obj['minute'].split(':');
@@ -17,12 +19,14 @@ export const stockFetcherIntraday = (symbol, updateState) => {
 
                     const timestamp = date.getTime()/1000;
 
-                    return {
-                        time: timestamp,
-                        open: obj['open'],
-                        high: obj['high'],
-                        low: obj['low'],
-                        close: obj['close']
+                    if (obj['marketOpen']) {
+                        allData.push( {
+                            time: timestamp,
+                            open: obj['marketOpen'],
+                            high: obj['marketHigh'],
+                            low: obj['marketLow'],
+                            close: obj['marketClose']
+                        });
                     }
                 })
 

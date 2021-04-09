@@ -24,6 +24,14 @@ export const StockPageInfoWrapper = styled.table`
             /* display: block; */
         }
     }
+    
+    a {
+        text-decoration: none;
+        color: ${({ theme }) => theme === lightTheme ? lightTheme.text : darkTheme.text};
+        :hover {
+            cursor: pointer;
+        }
+    }
 
     tbody{
         /* display:block; */
@@ -65,5 +73,9 @@ export const StockPageInfoWrapper = styled.table`
 
     tr:last-child td:last-child {
     border-bottom-right-radius: 15px;
+    }
+    
+    .key {
+        font-weight: bold;
     }
 `;
