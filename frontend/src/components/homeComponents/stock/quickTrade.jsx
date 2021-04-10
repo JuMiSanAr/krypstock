@@ -77,7 +77,7 @@ const QuickTrade = () => {
                                 <input id="company-input" type="text" name="company" placeholder="company" value={company} onChange={e => setCompany(e.target.value)} required/>
                             </div>
                             <div className="transacItem amountInput">
-                                <p>Volume</p>
+                                <p>Quantity</p>
                                 <input type="number" placeholder="0" value={volume} onChange={e => setVolume(e.target.value)} required/>
                             </div>
                             <div className="transacItem amountInput">
