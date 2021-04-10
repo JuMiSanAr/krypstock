@@ -9,13 +9,15 @@ import { DELETE_PORTFOLIO } from '../../store/constants';
 
 
 
-
-
 const IconTitle = styled.div`
     display: flex;
     align-items: center;
     h2{
         margin-left: 20px;
+        a{
+        text-decoration: none;
+        color: inherit;
+        cursor: pointer;
     }
 `;
 
@@ -45,9 +47,10 @@ export const PortfolioCollection = ({portfolioList}) => {
              {
                  portfolioList.map((portfolio, index) => {
                     return (<ShrinkingComponentWrapper key={index}>
+
                         <IconTitle>
                             <FolderIcon fontSize="large"/>
-                            <h2>{portfolio.name}</h2>
+                            <h2><a href={`https://krypstock.propulsion-learn.ch/portfolio/${portfolio.id}`}>{portfolio.name}</a></h2>
                         </IconTitle>
                         <div>
                             <p>
