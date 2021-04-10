@@ -10,8 +10,8 @@ const enhancer = composeWithDevTools(
 
 export const store = createStore (rootReducer, enhancer);
 
-const token =localStorage.getItem('token');
+const token = localStorage.getItem('token');
 
 if (token) {
-    store.dispatch({type:LOGIN, payload: token})
+    store.dispatch({type:LOGIN, payload: {token: token, status: true}})
 }
