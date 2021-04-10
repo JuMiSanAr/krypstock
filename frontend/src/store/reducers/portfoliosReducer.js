@@ -1,4 +1,4 @@
-import {ALL_PORTFOLIOS} from "../constants";
+import {ALL_PORTFOLIOS, DELETE_PORTFOLIO} from "../constants";
 
 const initialState = {
     portfolios: []
@@ -11,6 +11,18 @@ export const portfoliosReducer = (state=initialState, action)=>{
             ...state, 
             portfolios: action.payload
         }
+    }
+     else if(action.type===DELETE_PORTFOLIO){
+         const new_portfolio_list = [...state.portfolios.results];
+         const index = new_portfolio_list.findIndex(element => element.id === action.payload);
+         new_portfolio_list.splice(index, 1)
+        return {
+           /* portfolios:
+            [...state.portfolios.results.filter(portfolios => portfolios.id !== action.payload)]*/
+            ...state,
+            portfolios: new_portfolio_list
+
+        };
     }
     return state;
 }
