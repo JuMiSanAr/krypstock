@@ -26,13 +26,27 @@ const Stock = (props) => {
 useEffect(()=>{
 
         const API_Volume = `https://sandbox.iexapis.com/stable/stock/market/list/iexvolume?token=${iexSandboxKey}`;
+        const API_Call_Gain = `https://sandbox.iexapis.com/stable/stock/market/list/gainers?token=${iexSandboxKey}`;
+        const API_Call_Loss = `https://sandbox.iexapis.com/stable/stock/market/list/losers?token=${iexSandboxKey}`;
 
         fetch(API_Volume)
             .then(res => res.json())
             .then(data => {
                 const action = iexStockVolumeAction(data);
                 dispatch(action);
-            });
+                return fetch(API_Call_Gain);
+            })
+            .then(res => res.json())
+            .then(data => {
+                const action = topGainAction(data);
+                dispatch(action);
+                return fetch(API_Call_Loss);
+            })
+            .then(res => res.json())
+            .then(data => {
+                const action = topLossAction(data);
+                dispatch(action);
+            })
     }, []
 );
 
@@ -45,32 +59,35 @@ useEffect(()=>{
             .then(data => {
                 setTopFiveNews(data);
             });
-
         }, []
     );
 
-    useEffect(() => {
-
-       const API_Call_Gain = `https://sandbox.iexapis.com/stable/stock/market/list/gainers?token=${iexSandboxKey}`;
-       const API_Call_Loss = `https://sandbox.iexapis.com/stable/stock/market/list/losers?token=${iexSandboxKey}`;
-
-        fetch(API_Call_Gain)
-            .then(res => res.json())
-            .then(data => {
-                const action = topGainAction(data);
-                dispatch(action);
-            });
-
-         fetch(API_Call_Loss)
-            .then(res => res.json())
-            .then(data => {
-                const action = topLossAction(data);
-                dispatch(action);
-            });
-
-    /*    SymbolFetch();*/
-
-    }, []);
+    // useEffect(() => {
+    //
+    //    const API_Call_Gain = `https://sandbox.iexapis.com/stable/stock/market/list/gainers?token=${iexSandboxKey}`;
+    //
+    //     fetch(API_Call_Gain)
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             const action = topGainAction(data);
+    //             dispatch(action);
+    //         });
+    //
+    // /*    SymbolFetch();*/
+    //
+    // }, []);
+    //
+    // useEffect(() => {
+    //
+    //     const API_Call_Loss = `https://sandbox.iexapis.com/stable/stock/market/list/losers?token=${iexSandboxKey}`;
+    //
+    //     fetch(API_Call_Loss)
+    //     .then(res => res.json())
+    //     .then(data => {
+    //         const action = topLossAction(data);
+    //         dispatch(action);
+    //     });
+    // }, []);
 
     return (
         <AllComponentsWrapper>
