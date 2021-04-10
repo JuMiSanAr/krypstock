@@ -11,3 +11,14 @@ const portfoliosFetch = () => {
 }
 
 export default portfoliosFetch;
+
+
+export const specificPortfolioFetch = () => {
+    return fetchAPI(
+        `portfolios/8/`,
+        undefined,
+        'GET',
+        headersWithToken
+    )
+}
+

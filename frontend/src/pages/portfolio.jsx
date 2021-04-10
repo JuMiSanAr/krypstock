@@ -1,37 +1,18 @@
-import React, {useState, useDispatch, useHistory} from 'react';
+import React, {useState, useHistory, useEffect} from 'react';
 import FooterNav from '../components/footerNav';
 import { AllComponentsWrapper, ShrinkingComponentWrapper } from '../styles/globalParts/containerStyles';
 import {InvestmentsContainer, PercentContainer, InvestmentFont, OverviewBarBlue, OverviewBarGreen, OverviewBarYellow, OverviewBarOrange, HeadlineFont, CakeChartContainer} from '../styles/components/portfolioStyles';
 import { PieChart } from 'react-minimal-pie-chart';
 import Graph from '../assets/bit.png'
 import PortfolioChart from '../components/charts/portfolioChart';
+import AllInvestments from '../components/portfolioComponents/allInvestments';
 
 const Portfolio = (props) => {
 
     return (
         <>
             <AllComponentsWrapper>
-                <ShrinkingComponentWrapper>
-                    <HeadlineFont>All investments</HeadlineFont >
-                    <InvestmentsContainer>
-                        <div>
-                            <p>invested</p>
-                            <InvestmentFont>13'987 $</InvestmentFont>
-                        </div>
-                        <div>
-                            <p>balance</p>
-                            <InvestmentFont>43'984 $</InvestmentFont>
-                        </div>
-                        <div>
-                            <p>this week</p>
-                            <PercentContainer>
-                                <i className="fas fa-angle-double-up"></i>
-                                {/* <i class="fas fa-angle-double-down"></i> */}
-                                <InvestmentFont>2.5%</InvestmentFont>
-                            </PercentContainer>
-                        </div>
-                    </InvestmentsContainer>
-                </ShrinkingComponentWrapper>
+                <AllInvestments/>
                 <ShrinkingComponentWrapper>
                     <HeadlineFont>Overview</HeadlineFont>
                     <OverviewBarGreen>
