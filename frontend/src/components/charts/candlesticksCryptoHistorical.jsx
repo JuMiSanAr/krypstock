@@ -1,7 +1,5 @@
-import React, {useEffect, useState, useCallback} from 'react';
+import React, {useEffect, useState} from 'react';
 import {createChart, CrosshairMode} from "lightweight-charts";
-import {ShrinkingComponentWrapper} from "../../styles/globalParts/containerStyles";
-import {iexSandboxKey} from "../../store/constants";
 
 
 const CandlestickCryptoHistorical = (props) => {
@@ -10,7 +8,7 @@ const CandlestickCryptoHistorical = (props) => {
 
    // TEMP (Data will come from props)
     const [fetchedData, setData] = useState([]);
-    const exchange = 'Bitcoin/USD';
+    // const exchange = 'Bitcoin/USD';
     const cryptoCurrency= 'BTCUSDT';
     const tick_interval = '1m';
 
@@ -19,7 +17,7 @@ const CandlestickCryptoHistorical = (props) => {
     }, []);
 
     const FetchCrypto = () => {
-        const API_KEY = 'hEONEAKmoUPGx9EyweXiP7WEJzbmJEihUzsJQ1THnOwnLRuWkr4vEw7qF0xqhh7u';
+        // const API_KEY = 'hEONEAKmoUPGx9EyweXiP7WEJzbmJEihUzsJQ1THnOwnLRuWkr4vEw7qF0xqhh7u';
 
            const API_Call = `https://api.binance.com/api/v3/klines?symbol=${cryptoCurrency}&interval=${tick_interval}`;
 
@@ -38,7 +36,6 @@ const CandlestickCryptoHistorical = (props) => {
                         close: obj[4]
                     }
                 })
-                console.log(allData)
                 setData(allData);
             });
 

@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import {createChart, CrosshairMode, isBusinessDay} from "lightweight-charts";
+import React, {useEffect} from 'react';
+import {createChart, CrosshairMode} from "lightweight-charts";
 
 
 const CandlestickStockIntraday = (props) => {
@@ -54,8 +54,8 @@ const CandlestickStockIntraday = (props) => {
                     vertAlign: 'bottom',
                 },
                 priceScale: {
-                    autoScale: false,
-                    invertScale: true,
+                    autoScale: true,
+                    invertScale: false,
                     alignLabels: false,
                     borderVisible: false,
                     borderColor: '#555ffd',
@@ -66,7 +66,7 @@ const CandlestickStockIntraday = (props) => {
                 },
                 timeScale: {
                     fixRightEdge: true,
-                    lockVisibleTimeRangeOnResize: true,
+                    lockVisibleTimeRangeOnResize: false,
                     borderVisible: false,
                     borderColor: '#fff000',
                     visible: true,
