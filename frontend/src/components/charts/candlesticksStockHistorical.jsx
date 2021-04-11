@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {createChart, CrosshairMode} from "lightweight-charts";
 
 const CandlestickStockHistorical = (props) => {
@@ -63,6 +63,7 @@ const CandlestickStockHistorical = (props) => {
                     },
                 },
                 timeScale: {
+                    fixLeftEdge: true,
                     fixRightEdge: true,
                     lockVisibleTimeRangeOnResize: true,
                     borderVisible: false,
