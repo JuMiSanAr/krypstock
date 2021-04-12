@@ -37,10 +37,14 @@ function App() {
           <Toggle theme={theme} toggleTheme={themeToggler} />
            </ToggleButton>
             <Router history={history}>
+              {
+                history.location.pathname === "/sign-in" || history.location.pathname === "/sign-up" || history.location.pathname === "/sign-up/registration" || history.location.pathname === "/sign-up/congratulation" || history.location.pathname === "/sign-up/verification" ? "": 
                 <MenuWrapper>
-                    <Burger  open={open} setOpen={setOpen}/>
-                    <Menu  open={open} setOpen={setOpen} />
+                <Burger  open={open} setOpen={setOpen}/>
+                <Menu  open={open} setOpen={setOpen} />
                 </MenuWrapper>
+              }
+               
                 <OurRouter/>
             </Router>
         </>
