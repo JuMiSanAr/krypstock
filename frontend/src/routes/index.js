@@ -18,7 +18,6 @@ import PortfolioList from "../pages/portfolioList";
 
 function OurRouter() {
   return (
-
       <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/sign-in/" exact component={LoginPage} />

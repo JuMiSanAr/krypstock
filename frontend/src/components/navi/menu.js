@@ -15,7 +15,7 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import {useHistory} from "react-router-dom";
 
 
-const Menu = ({open}) => {
+const Menu = ({open, setOpen}) => {
 
     const history = useHistory();
 
@@ -24,15 +24,18 @@ const Menu = ({open}) => {
 
     const toPortfolios = () => {
         history.push('/portfolio-list');
+        setOpen(false)
     }
 
     const toDashboard = () => {
         history.push('/');
+        setOpen(false)
     }
 
     const logout = () => {
         localStorage.removeItem('token');
         history.push('/sign-in');
+        setOpen(false)
     }
 
   return (
