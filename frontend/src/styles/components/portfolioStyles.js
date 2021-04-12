@@ -21,7 +21,7 @@ font-weight: 600;
 font-size: 20px;
 `;
 
-export const OverviewBarGreen = styled.div`
+export const OverviewBar = styled.div`
 display: flex;
 align-items: center;
 justify-content: space-around;
