@@ -68,10 +68,9 @@ const NewsCrypto = (props) => {
 
                 return (
                     <ShrinkingComponentWrapper key={index}>
-                        <NewsWrapper>
+                        <NewsWrapper onClick={()=> window.open(news.url, "_blank")}>
                             <h3>{news.headline}</h3>
                             <p className='news_date'>{stringDate} - By {news.source}</p>
-                            <a href={news.url} target='_blank' rel='noreferrer'>Click here to see the complete article</a>
                         </NewsWrapper>
                     </ShrinkingComponentWrapper>
                 )
