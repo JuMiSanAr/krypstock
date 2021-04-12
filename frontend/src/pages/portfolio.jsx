@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import FooterNav from '../components/footerNav';
 import { AllComponentsWrapper, ShrinkingComponentWrapper } from '../styles/globalParts/containerStyles';
 import {HeadlineFont, CakeChartContainer} from '../styles/components/portfolioStyles';
@@ -7,14 +7,38 @@ import Graph from '../assets/bit.png'
 import PortfolioChart from '../components/charts/portfolioChart';
 import AllInvestments from '../components/portfolioComponents/allInvestments';
 import Overview from '../components/portfolioComponents/overview';
+import {specificPortfolioFetch} from "../store/fetches/portfoliosFetches";
+import {specificPortfolioAction} from "../store/actions/specificPortfolioAction";
+import {useDispatch, useSelector} from "react-redux";
 
 const Portfolio = (props) => {
+
+    useEffect(() => {
+        const url = window.location.href;
+        const id = url.substring(url.lastIndexOf('/') + 1);
+        setPortfolioId(id);
+        specificPortfolioFetch(id)
+        .then(data => {
+            dispatch(specificPortfolioAction(data))
+        })
+    }, [])
+
+    const [portfolioId, setPortfolioId] = useState('');
+
+    const dispatch = useDispatch()
+    const portfolioInfo = useSelector(state => state.specificPortfolioReducer.portfolioInfo)
+    console.log(portfolioInfo);
 
     return (
         <>
             <AllComponentsWrapper>
-                <AllInvestments/>
-                <Overview/>
+                {
+                    portfolioInfo.calculations ? <AllInvestments calculations={portfolioInfo.calculations}/> : ''
+                }
+                {
+                    portfolioInfo.calculations ? <Overview calculations={portfolioInfo.calculations}/> : ''
+                }
+
                 <ShrinkingComponentWrapper>
                     <CakeChartContainer>
                         <HeadlineFont>My Investments</HeadlineFont>
@@ -30,7 +54,9 @@ const Portfolio = (props) => {
                 </ShrinkingComponentWrapper>
                 <ShrinkingComponentWrapper>
                     <HeadlineFont>Total value over time</HeadlineFont>
-                    <PortfolioChart/>
+                    {
+                        portfolioInfo.transactions ? <PortfolioChart data={portfolioInfo.transactions}/> : ''
+                    }
                 </ShrinkingComponentWrapper>
                 <ShrinkingComponentWrapper>
                     <HeadlineFont>Comparison</HeadlineFont>
