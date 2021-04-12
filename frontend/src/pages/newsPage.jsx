@@ -29,15 +29,7 @@ const NewsPage = () => {
 
     const fetchStockNews = () => {
         const API_Call = `https://sandbox.iexapis.com/stable/time-series/news?range=1m&limit=30&token=${iexSandboxKey}`;
-        // const API_Call = `https://newsapi.org/v2/top-headlines?apiKey=c9f83156011c478e9d57aafff581a35d&country=us&category=business&pageSize=50`
 
-        const config = {
-            mode: 'no-cors',
-            headers: {
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Credentials": "true"
-            }
-        }
         if (allStockNews.length === 0) {
             fetch(API_Call)
                 .then(res => res.json())
@@ -48,24 +40,23 @@ const NewsPage = () => {
         }
     }
 
-    const fetchCryptoNews = () => {
-        const API_Call = `https://cryptopanic.com/api/v1/posts/?auth_token=6f333ed50f0e1e4679a65139765f56c00853296f&kind=news`;
-
-
-        const config = {
-              mode: 'no-cors',
-              headers: {
-                "Content-Type": "application/json",
-                "Access-Control-Allow-Credentials": "true"
-              }
-            }
-
-        fetch(API_Call,config)
-            .then(res => res.json())
-            .then(data => {
-                console.log(data.event);
-            });
-    }
+    // const fetchCryptoNews = () => {
+    //     const API_Call = `https://cryptopanic.com/api/v1/posts/?auth_token=6f333ed50f0e1e4679a65139765f56c00853296f&kind=news`;
+    //
+    //     const config = {
+    //           mode: 'no-cors',
+    //           headers: {
+    //             "Content-Type": "application/json",
+    //             "Access-Control-Allow-Credentials": "true"
+    //           }
+    //         }
+    //
+    //     fetch(API_Call,config)
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             console.log(data.event);
+    //         });
+    // }
 
     return (
         <>
