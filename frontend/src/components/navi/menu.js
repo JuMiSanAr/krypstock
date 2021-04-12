@@ -49,7 +49,7 @@ const Menu = ({open, setOpen}) => {
                 <img src={Logo} alt="logo"/>
             </LogoIconWrapper>
             <MenuContentWrapper>
-                <h2>Hello, {userData.username}</h2>
+                <h2>Hello, </h2>
                 <MenuItemWrapper>
                 <DashboardIcon/>
                 <span className="move-right-1" onClick={() => toDashboard()}>Dashboard</span>

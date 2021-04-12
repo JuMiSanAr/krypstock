@@ -1,10 +1,11 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import { FormSelectWrapper } from '../../../styles/components/cryptoStyles/bitCoinStyles';
 import { ButtonWrapper, SelectorWrapper, TransacWrapper } from '../../../styles/components/cryptoStyles/quickTradeStyles';
 import { ShrinkingComponentWrapper } from '../../../styles/globalParts/containerStyles';
 import { postNewTransactionFetch } from '../../../store/fetches/transactionFetches'; 
 import { Link } from 'react-router-dom';
+import SymbolFetch from '../../../store/fetches/symbolFetches';
 
 const StockQuickTrade = (props) => {
 
@@ -19,6 +20,8 @@ const StockQuickTrade = (props) => {
     const [pricePerShare, setPricePerShare] = useState();
     const type = "S";
 
+    const [allSymbols, setAllSymbols] = useState([]);
+
     const submitHandler = (e) => {
         e.preventDefault();
         console.log(buySell, portfolioID, symbol, volume, pricePerShare,type)
@@ -28,6 +31,21 @@ const StockQuickTrade = (props) => {
         })
     }
 
+    useEffect( () => {
+
+        const symbolList = []
+
+        fetch('https://sandbox.iexapis.com/beta/ref-data/symbols?token=Tpk_fec97062db224c2fb7b0b3836ab0e365')
+            .then(res => res.json())
+            .then(data => {
+                // console.log('symbols data', data)
+                for (const stock of data) {
+                    symbolList.push(stock.symbol)
+                }
+                setAllSymbols(symbolList)
+            })  
+    }, [])
+    
     return(
         <ShrinkingComponentWrapper>
             <form onSubmit={submitHandler}>
@@ -75,7 +93,15 @@ const StockQuickTrade = (props) => {
                             </div>
                             <div className="company transacItem amountInput">
                                 <label htmlFor="company-input">Company</label>
-                                <input id="company-input" type="text" name="company" placeholder="company" value={symbol} onChange={e => setSymbol(e.target.value)} required/>
+                                <input id="company-input" list="stock-symbols" name="company" placeholder="company" value={symbol} onChange={e => setSymbol(e.target.value)} required/>
+                                <datalist id="stock-symbols">
+                                    { allSymbols && allSymbols.length !== 0 ?
+                                    allSymbols.map( (symbol, index) => 
+                                    <option value={symbol} key={index} />
+                                    )
+                                    : null}
+                                </datalist>
+                            
                             </div>
                             <div className="transacItem amountInput">
                                 <p>Quantity</p>
@@ -87,11 +113,11 @@ const StockQuickTrade = (props) => {
                             </div>
                             <div className="transacItem">
                                 <p>Total Price</p>
-                                <span>{`${volume*pricePerShare ? volume*pricePerShare.toFixed(2) : 0 }  USD`}</span>
+                                <span>{`${volume*pricePerShare ? parseFloat(volume*pricePerShare).toFixed(2) : '0.00' }  USD`}</span>
                             </div>
                         </TransacWrapper> 
                         <ButtonWrapper>
-                            <button type="submit" value="Submit">Submit</button>
+                            <button type="submit" value="Submit" disabled={!(allSymbols.includes(symbol))}>Submit</button>
                         </ButtonWrapper>
                     </>
                 }

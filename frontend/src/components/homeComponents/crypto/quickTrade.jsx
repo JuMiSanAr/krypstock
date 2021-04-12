@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {ShrinkingComponentWrapper } from '../../../styles/globalParts/containerStyles';
 import {FormSelectWrapper} from "../../../styles/components/cryptoStyles/bitCoinStyles";
@@ -18,6 +18,8 @@ export const CryptoQuickTrade = (props) => {
     const [pricePerCoin, setPricePerCoin] = useState();
     const type = "C";
 
+    const [allSymbols, setAllSymbols] = useState([]);
+
     const submitHandler = (e) => {
         e.preventDefault();
         console.log(buySell, portfolioID, symbol, amount, pricePerCoin,type)
@@ -26,6 +28,28 @@ export const CryptoQuickTrade = (props) => {
             console.log('in crypto quicktrade submitHandler', data)
         })
     }
+
+    useEffect( () => {
+
+        let symbolsSet = new Set(); 
+
+        fetch("https://api.binance.com/api/v3/exchangeInfo")
+        .then(res => res.json())
+        .then(data => {
+            console.log('crypto data.symbols', data.symbols)
+            const nonDuplicatedSymbols = data.symbols.filter( crypto => crypto['quoteAsset'] === 'USDT');
+            for (const crypto of data.symbols) {
+                symbolsSet.add(crypto.baseAsset)
+            }
+            symbolsSet = Array.from(symbolsSet)  //convert set to array 
+            console.log('symbolsSet', symbolsSet)
+            setAllSymbols(symbolsSet);
+        })
+    }, []);
+    
+    useEffect( () => {
+        console.log('allSymbols', allSymbols)
+    }, [allSymbols])
 
     return (
         <ShrinkingComponentWrapper> 
@@ -46,24 +70,6 @@ export const CryptoQuickTrade = (props) => {
                             <option value="S">Sell</option>
                         </select>
                     </div>
-                    <div className="currSelect">
-                        <select className="selector" defaultValue={'DEFAULT'} onChange={e => setSymbol(e.target.value)} required>
-                            <option value="DEFAULT" disabled>Select</option>
-                            <option value="BTC">BTC</option>
-                            <option value="ETH">ETH</option>
-                            <option value="LTC">LTC</option>
-                            <option value="XRP">XRP</option>
-                            <option value="XLM">XLM</option>
-                            <option value="DOT">DOT</option>
-                            <option value="ADA">ADA</option>
-                            <option value="BCH">BCH</option>
-                            <option value="BNB">BNB</option>
-                            <option value="UNI">UNI</option>
-                            <option value="CEL">CEL</option>
-                            <option value="EOS">EOS</option>
-                            <option value="VET">VET</option>
-                        </select>
-                    </div>  
                 </SelectorWrapper>
                 }
                 </FormSelectWrapper>  
@@ -90,6 +96,17 @@ export const CryptoQuickTrade = (props) => {
                                 }
                             </select>
                         </div>
+                        <div className="currSelect transacItem amountInput">
+                            <label htmlFor="company-input">Cryptocurrency</label>
+                            <input id="company-input" className="selector" list="crypto-symbols" onChange={e => setSymbol(e.target.value)} required/>
+                            <datalist id="crypto-symbols" >
+                                { allSymbols && allSymbols.length !== 0 ?
+                                    allSymbols.map( (symbol, index) => 
+                                    <option value={symbol} key={index} />)
+                                    : null
+                                }
+                            </datalist>
+                        </div>  
                         <div className="transacItem amountInput">
                             <label>Amount</label>
                             <input type="text" name="amount" placeholder="amount" value={amount} onChange={e => setAmount(e.target.value)} required/>
@@ -100,11 +117,11 @@ export const CryptoQuickTrade = (props) => {
                         </div>
                         <div className="transacItem">
                                 <p>Total Price</p>
-                                <span>{`${amount*pricePerCoin ? amount*pricePerCoin : 0}  USD`}</span>
+                                <span>{`${amount*pricePerCoin ? parseFloat(amount*pricePerCoin).toFixed(2) : '0.00'}  USD`}</span>
                         </div>
                     </TransacWrapper> 
                     <ButtonWrapper>
-                        <button type="submit" value="Submit">Submit</button>
+                        <button type="submit" value="Submit" disabled={!(allSymbols.includes(symbol))}>Submit</button>
                     </ButtonWrapper>
                 </>
                 }
