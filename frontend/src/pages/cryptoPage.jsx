@@ -10,6 +10,7 @@ import CryptoPageInfoCard from "../components/cryptoCards/cryptoPageInfoCard";
 import ChartTimeCrypto from "../components/charts/chartSelectTimeCrypto";
 import {cryptoFetcherIntraday} from "../components/charts/helperFunctions/cryptoFetcherIntraday";
 import ChartTimeCryptoframeButton from "../components/charts/chartSelectTimeCryptoframeButton";
+import CryptoList from "../components/charts/cryptoList";
 
 const CryptoPage = (props) => {
 
@@ -60,8 +61,8 @@ const CryptoPage = (props) => {
                    <CandlestickCryptoHistorical data={historicalData} symbol={symbol} time={chartTimeframe} timeLength={chartTimeframe2}/>}
             </GraphWrapper>
         </ShrinkingComponentWrapper>
-        <NewsCrypto symbol={symbol}/>
-
+        {/*<NewsCrypto symbol={symbol}/>*/}
+        <CryptoList/>
         <FooterNav/>
     </AllComponentsWrapper>
         </>
