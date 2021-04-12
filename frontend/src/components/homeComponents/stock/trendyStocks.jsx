@@ -21,10 +21,10 @@ const TrendyStocks = ({stock_volume}) => {
                     stock_volume.map((company, index) => {
                         return (
                             <tr key={index}>
-                        <td>{company.companyName}</td>
-                        <td>{company.latestPrice.toFixed(2)}</td>
-                        <td>{company.changePercent ? company.changePercent.toFixed(2) : '0.00' }</td>
-                        <td>{company.volume}</td>
+                                <td>{company.companyName}</td>
+                                <td>{company.latestPrice ? company.latestPrice.toFixed(2) : '0.00' }</td>
+                                <td>{company.changePercent ? company.changePercent.toFixed(2) : '0.00' }</td>
+                                <td>{company.volume}</td>
                             </tr>
                         )
                     })

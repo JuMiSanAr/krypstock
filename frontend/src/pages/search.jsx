@@ -14,10 +14,11 @@ const Search = () => {
 
     const [allStocks, setAllStocks] = useState([]);
     const [allCryptos, setAllCryptos] = useState([]);
-    const [search, setSearch] = useState([]);
+    const [search, setSearch] = useState("");
     const [select, setSelect] = useState("All");
     const [iexVolumeData, setiexVolumeData] = useState([]);
-
+    const [showingStocks, setShowingStocks] = useState("loading");
+     
     useEffect(() => {
         fetch('https://sandbox.iexapis.com/stable/stock/market/list/iexvolume?token=Tpk_fec97062db224c2fb7b0b3836ab0e365')
             .then(res => res.json())
@@ -27,6 +28,65 @@ const Search = () => {
     const handleSelectChange = (val) => {
         setSelect(val)
     }
+
+    useEffect(() => {
+         if(select === "Stock" && search !== ""){
+             const filteredStocks = iexVolumeData.filter(stock => stock.companyName.includes(search.replace(/^./, search[0].toUpperCase())) || stock.symbol.includes(search.toUpperCase()))
+             setShowingStocks(filteredStocks.map((symbol, index) => {
+                return (
+                    <tr key={index}>
+                    <td className="headcol"><input type="checkbox" name="muhRadio" value=""/></td>
+                    <td>{symbol.symbol}</td>
+                    <td>{symbol.companyName}</td>
+                    <td>{symbol.latestPrice}</td>
+                    <td>{symbol.change}</td>
+                    <td>{symbol.changePercent}</td>
+                    <td>{symbol.volume}</td>
+                    <td>{symbol.marketCap}</td>
+                    <td><TrendingUpIcon/> {symbol.high}</td>
+                    </tr>
+                )
+            }))
+            } else{
+                setShowingStocks(iexVolumeData.map((symbol, index) => {
+                    return (
+                        <tr key={index}>
+                        <td className="headcol"><input type="checkbox" name="muhRadio" value=""/></td>
+                        <td>{symbol.symbol}</td>
+                        <td>{symbol.companyName}</td>
+                        <td>{symbol.latestPrice}</td>
+                        <td>{symbol.change}</td>
+                        <td>{symbol.changePercent}</td>
+                        <td>{symbol.volume}</td>
+                        <td>{symbol.marketCap}</td>
+                        <td><TrendingUpIcon/> {symbol.high}</td>
+                        </tr>
+                    )
+                }));
+            }    
+
+    }, [search]);
+
+    useEffect(() => {
+        if (iexVolumeData.length){
+            setShowingStocks(iexVolumeData.map((symbol, index) => {
+                return (
+                    <tr key={index}>
+                    <td className="headcol"><input type="checkbox" name="muhRadio" value=""/></td>
+                    <td>{symbol.symbol}</td>
+                    <td>{symbol.companyName}</td>
+                    <td>{symbol.latestPrice}</td>
+                    <td>{symbol.change}</td>
+                    <td>{symbol.changePercent ? symbol.changePercent.toFixed(2) : '0.00'}</td>
+                    <td>{symbol.volume}</td>
+                    <td>{symbol.marketCap}</td>
+                    <td><TrendingUpIcon/> {symbol.high}</td>
+                    </tr>
+                )
+            }));
+        }
+        
+    }, [iexVolumeData])
 
     return (
         <>          
@@ -72,7 +132,8 @@ const Search = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {
+                            {showingStocks}
+                            {/* {
                                 iexVolumeData.length ?
                                 iexVolumeData.map((symbol, index) => {
                                     return (
@@ -90,7 +151,7 @@ const Search = () => {
                                     )
                                 }) : "...Please Wait I am Loading now! "
                             }
-                            
+                             */}
                         </tbody>
                     </Table>
                     </TableWrapper>
