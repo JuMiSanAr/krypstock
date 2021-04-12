@@ -1,24 +1,24 @@
 import {iexSandboxKey} from "../../../store/constants";
 
-export const cryptoFetcherHistorical = (symbol, updateState, timeframe) => {
+export const cryptoFetcherHistorical = (symbol, setHistoricalData, tick_interval) => {
 
-        const API_Call = `https://sandbox.iexapis.com/stable/stock/${symbol}/chart/${timeframe}?token=${iexSandboxKey}`;
+        const API_Call = `https://api.binance.com/api/v3/klines?symbol=${symbol}&interval=${tick_interval}`;
 
         fetch(API_Call)
             .then(res => res.json())
             .then(data => {
-
-                const allData = data.map(obj => {
-
+                const allData = data.map((obj,index) => {
+                        // console.log(data)
+                    let timeFix=obj[0]/1000
                     return {
-                        time: obj['date'],
-                        open: obj['open'],
-                        high: obj['high'],
-                        low: obj['low'],
-                        close: obj['close']
+                        time: timeFix,
+                        open: obj[1],
+                        high: obj[2],
+                        low: obj[3],
+                        close: obj[4]
                     }
                 })
-
-                updateState(allData);
+                console.log(allData)
+                setHistoricalData(allData);
             });
     }
