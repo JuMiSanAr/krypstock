@@ -17,7 +17,6 @@ const CryptoList = (props) => {
         const apiKey= "hEONEAKmoUPGx9EyweXiP7WEJzbmJEihUzsJQ1THnOwnLRuWkr4vEw7qF0xqhh7u"
         const secretKey= "3vPVa6Cjg4XtcqaRCAPZkn9jnrf9TaJvYCFS2oYNk5jZpA6umBA84opIfy0vRDZj"
 
-
         const API_Call = `https://api.binance.com/api/v3/ticker/price`;
         const config = {
                   // mode: 'no-cors',
@@ -32,25 +31,6 @@ const CryptoList = (props) => {
             .then(res => console.log(res))
             .then(data => {console.log(data.event)
             });
-
-        // fetch(API_Call)
-        //     .then(res => res.json())
-        //     .then(data => {
-        //
-        //         const allData = data.map((obj,index) => {
-        //                 console.log(obj)
-        //             let timeFix=obj[0]/1000
-        //             // console.log(timeFix)
-        //             return {
-        //                 time: timeFix,
-        //                 open: obj[1],
-        //                 high: obj[2],
-        //                 low: obj[3],
-        //                 close: obj[4]
-        //             }
-        //         })
-        //         setData(allData);
-        //     });
 
         }
 

@@ -20,7 +20,7 @@ const CryptoPage = (props) => {
     const [intradayData, setIntradayData] = useState([]);
     const [historicalData, setHistoricalData] = useState([]);
 
-    const symbol = 'btcusdt';
+    const symbol = ('btcusdt').toUpperCase();
 
     // useEffect(() => {
     //  WebSocket.close();
@@ -61,8 +61,8 @@ const CryptoPage = (props) => {
                    <CandlestickCryptoHistorical data={historicalData} symbol={symbol} time={chartTimeframe} timeLength={chartTimeframe2}/>}
             </GraphWrapper>
         </ShrinkingComponentWrapper>
-        {/*<NewsCrypto symbol={symbol}/>*/}
-        <CryptoList/>
+        <NewsCrypto symbol={symbol}/>
+        {/*<CryptoList/>*/}
         <FooterNav/>
     </AllComponentsWrapper>
         </>

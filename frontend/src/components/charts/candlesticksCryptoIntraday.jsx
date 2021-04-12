@@ -4,7 +4,6 @@ import {createChart, CrosshairMode} from "lightweight-charts";
 const CandlestickCryptoIntraday = (props) => {
 
     const [fetchedData, setData] = useState([]);
-    const exchange = 'Bitcoin/USD';
     const cryptoCurrency= 'btcusdt';
 
     useEffect(() => {
@@ -18,7 +17,7 @@ const CandlestickCryptoIntraday = (props) => {
     }, [props.timeLength]);
 
         const fetchCrypto = () => {
-            const binanceSocket = new WebSocket(`wss://stream.binance.com:9443/ws/${cryptoCurrency}@kline_1m`);
+            const binanceSocket = new WebSocket(`wss://stream.binance.com:9443/ws/${props.symbol}@kline_1m`);
             binanceSocket.onmessage = event => {
                 const lastdata= JSON.parse(event.data);
                 const timestamp = lastdata["E"]/1000;
