@@ -65,6 +65,7 @@ const CandlestickStockIntraday = (props) => {
                     },
                 },
                 timeScale: {
+                    fixLeftEdge: true,
                     fixRightEdge: true,
                     lockVisibleTimeRangeOnResize: false,
                     borderVisible: false,

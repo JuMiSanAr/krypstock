@@ -27,6 +27,14 @@ export const TransacWrapper = styled.div`
             text-align: center;
             outline: none;
         }
+
+        select{
+            width: 120px;
+            height: 25px;
+            text-align: center;
+            outline: none;
+            margin-bottom: 1rem;
+        }
     }
 
 `;

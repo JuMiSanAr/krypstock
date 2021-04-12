@@ -4,6 +4,7 @@ import { FormSelectWrapper } from '../../../styles/components/cryptoStyles/bitCo
 import { ButtonWrapper, SelectorWrapper, TransacWrapper } from '../../../styles/components/cryptoStyles/quickTradeStyles';
 import { ShrinkingComponentWrapper } from '../../../styles/globalParts/containerStyles';
 import { postNewTransactionFetch } from '../../../store/fetches/transactionFetches'; 
+import { Link } from 'react-router-dom';
 
 const QuickTrade = () => {
 
@@ -51,11 +52,13 @@ const QuickTrade = () => {
                 </FormSelectWrapper>  
                 {
                     !allPortfoliosArray || allPortfoliosArray.length === 0 ?
-                    <>
+                    <div className='empty'>
                         <span>You need a portfolio to trade</span>
                         <br/>
-                        <span>Create your first portfolio</span>
-                    </>
+                        <Link to="/portfolio-list/">
+                            <span className='create-portfolio'>Create your first portfolio</span>
+                        </Link>
+                    </div>
                     :
                     <>
                         <TransacWrapper>                    
@@ -65,7 +68,7 @@ const QuickTrade = () => {
                                     <option value="DEFAULT" disabled>Select portfolio</option>
                                     {
                                         allPortfoliosArray.map( (portfolio, index) => 
-                                            <option key={'portfolio' + index} value={portfolio.id}>{`${portfolio.id}. ${portfolio.name}`}</option>
+                                            <option key={index} value={portfolio.id}>{`${portfolio.name}`}</option>
                                         )
                                     }
                                 </select>
