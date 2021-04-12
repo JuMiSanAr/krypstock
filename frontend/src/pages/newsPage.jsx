@@ -24,16 +24,46 @@ const NewsPage = () => {
 
     useEffect(() => {
         fetchStockNews();
+        fetchCryptoNews();
     }, []);
 
     const fetchStockNews = () => {
-        const API_Call = `https://sandbox.iexapis.com/stable/time-series/news?range=1m&limit=50&token=${iexSandboxKey}`;
+        const API_Call = `https://sandbox.iexapis.com/stable/time-series/news?range=1m&limit=30&token=${iexSandboxKey}`;
+        // const API_Call = `https://newsapi.org/v2/top-headlines?apiKey=c9f83156011c478e9d57aafff581a35d&country=us&category=business&pageSize=50`
 
-        fetch(API_Call)
+        const config = {
+            mode: 'no-cors',
+            headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Credentials": "true"
+            }
+        }
+        if (allStockNews.length === 0) {
+            fetch(API_Call)
+                .then(res => res.json())
+                .then(data => {
+                    const action = stockNewsAction(data);
+                    dispatch(action);
+                });
+        }
+    }
+
+    const fetchCryptoNews = () => {
+        const API_Call = `https://cryptopanic.com/api/v1/posts/?auth_token=6f333ed50f0e1e4679a65139765f56c00853296f&kind=news`;
+
+
+        const config = {
+              mode: 'no-cors',
+              headers: {
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Credentials": "true"
+              }
+            }
+
+        fetch(API_Call,config)
             .then(res => res.json())
             .then(data => {
-                const action = stockNewsAction(data);
-                dispatch(action);
+                console.log(data.event);
             });
     }
 
@@ -55,8 +85,8 @@ const NewsPage = () => {
                         : ''
                 }
                 {
-                    newsNumberShown < 50 ?
-                        <h3 onClick={() => setNewsNumberShown(newsNumberShown+10)}>Show more</h3>
+                    newsNumberShown < 30 ?
+                        <h3 onClick={() => setNewsNumberShown(newsNumberShown+5)}>Show more</h3>
                         : ''
                 }
             </AllComponentsWrapper>

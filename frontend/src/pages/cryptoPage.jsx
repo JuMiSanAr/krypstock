@@ -4,27 +4,29 @@ import CandlestickCryptoIntraday from "../components/charts/candlesticksCryptoIn
 import {FormSelectWrapper, GraphWrapper} from "../styles/components/cryptoStyles/bitCoinStyles";
 import {AllComponentsWrapper, ShrinkingComponentWrapper} from "../styles/globalParts/containerStyles";
 import NewsCrypto from "../components/newsFeed/newsCrypto";
-import {cryptoFetcherIntraday} from "../components/charts/helperFunctions/cryptoFetcherIntraday";
 import {cryptoFetcherHistorical} from "../components/charts/helperFunctions/cryptoFetcherHistorical";
 import CandlestickCryptoHistorical from "../components/charts/candlesticksCryptoHistorical";
 import CryptoPageInfoCard from "../components/cryptoCards/cryptoPageInfoCard";
+import ChartTimeCrypto from "../components/charts/chartSelectTimeCrypto";
+import {cryptoFetcherIntraday} from "../components/charts/helperFunctions/cryptoFetcherIntraday";
 import ChartTimeCryptoframeButton from "../components/charts/chartSelectTimeCryptoframeButton";
 
 const CryptoPage = (props) => {
 
     const [chartTimeframe, setChartTimeframe] = useState('1m');
+   const [chartTimeframe2, setChartTimeframe2] = useState('12h');
 
     const [intradayData, setIntradayData] = useState([]);
     const [historicalData, setHistoricalData] = useState([]);
 
-    const symbol = 'BTCUSD';
+    const symbol = 'btcusdt';
+
+    // useEffect(() => {
+    //  WebSocket.close();
+    // }, []);
 
     useEffect(() => {
-        cryptoFetcherHistorical(symbol, setHistoricalData, chartTimeframe);
-    }, []);
-
-    useEffect(() => {
-        cryptoFetcherHistorical(symbol, setHistoricalData, chartTimeframe);
+        // cryptoFetcherHistorical(symbol, setHistoricalData, chartTimeframe);
     }, [chartTimeframe])
 
 
@@ -40,18 +42,21 @@ const CryptoPage = (props) => {
                 <div className="title">
                    <h3>Price Chart</h3>
                 </div>
-                <div >
+                <div >Ticker
                     <ChartTimeCryptoframeButton setChart={setChartTimeframe}/>
+                </div>
+                <div >Time
+                    <ChartTimeCrypto setChart2={setChartTimeframe2}/>
                 </div>
               </FormSelectWrapper>
                  <GraphWrapper>
                {chartTimeframe === '1m' ?
-                   <CandlestickCryptoIntraday data={intradayData}/>
+                   <CandlestickCryptoIntraday data={intradayData} symbol={symbol} time={chartTimeframe}/>
                    :
-                   <CandlestickCryptoHistorical data={historicalData}/>}
+                   <CandlestickCryptoHistorical data={historicalData} symbol={symbol} time={chartTimeframe} timeLength={chartTimeframe2}/>}
             </GraphWrapper>
         </ShrinkingComponentWrapper>
-        <NewsCrypto symbol={symbol}/>
+        {/*<NewsCrypto symbol={symbol}/>*/}
         <FooterNav/>
     </AllComponentsWrapper>
         </>
