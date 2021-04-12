@@ -8,6 +8,9 @@ import FooterNav from '../components/footerNav';
 import Stock from '../components/homeComponents/stock/index.jsx';
 import { useState } from "react";
 import {DoubleButtonContainer, LeftButton, RightButton, MainContentWrapper} from "../styles/pages/homeStyles"
+import { loginUserDataFetch } from '../store/fetches/loginUserDataFetches';
+import { loginUserAction } from '../store/actions/loginUserAction';
+
 
 const Home = () => {
 
@@ -29,6 +32,15 @@ const Home = () => {
             })
         }
     }, [token]);
+
+    useEffect(() => {
+        loginUserDataFetch()
+        .then(data => {
+            console.log("from user data",data)
+            dispatch(loginUserAction(data))
+        })
+
+    }, [])
 
     return (
         <>

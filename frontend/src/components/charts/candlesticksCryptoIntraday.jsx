@@ -11,6 +11,12 @@ const CandlestickCryptoIntraday = (props) => {
         fetchCrypto();
     }, []);
 
+     useEffect(() => {
+        if(props.timeLength==='1d'){
+          fetchCrypto();
+        }
+    }, [props.timeLength]);
+
         const fetchCrypto = () => {
             const binanceSocket = new WebSocket(`wss://stream.binance.com:9443/ws/${cryptoCurrency}@kline_1m`);
             binanceSocket.onmessage = event => {
@@ -135,10 +141,6 @@ const CandlestickCryptoIntraday = (props) => {
         }
     }, [fetchedData])
 
-
-    // useEffect(useCallback(() => {
-    //
-    // }), [fetchedData]);
         return (
                 <div id="chartCryptoIntraday"/>
 

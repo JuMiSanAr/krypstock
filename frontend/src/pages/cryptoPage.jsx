@@ -14,7 +14,7 @@ import ChartTimeCryptoframeButton from "../components/charts/chartSelectTimeCryp
 const CryptoPage = (props) => {
 
     const [chartTimeframe, setChartTimeframe] = useState('1m');
-   const [chartTimeframe2, setChartTimeframe2] = useState('12h');
+    const [chartTimeframe2, setChartTimeframe2] = useState('1d');
 
     const [intradayData, setIntradayData] = useState([]);
     const [historicalData, setHistoricalData] = useState([]);
@@ -24,6 +24,10 @@ const CryptoPage = (props) => {
     // useEffect(() => {
     //  WebSocket.close();
     // }, []);
+
+    // useEffect(() => {
+    //     // cryptoFetcherHistorical(symbol, setHistoricalData, chartTimeframe);
+    // }, [chartTimeframe])
 
     useEffect(() => {
         // cryptoFetcherHistorical(symbol, setHistoricalData, chartTimeframe);
@@ -50,13 +54,14 @@ const CryptoPage = (props) => {
                 </div>
               </FormSelectWrapper>
                  <GraphWrapper>
-               {chartTimeframe === '1m' ?
-                   <CandlestickCryptoIntraday data={intradayData} symbol={symbol} time={chartTimeframe}/>
+               {chartTimeframe === '1m'?
+                   <CandlestickCryptoIntraday data={intradayData} symbol={symbol} time={chartTimeframe} timeLength={chartTimeframe2}/>
                    :
                    <CandlestickCryptoHistorical data={historicalData} symbol={symbol} time={chartTimeframe} timeLength={chartTimeframe2}/>}
             </GraphWrapper>
         </ShrinkingComponentWrapper>
-        {/*<NewsCrypto symbol={symbol}/>*/}
+        <NewsCrypto symbol={symbol}/>
+
         <FooterNav/>
     </AllComponentsWrapper>
         </>
