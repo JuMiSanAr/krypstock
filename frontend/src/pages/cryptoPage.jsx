@@ -61,7 +61,7 @@ const CryptoPage = (props) => {
             </GraphWrapper>
         </ShrinkingComponentWrapper>
         <NewsCrypto symbol={symbol}/>
-        <FooterNav/>
+        {/*<FooterNav/>*/}
     </AllComponentsWrapper>
         </>
     )
