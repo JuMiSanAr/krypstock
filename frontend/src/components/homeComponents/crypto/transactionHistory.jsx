@@ -9,7 +9,7 @@ import {darkTheme} from '../../../styles/Themes';
 
 export const TransactionHistory = () => {
 
-    const [page, setPage] = React.useState(1);
+    const [page, setPage] = React.useState(0);
     const rowsPerPage = 4;
     const allData = useSelector(state => state.transactionsReducer.transactions);
 
@@ -47,17 +47,17 @@ export const TransactionHistory = () => {
                                 <td colSpan="4">No crypto assets in your portfolio</td>
                             </tr>
                         }
-                        <TablePagination 
-                            component="div"
-                            count={allData.filter(data => data.type === 'C').length}
-                            page={page}
-                            onChangePage={handleChangePage}
-                            rowsPerPage={rowsPerPage}
-                            rowsPerPageOptions={[]}
-                            style={{color: darkTheme.text}}
-                        />
                     </tbody>
             </Table>
+            <TablePagination 
+                component="div"
+                count={allData.filter(data => data.type === 'C').length}
+                page={page}
+                onChangePage={handleChangePage}
+                rowsPerPage={rowsPerPage}
+                rowsPerPageOptions={[]}
+                style={{color: darkTheme.text}}
+            />
 
         </ShrinkingComponentWrapper>
     )

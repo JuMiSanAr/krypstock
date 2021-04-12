@@ -12,7 +12,7 @@ import {transactionsAction} from '../../../store/actions/transactionsAction';
 const TransactionHistory = (props) => {
 
     const dispatch = useDispatch();
-    const [page, setPage] = React.useState(1);
+    const [page, setPage] = React.useState(0);
     const rowsPerPage = 4;
     const allData = useSelector(state => state.transactionsReducer.transactions);
     
@@ -60,15 +60,15 @@ const TransactionHistory = (props) => {
                     }
                 </tbody>
             </StockTable>
-                <TablePagination 
-                    component="div"
-                    count={allData.filter(data => data.type === 'S').length}
-                    page={page}
-                    onChangePage={handleChangePage}
-                    rowsPerPage={rowsPerPage}
-                    rowsPerPageOptions={[]}
-                    style={{color: darkTheme.text}}
-                />
+            <TablePagination 
+                component="div"
+                count={allData.filter(data => data.type === 'S').length}
+                page={page}
+                onChangePage={handleChangePage}
+                rowsPerPage={rowsPerPage}
+                rowsPerPageOptions={[]}
+                style={{color: darkTheme.text}}
+            />
         </ShrinkingComponentWrapper>
     )
 }
