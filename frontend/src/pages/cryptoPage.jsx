@@ -31,7 +31,7 @@ const CryptoPage = (props) => {
 
     useEffect(() => {
         // cryptoFetcherHistorical(symbol, setHistoricalData, chartTimeframe);
-    }, [chartTimeframe2])
+    }, [chartTimeframe])
 
 
     return (
@@ -54,13 +54,14 @@ const CryptoPage = (props) => {
                 </div>
               </FormSelectWrapper>
                  <GraphWrapper>
-               {chartTimeframe === '1m' & chartTimeframe2 === '1d'?
+               {chartTimeframe === '1m'?
                    <CandlestickCryptoIntraday data={intradayData} symbol={symbol} time={chartTimeframe} timeLength={chartTimeframe2}/>
                    :
                    <CandlestickCryptoHistorical data={historicalData} symbol={symbol} time={chartTimeframe} timeLength={chartTimeframe2}/>}
             </GraphWrapper>
         </ShrinkingComponentWrapper>
         <NewsCrypto symbol={symbol}/>
+
         <FooterNav/>
     </AllComponentsWrapper>
         </>
