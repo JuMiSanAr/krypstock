@@ -39,8 +39,8 @@ const Search = () => {
                     <td>{symbol.symbol}</td>
                     <td>{symbol.companyName}</td>
                     <td>{symbol.latestPrice}</td>
-                    <td>{symbol.change.toFixed(2)}</td>
-                    <td>{symbol.changePercent.toFixed(2)}</td>
+                    <td>{symbol.change}</td>
+                    <td>{symbol.changePercent}</td>
                     <td>{symbol.volume}</td>
                     <td>{symbol.marketCap}</td>
                     <td><TrendingUpIcon/> {symbol.high}</td>
@@ -55,8 +55,8 @@ const Search = () => {
                         <td>{symbol.symbol}</td>
                         <td>{symbol.companyName}</td>
                         <td>{symbol.latestPrice}</td>
-                        <td>{symbol.change.toFixed(2)}</td>
-                        <td>{symbol.changePercent.toFixed(2)}</td>
+                        <td>{symbol.change}</td>
+                        <td>{symbol.changePercent}</td>
                         <td>{symbol.volume}</td>
                         <td>{symbol.marketCap}</td>
                         <td><TrendingUpIcon/> {symbol.high}</td>
@@ -76,8 +76,8 @@ const Search = () => {
                     <td>{symbol.symbol}</td>
                     <td>{symbol.companyName}</td>
                     <td>{symbol.latestPrice}</td>
-                    <td>{symbol.change.toFixed(2)}</td>
-                    <td>{symbol.changePercent.toFixed(2)}</td>
+                    <td>{symbol.change}</td>
+                    <td>{symbol.changePercent}</td>
                     <td>{symbol.volume}</td>
                     <td>{symbol.marketCap}</td>
                     <td><TrendingUpIcon/> {symbol.high}</td>
