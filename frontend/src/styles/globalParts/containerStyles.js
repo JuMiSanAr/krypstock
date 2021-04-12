@@ -36,3 +36,10 @@ export const ShrinkingComponentWrapper = styled(FullWidthComponentWrapper)`
         width: 40%;
     }
 `
+
+export const ShrinkingComponentWrapperNoBackground = styled(FullWidthComponentWrapper)`
+    @media (min-width: 450px) {
+        width: 40%;
+        background-color: transparent; 
+    }
+`

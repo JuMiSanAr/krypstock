@@ -4,10 +4,8 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import FolderIcon from '@material-ui/icons/Folder';
 import {ShrinkingComponentWrapper } from '../../styles/globalParts/containerStyles';
 import deletePortfolioFetch from '../../store/fetches/deletePortfolioFetches';
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import { DELETE_PORTFOLIO } from '../../store/constants';
-
-
 
 
 
@@ -16,6 +14,10 @@ const IconTitle = styled.div`
     align-items: center;
     h2{
         margin-left: 20px;
+        a{
+        text-decoration: none;
+        color: inherit;
+        cursor: pointer;
     }
 `;
 
@@ -25,9 +27,11 @@ const Delete = styled.div`
 `;
 
 
-export const PortfolioCollection = ({portfolioList}) => {
+export const PortfolioCollection = () => {
 
     const dispatch = useDispatch();
+
+    const portfolioData = useSelector(state => state.portfoliosReducer.portfolios);
  
     // console.log("from port collection", portfolioList)
     const handleDelete = (id)=>{
@@ -43,11 +47,12 @@ export const PortfolioCollection = ({portfolioList}) => {
         <>
              
              {
-                 portfolioList.map((portfolio, index) => {
+                 portfolioData.map((portfolio, index) => {
                     return (<ShrinkingComponentWrapper key={index}>
+
                         <IconTitle>
                             <FolderIcon fontSize="large"/>
-                            <h2>{portfolio.name}</h2>
+                            <h2><a href={`https://krypstock.propulsion-learn.ch/portfolio/${portfolio.id}`}>{portfolio.name}</a></h2>
                         </IconTitle>
                         <div>
                             <p>

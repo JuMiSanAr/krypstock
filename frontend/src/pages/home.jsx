@@ -1,6 +1,6 @@
 // import Button from '../styles/components/buttonStyles';
 import React, {useEffect} from 'react';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import portfoliosFetch from '../store/fetches/portfoliosFetches';
 import {portfoliosAction} from '../store/actions/portfoliosAction';
 import {Crypto }from '../components/homeComponents/crypto/index';
@@ -13,18 +13,21 @@ const Home = () => {
 
     const dispatch = useDispatch();
 
+    const token = localStorage.getItem('token');
+
     const [toggleState, setToggleState] = useState(1);
     const toggleTab = (index) => {
         setToggleState(index);
       };
 
     useEffect( () => {
-        portfoliosFetch()
-        .then(data => {
-            // console.log('in quick trade useEffect portfolios data.results', data.results)
-            dispatch(portfoliosAction(data.results))
-        })
-    }, [])
+        if (token) {
+            portfoliosFetch()
+            .then(data => {
+                dispatch(portfoliosAction(data.results))
+            })
+        }
+    }, [token]);
 
     return (
         <>

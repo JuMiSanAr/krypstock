@@ -25,19 +25,17 @@ const PortfolioList = () => {
         };
 
     const dispatch = useDispatch();
-    const portfolioData = useSelector(state => state.portfoliosReducer.portfolios.results);
 
+    const portfolioData = useSelector(state => state.portfoliosReducer.portfolios);
+    const portfoliosFetched = useSelector(state => state.portfoliosReducer.portfoliosFetched);
 
     useEffect(() => {
       portfoliosFetch()
         .then(data =>{
-            const action = portfoliosAction(data);
+            const action = portfoliosAction(data.results);
             dispatch(action); 
         })
-       
     }, []);
-
-    
 
     return (
              <AllComponentsWrapper>
@@ -47,9 +45,14 @@ const PortfolioList = () => {
              </AddIcon>
              <Modal showModal={showModal} setShowModal={setShowModal}/>
              {
-                portfolioData ?  <PortfolioCollection portfolioList={portfolioData} /> : "...LOADING"
+                portfolioData && portfoliosFetched ?  <PortfolioCollection/> : ""
              }
-             
+             {
+                 !portfolioData && !portfoliosFetched ? '...LOADING' : ''
+             }
+             {
+                !portfolioData && portfoliosFetched ?  'Add a new portfolio, man!' : ""
+             }
                
          </AllComponentsWrapper>
     )
