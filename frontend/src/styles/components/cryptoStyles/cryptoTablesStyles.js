@@ -8,6 +8,7 @@ export const Table = styled.table`
     /* border-width: 2px; */
     /* border-style: solid; */
     color: ${({ theme }) => theme === lightTheme ?lightTheme.text : darkTheme.text};;
+    height: 260px;
     
     thead{
         background-color: ${props => props.id === 'crypto' ? allTheme.orange : props.id === "trans-history" ? allTheme.turquoise : allTheme.green};
