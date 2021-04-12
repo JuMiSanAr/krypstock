@@ -1,6 +1,13 @@
 import React from "react";
 
-const ChartTimeCryptoframeButton = (props) => {
+const ChartTimeCrypto = (props) => {
+
+        function foo() {
+    var d = new Date();
+    c += d.getTime().toString();
+
+}
+
 
     return (
         <select className="selector" onChange={event => props.setChart(event.target.value)}>
@@ -23,4 +30,4 @@ const ChartTimeCryptoframeButton = (props) => {
     )
 }
 
-export default ChartTimeCryptoframeButton
+export default ChartTimeCrypto

@@ -17,14 +17,14 @@ const CryptoPage = (props) => {
     const [intradayData, setIntradayData] = useState([]);
     const [historicalData, setHistoricalData] = useState([]);
 
-    const symbol = 'BTCUSD';
+    const symbol = 'btcusdt';
+
+    // useEffect(() => {
+    //  WebSocket.close();
+    // }, []);
 
     useEffect(() => {
-        cryptoFetcherIntraday(symbol, setIntradayData);
-    }, []);
-
-    useEffect(() => {
-        cryptoFetcherHistorical(symbol, setHistoricalData, chartTimeframe);
+        // cryptoFetcherHistorical(symbol, setHistoricalData, chartTimeframe);
     }, [chartTimeframe])
 
 
@@ -46,12 +46,12 @@ const CryptoPage = (props) => {
               </FormSelectWrapper>
                  <GraphWrapper>
                {chartTimeframe === '1m' ?
-                   <CandlestickCryptoIntraday data={intradayData}/>
+                   <CandlestickCryptoIntraday data={intradayData} symbol={symbol} time={chartTimeframe}/>
                    :
-                   <CandlestickCryptoHistorical data={historicalData}/>}
+                   <CandlestickCryptoHistorical data={historicalData} symbol={symbol} time={chartTimeframe}/>}
             </GraphWrapper>
         </ShrinkingComponentWrapper>
-        <NewsCrypto symbol={symbol}/>
+        {/*<NewsCrypto symbol={symbol}/>*/}
         <FooterNav/>
     </AllComponentsWrapper>
         </>

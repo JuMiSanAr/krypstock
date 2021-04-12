@@ -1,31 +1,19 @@
 import {iexSandboxKey} from "../../../store/constants";
 
-export const cryptoFetcherIntraday = (symbol, updateState) => {
+export const cryptoFetcherIntraday = (symbol, setIntradayData, intradayData) => {
 
-        const API_Call = `https://sandbox.iexapis.com/stable/stock/${symbol}/intraday-prices?token=${iexSandboxKey}&chartInterval=5`;
+        const binanceSocket = new WebSocket(`wss://stream.binance.com:9443/ws/${symbol}@kline_1m`);
 
-        fetch(API_Call)
-            .then(res => res.json())
-            .then(data => {
-
-                const allData = data.map(obj => {
-
-                    const ddmmyy = obj['date'].split('-');
-                    const hours = obj['minute'].split(':');
-
-                    const date = new Date(Date.UTC(ddmmyy[0],ddmmyy[1]-1,ddmmyy[2],hours[0],hours[1]));
-
-                    const timestamp = date.getTime()/1000;
-
-                    return {
+                binanceSocket.onmessage = event => {
+                const lastdata= JSON.parse(event.data)
+                const timestamp = lastdata["E"]/1000;
+                    const data = intradayData.push({
                         time: timestamp,
-                        open: obj['open'],
-                        high: obj['high'],
-                        low: obj['low'],
-                        close: obj['close']
-                    }
-                })
-
-                updateState(allData);
-            });
+                        open: lastdata["k"]['o'],
+                        high: lastdata["k"]['h'],
+                        low: lastdata["k"]['l'],
+                        close: lastdata["k"]['c']
+                    })
+                setIntradayData(data);
+            };
     }

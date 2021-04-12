@@ -14,14 +14,15 @@ const NewsCrypto = (props) => {
     }, []);
 
     const fetchNews = () => {
-          const API_Call = `https://cryptopanic.com/api/v1/posts/?auth_token=6f333ed50f0e1e4679a65139765f56c00853296f&public=true`;
+          const API_Call = `https://cryptopanic.com/api/v1/posts/?auth_token=6f333ed50f0e1e4679a65139765f56c00853296f&kind=news`;
 
 
          const config = {
                   mode: 'no-cors',
                   headers: {
                     "Content-Type": "application/json",
-                    "User-Agent": "kryptostock"
+                    "User-Agent": "kryptostock",
+                    "Access-Control-Allow-Credentials": "true"
                   }
                 }
 

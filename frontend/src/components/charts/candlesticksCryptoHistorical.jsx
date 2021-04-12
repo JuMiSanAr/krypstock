@@ -18,10 +18,25 @@ const CandlestickCryptoHistorical = (props) => {
         FetchCrypto();
     }, []);
 
+    useEffect(() => {
+        if(props.time!=='1m'){
+          FetchCrypto();
+        }
+    }, [props.time]);
+
     const FetchCrypto = () => {
         const API_KEY = 'hEONEAKmoUPGx9EyweXiP7WEJzbmJEihUzsJQ1THnOwnLRuWkr4vEw7qF0xqhh7u';
 
-           const API_Call = `https://api.binance.com/api/v3/klines?symbol=${cryptoCurrency}&interval=${tick_interval}`;
+        const API_Call = `https://api.binance.com/api/v3/klines?symbol=${cryptoCurrency}&interval=${props.time}`;
+        const config = {
+                  mode: 'no-cors',
+                  headers: {
+                    "Content-Type": "application/json",
+                    "User-Agent": "kryptostock",
+                    "Access-Control-Allow-Credentials": "true"
+                  }
+                }
+
 
         fetch(API_Call)
             .then(res => res.json())
@@ -85,7 +100,7 @@ const CandlestickCryptoHistorical = (props) => {
                 watermark: {
                     color: 'rgba(255, 255, 255, 0.4)',
                     visible: true,
-                    text: `Market: ${cryptoCurrency} Interval:${tick_interval}`,
+                     text: `Market: ${props.symbol} Interval:${props.time}`,
                     fontSize: 10,
                     horzAlign: 'left',
                     vertAlign: 'bottom',

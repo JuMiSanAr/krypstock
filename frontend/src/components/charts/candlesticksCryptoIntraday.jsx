@@ -3,28 +3,37 @@ import {createChart, CrosshairMode} from "lightweight-charts";
 
 const CandlestickCryptoIntraday = (props) => {
 
-//{"e":"aggTrade","E":1617869515532,"s":"BTCUSDT","a":671183311,"p":"57125.03000000","q":"0.05068500","f":752455921,"l":752455921,"T":1617869515531,"m":true,"M":true}
-
-   // TEMP (Data will come from props)
     const [fetchedData, setData] = useState([]);
     const exchange = 'Bitcoin/USD';
-    const cryptoCurrency= 'btcusdt';
+    const symbol= 'btcusdt';
+    let binanceSocket = new WebSocket(`wss://stream.binance.com:9443/ws/${props.symbol}@kline_1m`);
+
+    useEffect(() => {
+        if(props.chartTimeframe!=='1m'){
+            binanceSocket.close();
+        }else{
+            // binanceSocket = new WebSocket(`wss://stream.binance.com:9443/ws/${props.symbol}@kline_1m`);
+        }
+    }, [props.chartTimeframe]);
+
+    // useEffect(() => {
+    //     if(props.time!=='1m'){
+    //         binanceSocket.close();
+    //     }
+    // }, [props.time]);
+
+
     useEffect(() => {
         fetchCrypto();
     }, []);
 
     const fetchCrypto = () => {
         const API_KEY = 'hEONEAKmoUPGx9EyweXiP7WEJzbmJEihUzsJQ1THnOwnLRuWkr4vEw7qF0xqhh7u';
-     //   const API_Call = `https://sandbox.iexapis.com/stable/stock/${symbol}/intraday-prices?token=${API_KEY}`;
 
-        const binanceSocket = new WebSocket(`wss://stream.binance.com:9443/ws/${cryptoCurrency}@kline_1m`);
+
             binanceSocket.onmessage = event => {
                 const lastdata= JSON.parse(event.data)
-                // console.log(event.data)
-              // console.log(lastdata["k"])
                 const timestamp = lastdata["E"]/1000;
-                  //  if(lastdata["E"]>=)
-
                     const data = fetchedData.push({
                        // time: lastdata["k"]['t'],
                         time: timestamp,
@@ -35,8 +44,7 @@ const CandlestickCryptoIntraday = (props) => {
                     })
                     setData(data);
 
-
-            document.getElementById('chartCryptoIntraday').innerHTML = '';
+              document.getElementById('chartCryptoIntraday').innerHTML = '';
             const chart = createChart(document.getElementById('chartCryptoIntraday'), {
                 width: 300,
                 height: 200,
@@ -65,8 +73,8 @@ const CandlestickCryptoIntraday = (props) => {
             const candleSeries = chart.addCandlestickSeries({
                 upColor: 'rgb(71,169,12)',
                 downColor: '#a91111',
-                borderDownColor: 'rgb(0,0,0)',
-                borderUpColor: 'rgb(0,0,0)',
+                // borderDownColor: 'rgb(0,0,0)',
+                // borderUpColor: 'rgb(0,0,0)',
                 wickDownColor: 'rgb(131,14,14)',
                 wickUpColor: 'rgb(39,148,0)'
             });
@@ -76,7 +84,7 @@ const CandlestickCryptoIntraday = (props) => {
                 watermark: {
                     color: 'rgba(255, 255, 255, 0.4)',
                     visible: true,
-                    text: `UTC  ${exchange}`,
+                    text: `UTC  ${props.symbol}`,
                     fontSize: 10,
                     horzAlign: 'left',
                     vertAlign: 'bottom',
@@ -101,7 +109,7 @@ const CandlestickCryptoIntraday = (props) => {
                     timeVisible: true,
                     secondsVisible: false,
                 },
-            });
+            }, 2000);
 
 
         }
@@ -118,4 +126,15 @@ const CandlestickCryptoIntraday = (props) => {
 }
 export default CandlestickCryptoIntraday
 
-
+// markets = {'bnbbtc', 'ethbtc', 'btcusdt', 'bchabcusdt', 'xrpusdt', 'rvnbtc', 'ltcusdt', 'adausdt', 'eosusdt',
+//            'neousdt', 'bnbusdt', 'adabtc', 'ethusdt', 'trxbtc', 'bchabcbtc', 'ltcbtc', 'xrpbtc',
+//            'ontbtc', 'bttusdt', 'eosbtc', 'xlmbtc', 'bttbtc', 'tusdusdt', 'xlmusdt', 'qkcbtc', 'zrxbtc',
+//            'neobtc', 'adaeth', 'icxusdt', 'btctusd', 'icxbtc', 'btcusdc', 'wanbtc', 'zecbtc', 'wtcbtc',
+//            'batbtc', 'adabnb', 'etcusdt', 'qtumusdt', 'xmrbtc', 'trxeth', 'adatusd', 'trxxrp', 'trxbnb',
+//            'dashbtc', 'rvnbnb', 'bchabctusd', 'etcbtc', 'bnbeth', 'ethpax', 'nanobtc', 'xembtc', 'xrpbnb',
+//            'bchabcpax', 'xrpeth', 'bttbnb', 'ltcbnb', 'agibtc', 'zrxusdt', 'xlmbnb', 'ltceth', 'eoseth',
+//            'ltctusd', 'polybnb', 'scbtc', 'steembtc', 'trxtusd', 'npxseth', 'kmdbtc', 'polybtc', 'gasbtc',
+//            'engbtc', 'zileth', 'xlmeth', 'eosbnb', 'xrppax', 'lskbtc', 'npxsbtc', 'xmrusdt', 'ltcpax',
+//            'ethtusd', 'batusdt', 'mcobtc', 'neoeth', 'bntbtc', 'eostusd', 'lrcbtc', 'funbtc', 'zecusdt',
+//            'bnbpax', 'linkusdt', 'hceth', 'zrxeth', 'icxeth', 'xmreth', 'neobnb', 'etceth', 'zeceth', 'xmrbnb',
+//            'wanbnb', 'zrxbnb', 'agibnb', 'funeth', 'arketh', 'engeth'}
