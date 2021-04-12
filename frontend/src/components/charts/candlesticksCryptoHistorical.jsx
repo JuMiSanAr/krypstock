@@ -22,7 +22,7 @@ const CandlestickCryptoHistorical = (props) => {
 
     const FetchCrypto = () => {
         var d = new Date();
-        console.log(props.timeLength)
+        // console.log(props.timeLength)
         if(props.timeLength==='12h'){
             // let fixedHour=d.getHours()
             //
@@ -37,50 +37,47 @@ const CandlestickCryptoHistorical = (props) => {
         }else if(props.timeLength==='1w'){
             let fixedDay=d.getDate();
             if (fixedDay>=7){
-                fixedDay-=7;
                 d.setDate(d.getDate()-7);
+                // console.log(d)
             }else{
                 d.setMonth(d.getMonth() - 1)
-                fixedDay-=7;
                 d.setDate(d.getDate()-7);
             }
         }else if(props.timeLength==='1m'){
             let fixedMonth=d.getDate();
             if (fixedMonth>=1){
-                fixedMonth-=1;
                 d.setMonth(d.getMonth() - 1);
             }else{
                 d.setFullYear(d.getFullYear()-1)
-                fixedMonth-=1;
                 d.setMonth(d.getMonth() - 1);
             }
         }else if(props.timeLength==='3m') {
             let fixedMonth = d.getDate();
             if (fixedMonth >= 3) {
-                fixedMonth -= 3;
                 d.setMonth(d.getMonth() - 3);
             } else {
                 d.setFullYear(d.getFullYear() - 1)
-                fixedMonth -= 3;
                 d.setMonth(d.getMonth() - 3);
             }
         }else if(props.timeLength==='6m'){
             let fixedMonth=d.getDate();
             if (fixedMonth>=6){
-                fixedMonth-=6;
                 d.setMonth(d.getMonth() - 6);
             }else{
                 d.setFullYear(d.getFullYear()-1)
-                fixedMonth-=6;
                 d.setMonth(d.getMonth() - 6);
             }
         }else if(props.timeLength==='1y'){
                 d.setFullYear(d.getFullYear()-1)
+        }else if(props.timeLength==='5y'){
+                d.setFullYear(d.getFullYear()-5)
         }
-        const timestamp = (d/1000).toFixed();
+        // console.log("update", d.getTime())
+        const timestamp = d.getTime();
 
-        console.log(timestamp)
-
+         console.log(timestamp)
+// 1618224784
+// 1502942400000
         const API_Call = `https://api.binance.com/api/v3/klines?symbol=${cryptoCurrency}&interval=${props.time}&startTime=${timestamp}`;
         const config = {
                   mode: 'no-cors',
@@ -97,8 +94,9 @@ const CandlestickCryptoHistorical = (props) => {
             .then(data => {
 
                 const allData = data.map((obj,index) => {
-                        console.log(data)
+                        console.log(obj)
                     let timeFix=obj[0]/1000
+                    // console.log(timeFix)
                     return {
                         time: timeFix,
                         open: obj[1],
