@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 import {allTheme} from '../../styles/Themes';
 
+export const PortfolioHeadline = styled.h1`
+font-size: 22px;
+padding-left: 20px;
+`;
+
 export const InvestmentsContainer = styled.div`
 display: flex;
 align-items: center;
@@ -11,14 +16,24 @@ i{
 }
 `;
 
-export const PercentContainer = styled.div`
-display: flex;
-align-items: center;
-`;
-
 export const InvestmentFont = styled.p`
 font-weight: 600;
 font-size: 20px;
+
+i{
+    padding: 0;
+    padding-right: 5px;
+}
+`;
+
+export const OverviewDescriptionContainer = styled.div`
+display: flex;
+justify-content: space-between;
+`;
+
+export const OverviewDescription = styled.p`
+font-size: 14px;
+
 `;
 
 export const OverviewBar = styled.div`
@@ -32,49 +47,51 @@ i{
     font-size: 14px;
     color: red;
 }
-.fa-ethereum {
+.fa-btc {
     color: white;
-    font-size: 24px;
+    font-size: 22px;
 }
-`;
 
-export const OverviewBarBlue = styled.div`
-display: flex;
-align-items: center;
-justify-content: space-around;
-background-color: ${allTheme.darkblue};
-border-radius: 14px;
-margin: 10px 0;
-i{
-    font-size: 14px;
-    color: green;
-}
-.fa-bitcoin{
+.fa-briefcase{
     color: white;
-    font-size: 24px;
+    font-size: 20px;
 }
-`;
-
-export const OverviewBarOrange = styled.div`
-display: flex;
-justify-content: space-around;
-background-color: ${allTheme.vibrantorange};
-border-radius: 14px;
-margin: 10px 0;
-`;
-
-export const OverviewBarYellow = styled.div`
-display: flex;
-justify-content: space-around;
-background-color: ${allTheme.yellow};
-border-radius: 14px;
-margin: 10px 0;
+> * {
+    width: 25%;
+}
 `;
 
 export const HeadlineFont = styled.p`
 font-weight: 600;
+font-size: 12px;
+margin-bottom: 0;
 `;
 
 export const CakeChartContainer = styled.div`
 width: 100%;
+`;
+
+export const TempDiv = styled.div`
+padding-top: 5px;
+p {
+    margin: 0;
+    padding: 0 5px 5px 5px;
+}
+`;
+
+export const Desc = styled.p`
+font-size: 10px;
+`;
+
+export const NetworthContainer = styled.div`
+padding-top: 7px;
+padding-bottom: 7px;
+`;
+
+export const IconConatiner = styled.div`
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 5px;
 `;
