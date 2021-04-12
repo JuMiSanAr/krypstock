@@ -12,9 +12,9 @@ const portfoliosFetch = () => {
 
 export default portfoliosFetch;
 
-export const specificPortfolioFetch = () => {
+export const specificPortfolioFetch = (id) => {
     return fetchAPI(
-        `portfolios/8/`,
+        `portfolios/${id}/`,
         undefined,
         'GET',
         headersWithToken
