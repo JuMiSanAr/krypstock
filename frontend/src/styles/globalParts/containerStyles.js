@@ -61,3 +61,4 @@ export const ShrinkingComponentWrapperNoBackground = styled(FullWidthComponentWr
         background-color: transparent; 
     }
 `
+
