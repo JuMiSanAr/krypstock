@@ -3,8 +3,8 @@ import React from "react";
 const ChartTimeCryptoframeButton = (props) => {
 
     return (
-        <select className="selector" onChange={event => props.setChart(event.target.value)}>
-            <option value="1m" selected="selected">1 minute</option>
+        <select defaultValue="1m" className="selector" onChange={event => props.setChart(event.target.value)}>
+            <option value="1m">1 minute</option>
             <option value="3m">3 minutes</option>
             <option value="5m">5 minutes</option>
             <option value="15m">15 minutes</option>

@@ -25,42 +25,35 @@ const Stock = (props) => {
 
 useEffect(()=>{
 
-        const API_Volume = `https://sandbox.iexapis.com/stable/stock/market/list/iexvolume?token=${iexSandboxKey}`;
-        const API_Call_Gain = `https://sandbox.iexapis.com/stable/stock/market/list/gainers?token=${iexSandboxKey}`;
-        const API_Call_Loss = `https://sandbox.iexapis.com/stable/stock/market/list/losers?token=${iexSandboxKey}`;
+    const API_Call_News = `https://sandbox.iexapis.com/stable/stock/aapl/news/last/5?token=${iexSandboxKey}`;
+    const API_Volume = `https://sandbox.iexapis.com/stable/stock/market/list/iexvolume?token=${iexSandboxKey}`;
+    const API_Call_Gain = `https://sandbox.iexapis.com/stable/stock/market/list/gainers?token=${iexSandboxKey}`;
+    const API_Call_Loss = `https://sandbox.iexapis.com/stable/stock/market/list/losers?token=${iexSandboxKey}`;
 
-        fetch(API_Volume)
-            .then(res => res.json())
-            .then(data => {
-                const action = iexStockVolumeAction(data);
-                dispatch(action);
-                return fetch(API_Call_Gain);
-            })
-            .then(res => res.json())
-            .then(data => {
-                const action = topGainAction(data);
-                dispatch(action);
-                return fetch(API_Call_Loss);
-            })
-            .then(res => res.json())
-            .then(data => {
-                const action = topLossAction(data);
-                dispatch(action);
-            })
-    }, []
-);
-
-    useEffect( () => {
-
-        const API_Call_News = `https://sandbox.iexapis.com/stable/stock/aapl/news/last/5?token=${iexSandboxKey}`;
-
-        fetch(API_Call_News)
-            .then(res => res.json())
-            .then(data => {
-                setTopFiveNews(data);
-            });
-        }, []
-    );
+    fetch(API_Call_News)
+        .then(res => res.json())
+        .then(data => {
+            setTopFiveNews(data);
+            return fetch(API_Volume)
+        .then(res => res.json())
+        .then(data => {
+            const action = iexStockVolumeAction(data);
+            dispatch(action);
+            return fetch(API_Call_Gain);
+        })
+        .then(res => res.json())
+        .then(data => {
+            const action = topGainAction(data);
+            dispatch(action);
+            return fetch(API_Call_Loss);
+        })
+        .then(res => res.json())
+        .then(data => {
+            const action = topLossAction(data);
+            dispatch(action);
+        });
+    });
+    }, []);
 
     // useEffect(() => {
     //
