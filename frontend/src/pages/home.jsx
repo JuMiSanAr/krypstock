@@ -37,8 +37,7 @@ const Home = () => {
         loginUserDataFetch()
         .then(data => {
             console.log("from user data",data)
-            const action = loginUserAction(data)
-            dispatch(action)
+            dispatch(loginUserAction(data))
         })
 
     }, [])
