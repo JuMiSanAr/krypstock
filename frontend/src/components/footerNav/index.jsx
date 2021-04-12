@@ -8,24 +8,27 @@ import AnnouncementIcon from '@material-ui/icons/Announcement';
 import { FooterWrapper } from '../../styles/components/footerNavStyles';
 
 
-const FooterNav = () => {
+const FooterNav = ({setOpen}) => {
+            const handleMenuState = () => {
+                setOpen(false)
+            }
 
     return (
         <FooterWrapper>
             <Link to="/" style={{textDecoration: 'none', color: 'inherit'}}>
-                <HomeIcon />
+                <HomeIcon onClick={handleMenuState}/>
             </Link>
             <Link to="/portfolio/" style={{textDecoration: 'none', color: 'inherit'}}>
-                <TrendingUpIcon />
+                <TrendingUpIcon onClick={handleMenuState}/>
             </Link>
             <Link to="/add-remove/" style={{textDecoration: 'none', color: 'inherit'}}>
-                <AddCircleIcon />
+                <AddCircleIcon onClick={handleMenuState}/>
             </Link>
             <Link to="/search/" style={{textDecoration: 'none', color: 'inherit'}}>
-                <SearchIcon />
+                <SearchIcon onClick={handleMenuState}/>
             </Link>
             <Link to="/news/" style={{textDecoration: 'none', color: 'inherit'}}>
-                <AnnouncementIcon />
+                <AnnouncementIcon onClick={handleMenuState}/>
             </Link>
         </FooterWrapper>
     )
