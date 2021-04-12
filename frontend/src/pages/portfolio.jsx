@@ -1,38 +1,31 @@
-import React from 'react';
+import React, {useState, useHistory, useEffect} from 'react';
 import FooterNav from '../components/footerNav';
 import { AllComponentsWrapper, ShrinkingComponentWrapper } from '../styles/globalParts/containerStyles';
-import {InvestmentsContainer, OverviewBarBlue, OverviewBarGreen, OverviewBarYellow, OverviewBarOrange, HeadlineFont, CakeChartContainer} from '../styles/components/portfolioStyles';
+import {InvestmentsContainer, PercentContainer, InvestmentFont, OverviewBarBlue, OverviewBarGreen, OverviewBarYellow, OverviewBarOrange, HeadlineFont, CakeChartContainer} from '../styles/components/portfolioStyles';
 import { PieChart } from 'react-minimal-pie-chart';
 import Graph from '../assets/bit.png'
+import PortfolioChart from '../components/charts/portfolioChart';
+import AllInvestments from '../components/portfolioComponents/allInvestments';
 
-
-const Portfolio = () => {
+const Portfolio = (props) => {
 
     return (
         <>
-        
             <AllComponentsWrapper>
-                <ShrinkingComponentWrapper>
-                    <HeadlineFont>All investments</HeadlineFont >
-                    <InvestmentsContainer>
-                        <p>1000</p>
-                        <p>4000</p>
-                        <p>+- 10%</p>
-                    </InvestmentsContainer>
-                </ShrinkingComponentWrapper>
+                <AllInvestments/>
                 <ShrinkingComponentWrapper>
                     <HeadlineFont>Overview</HeadlineFont>
                     <OverviewBarGreen>
-                        <i class="fab fa-ethereum"></i>
+                        <i className="fab fa-ethereum"></i>
                         <HeadlineFont>Etherium</HeadlineFont>
                         <p>50'345</p>
-                        <p>+- 10%</p>
+                        <p><i className="fas fa-angle-double-down"></i> 10%</p>
                     </OverviewBarGreen>
                     <OverviewBarBlue>
-                        <i class="fab fa-bitcoin"></i>
+                        <i className="fab fa-bitcoin"></i>
                         <HeadlineFont>BitCoin</HeadlineFont>
                         <p>1'000'000</p>
-                        <p>+- 10%</p>
+                        <p><i className="fas fa-angle-double-up"></i> 10%</p>
                     </OverviewBarBlue>
                     <OverviewBarYellow>
                         <HeadlineFont>Etherium</HeadlineFont>
@@ -60,7 +53,7 @@ const Portfolio = () => {
                 </ShrinkingComponentWrapper>
                 <ShrinkingComponentWrapper>
                     <HeadlineFont>Total value over time</HeadlineFont>
-                    <img src={Graph}></img>     
+                    <PortfolioChart/>
                 </ShrinkingComponentWrapper>
                 <ShrinkingComponentWrapper>
                     <HeadlineFont>Comparison</HeadlineFont>

@@ -3,7 +3,22 @@ import {allTheme} from '../../styles/Themes';
 
 export const InvestmentsContainer = styled.div`
 display: flex;
+align-items: center;
 justify-content: space-between;
+i{
+    color: green;
+    padding: 10px;
+}
+`;
+
+export const PercentContainer = styled.div`
+display: flex;
+align-items: center;
+`;
+
+export const InvestmentFont = styled.p`
+font-weight: 600;
+font-size: 20px;
 `;
 
 export const OverviewBarGreen = styled.div`
@@ -14,6 +29,11 @@ background-color: ${allTheme.vibrantturquoise};
 border-radius: 14px;
 margin: 10px 0;
 i{
+    font-size: 14px;
+    color: red;
+}
+.fa-ethereum {
+    color: white;
     font-size: 24px;
 }
 `;
@@ -26,6 +46,11 @@ background-color: ${allTheme.darkblue};
 border-radius: 14px;
 margin: 10px 0;
 i{
+    font-size: 14px;
+    color: green;
+}
+.fa-bitcoin{
+    color: white;
     font-size: 24px;
 }
 `;

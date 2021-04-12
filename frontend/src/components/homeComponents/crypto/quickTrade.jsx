@@ -9,7 +9,7 @@ export const QuickTrade = () => {
         <ShrinkingComponentWrapper> 
         <FormSelectWrapper>
         <div className="title">
-            <h3>BitCoin</h3>
+            <h3>Quick trade</h3>
          </div>
          <SelectorWrapper>
              <div className="buySell">
@@ -29,7 +29,7 @@ export const QuickTrade = () => {
         </FormSelectWrapper>  
         <TransacWrapper>
             <div className="amountInput">
-            <label>Amount(BitCoin)</label>
+            <label>Quantity</label>
             <input type="text" name="bitcoin" placeholder="amount" />
             </div>
             <div className="transacItem">

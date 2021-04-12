@@ -5,47 +5,69 @@ const CandlestickCryptoIntraday = (props) => {
 
     const [fetchedData, setData] = useState([]);
     const exchange = 'Bitcoin/USD';
-    const symbol= 'btcusdt';
-    let binanceSocket = new WebSocket(`wss://stream.binance.com:9443/ws/${props.symbol}@kline_1m`);
-
-    useEffect(() => {
-        if(props.chartTimeframe!=='1m'){
-            binanceSocket.close();
-        }else{
-            // binanceSocket = new WebSocket(`wss://stream.binance.com:9443/ws/${props.symbol}@kline_1m`);
-        }
-    }, [props.chartTimeframe]);
-
-    // useEffect(() => {
-    //     if(props.time!=='1m'){
-    //         binanceSocket.close();
-    //     }
-    // }, [props.time]);
-
+    const cryptoCurrency= 'btcusdt';
 
     useEffect(() => {
         fetchCrypto();
     }, []);
 
-    const fetchCrypto = () => {
-        const API_KEY = 'hEONEAKmoUPGx9EyweXiP7WEJzbmJEihUzsJQ1THnOwnLRuWkr4vEw7qF0xqhh7u';
-
-
+        const fetchCrypto = () => {
+       
             binanceSocket.onmessage = event => {
-                const lastdata= JSON.parse(event.data)
+                const lastdata= JSON.parse(event.data);
                 const timestamp = lastdata["E"]/1000;
-                    const data = fetchedData.push({
-                       // time: lastdata["k"]['t'],
-                        time: timestamp,
-                        open: lastdata["k"]['o'],
-                        high: lastdata["k"]['h'],
-                        low: lastdata["k"]['l'],
-                        close: lastdata["k"]['c']
-                    })
-                    setData(data);
 
-              document.getElementById('chartCryptoIntraday').innerHTML = '';
-            const chart = createChart(document.getElementById('chartCryptoIntraday'), {
+                if (fetchedData.length === 0) {
+                    const newData = [...fetchedData]
+
+                    fetchedData.push({
+                            time: timestamp,
+                            open: lastdata["k"]['o'],
+                            high: lastdata["k"]['h'],
+                            low: lastdata["k"]['l'],
+                            close: lastdata["k"]['c']
+                        })
+
+                        setData(newData);
+                }
+
+                if (fetchedData.length > 0 && lastdata["k"]['o'] !== fetchedData[fetchedData.length-1]['open']) {
+                    const newData = [...fetchedData]
+
+                    fetchedData.push({
+                           // time: lastdata["k"]['t'],
+                            time: timestamp,
+                            open: lastdata["k"]['o'],
+                            high: lastdata["k"]['h'],
+                            low: lastdata["k"]['l'],
+                            close: lastdata["k"]['c']
+                        })
+
+                        setData(newData);
+                }
+                else if (fetchedData.length > 0 && lastdata["k"]['o'] === fetchedData[fetchedData.length-1]['open']) {
+                    const newData = [...fetchedData]
+
+                    fetchedData.pop();
+                    fetchedData.push({
+                           // time: lastdata["k"]['t'],
+                            time: timestamp,
+                            open: lastdata["k"]['o'],
+                            high: lastdata["k"]['h'],
+                            low: lastdata["k"]['l'],
+                            close: lastdata["k"]['c']
+                        })
+
+                        setData(newData);
+                }
+        }
+    }
+
+    useEffect(() => {
+
+        document.getElementById('chartCryptoIntraday').innerHTML = '';
+        if (fetchedData.length > 0) {
+             const chart = createChart(document.getElementById('chartCryptoIntraday'), {
                 width: 300,
                 height: 200,
                 layout: {
@@ -90,7 +112,7 @@ const CandlestickCryptoIntraday = (props) => {
                     vertAlign: 'bottom',
                 },
                 priceScale: {
-                    autoScale: false,
+                    autoScale: true,
                     invertScale: false,
                     alignLabels: false,
                     borderVisible: false,
@@ -102,19 +124,17 @@ const CandlestickCryptoIntraday = (props) => {
                 },
                 timeScale: {
                     fixRightEdge: true,
-                    lockVisibleTimeRangeOnResize: true,
+                    lockVisibleTimeRangeOnResize: false,
                     borderVisible: false,
                     borderColor: '#fff000',
                     visible: true,
                     timeVisible: true,
                     secondsVisible: false,
                 },
-            }, 2000);
-
-
+            });
         }
+    }, [fetchedData])
 
-    }
 
     // useEffect(useCallback(() => {
     //

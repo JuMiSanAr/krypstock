@@ -34,7 +34,7 @@ class AllUserPortfolios(ListAPIView):
     serializer_class = PortfolioSerializerWithCalculation
 
     def get_queryset(self):
-        return Portfolio.objects.filter(user=self.request.user)
+        return Portfolio.objects.filter(user=self.request.user).order_by('-id')
 
 
 class SinglePortfolio(RetrieveUpdateDestroyAPIView):

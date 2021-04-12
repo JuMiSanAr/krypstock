@@ -5,6 +5,7 @@ export const AllComponentsWrapper = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    
     //  * {
     //     border: solid 1px red;
     // } 
@@ -33,5 +34,12 @@ export const FullWidthComponentWrapper = styled.div`
 export const ShrinkingComponentWrapper = styled(FullWidthComponentWrapper)`
     @media (min-width: 450px) {
         width: 40%;
+    }
+`
+
+export const ShrinkingComponentWrapperNoBackground = styled(FullWidthComponentWrapper)`
+    @media (min-width: 450px) {
+        width: 40%;
+        background-color: transparent; 
     }
 `

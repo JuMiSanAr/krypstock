@@ -35,5 +35,8 @@ class Transaction(models.Model):
 
     active = models.BooleanField(default=True, blank=False)
 
+    class Meta:
+        ordering = ['-id']
+
     def __str__(self):
         return f'#{self.id} by {self.user} in portfolio {self.portfolio}'

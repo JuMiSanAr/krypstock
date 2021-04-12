@@ -12,12 +12,28 @@ import Logo from "../../assets/logo/logo_with_name.png";
 import FolderIcon from "@material-ui/icons/Folder";
 import SettingsIcon from "@material-ui/icons/Settings";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import {useHistory} from "react-router-dom";
 
 
 const Menu = ({open}) => {
-  
-  const isHidden = open ? true : false;
+
+    const history = useHistory();
+
+    const isHidden = open ? true : false;
 /*  const tabIndex = isHidden ? 0 : -1;*/
+
+    const toPortfolios = () => {
+        history.push('/portfolio-list');
+    }
+
+    const toDashboard = () => {
+        history.push('/');
+    }
+
+    const logout = () => {
+        localStorage.removeItem('token');
+        history.push('/sign-in');
+    }
 
   return (
     <StyledMenu open={open} aria-hidden={!isHidden}>
@@ -29,22 +45,22 @@ const Menu = ({open}) => {
                 <h2>Hello, Cindy</h2>
                 <MenuItemWrapper>
                 <DashboardIcon/>
-                <span className="move-right-1">Dashboard</span>
+                <span className="move-right-1" onClick={() => toDashboard()}>Dashboard</span>
                 <ArrowForwardIosIcon/>
                 </MenuItemWrapper>
                 <MenuItemWrapper>
                 <FolderIcon/>
-                <span className="move-right-2">Portfolio</span>
+                <span className="move-right-2" onClick={() => toPortfolios()}>My portfolios</span>
                 <ArrowForwardIosIcon/>
                 </MenuItemWrapper>
                 <MenuItemWrapper>
                 <SettingsIcon/>
-                <span className="move-right-2">Settings</span>
+                <span className="move-right-3">Settings</span>
                 <ArrowForwardIosIcon/>
                 </MenuItemWrapper>
                 <MenuItemWrapper>
                 <ExitToAppIcon/>
-                <span className="move-right-3">Logout</span>
+                <span className="move-right-4" onClick={() => logout()}>Logout</span>
                 <ArrowForwardIosIcon/>
                 </MenuItemWrapper>
             </MenuContentWrapper>

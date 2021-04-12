@@ -1,4 +1,4 @@
-import { CURRENT_STOCK } from "../constants";
+import {CURRENT_STOCK, IEX_VOLUME} from "../constants";
 
 export const currentStockAction = (data) => {
     return {
@@ -8,3 +8,12 @@ export const currentStockAction = (data) => {
         }
     }
 };
+
+export const iexStockVolumeAction = (data) => {
+    return {
+        type:IEX_VOLUME,
+        payload:{
+            data
+        }
+    }
+}
