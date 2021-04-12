@@ -73,7 +73,6 @@ const StockPage = (props) => {
         </ShrinkingComponentWrapper>
         <PortfoliosWithStock symbol={symbol}/>
         <NewsStock symbol={symbol} companyName={companyName}/>
-        <FooterNav/>
     </AllComponentsWrapper>
         </>
     )
