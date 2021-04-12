@@ -100,7 +100,7 @@ export const CryptoQuickTrade = (props) => {
                         </div>
                         <div className="transacItem">
                                 <p>Total Price</p>
-                                <span>{`${amount*pricePerCoin ? amount*pricePerCoin : 0}  CHF`}</span>
+                                <span>{`${amount*pricePerCoin ? amount*pricePerCoin : 0}  USD`}</span>
                         </div>
                     </TransacWrapper> 
                     <ButtonWrapper>

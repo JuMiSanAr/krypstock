@@ -1,5 +1,5 @@
 import styled from "styled-components";
 
-export const CenterH3 = styled.h3`
+export const CenterH2 = styled.h2`
     text-align: center;
 `

@@ -87,7 +87,7 @@ const StockQuickTrade = (props) => {
                             </div>
                             <div className="transacItem">
                                 <p>Total Price</p>
-                                <span>{`${volume*pricePerShare ? volume*pricePerShare : 0 }  CHF`}</span>
+                                <span>{`${volume*pricePerShare ? volume*pricePerShare.toFixed(2) : 0 }  USD`}</span>
                             </div>
                         </TransacWrapper> 
                         <ButtonWrapper>
