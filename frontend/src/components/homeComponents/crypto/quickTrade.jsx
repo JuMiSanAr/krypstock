@@ -36,19 +36,19 @@ export const CryptoQuickTrade = (props) => {
         fetch("https://api.binance.com/api/v3/exchangeInfo")
         .then(res => res.json())
         .then(data => {
-            console.log('crypto data.symbols', data.symbols)
+            // console.log('crypto data.symbols', data.symbols)
             const nonDuplicatedSymbols = data.symbols.filter( crypto => crypto['quoteAsset'] === 'USDT');
             for (const crypto of data.symbols) {
                 symbolsSet.add(crypto.baseAsset)
             }
             symbolsSet = Array.from(symbolsSet)  //convert set to array 
-            console.log('symbolsSet', symbolsSet)
+            // console.log('symbolsSet', symbolsSet)
             setAllSymbols(symbolsSet);
         })
     }, []);
     
     useEffect( () => {
-        console.log('allSymbols', allSymbols)
+        // console.log('allSymbols', allSymbols)
     }, [allSymbols])
 
     return (
