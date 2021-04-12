@@ -4,6 +4,8 @@
 export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
 
+export const LOGIN_USER = 'LOGIN_USER';
+
 export const GAIN_DATA = 'GAIN_DATA';
 export const LOSS_DATA = 'LOSS_DATA';
 

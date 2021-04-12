@@ -22,8 +22,8 @@ const TrendyStocks = ({stock_volume}) => {
                         return (
                             <tr key={index}>
                         <td>{company.companyName}</td>
-                        <td>{company.latestPrice.toFixed(2)}</td>
-                        <td>{company.changePercent.toFixed(2)}</td>
+                        <td>{company.latestPrice}</td>
+                        <td>{company.changePercent}</td>
                         <td>{company.volume}</td>
                             </tr>
                         )
