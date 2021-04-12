@@ -43,7 +43,7 @@ const Home = () => {
                     <Crypto />
                 </div>
             </MainContentWrapper>
-            <FooterNav/>
+            {/* <FooterNav/> */}
         </>
     )
 }

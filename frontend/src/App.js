@@ -4,11 +4,12 @@ import styled, {ThemeProvider} from "styled-components";
 import {GlobalStyles} from "./styles/GlobalStyles";
 import Toggle from "./components/darkLightmode/toggler";
 import OurRouter from './routes';
-import React, { useState} from "react";
+import React, { useState,  useEffect} from "react";
 import Burger from "./components/navi/burger";
 import Menu from "./components/navi/menu";
 import history from "./history";
 import { Router } from 'react-router';
+import FooterNav from "./components/footerNav";
 
 const MenuWrapper = styled.div`
   margin-bottom: 80px;
@@ -29,8 +30,10 @@ function App() {
   const [open, setOpen] = useState(false);
 
   if(!mountedComponent) return <div/>
+
+
   return (
-    <ThemeProvider theme={themeMode}>
+    <ThemeProvider setOpen={setOpen} theme={themeMode}>
         <>
           <GlobalStyles/>
            <ToggleButton>
@@ -45,7 +48,12 @@ function App() {
                 </MenuWrapper>
               }
                
-                <OurRouter/>
+                <OurRouter />
+                {
+                history.location.pathname === "/sign-in" || history.location.pathname === "/sign-up" || history.location.pathname === "/sign-up/registration" || history.location.pathname === "/sign-up/congratulation" || history.location.pathname === "/sign-up/verification" ? "": 
+                <FooterNav setOpen={setOpen}/>
+              }
+                
             </Router>
         </>
     </ThemeProvider>

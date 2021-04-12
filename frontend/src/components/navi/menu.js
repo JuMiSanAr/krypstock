@@ -35,6 +35,7 @@ const Menu = ({open, setOpen}) => {
     const logout = () => {
         localStorage.removeItem('token');
         history.push('/sign-in');
+        setOpen(false)
     }
 
   return (
