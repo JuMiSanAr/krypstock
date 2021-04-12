@@ -25,7 +25,7 @@ function OurRouter() {
         <Route path="/sign-up/registration" exact component={Registration}/>
         <Route path="/sign-up/congratulation" exact component={Congratulation}/>
         <Route path="/sign-up/verification" exact component={Verification} />
-        <Route path="/portfolio/" exact component={Portfolio} />
+        <Route path="/portfolio/:id" exact component={Portfolio} />
         <Route path="/add-remove/" exact component={AddRemovePage} />
         <Route path="/search/" exact component={Search} />
         <Route path="/news/" exact component={NewsPage} />

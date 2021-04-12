@@ -6,6 +6,7 @@ import {topGainLossReducer} from './topGainLossReducer';
 import {portfoliosReducer} from './portfoliosReducer';
 import {specificPortfolioReducer} from './specificPortfolioReducer';
 import {newsReducer} from './newsReducer';
+import {logInUserReducer} from './loginUserReducer';
 
 const rootReducer = combineReducers({
     logInReducer,
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
     topGainLossReducer,
     portfoliosReducer,
     specificPortfolioReducer,
+    logInUserReducer,
     newsReducer
 });
 
