@@ -53,7 +53,7 @@ const CandlestickStockHistorical = (props) => {
                     vertAlign: 'bottom',
                 },
                 priceScale: {
-                    autoScale: false,
+                    autoScale: true,
                     alignLabels: false,
                     borderVisible: false,
                     borderColor: '#555ffd',
