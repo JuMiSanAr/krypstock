@@ -1,8 +1,8 @@
 /*import { withTheme } from "@material-ui/core"*/
 
 export const lightTheme = {
-    // body: '#ebdefc',
-    body: '#c4b6ff',
+    body: '#ebdefc',
+    // body: '#c4b6ff',
     text: '#363537',
     background: '#FFF',
     secondBackground:'#7970A3',
