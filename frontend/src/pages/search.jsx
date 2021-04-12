@@ -85,7 +85,7 @@ const Search = () => {
                                         <td>{symbol.changePercent.toFixed(2)}</td>
                                         <td>{symbol.volume}</td>
                                         <td>{symbol.marketCap}</td>
-                                        <td><TrendingUpIcon/> {symbol.high.toFixed(2)}</td>
+                                        <td><TrendingUpIcon/> {symbol.high}</td>
                                         </tr>
                                     )
                                 }) : "...Please Wait I am Loading now! "
@@ -96,7 +96,7 @@ const Search = () => {
                     </TableWrapper>
                     </TableContainerWrapper>
                     </AllComponentsWrapper>
-                <FooterNav/>
+                {/* <FooterNav/> */}
         </>
     )
 }

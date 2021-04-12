@@ -37,7 +37,7 @@ const Portfolio = (props) => {
                     <img src={Graph}></img>     
                 </ShrinkingComponentWrapper>
             </AllComponentsWrapper>
-            <FooterNav />
+            {/* <FooterNav /> */}
         </>
     )
 }

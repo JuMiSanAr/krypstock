@@ -7,7 +7,7 @@ import Congratulation from "../components/congratulation/";
 import Registration from "../components/registration/";
 import Verification from "../components/verification";
 import Portfolio from "../pages/portfolio";
-import AddRemove from "../pages/addRemove";
+import AddRemovePage from "../pages/addRemove";
 import Search from "../pages/search";
 import News from "../pages/news";
 import StockPage from "../pages/stockPage";
@@ -18,7 +18,6 @@ import PortfolioList from "../pages/portfolioList";
 
 function OurRouter() {
   return (
-
       <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/sign-in/" exact component={LoginPage} />
@@ -27,7 +26,7 @@ function OurRouter() {
         <Route path="/sign-up/congratulation" exact component={Congratulation}/>
         <Route path="/sign-up/verification" exact component={Verification} />
         <Route path="/portfolio/" exact component={Portfolio} />
-        <Route path="/add-remove/" exact component={AddRemove} />
+        <Route path="/add-remove/" exact component={AddRemovePage} />
         <Route path="/search/" exact component={Search} />
         <Route path="/news/" exact component={News} />
         <Route path="/stock/" exact component={StockPage} />
