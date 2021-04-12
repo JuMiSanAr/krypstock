@@ -1,11 +1,8 @@
 import React from 'react'
 import styled from "styled-components";
-import DeleteIcon from '@material-ui/icons/Delete';
 import FolderIcon from '@material-ui/icons/Folder';
 import {ShrinkingComponentWrapper } from '../../styles/globalParts/containerStyles';
-import deletePortfolioFetch from '../../store/fetches/deletePortfolioFetches';
-import {useDispatch, useSelector} from "react-redux";
-import { DELETE_PORTFOLIO } from '../../store/constants';
+import {useSelector} from "react-redux";
 
 
 
@@ -20,12 +17,6 @@ const IconTitle = styled.div`
         cursor: pointer;
     }
 `;
-
-const Delete = styled.div`
-    display: flex;
-    justify-content: flex-end;
-`;
-
 
 export const PortfolioCollectionBasic = () => {
 
@@ -45,23 +36,6 @@ export const PortfolioCollectionBasic = () => {
                     </ShrinkingComponentWrapper>)
                  })
              }
-
-                {/* <ShrinkingComponentWrapper>
-
-                    <IconTitle>
-                        <FolderIcon fontSize="large"/>
-                        <h2>My Cryto Collection</h2>
-                    </IconTitle>
-                    <div>
-                        <p>
-                            A while back I needed to count the amount of letters that a piece of text in an email template had a
-                        </p>
-                    </div>
-                    <Delete>
-                        <DeleteIcon />
-                    </Delete>
-
-                </ShrinkingComponentWrapper>    */}
         </>
     )
 }
