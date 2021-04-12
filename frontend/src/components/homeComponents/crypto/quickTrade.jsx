@@ -83,7 +83,7 @@ export const QuickTrade = () => {
                                 <option value="DEFAULT" disabled>Select portfolio</option>
                                 {
                                     allPortfoliosArray.map( (portfolio, index) => 
-                                        <option key={'portfolio' + index} value={portfolio.id}>{`${portfolio.id}. ${portfolio.name}`}</option>
+                                        <option key={index} value={portfolio.id}>{`${portfolio.name}`}</option>
                                     )
                                 }
                             </select>
