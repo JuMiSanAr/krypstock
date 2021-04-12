@@ -4,7 +4,7 @@ import {HeadlineFont, OverviewBar} from '../../styles/components/portfolioStyles
 import {useSelector} from 'react-redux';
 import {allTheme} from '../../styles/Themes';
 
-const Overview = () => {
+const Overview = ({calculations}) => {
 
     let colors = [allTheme.vibrantturquoise, allTheme.darkblue, allTheme.yellow, allTheme.vibrantorange];
     let currentColor = -1;
@@ -23,7 +23,7 @@ const Overview = () => {
     return (
         <ShrinkingComponentWrapper>
             <HeadlineFont>Overview</HeadlineFont>
-            {specificPortfolioArray.map((calculation) => 
+            {calculations.map((calculation) => 
             <OverviewBar style={{backgroundColor: getBackgroundColor()}}>
                 <i className="fab fa-ethereum"></i>
                 <HeadlineFont>{calculation.symbol}</HeadlineFont>

@@ -1,16 +1,22 @@
 import React, {useEffect, useState} from 'react';
 import FooterNav from '../components/footerNav';
-// import {SearchPageInput} from "../styles/globalParts/inputStyles";
 import {
     AllComponentsWrapper,
 } from "../styles/globalParts/containerStyles";
-import TrendingUpIcon from '@material-ui/icons/TrendingUp';
 import AddBoxIcon from '@material-ui/icons/AddBox';
 import {ContentWrapper, SearchPageInput, 
     Title, SearchWrapperTitle, 
     TableContainerWrapper, Table, TableWrapper } from '../styles/pages/searchStyles'
+import { CryptoTable } from '../components/searchCryptoStockTable/cryptoTable';
+import TablePagination from '@material-ui/core/TablePagination';
+import { StockTable } from '../components/searchCryptoStockTable/stockTable';
+
+
 
 const Search = () => {
+
+    const [page, setPage] = React.useState(0);
+    const rowsPerPage = 10;
 
     const [allStocks, setAllStocks] = useState([]);
     const [allCryptos, setAllCryptos] = useState([]);
@@ -18,11 +24,22 @@ const Search = () => {
     const [select, setSelect] = useState("All");
     const [iexVolumeData, setiexVolumeData] = useState([]);
     const [showingStocks, setShowingStocks] = useState("loading");
+    const [showingCryptos, setShowingCryptos] = useState("loading");
      
+    console.log(allCryptos)
+
     useEffect(() => {
         fetch('https://sandbox.iexapis.com/stable/stock/market/list/iexvolume?token=Tpk_fec97062db224c2fb7b0b3836ab0e365')
             .then(res => res.json())
-            .then(data=> setiexVolumeData(data))
+            .then(data=> {
+                setiexVolumeData(data)
+                return fetch('https://api.binance.com/api/v3/ticker/24hr')
+                    .then(res => res.json())
+                    .then(data => 
+                        setAllCryptos(data))
+            });
+                
+               
     }, []);
 
     const handleSelectChange = (val) => {
@@ -34,59 +51,48 @@ const Search = () => {
              const filteredStocks = iexVolumeData.filter(stock => stock.companyName.includes(search.replace(/^./, search[0].toUpperCase())) || stock.symbol.includes(search.toUpperCase()))
              setShowingStocks(filteredStocks.map((symbol, index) => {
                 return (
-                    <tr key={index}>
-                    <td className="headcol"><input type="checkbox" name="muhRadio" value=""/></td>
-                    <td>{symbol.symbol}</td>
-                    <td>{symbol.companyName}</td>
-                    <td>{symbol.latestPrice}</td>
-                    <td>{symbol.change}</td>
-                    <td>{symbol.changePercent}</td>
-                    <td>{symbol.volume}</td>
-                    <td>{symbol.marketCap}</td>
-                    <td><TrendingUpIcon/> {symbol.high}</td>
-                    </tr>
+
+                    <StockTable key={index} symbol={symbol}/>
                 )
             }))
-            } else{
-                setShowingStocks(iexVolumeData.map((symbol, index) => {
-                    return (
-                        <tr key={index}>
-                        <td className="headcol"><input type="checkbox" name="muhRadio" value=""/></td>
-                        <td>{symbol.symbol}</td>
-                        <td>{symbol.companyName}</td>
-                        <td>{symbol.latestPrice}</td>
-                        <td>{symbol.change}</td>
-                        <td>{symbol.changePercent}</td>
-                        <td>{symbol.volume}</td>
-                        <td>{symbol.marketCap}</td>
-                        <td><TrendingUpIcon/> {symbol.high}</td>
-                        </tr>
-                    )
-                }));
-            }    
-
+            }else if(select === "Crypto" && search !== ""){
+                const filteredCrypto = allCryptos.filter(crypto => crypto.symbol.includes(search.toUpperCase()))
+                setShowingCryptos(filteredCrypto.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((symbol, index) => {
+                return (
+                                <CryptoTable key={index} symbol={symbol}/>
+                            )
+            }))
+            }
     }, [search]);
+
+
+    useEffect(() => {
+        if(allCryptos.lenght){
+            setShowingCryptos(allCryptos.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((symbol, index) => {
+                return (
+                        <CryptoTable key={index} symbol={symbol}/>
+                            )
+            }))
+        }
+    }, [allCryptos])
 
     useEffect(() => {
         if (iexVolumeData.length){
             setShowingStocks(iexVolumeData.map((symbol, index) => {
                 return (
-                    <tr key={index}>
-                    <td className="headcol"><input type="checkbox" name="muhRadio" value=""/></td>
-                    <td>{symbol.symbol}</td>
-                    <td>{symbol.companyName}</td>
-                    <td>{symbol.latestPrice}</td>
-                    <td>{symbol.change}</td>
-                    <td>{symbol.changePercent ? symbol.changePercent.toFixed(2) : '0.00'}</td>
-                    <td>{symbol.volume}</td>
-                    <td>{symbol.marketCap}</td>
-                    <td><TrendingUpIcon/> {symbol.high}</td>
-                    </tr>
+                    <StockTable key={index} symbol={symbol}/>
                 )
             }));
         }
         
     }, [iexVolumeData])
+
+   
+
+
+    const handleChangePage = (event, newPage) => {
+        setPage(newPage);
+    };
 
     return (
         <>          
@@ -107,7 +113,6 @@ const Search = () => {
                     </ContentWrapper>
                     <AllComponentsWrapper>
                     <Title>
-
                       {select}
                     </Title>
                     <SearchWrapperTitle>
@@ -117,7 +122,7 @@ const Search = () => {
                     </SearchWrapperTitle>  
                    <TableContainerWrapper>
                     <TableWrapper>
-                    <Table id="crypto">
+                    <Table id="stocks">
                         <thead>
                             <tr>
                             <th className="headcol tableHead">Select</th>
@@ -133,28 +138,42 @@ const Search = () => {
                         </thead>
                         <tbody>
                             {showingStocks}
-                            {/* {
-                                iexVolumeData.length ?
-                                iexVolumeData.map((symbol, index) => {
-                                    return (
-                                        <tr>
-                                        <td className="headcol"><input type="checkbox" name="muhRadio" value=""/></td>
-                                        <td>{symbol.symbol}</td>
-                                        <td>{symbol.companyName}</td>
-                                        <td>{symbol.latestPrice}</td>
-                                        <td>{symbol.change.toFixed(2)}</td>
-                                        <td>{symbol.changePercent.toFixed(2)}</td>
-                                        <td>{symbol.volume}</td>
-                                        <td>{symbol.marketCap}</td>
-                                        <td><TrendingUpIcon/> {symbol.high}</td>
-                                        </tr>
-                                    )
-                                }) : "...Please Wait I am Loading now! "
-                            }
-                             */}
                         </tbody>
                     </Table>
                     </TableWrapper>
+                    <TableWrapper>
+                    { <Table id="crypto">
+                        <thead>
+                            <tr>
+                            <th className="headcol tableHead">Select</th>
+                            <th className="tableHead">Symbol</th>
+                            <th className="tableHead">Price(Intraday)</th>
+                            <th className="tableHead">Change</th>
+                            <th className="tableHead">Change%</th>
+                            <th className="tableHead">24h Volume</th>
+                            <th className="tableHead">1 Day Chart</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {showingCryptos}
+                        </tbody>
+                        {
+                        allCryptos && allCryptos.length !== 0 ?
+                        <TablePagination 
+                            component="div"
+                            count={allCryptos.length}
+                            page={page}
+                            onChangePage={handleChangePage}
+                            rowsPerPage={rowsPerPage}
+                            rowsPerPageOptions={[]}
+                            // style={{color: darkTheme.text}}
+                        />
+                        : null
+
+                        }
+                    </Table> }
+                    </TableWrapper>
+                   
                     </TableContainerWrapper>
                     </AllComponentsWrapper>
                 {/* <FooterNav/> */}

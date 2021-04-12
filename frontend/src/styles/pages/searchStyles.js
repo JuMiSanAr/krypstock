@@ -78,11 +78,9 @@ export const Title = styled.h1`
 `;
 
 export const TableWrapper = styled.div`
-    /* display: flex;
-    justify-content: center;
-    align-items: center;*/
     /* padding: 0 30px 0 30px;  */
     overflow-x: auto;
+    margin-bottom: 30px;
 
     input{
         margin-left: 20px;
@@ -108,7 +106,7 @@ export const TableContainerWrapper = styled.div`
     width: 100vw;
     display: flex;
     justify-content: center;
-    align-items: center;
+   flex-direction: column;
 `;
 
 export  const Table = styled.table`
