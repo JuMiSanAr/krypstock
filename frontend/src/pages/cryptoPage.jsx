@@ -60,7 +60,7 @@ const CryptoPage = (props) => {
                    <CandlestickCryptoHistorical data={historicalData} symbol={symbol} time={chartTimeframe} timeLength={chartTimeframe2}/>}
             </GraphWrapper>
         </ShrinkingComponentWrapper>
-        {/*<NewsCrypto symbol={symbol}/>*/}
+        <NewsCrypto symbol={symbol}/>
         <FooterNav/>
     </AllComponentsWrapper>
         </>
