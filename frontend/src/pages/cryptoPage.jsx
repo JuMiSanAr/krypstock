@@ -7,12 +7,14 @@ import NewsCrypto from "../components/newsFeed/newsCrypto";
 import {cryptoFetcherHistorical} from "../components/charts/helperFunctions/cryptoFetcherHistorical";
 import CandlestickCryptoHistorical from "../components/charts/candlesticksCryptoHistorical";
 import CryptoPageInfoCard from "../components/cryptoCards/cryptoPageInfoCard";
-import ChartTimeCryptoframeButton from "../components/charts/chartSelectTimeCryptoframeButton";import {stockFetcherIntraday} from "../components/charts/helperFunctions/stockFetcherIntraday";
+import ChartTimeCrypto from "../components/charts/chartSelectTimeCrypto";
 import {cryptoFetcherIntraday} from "../components/charts/helperFunctions/cryptoFetcherIntraday";
+import ChartTimeCryptoframeButton from "../components/charts/chartSelectTimeCryptoframeButton";
 
 const CryptoPage = (props) => {
 
     const [chartTimeframe, setChartTimeframe] = useState('1m');
+   const [chartTimeframe2, setChartTimeframe2] = useState('12h');
 
     const [intradayData, setIntradayData] = useState([]);
     const [historicalData, setHistoricalData] = useState([]);
@@ -40,15 +42,18 @@ const CryptoPage = (props) => {
                 <div className="title">
                    <h3>Price Chart</h3>
                 </div>
-                <div >
+                <div >Ticker
                     <ChartTimeCryptoframeButton setChart={setChartTimeframe}/>
+                </div>
+                <div >Time
+                    <ChartTimeCrypto setChart2={setChartTimeframe2}/>
                 </div>
               </FormSelectWrapper>
                  <GraphWrapper>
                {chartTimeframe === '1m' ?
                    <CandlestickCryptoIntraday data={intradayData} symbol={symbol} time={chartTimeframe}/>
                    :
-                   <CandlestickCryptoHistorical data={historicalData} symbol={symbol} time={chartTimeframe}/>}
+                   <CandlestickCryptoHistorical data={historicalData} symbol={symbol} time={chartTimeframe} timeLength={chartTimeframe2}/>}
             </GraphWrapper>
         </ShrinkingComponentWrapper>
         {/*<NewsCrypto symbol={symbol}/>*/}
