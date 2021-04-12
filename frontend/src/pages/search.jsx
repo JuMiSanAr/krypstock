@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import FooterNav from '../components/footerNav';
 import {
     AllComponentsWrapper,
 } from "../styles/globalParts/containerStyles";
@@ -41,6 +40,7 @@ const Search = () => {
                 
                
     }, []);
+
 
     const handleSelectChange = (val) => {
         setSelect(val)
@@ -88,7 +88,6 @@ const Search = () => {
     }, [iexVolumeData])
 
    
-
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -176,7 +175,6 @@ const Search = () => {
                    
                     </TableContainerWrapper>
                     </AllComponentsWrapper>
-                {/* <FooterNav/> */}
         </>
     )
 }
