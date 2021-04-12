@@ -1,7 +1,7 @@
 import React from 'react';
 import FooterNav from '../components/footerNav';
 
-const AddRemove = () => {
+const AddRemovePage = () => {
 
     return (
         <>
@@ -12,4 +12,4 @@ const AddRemove = () => {
 
 }
 
-export default AddRemove;
+export default AddRemovePage;
