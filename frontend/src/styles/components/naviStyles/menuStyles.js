@@ -45,6 +45,7 @@ export const MenuItemWrapper = styled.div`
     justify-content: flex-start;
     align-items: center;
     padding: 5px;
+    cursor: pointer;
     margin: 30px 0 30px 0;
  
     .move-right-1{
