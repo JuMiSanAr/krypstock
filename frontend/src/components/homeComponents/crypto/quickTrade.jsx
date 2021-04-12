@@ -4,7 +4,7 @@ import {ShrinkingComponentWrapper } from '../../../styles/globalParts/containerS
 import {FormSelectWrapper} from "../../../styles/components/cryptoStyles/bitCoinStyles";
 import {SelectorWrapper, TransacWrapper, ButtonWrapper} from '../../../styles/components/cryptoStyles/quickTradeStyles'
 import { postNewTransactionFetch } from '../../../store/fetches/transactionFetches'; 
-
+import { Link } from 'react-router-dom';
 
 export const QuickTrade = () => {
 
@@ -72,7 +72,9 @@ export const QuickTrade = () => {
                 <div className='empty'>
                     <span>You need a portfolio to trade</span>
                     <br/>
-                    <span>Create your first portfolio</span>
+                    <Link to="/portfolio-list/">
+                        <span className='create-portfolio'>Create your first portfolio</span>
+                    </Link>
                 </div>
                 : 
                 <>

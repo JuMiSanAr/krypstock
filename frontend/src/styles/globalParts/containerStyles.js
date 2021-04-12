@@ -39,6 +39,15 @@ export const ShrinkingComponentWrapper = styled(FullWidthComponentWrapper)`
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        
+        .create-portfolio {
+            /* text-decoration: none; */
+            color: white;
+            :hover {
+                font-weight: bold;
+                cursor: pointer;
+            }
+        }
     }
 
     @media (min-width: 450px) {
