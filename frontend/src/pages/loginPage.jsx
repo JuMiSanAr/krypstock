@@ -1,10 +1,12 @@
-import React, { useState }  from 'react';
+import React, { useState, useEffect }  from 'react';
 import { useDispatch } from 'react-redux';
 import { loginAction } from '../store/actions/loginActions';
 import {useHistory} from 'react-router-dom';
 import {MainContainerSI, WrapDivSI} from "../styles/components/signInStyles";
 import logo from "../assets/logo/logo_with_name.png";
 import loginFetch from "../store/fetches/logInFetches";
+
+
 
 
 //############################# Component ################################

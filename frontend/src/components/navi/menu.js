@@ -13,9 +13,13 @@ import FolderIcon from "@material-ui/icons/Folder";
 import SettingsIcon from "@material-ui/icons/Settings";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import {useHistory} from "react-router-dom";
+import {useSelector} from "react-redux";
 
 
 const Menu = ({open, setOpen}) => {
+
+    const userData = useSelector(state => state.logInUserReducer.user_data.data);
+    console.log("from use selector", userData)
 
     const history = useHistory();
 
@@ -45,7 +49,7 @@ const Menu = ({open, setOpen}) => {
                 <img src={Logo} alt="logo"/>
             </LogoIconWrapper>
             <MenuContentWrapper>
-                <h2>Hello, Cindy</h2>
+                <h2>Hello, {userData.username}</h2>
                 <MenuItemWrapper>
                 <DashboardIcon/>
                 <span className="move-right-1" onClick={() => toDashboard()}>Dashboard</span>
