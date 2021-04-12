@@ -18,7 +18,7 @@ import {useSelector} from "react-redux";
 
 const Menu = ({open, setOpen}) => {
 
-    const userData = useSelector(state => state.logInUserReducer.user_data.data);
+    const userData = useSelector(state => state.logInUserReducer.user_data);
     console.log("from use selector", userData)
 
     const history = useHistory();
@@ -49,7 +49,7 @@ const Menu = ({open, setOpen}) => {
                 <img src={Logo} alt="logo"/>
             </LogoIconWrapper>
             <MenuContentWrapper>
-                <h2>Hello, {userData.username}</h2>
+                <h2>Hello,</h2>
                 <MenuItemWrapper>
                 <DashboardIcon/>
                 <span className="move-right-1" onClick={() => toDashboard()}>Dashboard</span>
