@@ -1,11 +1,12 @@
-import React, {useState, useHistory, useEffect} from 'react';
+import React from 'react';
 import FooterNav from '../components/footerNav';
 import { AllComponentsWrapper, ShrinkingComponentWrapper } from '../styles/globalParts/containerStyles';
-import {InvestmentsContainer, PercentContainer, InvestmentFont, OverviewBarBlue, OverviewBarGreen, OverviewBarYellow, OverviewBarOrange, HeadlineFont, CakeChartContainer} from '../styles/components/portfolioStyles';
+import {HeadlineFont, CakeChartContainer} from '../styles/components/portfolioStyles';
 import { PieChart } from 'react-minimal-pie-chart';
 import Graph from '../assets/bit.png'
 import PortfolioChart from '../components/charts/portfolioChart';
 import AllInvestments from '../components/portfolioComponents/allInvestments';
+import Overview from '../components/portfolioComponents/overview';
 
 const Portfolio = (props) => {
 
@@ -13,31 +14,7 @@ const Portfolio = (props) => {
         <>
             <AllComponentsWrapper>
                 <AllInvestments/>
-                <ShrinkingComponentWrapper>
-                    <HeadlineFont>Overview</HeadlineFont>
-                    <OverviewBarGreen>
-                        <i className="fab fa-ethereum"></i>
-                        <HeadlineFont>Etherium</HeadlineFont>
-                        <p>50'345</p>
-                        <p><i className="fas fa-angle-double-down"></i> 10%</p>
-                    </OverviewBarGreen>
-                    <OverviewBarBlue>
-                        <i className="fab fa-bitcoin"></i>
-                        <HeadlineFont>BitCoin</HeadlineFont>
-                        <p>1'000'000</p>
-                        <p><i className="fas fa-angle-double-up"></i> 10%</p>
-                    </OverviewBarBlue>
-                    <OverviewBarYellow>
-                        <HeadlineFont>Etherium</HeadlineFont>
-                        <p>32'000</p>
-                        <p>+- 10%</p>
-                    </OverviewBarYellow>
-                    <OverviewBarOrange>
-                        <HeadlineFont>Etherium</HeadlineFont>
-                        <p>659'934</p>
-                        <p>+- 10%</p>
-                    </OverviewBarOrange>
-                </ShrinkingComponentWrapper>
+                <Overview/>
                 <ShrinkingComponentWrapper>
                     <CakeChartContainer>
                         <HeadlineFont>My Investments</HeadlineFont>

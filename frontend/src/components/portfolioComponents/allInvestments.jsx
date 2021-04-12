@@ -8,21 +8,25 @@ import {InvestmentsContainer, PercentContainer, InvestmentFont, HeadlineFont} fr
 
 const AllInvestments = () => {
     
+    const calculateTotalInvestments = (portfolio) => {
+        let total = 0;
+        portfolio.forEach(investment => {
+            total += investment.invested
+        });
+        return total;
+    }
+
     const dispatch = useDispatch()
     const specificPortfolioArray = useSelector(state => state.specificPortfolioReducer.calculations)
     const specificPortfolio = specificPortfolioArray;
-
-    console.log("investments page", specificPortfolio);
-
+    let totalInvestments = calculateTotalInvestments(specificPortfolio);
+    
     useEffect(() => {
         specificPortfolioFetch()
         .then(data => {
-            console.log('in useEffect specific portfolio data', data)
             dispatch(specificPortfolioAction(data.calculations))
         })
-    }, []) 
-
-    
+    }, [])
 
     return (
         <ShrinkingComponentWrapper>
@@ -31,18 +35,9 @@ const AllInvestments = () => {
                     <InvestmentsContainer>
                         <div>
                             <p>invested</p>
-                            {specificPortfolio.map((calculation) => 
-                            <InvestmentFont key={calculation.id}>
-                                {calculation.invested}
-                                {/* {
-                                
-                                portfolio.calculations.map((calculation) => 
-                                <p key={calculation.id}>
-                                    {calculation.invested}</p>)
-                                
-                                } */}
+                            <InvestmentFont>
+                                {totalInvestments} $
                             </InvestmentFont>
-                            )}
                         </div>
                         <div>
                             <p>balance</p>
