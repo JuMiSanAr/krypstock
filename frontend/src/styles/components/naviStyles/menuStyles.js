@@ -6,7 +6,7 @@ export const StyledMenu = styled.nav`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background: ${({ theme }) => theme === lightTheme ? darkTheme.body : lightTheme.body};
+  background: ${({ theme }) => theme === lightTheme ? lightTheme.body : darkTheme.body};
   transform: ${({ open }) => open ? 'translateX(0)' : 'translateX(-100%)'};
   height: 100vh;
   text-align: left;
@@ -45,6 +45,7 @@ export const MenuItemWrapper = styled.div`
     justify-content: flex-start;
     align-items: center;
     padding: 5px;
+    cursor: pointer;
     margin: 30px 0 30px 0;
  
     .move-right-1{
@@ -71,7 +72,7 @@ export const LogoIconWrapper = styled.div`
 `;
 
 export const MenuContentWrapper = styled.div `
- color: ${({ theme }) => theme === lightTheme ? darkTheme.text : lightTheme.text};
+ color: ${({ theme }) => theme === lightTheme ? lightTheme.text  : darkTheme.text};
     img{
         height: 100px;
         width: 100px;
