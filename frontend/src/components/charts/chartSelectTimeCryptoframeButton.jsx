@@ -18,7 +18,7 @@ const ChartTimeCryptoframeButton = (props) => {
             <option value="1d">1 day</option>
             <option value="3d">3 days</option>
             <option value="1w">1 week</option>
-            <option value="1m">1 month</option>
+            <option value="1M">1 month</option>
         </select>
     )
 }

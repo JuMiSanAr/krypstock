@@ -4,8 +4,6 @@ import {createChart, CrosshairMode} from "lightweight-charts";
 
 const CandlestickCryptoHistorical = (props) => {
 
-//{"e":"aggTrade","E":1617869515532,"s":"BTCUSDT","a":671183311,"p":"57125.03000000","q":"0.05068500","f":752455921,"l":752455921,"T":1617869515531,"m":true,"M":true}
-
    // TEMP (Data will come from props)
     const [fetchedData, setData] = useState([]);
     // const exchange = 'Bitcoin/USD';
@@ -16,17 +14,90 @@ const CandlestickCryptoHistorical = (props) => {
         FetchCrypto();
     }, []);
 
-    const FetchCrypto = () => {
-        // const API_KEY = 'hEONEAKmoUPGx9EyweXiP7WEJzbmJEihUzsJQ1THnOwnLRuWkr4vEw7qF0xqhh7u';
+    useEffect(() => {
+        if(props.timeLength!=='1d'){
+          FetchCrypto();
+        }
+    }, [props.timeLength]);
 
-           const API_Call = `https://api.binance.com/api/v3/klines?symbol=${cryptoCurrency}&interval=${tick_interval}`;
+    const FetchCrypto = () => {
+        var d = new Date();
+        console.log(props.timeLength)
+        if(props.timeLength==='12h'){
+            // let fixedHour=d.getHours()
+            //
+            // if (fixedHour>=12){
+            //     fixedHour-=12;
+            //     d.setHours(fixedHour, 0, 0, 0);
+            // }else{
+            //     d.setDate(d.getDate()-1);
+            //     fixedHour-=12;
+            //     d.setHours(fixedHour, 0, 0, 0);
+            // }
+        }else if(props.timeLength==='1w'){
+            let fixedDay=d.getDate();
+            if (fixedDay>=7){
+                fixedDay-=7;
+                d.setDate(d.getDate()-7);
+            }else{
+                d.setMonth(d.getMonth() - 1)
+                fixedDay-=7;
+                d.setDate(d.getDate()-7);
+            }
+        }else if(props.timeLength==='1m'){
+            let fixedMonth=d.getDate();
+            if (fixedMonth>=1){
+                fixedMonth-=1;
+                d.setMonth(d.getMonth() - 1);
+            }else{
+                d.setFullYear(d.getFullYear()-1)
+                fixedMonth-=1;
+                d.setMonth(d.getMonth() - 1);
+            }
+        }else if(props.timeLength==='3m') {
+            let fixedMonth = d.getDate();
+            if (fixedMonth >= 3) {
+                fixedMonth -= 3;
+                d.setMonth(d.getMonth() - 3);
+            } else {
+                d.setFullYear(d.getFullYear() - 1)
+                fixedMonth -= 3;
+                d.setMonth(d.getMonth() - 3);
+            }
+        }else if(props.timeLength==='6m'){
+            let fixedMonth=d.getDate();
+            if (fixedMonth>=6){
+                fixedMonth-=6;
+                d.setMonth(d.getMonth() - 6);
+            }else{
+                d.setFullYear(d.getFullYear()-1)
+                fixedMonth-=6;
+                d.setMonth(d.getMonth() - 6);
+            }
+        }else if(props.timeLength==='1y'){
+                d.setFullYear(d.getFullYear()-1)
+        }
+        const timestamp = (d/1000).toFixed();
+
+        console.log(timestamp)
+
+        const API_Call = `https://api.binance.com/api/v3/klines?symbol=${cryptoCurrency}&interval=${props.time}&startTime=${timestamp}`;
+        const config = {
+                  mode: 'no-cors',
+                  headers: {
+                    "Content-Type": "application/json",
+                    "User-Agent": "kryptstock",
+                    "Access-Control-Allow-Credentials": "true"
+                  }
+                }
+
 
         fetch(API_Call)
             .then(res => res.json())
             .then(data => {
 
                 const allData = data.map((obj,index) => {
-                        // console.log(data)
+                        console.log(data)
                     let timeFix=obj[0]/1000
                     return {
                         time: timeFix,
@@ -82,7 +153,7 @@ const CandlestickCryptoHistorical = (props) => {
                 watermark: {
                     color: 'rgba(255, 255, 255, 0.4)',
                     visible: true,
-                    text: `Market: ${cryptoCurrency} Interval:${tick_interval}`,
+                     text: `Market: ${props.symbol} Interval:${props.time}`,
                     fontSize: 10,
                     horzAlign: 'left',
                     vertAlign: 'bottom',
