@@ -33,17 +33,21 @@ const TransactionHistory = (props) => {
         <ShrinkingComponentWrapper>
             <h3>Transaction History</h3>
             <StockTable id="transaction-history">
-                <thead>
-                    <tr>
-                        <th>Company</th>
-                        <th>Date</th>
-                        <th>Price</th>
-                        <th>Transaction</th>
-                    </tr>
-                </thead>
+                {
+                    allData && allData.length !== 0 ?
+                    <thead>
+                        <tr>
+                            <th>Company</th>
+                            <th>Date</th>
+                            <th>Price</th>
+                            <th>Transaction</th>
+                        </tr>
+                    </thead>
+                    : null
+                }
                 <tbody>
                     {   
-                        allData ?
+                        allData && allData.length !== 0 ?
                         allData.filter(data => data.type === 'S').slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                         .map( (stockData, index) => 
                             <tr key={"Stock"+ index}>
@@ -55,20 +59,25 @@ const TransactionHistory = (props) => {
                         )
                         :
                         <tr>
-                            <td colSpan="4">No stocks in your portfolio</td>
+                            <td colSpan="4">No transactions in your portfolio</td>
                         </tr>
                     }
                 </tbody>
             </StockTable>
-            <TablePagination 
-                component="div"
-                count={allData.filter(data => data.type === 'S').length}
-                page={page}
-                onChangePage={handleChangePage}
-                rowsPerPage={rowsPerPage}
-                rowsPerPageOptions={[]}
-                style={{color: darkTheme.text}}
-            />
+            {
+                allData && allData.length !== 0 ?
+                <TablePagination 
+                    component="div"
+                    count={allData.filter(data => data.type === 'S').length}
+                    page={page}
+                    onChangePage={handleChangePage}
+                    rowsPerPage={rowsPerPage}
+                    rowsPerPageOptions={[]}
+                    style={{color: darkTheme.text}}
+                />
+                : null
+
+            }
         </ShrinkingComponentWrapper>
     )
 }

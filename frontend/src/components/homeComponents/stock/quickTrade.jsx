@@ -51,11 +51,11 @@ const QuickTrade = () => {
                 </FormSelectWrapper>  
                 {
                     !allPortfoliosArray || allPortfoliosArray.length === 0 ?
-                    <>
+                    <div className='empty'>
                         <span>You need a portfolio to trade</span>
                         <br/>
                         <span>Create your first portfolio</span>
-                    </>
+                    </div>
                     :
                     <>
                         <TransacWrapper>                    
