@@ -3,7 +3,7 @@ import {ShrinkingComponentWrapper} from "../../styles/globalParts/containerStyle
 import {NewsWrapper} from "../../styles/components/stockStyles/newsStyles";
 import {iexAPIKey, iexSandboxKey} from "../../store/constants";
 
-const NewsStock = (props) => {
+const NewsCrypto = (props) => {
 
     const [allNews, setAllNews] = useState([]);
 
@@ -43,10 +43,9 @@ const NewsStock = (props) => {
 
                 return (
                     <ShrinkingComponentWrapper key={index}>
-                        <NewsWrapper>
+                        <NewsWrapper onClick={()=> window.open(news.url, "_blank")}>
                             <h3>{news.headline}</h3>
                             <p className='news_date'>{stringDate} - By {news.source}</p>
-                            <a href={news.url} target='_blank' rel='noreferrer'>Click here to see the complete article</a>
                         </NewsWrapper>
                     </ShrinkingComponentWrapper>
                 )
@@ -57,4 +56,4 @@ const NewsStock = (props) => {
     )
 }
 
-export default NewsStock
+export default NewsCrypto
