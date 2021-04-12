@@ -29,10 +29,12 @@ class PortfolioSerializerWithCalculation(serializers.ModelSerializer):
             number_bought = 0
             balance = 0
             previous_balance = 0
+            type = ''
 
             active_transactions = []
 
             for transaction in this_symbol_transactions:
+                type = transaction.type
 
                 if transaction.active:
                     if transaction.buy_sell == 'B':
@@ -58,14 +60,15 @@ class PortfolioSerializerWithCalculation(serializers.ModelSerializer):
                 this_average = currently_invested / number_bought
 
                 results.append({'symbol': symbol,
+                                'type': type,
                                 'invested': currently_invested,
                                 'quantity': number_bought,
                                 'average_price': this_average,
                                 'previous_balance': previous_balance})
             else:
-
                 results.append({
                     'symbol': symbol,
+                    'type': type,
                     'invested': 0,
                     'overall_balance': balance
                 })

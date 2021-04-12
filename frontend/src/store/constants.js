@@ -18,7 +18,10 @@ export const USER_ALL_PORTFOLIO = 'USER_ALL_PORTFOLIO';
 
 export const DELETE_PORTFOLIO = 'DELETE_PORTFOLIO';
 
-export const IEX_VOLUME = 'IEX_VOLUME'
+export const IEX_VOLUME = 'IEX_VOLUME';
+
+export const ALL_CRYPTO_NEWS = 'ALL_CRYPTO_NEWS';
+export const ALL_STOCK_NEWS = 'ALL_STOCK_NEWS';
 
 // Base URLs to use for fetching
 export const baseUrlLocal = 'http://localhost:8000/api/';

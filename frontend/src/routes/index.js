@@ -9,7 +9,7 @@ import Verification from "../components/verification";
 import Portfolio from "../pages/portfolio";
 import AddRemovePage from "../pages/addRemove";
 import Search from "../pages/search";
-import News from "../pages/news";
+import NewsPage from "../pages/newsPage";
 import StockPage from "../pages/stockPage";
 import CryptoPage from "../pages/cryptoPage";
 import CryptosPage from "../components/charts/candlesticksCryptoHistorical.jsx";
@@ -25,10 +25,10 @@ function OurRouter() {
         <Route path="/sign-up/registration" exact component={Registration}/>
         <Route path="/sign-up/congratulation" exact component={Congratulation}/>
         <Route path="/sign-up/verification" exact component={Verification} />
-        <Route path="/portfolio/" exact component={Portfolio} />
+        <Route path="/portfolio/:id" exact component={Portfolio} />
         <Route path="/add-remove/" exact component={AddRemovePage} />
         <Route path="/search/" exact component={Search} />
-        <Route path="/news/" exact component={News} />
+        <Route path="/news/" exact component={NewsPage} />
         <Route path="/stock/" exact component={StockPage} />
         <Route path="/crypto/" exact component={CryptoPage} />
         <Route path="/cryptos/" exact component={CryptosPage} />

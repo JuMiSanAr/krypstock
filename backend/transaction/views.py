@@ -33,11 +33,11 @@ class NewTransaction(CreateAPIView):
 
         for transaction in transactions:
             if transaction.buy_sell == 'B':
-                previous_total_invested += int(transaction.quantity) * int(transaction.price)
-                previous_quantity += int(transaction.quantity)
+                previous_total_invested += float(transaction.quantity) * float(transaction.price)
+                previous_quantity += float(transaction.quantity)
             else:
-                previous_total_invested -= int(transaction.quantity) * int(transaction.price)
-                previous_quantity -= int(transaction.quantity)
+                previous_total_invested -= float(transaction.quantity) * float(transaction.price)
+                previous_quantity -= float(transaction.quantity)
 
         if previous_quantity - self.request.data['quantity'] < 0 and self.request.data['buy_sell'] == 'S':
             return Response({'error': 'Cannot sell more items than the user currently owns'},

@@ -6,27 +6,17 @@ import { ShrinkingComponentWrapper } from '../../styles/globalParts/containerSty
 import {InvestmentsContainer, PercentContainer, InvestmentFont, HeadlineFont} from '../../styles/components/portfolioStyles';
 
 
-const AllInvestments = () => {
+const AllInvestments = ({calculations}) => {
     
-    const calculateTotalInvestments = (portfolio) => {
+    const calculateTotalInvestments = (calc) => {
         let total = 0;
-        portfolio.forEach(investment => {
-            total += investment.invested
+        calc.forEach(singleCalc => {
+            total += singleCalc.invested
         });
         return total;
     }
 
-    const dispatch = useDispatch()
-    const specificPortfolioArray = useSelector(state => state.specificPortfolioReducer.calculations)
-    const specificPortfolio = specificPortfolioArray;
-    let totalInvestments = calculateTotalInvestments(specificPortfolio);
-    
-    useEffect(() => {
-        specificPortfolioFetch()
-        .then(data => {
-            dispatch(specificPortfolioAction(data.calculations))
-        })
-    }, [])
+    let totalInvestments = calculateTotalInvestments(calculations);
 
     return (
         <ShrinkingComponentWrapper>
