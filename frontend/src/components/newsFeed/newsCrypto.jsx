@@ -28,7 +28,6 @@ const NewsCrypto = (props) => {
             .then(data => {
                 console.log(data.event)
                 setAllNews(data);
-                console.log(allNews);
             });
     }
 
