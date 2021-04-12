@@ -23,18 +23,7 @@ const CandlestickCryptoHistorical = (props) => {
     const FetchCrypto = () => {
         var d = new Date();
         // console.log(props.timeLength)
-        if(props.timeLength==='12h'){
-            // let fixedHour=d.getHours()
-            //
-            // if (fixedHour>=12){
-            //     fixedHour-=12;
-            //     d.setHours(fixedHour, 0, 0, 0);
-            // }else{
-            //     d.setDate(d.getDate()-1);
-            //     fixedHour-=12;
-            //     d.setHours(fixedHour, 0, 0, 0);
-            // }
-        }else if(props.timeLength==='1w'){
+      if(props.timeLength==='1w'){
             let fixedDay=d.getDate();
             if (fixedDay>=7){
                 d.setDate(d.getDate()-7);
