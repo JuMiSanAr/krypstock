@@ -10,6 +10,7 @@ import CryptoPageInfoCard from "../components/cryptoCards/cryptoPageInfoCard";
 import ChartTimeCrypto from "../components/charts/chartSelectTimeCrypto";
 import {cryptoFetcherIntraday} from "../components/charts/helperFunctions/cryptoFetcherIntraday";
 import ChartTimeCryptoframeButton from "../components/charts/chartSelectTimeCryptoframeButton";
+import CryptoList from "../components/charts/cryptoList";
 
 const CryptoPage = (props) => {
 
@@ -19,7 +20,7 @@ const CryptoPage = (props) => {
     const [intradayData, setIntradayData] = useState([]);
     const [historicalData, setHistoricalData] = useState([]);
 
-    const symbol = 'btcusdt';
+    const symbol = ('btcusdt').toUpperCase();
 
     // useEffect(() => {
     //  WebSocket.close();
@@ -61,7 +62,7 @@ const CryptoPage = (props) => {
             </GraphWrapper>
         </ShrinkingComponentWrapper>
         <NewsCrypto symbol={symbol}/>
-
+        {/*<CryptoList/>*/}
         <FooterNav/>
     </AllComponentsWrapper>
         </>

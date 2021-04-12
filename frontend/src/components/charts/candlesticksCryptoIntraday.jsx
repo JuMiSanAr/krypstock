@@ -4,8 +4,8 @@ import {createChart, CrosshairMode} from "lightweight-charts";
 const CandlestickCryptoIntraday = (props) => {
 
     const [fetchedData, setData] = useState([]);
-    const exchange = 'Bitcoin/USD';
-    const cryptoCurrency= 'btcusdt';
+    const cryptoCurrency= (props.symbol).toLowerCase();
+    console.log(cryptoCurrency)
 
     useEffect(() => {
         fetchCrypto();
