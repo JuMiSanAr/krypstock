@@ -4,7 +4,7 @@ import { AllComponentsWrapper} from '../../../styles/globalParts/containerStyles
 import { PriceToday } from './priceToday';
 import {TransactionHistory} from './transactionHistory'
 import { CryptoNews } from './cryptoNews';
-import { QuickTrade } from './quickTrade';
+import { CryptoQuickTrade } from './quickTrade';
 
 export const Crypto = () => {
     return (
@@ -13,7 +13,7 @@ export const Crypto = () => {
             <PriceToday/>
             <TransactionHistory/>
             <CryptoNews/>
-            <QuickTrade/>
+            <CryptoQuickTrade fromPage='HomePage' />
         </AllComponentsWrapper>
     )
 }
