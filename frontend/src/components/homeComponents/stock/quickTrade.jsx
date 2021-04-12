@@ -6,7 +6,7 @@ import { ShrinkingComponentWrapper } from '../../../styles/globalParts/container
 import { postNewTransactionFetch } from '../../../store/fetches/transactionFetches'; 
 import { Link } from 'react-router-dom';
 
-const QuickTrade = () => {
+const StockQuickTrade = (props) => {
 
     const dispatch = useDispatch()
     const allPortfoliosArray = useSelector(state => state.portfoliosReducer.portfolios)
@@ -33,7 +33,7 @@ const QuickTrade = () => {
             <form onSubmit={submitHandler}>
                 <FormSelectWrapper>
                     <div className="title">
-                        <h3>Quick Trade</h3>
+                        {props.fromPage === 'HomePage' ? <h3>Stock Quick Trade</h3> : <h3>Stock Trade</h3>}
                     </div>
                     {
                     !allPortfoliosArray || allPortfoliosArray.length === 0 ?
@@ -100,4 +100,4 @@ const QuickTrade = () => {
     )
 }
 
-export default QuickTrade
+export default StockQuickTrade

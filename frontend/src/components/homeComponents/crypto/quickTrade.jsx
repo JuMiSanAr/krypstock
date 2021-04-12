@@ -6,7 +6,7 @@ import {SelectorWrapper, TransacWrapper, ButtonWrapper} from '../../../styles/co
 import { postNewTransactionFetch } from '../../../store/fetches/transactionFetches'; 
 import { Link } from 'react-router-dom';
 
-export const QuickTrade = () => {
+export const CryptoQuickTrade = (props) => {
 
     const dispatch = useDispatch()
     const allPortfoliosArray = useSelector(state => state.portfoliosReducer.portfolios)
@@ -32,7 +32,7 @@ export const QuickTrade = () => {
             <form onSubmit={submitHandler}>
                 <FormSelectWrapper>
                 <div className="title">
-                    <h3>BitCoin</h3>
+                    {props.fromPage === 'HomePage' ? <h3>Crypto Quick Trade</h3> : <h3>Crypto Trade</h3>}
                 </div>
                 {
                 !allPortfoliosArray || allPortfoliosArray.length === 0 ?

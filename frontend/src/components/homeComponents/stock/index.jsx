@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {AllComponentsWrapper} from '../../../styles/globalParts/containerStyles';
 import MarketOverview from './marketOverview.jsx';
 import News from './news';
-import QuickTrade from './quickTrade';
+import StockQuickTrade from './quickTrade';
 import TopPerformingStocks from './topPerforming';
 import WorstPerformingStocks from './worstPerforming'
 import TransactionHistory from './transactionHistory';
@@ -86,7 +86,7 @@ useEffect(()=>{
         <AllComponentsWrapper>
             <MarketOverview/>
             {topFiveNews ? <News stock_news={topFiveNews}/> : "...LOADING"}
-            <QuickTrade/>
+            <StockQuickTrade fromPage='HomePage' />
             <TransactionHistory />
             {stockVolumeData ? <TrendyStocks stock_volume={stockVolumeData}/> : "...LOADING"}
             {gainData ? <TopPerformingStocks gain_stock={gainData}/> : "...LOADING"}
