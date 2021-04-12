@@ -15,20 +15,19 @@ const NewsCrypto = (props) => {
     const fetchNews = () => {
           const API_Call = `https://cryptopanic.com/api/v1/posts/?auth_token=6f333ed50f0e1e4679a65139765f56c00853296f&kind=news`;
 
-        //    const config = {
-        //        mode: 'no-cors',
-        //        headers: {
-        //            "Content-Type": "application/json",
-        //            "Access-Control-Allow-Credentials": "true"
-        //        }
-        //    }
-        // console.log(config)
-        fetch(API_Call)
+           const config = {
+               mode: 'no-cors',
+               headers: {
+                   "Content-Type": "application/json",
+                   "Access-Control-Allow-Credentials": "true"
+               }
+           }
+        console.log(config)
+        fetch(API_Call,config)
             .then(res => res.json())
             .then(data => {
                 console.log(data.event)
                 setAllNews(data);
-                console.log(allNews);
             });
     }
 
