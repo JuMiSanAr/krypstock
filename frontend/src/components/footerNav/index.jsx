@@ -18,7 +18,7 @@ const FooterNav = ({setOpen}) => {
             <Link to="/" style={{textDecoration: 'none', color: 'inherit'}}>
                 <HomeIcon onClick={handleMenuState}/>
             </Link>
-            <Link to="/portfolio/" style={{textDecoration: 'none', color: 'inherit'}}>
+            <Link to="/portfolio/:id" style={{textDecoration: 'none', color: 'inherit'}}>
                 <TrendingUpIcon onClick={handleMenuState}/>
             </Link>
             <Link to="/add-remove/" style={{textDecoration: 'none', color: 'inherit'}}>

@@ -2,7 +2,7 @@
 import styled from "styled-components";
 
 export const MainContainerR = styled.div`
-  margin-top: 40%;
+  // margin-top: 40%;
   height: 100vh;
   display:flex-start;
  
@@ -14,8 +14,8 @@ export const MainContainerR = styled.div`
   }
   
   img {
-    width:150px;
-    height: 150px;
+    width:250px;
+    height: 250px;
   }
   
   input[type=text] {

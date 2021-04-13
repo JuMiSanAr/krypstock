@@ -9,10 +9,11 @@ import {darkTheme} from '../../../styles/Themes';
 
 export const TransactionHistory = () => {
 
-    const [page, setPage] = React.useState(0);
-    const rowsPerPage = 4;
     const allData = useSelector(state => state.transactionsReducer.transactions);
-
+    
+    //Pagination
+    const [page, setPage] = React.useState(0);
+    const rowsPerPage = 5;
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
     };
@@ -65,7 +66,6 @@ export const TransactionHistory = () => {
                 />
                 : null
             }
-
         </ShrinkingComponentWrapper>
     )
 }

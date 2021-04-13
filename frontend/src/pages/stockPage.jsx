@@ -11,6 +11,7 @@ import {stockFetcherIntraday} from "../components/charts/helperFunctions/stockFe
 import {stockFetcherHistorical} from "../components/charts/helperFunctions/stockFetcherHistorical";
 import NoIntradayInfo from "../components/charts/noIntradayInfo";
 import PortfoliosWithStock from "../components/stockCards/portfoliosWithStock";
+import StockStats from "../components/stockCards/stockStats";
 
 const StockPage = (props) => {
 
@@ -71,6 +72,7 @@ const StockPage = (props) => {
                 }
             </GraphWrapper>
         </ShrinkingComponentWrapper>
+        <StockStats symbol={symbol}/>
         <PortfoliosWithStock symbol={symbol}/>
         <NewsStock symbol={symbol} companyName={companyName}/>
     </AllComponentsWrapper>
