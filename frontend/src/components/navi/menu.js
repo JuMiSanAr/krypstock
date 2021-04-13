@@ -13,13 +13,16 @@ import FolderIcon from "@material-ui/icons/Folder";
 import SettingsIcon from "@material-ui/icons/Settings";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import {useHistory} from "react-router-dom";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {loginAction} from "../../store/actions/loginActions";
 
 
 const Menu = ({open, setOpen}) => {
 
     const userData = useSelector(state => state.logInUserReducer.user_data);
     console.log("from use selector", userData)
+
+    const dispatch = useDispatch();
 
     const history = useHistory();
 
@@ -38,6 +41,8 @@ const Menu = ({open, setOpen}) => {
 
     const logout = () => {
         localStorage.removeItem('token');
+        const actions=loginAction(null,false)
+        dispatch(actions)
         history.push('/sign-in');
         setOpen(false)
     }
