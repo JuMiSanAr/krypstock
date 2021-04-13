@@ -2,6 +2,7 @@ import React from 'react'
 // import {Table, TableWrapper } from '../../styles/pages/searchStyles'
 // import TablePagination from '@material-ui/core/TablePagination';
 import TrendingUpIcon from '@material-ui/icons/TrendingUp';
+import AddBoxIcon from "@material-ui/icons/AddBox";
 
 
 
@@ -10,7 +11,7 @@ export const CryptoTable = ({symbol}) => {
         <>
         {
             <tr>
-            <td className="headcol"><input type="checkbox" name="muhRadio" value=""/></td>
+            <td className="headcol"><AddBoxIcon className="addIcon"/></td>
             <td>{symbol.symbol}</td>
             <td>{symbol.lastPrice}</td>
             <td>{symbol.priceChange}</td>
