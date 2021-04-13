@@ -9,8 +9,9 @@ import {useSelector} from "react-redux";
 const IconTitle = styled.div`
     display: flex;
     align-items: center;
-    h2{
+    h3{
         margin-left: 20px;
+        margin-top: 15px;
         a{
         text-decoration: none;
         color: inherit;
@@ -24,14 +25,13 @@ export const PortfolioCollectionBasic = () => {
 
     return (
         <>
-
              {
                  portfolioData.map((portfolio, index) => {
                     return (<ShrinkingComponentWrapper key={index}>
 
                         <IconTitle>
                             <FolderIcon fontSize="large"/>
-                            <h2><a href={`https://krypstock.propulsion-learn.ch/portfolio/${portfolio.id}`}>{portfolio.name}</a></h2>
+                            <h3><a href={`https://krypstock.propulsion-learn.ch/portfolio/${portfolio.id}`}>{portfolio.name}</a></h3>
                         </IconTitle>
                     </ShrinkingComponentWrapper>)
                  })
