@@ -25,11 +25,11 @@ export const CryptoNews = () => {
 
     return (
         <>
-
+            <h3>Latest News</h3>
             {allNews.length > 0 ? allNews.map((news, index) => {
                 return (
                     <ShrinkingComponentWrapper key={index}>
-                        <h3>Latest News</h3>
+
                         <NewsWrapper>
                             <h3>{news.title}</h3>
                             <h6>{news.description}</h6>
