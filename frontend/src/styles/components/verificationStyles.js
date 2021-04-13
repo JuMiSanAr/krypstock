@@ -13,11 +13,11 @@ export const MainContainerV = styled.div`
   }
   
   img {
-    width:150px;
-    height: 150px;
+    width:250px;
+    height: 250px;
   }
   
-  input[type=text] {
+  input[type=text] , input[type=password] {
     width:250px;
     height: 30px;
     margin-bottom: 10px;
