@@ -5,14 +5,14 @@ import {Table} from '../../../styles/components/cryptoStyles/cryptoTablesStyles'
 import TablePagination from '@material-ui/core/TablePagination';
 import {darkTheme} from '../../../styles/Themes';
 
-const TopPerformingCrypto = () => {
+const TrendyCrypto = () => {
 
     let allCryptos = useSelector(state => state.cryptoReducer.allCryptos)
     const [trendyCryptos, setTrendyCryptos] = useState([]);
-
+    const dataAmount = 20;
     //Pagination
     const [page, setPage] = useState(0);
-    const rowsPerPage = 5;
+    const rowsPerPage = 4;
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
     };
@@ -22,8 +22,9 @@ const TopPerformingCrypto = () => {
 
         if (allCryptos.length > 0) {
             allCryptos.sort( (a,b) => b.quoteVolume - a.quoteVolume ) // sort in descending order
-            for (let i = 0; i < 20; i++) {
+            for (let i = 0; i < dataAmount; i++) {
                 top20TrendyCryptos.push(allCryptos[i]);
+                // console.log('top20trendyCryptos', top20TrendyCryptos)
             }
         }
         
@@ -38,32 +39,41 @@ const TopPerformingCrypto = () => {
         return onlyCurrency;
     }
 
+    // const numberWithCommas = (number) => {
+    //     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    // }
+
     return (
         <ShrinkingComponentWrapper> 
-            <h3>Top 10 Gainers</h3>
+            <h3>Top 20 Trendy Currencies</h3>
             <Table id="crypto">
                 {
-                    trendyCryptos !== [] && trendyCryptos.length === 10 ?
+                    trendyCryptos !== [] && trendyCryptos.length === dataAmount ?
                     <thead>
                         <tr>
                         <th colSpan='2'>Currency</th>
                         <th>Price</th>
                         <th>Change %</th>
-                        <th>Volume (USDT)</th>
+                        <th>Volume in Million (USDT)</th>
                         </tr>
                     </thead>
                     :
                     null
                 }
                 <tbody>
-                    {trendyCryptos !== [] && trendyCryptos.length === 10 ? 
-                        topCryptos.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                    {trendyCryptos !== [] && trendyCryptos.length === dataAmount ? 
+                        trendyCryptos.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                         .map( (crypto, index) => 
                         <tr key={index}>
-                            <td>{topCryptos.indexOf(crypto) + 1}</td>
+                            <td>{trendyCryptos.indexOf(crypto) + 1}</td>
                             <td>{cutUSDT(crypto.symbol)}</td>
                             <td>{Number(crypto.lastPrice).toFixed(2)}</td>
-                            <td>{crypto.priceChangePercent > 0 ? <i className="fas fa-angle-double-up" style={{color: 'green'}}></i> : <i className="fas fa-angle-double-down" style={{color: 'red'}}></i>} {Number(crypto.priceChangePercent).toFixed(2)}%</td>
+                            {/* <td>{numberWithCommas(crypto.lastPrice)}</td> */}
+                            <td>
+                                {crypto.priceChangePercent > 0 ? <i className="fas fa-angle-double-up" style={{color: 'green'}}></i> : crypto.priceChangePercent < 0 ? <i className="fas fa-angle-double-down" style={{color: 'red'}}></i> : null} 
+                                {Math.abs(Number(crypto.priceChangePercent)).toFixed(2)}%
+                            </td>
+                            <td>{(crypto.quoteVolume / 1000000).toFixed(2)}</td>
                         </tr>)
                         :
                         <tr>
@@ -73,10 +83,10 @@ const TopPerformingCrypto = () => {
                 </tbody>
             </Table>
             {
-                topCryptos && topCryptos.length !== 0 ?
+                trendyCryptos && trendyCryptos.length !== 0 ?
                 <TablePagination 
                     component="div"
-                    count={topCryptos.length}
+                    count={trendyCryptos.length}
                     page={page}
                     onChangePage={handleChangePage}
                     rowsPerPage={rowsPerPage}
@@ -89,4 +99,4 @@ const TopPerformingCrypto = () => {
     )
 }
 
-export default TopPerformingCrypto;
+export default TrendyCrypto;

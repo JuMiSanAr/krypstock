@@ -9,10 +9,10 @@ const TopPerformingCrypto = () => {
 
     let allCryptos = useSelector(state => state.cryptoReducer.allCryptos)
     const [topCryptos, setTopCryptos] = useState([]);
-
+    const dataAmount = 10;
     //Pagination
     const [page, setPage] = useState(0);
-    const rowsPerPage = 5;
+    const rowsPerPage = 4;
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
     };
@@ -22,7 +22,7 @@ const TopPerformingCrypto = () => {
 
         if (allCryptos.length > 0) {
             allCryptos.sort( (a,b) => b.priceChangePercent - a.priceChangePercent ) // sort in descending order
-            for (let i = 0; i < 10; i++) {
+            for (let i = 0; i < dataAmount; i++) {
                 top10Cryptos.push(allCryptos[i]);
             }
         }
@@ -43,7 +43,7 @@ const TopPerformingCrypto = () => {
             <h3>Top 10 Gainers</h3>
             <Table id="crypto">
                 {
-                    topCryptos !== [] && topCryptos.length === 10 ?
+                    topCryptos !== [] && topCryptos.length === dataAmount ?
                     <thead>
                         <tr>
                         <th colSpan='2'>Currency</th>
@@ -55,14 +55,17 @@ const TopPerformingCrypto = () => {
                     null
                 }
                 <tbody>
-                    {topCryptos !== [] && topCryptos.length === 10 ? 
+                    {topCryptos !== [] && topCryptos.length === dataAmount ? 
                         topCryptos.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                         .map( (crypto, index) => 
                         <tr key={index}>
                             <td>{topCryptos.indexOf(crypto) + 1}</td>
                             <td>{cutUSDT(crypto.symbol)}</td>
                             <td>{Number(crypto.lastPrice).toFixed(2)}</td>
-                            <td>{crypto.priceChangePercent > 0 ? <i className="fas fa-angle-double-up" style={{color: 'green'}}></i> : <i className="fas fa-angle-double-down" style={{color: 'red'}}></i>} {Number(crypto.priceChangePercent).toFixed(2)}%</td>
+                            <td>
+                                {crypto.priceChangePercent > 0 ? <i className="fas fa-angle-double-up" style={{color: 'green'}}></i> : crypto.priceChangePercent < 0 ? <i className="fas fa-angle-double-down" style={{color: 'red'}}></i> : null} 
+                                {Math.abs(Number(crypto.priceChangePercent)).toFixed(2)}%
+                            </td>
                         </tr>)
                         :
                         <tr>
