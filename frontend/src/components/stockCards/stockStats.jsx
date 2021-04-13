@@ -4,17 +4,9 @@ import React, {useEffect, useState} from "react";
 import {iexSandboxKey} from "../../store/constants";
 
 
-const StockStats = ({symbol}) => {
+const StockStats = ({keyStats}) => {
 
-    const [keyStats, setKeyStats] = useState('');
 
-    useEffect(() => {
-        fetch(`https://sandbox.iexapis.com/stable/stock/${symbol}/stats?token=${iexSandboxKey}`)
-            .then(res => res.json())
-            .then(data => {
-                setKeyStats(data);
-            })
-    }, []);
 
     return (
         <>

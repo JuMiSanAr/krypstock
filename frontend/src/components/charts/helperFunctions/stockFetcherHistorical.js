@@ -1,6 +1,6 @@
 import {iexAPIKey, iexSandboxKey} from "../../../store/constants";
 
-export const stockFetcherHistorical = (symbol, updateState, timeframe) => {
+export const stockFetcherHistorical = (symbol, updateState, timeframe='5dm') => {
 
         let historicalStock_API_Call = '';
 
