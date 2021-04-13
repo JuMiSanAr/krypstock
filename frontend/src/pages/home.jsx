@@ -36,7 +36,6 @@ const Home = () => {
     useEffect(() => {
         loginUserDataFetch()
         .then(data => {
-            console.log("from user data",data)
             dispatch(loginUserAction(data))
         })
 
