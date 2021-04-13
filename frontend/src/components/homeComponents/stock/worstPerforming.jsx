@@ -41,7 +41,10 @@ const WorstPerformingStocks = ({loss_stock}) => {
                             <tr key={index}>
                                 <td>{data.companyName}</td>
                                 <td>{data.latestPrice.toFixed(2)}</td>
-                                <td>{data.changePercent.toFixed(2)}</td>
+                                <td>
+                                    {data.changePercent > 0 ? <i className="fas fa-angle-double-up" style={{color: 'green'}}></i> : data.changePercent < 0 ? <i className="fas fa-angle-double-down" style={{color: 'red'}}></i> : null}    
+                                    {Math.abs(data.changePercent * 100).toFixed(2)}%
+                                </td>
                                 <td>{data.volume}</td>
                             </tr>
                         )

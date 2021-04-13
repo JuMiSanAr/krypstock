@@ -34,7 +34,10 @@ const TrendyStocks = ({stock_volume}) => {
                             <tr key={index}>
                                 <td>{company.companyName}</td>
                                 <td>{company.latestPrice ? company.latestPrice.toFixed(2) : '0.00' }</td>
-                                <td>{company.changePercent > 0 ? <i className="fas fa-angle-double-up" style={{color: 'green'}}></i> : company.changePercent < 0 ? <i className="fas fa-angle-double-down" style={{color: 'red'}}></i> : null} {company.changePercent ? company.changePercent.toFixed(2) : '0.00' }</td>
+                                <td>
+                                    {company.changePercent > 0 ? <i className="fas fa-angle-double-up" style={{color: 'green'}}></i> : company.changePercent < 0 ? <i className="fas fa-angle-double-down" style={{color: 'red'}}></i> : null} 
+                                    {company.changePercent ? Math.abs(company.changePercent * 100).toFixed(2) : '0.00' }%
+                                </td>
                                 <td>{company.volume}</td>
                             </tr>
                         )
