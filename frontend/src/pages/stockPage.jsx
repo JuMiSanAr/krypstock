@@ -12,6 +12,7 @@ import {stockFetcherHistorical} from "../components/charts/helperFunctions/stock
 import NoIntradayInfo from "../components/charts/noIntradayInfo";
 import PortfoliosWithStock from "../components/stockCards/portfoliosWithStock";
 import StockStats from "../components/stockCards/stockStats";
+import {iexSandboxKey} from "../store/constants";
 
 const StockPage = (props) => {
 
@@ -25,8 +26,15 @@ const StockPage = (props) => {
 
     const symbol = 'AAPL';
 
+    const [keyStats, setKeyStats] = useState('');
+
     useEffect(() => {
-        stockFetcherIntraday(symbol, setIntradayData);
+        fetch(`https://sandbox.iexapis.com/stable/stock/${symbol}/stats?token=${iexSandboxKey}`)
+            .then(res => res.json())
+            .then(data => {
+                setKeyStats(data);
+                stockFetcherIntraday(symbol, setIntradayData);
+            })
     }, []);
 
     useEffect(() => {
@@ -72,7 +80,7 @@ const StockPage = (props) => {
                 }
             </GraphWrapper>
         </ShrinkingComponentWrapper>
-        <StockStats symbol={symbol}/>
+        <StockStats keyStats={keyStats}/>
         <PortfoliosWithStock symbol={symbol}/>
         <NewsStock symbol={symbol} companyName={companyName}/>
     </AllComponentsWrapper>

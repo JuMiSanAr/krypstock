@@ -31,7 +31,6 @@ const Home = () => {
         }
     }, [token]);
 
-
     return (
         <>
             <DoubleButtonContainer>
