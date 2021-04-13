@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import { ShrinkingComponentWrapper } from '../../styles/globalParts/containerStyles';
-import {HeadlineFont, OverviewBar} from '../../styles/components/portfolioStyles';
+import {HeadlineFont, OverviewBar, TempDiv, Desc, NetworthContainer, IconConatiner} from '../../styles/components/portfolioStyles';
 import {useSelector} from 'react-redux';
 import {allTheme} from '../../styles/Themes';
 
@@ -25,9 +25,29 @@ const Overview = ({calculations}) => {
             <HeadlineFont>Overview</HeadlineFont>
             {calculations.map((calculation) => 
             <OverviewBar style={{backgroundColor: getBackgroundColor()}}>
-                <i className="fab fa-ethereum"></i>
-                <HeadlineFont>{calculation.symbol}</HeadlineFont>
-                <p>{calculation.invested} $</p>
+                <IconConatiner>
+                    {calculation.type === "S"
+                    ? <i class="fas fa-briefcase"></i>
+                    : <i className="fab fa-btc"></i>
+                    }
+                    <HeadlineFont>{calculation.symbol}</HeadlineFont>
+                </IconConatiner>
+                <NetworthContainer>
+                    <TempDiv>
+                        <Desc>invested</Desc>
+                        <p>{calculation.invested}</p>
+                    </TempDiv>
+                    <TempDiv>
+                        <Desc>current</Desc>
+                        <p>34924</p>
+                    </TempDiv>
+                </NetworthContainer>
+                <div>
+                    <TempDiv>
+                        <Desc>quantity</Desc>
+                        <p>{calculation.quantity}</p>
+                    </TempDiv>
+                </div>
                 <p><i className="fas fa-angle-double-down"></i> 10%</p>
             </OverviewBar>
             )}

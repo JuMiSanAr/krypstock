@@ -65,8 +65,7 @@ const CandlestickCryptoHistorical = (props) => {
         const timestamp = d.getTime();
 
          console.log(timestamp)
-// 1618224784
-// 1502942400000
+
         const API_Call = `https://api.binance.com/api/v3/klines?symbol=${cryptoCurrency}&interval=${props.time}&startTime=${timestamp}`;
         const config = {
                   mode: 'no-cors',

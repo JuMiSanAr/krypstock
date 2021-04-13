@@ -6,7 +6,7 @@ import StockQuickTrade from '../components/homeComponents/stock/quickTrade';
 import { AllComponentsWrapper, ShrinkingComponentWrapper } from '../styles/globalParts/containerStyles';
 import portfoliosFetch from '../store/fetches/portfoliosFetches';
 import { portfoliosAction } from '../store/actions/portfoliosAction';
-import { CenterH3 } from '../styles/globalParts/textStyles';
+import { CenterH2 } from '../styles/globalParts/textStyles';
 
 const AddRemovePage = () => {
 
@@ -25,7 +25,7 @@ const AddRemovePage = () => {
 
     return (
         <>
-            <CenterH3>Create New Transaction</CenterH3>
+            <CenterH2>Create New Transaction</CenterH2>
             <AllComponentsWrapper>
                 <StockQuickTrade fromPage='AddRemovePage' />
                 <CryptoQuickTrade fromPage='AddRemovePage' />

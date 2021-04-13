@@ -40,7 +40,7 @@ const LoginPage = () => {
                     <WrapDivSI>
                     <img src={logo} out="logo" alt="logo"/>
                     </WrapDivSI>
-                    <WrapDivSI>
+                    <WrapDivSI id="sign-in-form">
                         <div>
                                 <div>
                                     <WrapDivSI>
