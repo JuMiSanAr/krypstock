@@ -38,7 +38,7 @@ export const CryptoQuickTrade = (props) => {
         .then(data => {
             // console.log('crypto data.symbols', data.symbols)
             const nonDuplicatedSymbols = data.symbols.filter( crypto => crypto['quoteAsset'] === 'USDT');
-            for (const crypto of data.symbols) {
+            for (const crypto of nonDuplicatedSymbols) {
                 symbolsSet.add(crypto.baseAsset)
             }
             symbolsSet = Array.from(symbolsSet)  //convert set to array 
@@ -85,7 +85,7 @@ export const CryptoQuickTrade = (props) => {
                 : 
                 <>
                     <TransacWrapper>
-                        <div className="transacItem amountInput">
+                        <div className="amountInput">
                             <label htmlFor="company-input">Portfolio</label>
                             <select className="selector" defaultValue={'DEFAULT'} onChange={ e => setPortfolioID(e.target.value)} required>
                                 <option value="DEFAULT" disabled>Select portfolio</option>
@@ -96,7 +96,7 @@ export const CryptoQuickTrade = (props) => {
                                 }
                             </select>
                         </div>
-                        <div className="currSelect transacItem amountInput">
+                        <div className="currSelect amountInput">
                             <label htmlFor="company-input">Cryptocurrency</label>
                             <input id="company-input" className="selector" list="crypto-symbols" onChange={e => setSymbol(e.target.value)} required/>
                             <datalist id="crypto-symbols" >
