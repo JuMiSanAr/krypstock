@@ -39,11 +39,8 @@ export const Crypto = () => {
     return (
         <AllComponentsWrapper>
             <BitCoin/>
-<<<<<<< HEAD
             <TrendyCrypto />
-=======
             <CryptoNews />
->>>>>>> dev
             <TopPerformingCrypto />
             <WorstPerformingCrypto />
             <TransactionHistory />
