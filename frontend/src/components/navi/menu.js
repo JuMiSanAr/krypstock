@@ -50,7 +50,6 @@ const Menu = ({open, setOpen}) => {
         setOpen(false)
     }
     const toNews = () => {
-        localStorage.removeItem('token');
         history.push('/news');
         setOpen(false)
     }

@@ -27,8 +27,7 @@ export const allStocksAction = (data) => {
     }
 }
 
-export const searchedStocksAction = (fetchedData) => {
-    const data = Object.values(fetchedData).map(data => data.quote);
+export const searchedStocksAction = (data) => {
     return {
         type: SEARCHED_STOCKS,
         payload:{
