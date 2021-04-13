@@ -1,11 +1,12 @@
 import React from 'react'
 import TrendingUpIcon from '@material-ui/icons/TrendingUp';
+import AddBoxIcon from "@material-ui/icons/AddBox";
 
 export const StockTable = ({symbol}) => {
     return (
         <>
                      <tr>
-                    <td className="headcol"><input type="checkbox" name="muhRadio" value=""/></td>
+                    <td className="headcol"><AddBoxIcon className="addIcon"/></td>
                     <td>{symbol.symbol}</td>
                     <td>{symbol.companyName}</td>
                     <td>{symbol.latestPrice}</td>

@@ -16,12 +16,11 @@ export const Crypto = () => {
         fetch('https://api.binance.com/api/v3/ticker/24hr')
             .then(res => res.json())
             .then(data => {
-                const usdtFiltered = data.filter(item => item.symbol.includes("USDT"));
+                const usdtFiltered = data.filter(item => item.symbol.includes("USDT") && item.symbol.length < 7);
                 const action = allCryptosAction(usdtFiltered);
                 dispatch(action);
             })
     }, [])
-
 
     return (
         <AllComponentsWrapper>
