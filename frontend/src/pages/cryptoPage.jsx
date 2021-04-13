@@ -55,15 +55,19 @@ const CryptoPage = (props) => {
                 </div>
               </FormSelectWrapper>
                  <GraphWrapper>
-               {chartTimeframe === '1m'?
+                 {chartTimeframe === '1m'?
                    <CandlestickCryptoIntraday data={intradayData} symbol={symbol} time={chartTimeframe} timeLength={chartTimeframe2}/>
                    :
                    <CandlestickCryptoHistorical data={historicalData} symbol={symbol} time={chartTimeframe} timeLength={chartTimeframe2}/>}
-            </GraphWrapper>
-        </ShrinkingComponentWrapper>
-        <NewsCrypto symbol={symbol}/>
+                    </GraphWrapper>
+                 </ShrinkingComponentWrapper>
+                 <ShrinkingComponentWrapper>
+                <NewsCrypto symbol={symbol}/>
+            </ShrinkingComponentWrapper>
+        
+      
         {/*<CryptoList/>*/}
-        <FooterNav/>
+        {/* <FooterNav/> */}
     </AllComponentsWrapper>
         </>
     )

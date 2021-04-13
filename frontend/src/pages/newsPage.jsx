@@ -7,13 +7,18 @@ import {stockNewsAction} from "../store/actions/newsActions";
 import {useDispatch, useSelector} from "react-redux";
 import NewsStock from "../components/newsFeed/newsStock";
 import SingleStockNewsFeed from "../components/newsFeed/singleStockNewsFeed";
-
+import {ShowMore, HeroHeader, NewsContentWrapper, HeaderTitle} from '../styles/components/stockStyles/newsStyles'
+import SingleCryptoNewsFeed from "../components/newsFeed/singleCryptoNews";
 
 const NewsPage = () => {
 
     const dispatch = useDispatch();
 
-    const [newsNumberShown, setNewsNumberShown] = useState(10);
+    const apiKey = "c9f83156011c478e9d57aafff581a35d"
+    const symbol = "crypto"
+
+    const [newsNumberShown, setNewsNumberShown] = useState(9);
+    const [crytoNews, setCryptoNews] = useState([]);
 
     const [toggleState, setToggleState] = useState(1);
     const toggleTab = (index) => {
@@ -24,7 +29,7 @@ const NewsPage = () => {
 
     useEffect(() => {
         fetchStockNews();
-        // fetchCryptoNews();
+        fetchCryptoNews();
     }, []);
 
     const fetchStockNews = () => {
@@ -35,9 +40,22 @@ const NewsPage = () => {
                 .then(res => res.json())
                 .then(data => {
                     const action = stockNewsAction(data);
+                    console.log(data)
                     dispatch(action);
                 });
         }
+    }
+
+
+    const fetchCryptoNews = () => {
+
+        const API_Call = `https://newsapi.org/v2/everything?q=${symbol}&apiKey=${apiKey}`;
+
+        fetch(API_Call)
+            .then(res => res.json())
+            .then(data => {
+                    setCryptoNews(data.articles);
+                });
     }
 
     // const fetchCryptoNews = () => {
@@ -60,14 +78,30 @@ const NewsPage = () => {
 
     return (
         <>
-            <AllComponentsWrapper>
-                <h1>News</h1>
-                <DoubleButtonContainer>
+            <HeroHeader>
+            </HeroHeader>
+            <HeaderTitle>
+               <h1>News</h1>
+               <div className="toggleTitle">
+               <span>/</span>
+               <h3 onClick={() => toggleTab(1)} numberClicked={toggleState}>Crypto</h3>
+               <span>/</span>
+               <h3 onClick={() => toggleTab(2)} numberClicked={toggleState}>Stock</h3>
+               </div>
+               
+            </HeaderTitle>
+            
+            {/* <AllComponentsWrapper> */}
+            <NewsContentWrapper>
+        
+                {/* <h1>News</h1> */}
+                {/* <DoubleButtonContainer>
                     <LeftButton onClick={() => toggleTab(1)} numberClicked={toggleState}>Stock</LeftButton>
                     <RightButton onClick={() => toggleTab(2)} numberClicked={toggleState}>Crypto</RightButton>
-                </DoubleButtonContainer>
+                </DoubleButtonContainer> */}
+
                 {
-                    allStockNews.length > 0 && toggleState === 1 ?
+                    allStockNews.length > 0 && toggleState === 2 ?
                         allStockNews.slice(0, newsNumberShown).map((news, index) => {
                             return (
                                 <SingleStockNewsFeed key={index} news={news}/>
@@ -75,12 +109,25 @@ const NewsPage = () => {
                         })
                         : ''
                 }
-                {
+                 {
+                    crytoNews.length > 0 && toggleState === 1 ?
+                    crytoNews.slice(0, newsNumberShown).map((news, index) => {
+                            return (
+                                <SingleCryptoNewsFeed key={index} news={news}/>
+                            )
+                        })
+                        : ''
+                }
+          </NewsContentWrapper>
+            {/* </AllComponentsWrapper> */}
+            <ShowMore>
+            {
                     newsNumberShown < 30 ?
                         <h3 onClick={() => setNewsNumberShown(newsNumberShown+5)}>Show more</h3>
                         : ''
-                }
-            </AllComponentsWrapper>
+            }
+            </ShowMore>
+    
         </>
     )
 }

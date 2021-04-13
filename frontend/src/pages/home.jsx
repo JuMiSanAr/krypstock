@@ -1,15 +1,13 @@
 // import Button from '../styles/components/buttonStyles';
 import React, {useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import portfoliosFetch from '../store/fetches/portfoliosFetches';
 import {portfoliosAction} from '../store/actions/portfoliosAction';
 import {Crypto }from '../components/homeComponents/crypto/index';
-import FooterNav from '../components/footerNav';
 import Stock from '../components/homeComponents/stock/index.jsx';
 import { useState } from "react";
 import {DoubleButtonContainer, LeftButton, RightButton, MainContentWrapper} from "../styles/pages/homeStyles"
-import { loginUserDataFetch } from '../store/fetches/loginUserDataFetches';
-import { loginUserAction } from '../store/actions/loginUserAction';
+
 
 
 const Home = () => {
@@ -33,13 +31,6 @@ const Home = () => {
         }
     }, [token]);
 
-    useEffect(() => {
-        loginUserDataFetch()
-        .then(data => {
-            dispatch(loginUserAction(data))
-        })
-
-    }, [])
 
     return (
         <>
@@ -55,7 +46,6 @@ const Home = () => {
                     <Crypto />
                 </div>
             </MainContentWrapper>
-            {/* <FooterNav/> */}
         </>
     )
 }
