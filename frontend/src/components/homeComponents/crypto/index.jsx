@@ -8,6 +8,7 @@ import { CryptoQuickTrade } from './quickTrade';
 import {allCryptosAction} from "../../../store/actions/cryptoActions";
 import {useDispatch} from "react-redux";
 import TopPerformingCrypto from './topPerformingCrypto';
+import WorstPerformingCrypto from './worstPerformingCrypto';
 
 export const Crypto = () => {
 
@@ -33,8 +34,9 @@ export const Crypto = () => {
         <AllComponentsWrapper>
             <BitCoin/>
             <TopPerformingCrypto />
-            <TransactionHistory/>
-            <CryptoNews/>
+            <WorstPerformingCrypto />
+            <TransactionHistory />
+            <CryptoNews />
             <CryptoQuickTrade fromPage='HomePage' />
         </AllComponentsWrapper>
     )
