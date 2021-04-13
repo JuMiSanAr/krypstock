@@ -7,7 +7,7 @@ import {stockNewsAction} from "../store/actions/newsActions";
 import {useDispatch, useSelector} from "react-redux";
 import NewsStock from "../components/newsFeed/newsStock";
 import SingleStockNewsFeed from "../components/newsFeed/singleStockNewsFeed";
-
+import {ShowMore, HeroHeader, NewsContentWrapper, HeaderTitle} from '../styles/components/stockStyles/newsStyles'
 
 const NewsPage = () => {
 
@@ -35,6 +35,7 @@ const NewsPage = () => {
                 .then(res => res.json())
                 .then(data => {
                     const action = stockNewsAction(data);
+                    console.log(data)
                     dispatch(action);
                 });
         }
@@ -60,12 +61,28 @@ const NewsPage = () => {
 
     return (
         <>
-            <AllComponentsWrapper>
-                <h1>News</h1>
-                <DoubleButtonContainer>
+            <HeroHeader>
+            </HeroHeader>
+            <HeaderTitle>
+               <h1>News</h1>
+               <div className="toggleTitle">
+               <span>/</span>
+               <h3>Stock</h3>
+               <span>/</span>
+               <h3>Crypto</h3>
+               </div>
+               
+            </HeaderTitle>
+            
+            {/* <AllComponentsWrapper> */}
+            <NewsContentWrapper>
+        
+                {/* <h1>News</h1> */}
+                {/* <DoubleButtonContainer>
                     <LeftButton onClick={() => toggleTab(1)} numberClicked={toggleState}>Stock</LeftButton>
                     <RightButton onClick={() => toggleTab(2)} numberClicked={toggleState}>Crypto</RightButton>
-                </DoubleButtonContainer>
+                </DoubleButtonContainer> */}
+
                 {
                     allStockNews.length > 0 && toggleState === 1 ?
                         allStockNews.slice(0, newsNumberShown).map((news, index) => {
@@ -75,12 +92,16 @@ const NewsPage = () => {
                         })
                         : ''
                 }
-                {
+          </NewsContentWrapper>
+            {/* </AllComponentsWrapper> */}
+            <ShowMore>
+            {
                     newsNumberShown < 30 ?
                         <h3 onClick={() => setNewsNumberShown(newsNumberShown+5)}>Show more</h3>
                         : ''
-                }
-            </AllComponentsWrapper>
+            }
+            </ShowMore>
+    
         </>
     )
 }
