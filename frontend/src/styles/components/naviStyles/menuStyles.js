@@ -55,7 +55,7 @@ export const MenuItemWrapper = styled.div`
        margin: 0 88px 0 20px;
    }
    .move-right-3{
-       margin: 0 120px 0 20px;
+       margin: 0 139px 0 20px;
    } 
     .move-right-4{
        margin: 0 128px 0 20px;

@@ -10,13 +10,16 @@ import {
 } from "../../styles/components/naviStyles/menuStyles";
 import Logo from "../../assets/logo/logo_with_name.png";
 import FolderIcon from "@material-ui/icons/Folder";
-import SettingsIcon from "@material-ui/icons/Settings";
+// import SettingsIcon from "@material-ui/icons/Settings";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import {useHistory} from "react-router-dom";
 import {useSelector} from "react-redux";
 import { loginUserDataFetch } from '../../store/fetches/loginUserDataFetches';
 import { loginUserAction } from '../../store/actions/loginUserAction';
 import {useDispatch} from 'react-redux';
+import {loginAction} from "../../store/actions/loginActions";
+
+import {BiNews} from 'react-icons/bi';
 
 const Menu = ({open, setOpen}) => {
     
@@ -41,7 +44,14 @@ const Menu = ({open, setOpen}) => {
 
     const logout = () => {
         localStorage.removeItem('token');
+        const actions=loginAction(null,false)
+        dispatch(actions)
         history.push('/sign-in');
+        setOpen(false)
+    }
+    const toNews = () => {
+        localStorage.removeItem('token');
+        history.push('/news');
         setOpen(false)
     }
 
@@ -72,9 +82,14 @@ const Menu = ({open, setOpen}) => {
                 <span className="move-right-2" onClick={() => toPortfolios()}>My portfolios</span>
                 <ArrowForwardIosIcon/>
                 </MenuItemWrapper>
-                <MenuItemWrapper>
+                {/* <MenuItemWrapper>
                 <SettingsIcon/>
                 <span className="move-right-3">Settings</span>
+                <ArrowForwardIosIcon/>
+                </MenuItemWrapper> */}
+                <MenuItemWrapper>
+                <BiNews size={24}/>
+                <span className="move-right-3"  onClick={() => toNews()}>News</span>
                 <ArrowForwardIosIcon/>
                 </MenuItemWrapper>
                 <MenuItemWrapper>

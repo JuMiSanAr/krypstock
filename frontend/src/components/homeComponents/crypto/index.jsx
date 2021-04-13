@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react'
 import { BitCoin } from './bitCoin'
 import { AllComponentsWrapper} from '../../../styles/globalParts/containerStyles';
+// import { PriceToday } from './priceToday';
 import {TransactionHistory} from './transactionHistory'
 import { CryptoNews } from './cryptoNews';
 import { CryptoQuickTrade } from './quickTrade';
@@ -38,11 +39,14 @@ export const Crypto = () => {
     return (
         <AllComponentsWrapper>
             <BitCoin/>
+<<<<<<< HEAD
             <TrendyCrypto />
+=======
+            <CryptoNews />
+>>>>>>> dev
             <TopPerformingCrypto />
             <WorstPerformingCrypto />
             <TransactionHistory />
-            <CryptoNews />
             <CryptoQuickTrade fromPage='HomePage' />
         </AllComponentsWrapper>
     )
