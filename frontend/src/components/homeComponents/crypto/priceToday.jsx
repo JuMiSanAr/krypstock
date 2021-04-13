@@ -1,11 +1,15 @@
 import React from 'react';
+import {useSelector} from 'react-redux';
 import {ShrinkingComponentWrapper } from '../../../styles/globalParts/containerStyles';
 import {Table} from '../../../styles/components/cryptoStyles/cryptoTablesStyles'
 
 
 export const PriceToday = () => {
 
-    
+    const allCryptos = useSelector(state => state.cryptoReducer.allCryptos)
+
+    console.log('allcryptos', allCryptos)
+
     return (
         <ShrinkingComponentWrapper> 
             <h3>Price Today</h3>
@@ -25,16 +29,6 @@ export const PriceToday = () => {
                     </tr>
                     <tr>
                     <td>Monero</td>
-                    <td>57304</td>
-                    <td>7.20%</td>
-                    </tr>
-                    <tr>
-                    <td>LiteCoin</td>
-                    <td>57304</td>
-                    <td>7.20%</td>
-                    </tr>
-                    <tr>
-                    <td>Etherum</td>
                     <td>57304</td>
                     <td>7.20%</td>
                     </tr>

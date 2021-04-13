@@ -7,6 +7,7 @@ import { CryptoNews } from './cryptoNews';
 import { CryptoQuickTrade } from './quickTrade';
 import {allCryptosAction} from "../../../store/actions/cryptoActions";
 import {useDispatch} from "react-redux";
+import TopPerformingCrypto from './topPerformingCrypto';
 
 export const Crypto = () => {
 
@@ -26,7 +27,7 @@ export const Crypto = () => {
     return (
         <AllComponentsWrapper>
             <BitCoin/>
-            <PriceToday/>
+            <TopPerformingCrypto />
             <TransactionHistory/>
             <CryptoNews/>
             <CryptoQuickTrade fromPage='HomePage' />
