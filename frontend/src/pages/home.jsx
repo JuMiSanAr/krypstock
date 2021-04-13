@@ -34,15 +34,15 @@ const Home = () => {
     return (
         <>
             <DoubleButtonContainer>
-                <LeftButton onClick={() => toggleTab(1)} numberClicked={toggleState}>Stock</LeftButton>
-                <RightButton onClick={() => toggleTab(2)} numberClicked={toggleState}>Crypto</RightButton>
+                <LeftButton onClick={() => toggleTab(1)} numberClicked={toggleState}>Crypto</LeftButton>
+                <RightButton onClick={() => toggleTab(2)} numberClicked={toggleState}>Stock</RightButton>
             </DoubleButtonContainer>
             <MainContentWrapper>
                 <div className={toggleState === 1 ? "active-content" : "content"}>
-                    <Stock />
+                    <Crypto />
                 </div>
                 <div className={toggleState === 2 ? "active-content" : "content"}>
-                    <Crypto />
+                    <Stock />
                 </div>
             </MainContentWrapper>
         </>
