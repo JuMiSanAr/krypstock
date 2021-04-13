@@ -5,6 +5,7 @@ import {useHistory} from 'react-router-dom';
 import {MainContainerSI, WrapDivSI} from "../styles/components/signInStyles";
 import logo from "../assets/logo/logo_with_name.png";
 import loginFetch from "../store/fetches/logInFetches";
+import {Link} from "react-router-dom";
 
 
 const LoginPage = () => {
@@ -28,6 +29,8 @@ const LoginPage = () => {
                 setErrorMessage(true);
             })
     }
+
+
 
     return (
         <>
@@ -63,11 +66,10 @@ const LoginPage = () => {
                                 </div>
                             <WrapDivSI>
                                 <div>
-                                    <input type="checkbox" id="remember_me"/>
-                                    <label htmlFor="remember_me">Remember Me</label>
-                                    <p>Forgot your password?</p>
+                                    <button><Link to="/sign-up/registration">Registration</Link></button>
                                         <h1>{errorMessage ? 'Invalid username or password' : ''}</h1>
                                     <button onClick={loginHandler}>Login</button>
+                                    <p>Forgot your password?</p>
                                 </div>
                             </WrapDivSI>
                         </div>
