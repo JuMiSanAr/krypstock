@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import FooterNav from '../components/footerNav';
 import { AllComponentsWrapper, ShrinkingComponentWrapper } from '../styles/globalParts/containerStyles';
-import {HeadlineFont, CakeChartContainer} from '../styles/components/portfolioStyles';
+import {HeadlineFont, CakeChartContainer, PortfolioHeadline} from '../styles/components/portfolioStyles';
 import { PieChart } from 'react-minimal-pie-chart';
 import Graph from '../assets/bit.png'
 import PortfolioChart from '../components/charts/portfolioChart';
@@ -27,16 +27,16 @@ const Portfolio = (props) => {
 
     const dispatch = useDispatch()
     const portfolioInfo = useSelector(state => state.specificPortfolioReducer.portfolioInfo)
-    console.log(portfolioInfo);
 
     return (
         <>
+            <PortfolioHeadline>{portfolioInfo.name}</PortfolioHeadline>
             <AllComponentsWrapper>
                 {
                     portfolioInfo.calculations ? <AllInvestments calculations={portfolioInfo.calculations}/> : ''
                 }
                 {
-                    portfolioInfo.calculations ? <Overview calculations={portfolioInfo.calculations}/> : ''
+                    portfolioInfo.calculations ? <Overview calculations={portfolioInfo.calculations} transactions={portfolioInfo.transactions}/> : ''
                 }
 
                 <ShrinkingComponentWrapper>

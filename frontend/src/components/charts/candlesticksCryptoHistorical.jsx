@@ -6,9 +6,7 @@ const CandlestickCryptoHistorical = (props) => {
 
    // TEMP (Data will come from props)
     const [fetchedData, setData] = useState([]);
-    // const exchange = 'Bitcoin/USD';
-    const cryptoCurrency= 'BTCUSDT';
-    const tick_interval = '1m';
+    const cryptoCurrency= props.symbol?(props.symbol).toUpperCase():'BTCUSDT';
 
     useEffect(() => {
         FetchCrypto();
@@ -27,7 +25,6 @@ const CandlestickCryptoHistorical = (props) => {
             let fixedDay=d.getDate();
             if (fixedDay>=7){
                 d.setDate(d.getDate()-7);
-                // console.log(d)
             }else{
                 d.setMonth(d.getMonth() - 1)
                 d.setDate(d.getDate()-7);
@@ -61,29 +58,23 @@ const CandlestickCryptoHistorical = (props) => {
         }else if(props.timeLength==='5y'){
                 d.setFullYear(d.getFullYear()-5)
         }
-        // console.log("update", d.getTime())
         const timestamp = d.getTime();
 
-         console.log(timestamp)
-// 1618224784
-// 1502942400000
         const API_Call = `https://api.binance.com/api/v3/klines?symbol=${cryptoCurrency}&interval=${props.time}&startTime=${timestamp}`;
         const config = {
                   mode: 'no-cors',
                   headers: {
                     "Content-Type": "application/json",
-                    "User-Agent": "kryptstock",
                     "Access-Control-Allow-Credentials": "true"
                   }
                 }
-
 
         fetch(API_Call)
             .then(res => res.json())
             .then(data => {
 
                 const allData = data.map((obj,index) => {
-                        console.log(obj)
+
                     let timeFix=obj[0]/1000
                     // console.log(timeFix)
                     return {
@@ -96,7 +87,6 @@ const CandlestickCryptoHistorical = (props) => {
                 })
                 setData(allData);
             });
-
         }
 
         useEffect(() => {
@@ -168,9 +158,7 @@ const CandlestickCryptoHistorical = (props) => {
 
             candleSeries.setData(fetchedData);
         }
-
     }, [fetchedData]);
-
 
         return (<>
                 <div id="chartCryptoHistorical"/>
