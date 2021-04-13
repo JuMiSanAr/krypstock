@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import { ShrinkingComponentWrapper } from '../../styles/globalParts/containerStyles';
-import {HeadlineFont, OverviewBar, TempDiv, Desc, NetworthContainer, IconConatiner} from '../../styles/components/portfolioStyles';
+import {HeadlineFont, Headline, OverviewBar, TempDiv, Desc, NetworthContainer, IconConatiner} from '../../styles/components/portfolioStyles';
 import {useSelector} from 'react-redux';
 import {allTheme} from '../../styles/Themes';
 
@@ -22,7 +22,7 @@ const Overview = ({calculations}) => {
 
     return (
         <ShrinkingComponentWrapper>
-            <HeadlineFont>Overview</HeadlineFont>
+            <Headline>Overview</Headline>
             {calculations.map((calculation) => 
             <OverviewBar style={{backgroundColor: getBackgroundColor()}}>
                 <IconConatiner>
