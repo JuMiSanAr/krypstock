@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import FooterNav from '../components/footerNav';
 import {
     AllComponentsWrapper,
 } from "../styles/globalParts/containerStyles";
@@ -133,7 +132,6 @@ const Search = () => {
 
    
 
-
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
     };
@@ -214,7 +212,6 @@ const Search = () => {
                    
                     </TableContainerWrapper>
                     </AllComponentsWrapper>
-                {/* <FooterNav/> */}
         </>
     )
 }

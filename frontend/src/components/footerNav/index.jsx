@@ -4,9 +4,9 @@ import HomeIcon from '@material-ui/icons/Home';
 import TrendingUpIcon from '@material-ui/icons/TrendingUp';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import SearchIcon from '@material-ui/icons/Search';
-import AnnouncementIcon from '@material-ui/icons/Announcement';
+// import AnnouncementIcon from '@material-ui/icons/Announcement';
 import { FooterWrapper } from '../../styles/components/footerNavStyles';
-
+import {BiNews} from 'react-icons/bi';
 
 const FooterNav = ({setOpen}) => {
             const handleMenuState = () => {
@@ -18,7 +18,7 @@ const FooterNav = ({setOpen}) => {
             <Link to="/" style={{textDecoration: 'none', color: 'inherit'}}>
                 <HomeIcon onClick={handleMenuState}/>
             </Link>
-            <Link to="/portfolio/" style={{textDecoration: 'none', color: 'inherit'}}>
+            <Link to="/portfolio/:id" style={{textDecoration: 'none', color: 'inherit'}}>
                 <TrendingUpIcon onClick={handleMenuState}/>
             </Link>
             <Link to="/add-remove/" style={{textDecoration: 'none', color: 'inherit'}}>
@@ -28,7 +28,7 @@ const FooterNav = ({setOpen}) => {
                 <SearchIcon onClick={handleMenuState}/>
             </Link>
             <Link to="/news/" style={{textDecoration: 'none', color: 'inherit'}}>
-                <AnnouncementIcon onClick={handleMenuState}/>
+                <BiNews size={24} onClick={handleMenuState}/>
             </Link>
         </FooterWrapper>
     )
