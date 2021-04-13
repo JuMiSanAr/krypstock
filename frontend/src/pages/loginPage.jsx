@@ -7,10 +7,6 @@ import logo from "../assets/logo/logo_with_name.png";
 import loginFetch from "../store/fetches/logInFetches";
 
 
-
-
-//############################# Component ################################
-
 const LoginPage = () => {
     const [ email, setEmail ] = useState('');
     const [ password, setPassword ] = useState('');
@@ -66,13 +62,13 @@ const LoginPage = () => {
                                     </WrapDivSI>
                                 </div>
                             <WrapDivSI>
-                            <div>
-                            <input type="checkbox" id="remember_me"/>
-                            <label htmlFor="remember_me">Remember Me</label>
-                            <p>Forgot your password?</p>
-                                <h1>{errorMessage ? 'Invalid username or password' : ''}</h1>
-                            <button onClick={loginHandler}>Login</button>
-                            </div>
+                                <div>
+                                    <input type="checkbox" id="remember_me"/>
+                                    <label htmlFor="remember_me">Remember Me</label>
+                                    <p>Forgot your password?</p>
+                                        <h1>{errorMessage ? 'Invalid username or password' : ''}</h1>
+                                    <button onClick={loginHandler}>Login</button>
+                                </div>
                             </WrapDivSI>
                         </div>
                     </WrapDivSI>
