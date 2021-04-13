@@ -65,6 +65,13 @@ export const HeadlineFont = styled.p`
 font-weight: 600;
 font-size: 12px;
 margin-bottom: 0;
+//padding-bottom: 10px;
+`;
+
+export const Headline = styled.p`
+font-weight: 600;
+font-size: 16px;
+padding-bottom: 10px;
 `;
 
 export const CakeChartContainer = styled.div`

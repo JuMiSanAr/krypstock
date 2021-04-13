@@ -1,4 +1,4 @@
-import React from 'react';
+import React,  {useEffect}  from 'react';
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import {
@@ -13,17 +13,19 @@ import FolderIcon from "@material-ui/icons/Folder";
 import SettingsIcon from "@material-ui/icons/Settings";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import {useHistory} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
+import { loginUserDataFetch } from '../../store/fetches/loginUserDataFetches';
+import { loginUserAction } from '../../store/actions/loginUserAction';
+import {useDispatch} from 'react-redux';
 import {loginAction} from "../../store/actions/loginActions";
 
 
 const Menu = ({open, setOpen}) => {
-
-    const userData = useSelector(state => state.logInUserReducer.user_data);
-    console.log("from use selector", userData)
-
+    
     const dispatch = useDispatch();
-
+    const userData = useSelector(state => state.logInUserReducer.user_data.data);
+    console.log("from use selector", userData)
+    
     const history = useHistory();
 
     const isHidden = open ? true : false;
@@ -47,6 +49,15 @@ const Menu = ({open, setOpen}) => {
         setOpen(false)
     }
 
+    useEffect(() => {
+        loginUserDataFetch()
+        .then(data => {
+            console.log("from user data",data)
+            dispatch(loginUserAction(data))
+        })
+
+    }, [])
+
   return (
     <StyledMenu open={open} aria-hidden={!isHidden}>
          <MenuWrapper>
@@ -54,7 +65,7 @@ const Menu = ({open, setOpen}) => {
                 <img src={Logo} alt="logo"/>
             </LogoIconWrapper>
             <MenuContentWrapper>
-                <h2>Hello,</h2>
+                <h2>Hello,{userData ? userData.username : ""}</h2>
                 <MenuItemWrapper>
                 <DashboardIcon/>
                 <span className="move-right-1" onClick={() => toDashboard()}>Dashboard</span>

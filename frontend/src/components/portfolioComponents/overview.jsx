@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import { ShrinkingComponentWrapper } from '../../styles/globalParts/containerStyles';
-import {HeadlineFont, OverviewBar, TempDiv, Desc, NetworthContainer, IconConatiner} from '../../styles/components/portfolioStyles';
+import {HeadlineFont, Headline, OverviewBar, TempDiv, Desc, NetworthContainer, IconConatiner} from '../../styles/components/portfolioStyles';
 import {useSelector} from 'react-redux';
 import {allTheme} from '../../styles/Themes';
 
@@ -22,12 +22,14 @@ const Overview = ({calculations}) => {
 
     return (
         <ShrinkingComponentWrapper>
-            <HeadlineFont>Overview</HeadlineFont>
+            <Headline>Overview</Headline>
             {calculations.map((calculation) => 
+            {if (calculation.invested > 0) {
+                return (
             <OverviewBar style={{backgroundColor: getBackgroundColor()}}>
                 <IconConatiner>
                     {calculation.type === "S"
-                    ? <i class="fas fa-briefcase"></i>
+                    ? <i className="fas fa-briefcase"></i>
                     : <i className="fab fa-btc"></i>
                     }
                     <HeadlineFont>{calculation.symbol}</HeadlineFont>
@@ -50,7 +52,7 @@ const Overview = ({calculations}) => {
                 </div>
                 <p><i className="fas fa-angle-double-down"></i> 10%</p>
             </OverviewBar>
-            )}
+            )}})}
         </ShrinkingComponentWrapper>
 )}
 
