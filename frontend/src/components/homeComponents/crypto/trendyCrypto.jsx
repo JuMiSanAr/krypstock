@@ -8,7 +8,7 @@ import {darkTheme} from '../../../styles/Themes';
 const TopPerformingCrypto = () => {
 
     let allCryptos = useSelector(state => state.cryptoReducer.allCryptos)
-    const [topCryptos, setTopCryptos] = useState([]);
+    const [trendyCryptos, setTrendyCryptos] = useState([]);
 
     //Pagination
     const [page, setPage] = useState(0);
@@ -18,17 +18,17 @@ const TopPerformingCrypto = () => {
     };
 
     useEffect( () => {
-        const top10Cryptos = [];
+        const top20TrendyCryptos = [];
 
         if (allCryptos.length > 0) {
-            allCryptos.sort( (a,b) => b.priceChangePercent - a.priceChangePercent ) // sort in descending order
-            for (let i = 0; i < 10; i++) {
-                top10Cryptos.push(allCryptos[i]);
+            allCryptos.sort( (a,b) => b.quoteVolume - a.quoteVolume ) // sort in descending order
+            for (let i = 0; i < 20; i++) {
+                top20TrendyCryptos.push(allCryptos[i]);
             }
         }
         
-        setTopCryptos(top10Cryptos)
-        console.log('allCryptos', allCryptos)
+        setTrendyCryptos(top20TrendyCryptos)
+        // console.log('allCryptos', allCryptos)
     }, [allCryptos] )
 
     const cutUSDT = (currency) => {
@@ -43,19 +43,20 @@ const TopPerformingCrypto = () => {
             <h3>Top 10 Gainers</h3>
             <Table id="crypto">
                 {
-                    topCryptos !== [] && topCryptos.length === 10 ?
+                    trendyCryptos !== [] && trendyCryptos.length === 10 ?
                     <thead>
                         <tr>
                         <th colSpan='2'>Currency</th>
                         <th>Price</th>
                         <th>Change %</th>
+                        <th>Volume (USDT)</th>
                         </tr>
                     </thead>
                     :
                     null
                 }
                 <tbody>
-                    {topCryptos !== [] && topCryptos.length === 10 ? 
+                    {trendyCryptos !== [] && trendyCryptos.length === 10 ? 
                         topCryptos.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                         .map( (crypto, index) => 
                         <tr key={index}>

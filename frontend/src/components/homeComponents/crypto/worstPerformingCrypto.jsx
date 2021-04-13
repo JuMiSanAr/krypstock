@@ -43,7 +43,7 @@ const WorstPerformingCrypto = () => {
     return (
         <ShrinkingComponentWrapper> 
             <h3>Top 10 Losers</h3>
-            <Table id="crypto">
+            <Table id="crypto-worst">
                 {
                     worstCryptos !== [] && worstCryptos.length === 10 ?
                     <thead>
