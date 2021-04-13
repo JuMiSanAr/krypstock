@@ -10,6 +10,8 @@ import {ContentWrapper, SearchPageInput,
 import { CryptoTable } from '../components/searchCryptoStockTable/cryptoTable';
 import TablePagination from '@material-ui/core/TablePagination';
 import { StockTable } from '../components/searchCryptoStockTable/stockTable';
+import {allCryptosAction} from "../store/actions/cryptoActions";
+import {useDispatch, useSelector} from "react-redux";
 
 
 
@@ -18,27 +20,29 @@ const Search = () => {
     const [page, setPage] = React.useState(0);
     const rowsPerPage = 10;
 
-    const [allStocks, setAllStocks] = useState([]);
-    const [allCryptos, setAllCryptos] = useState([]);
+    const allCryptos = useSelector(state => state.cryptoReducer.allCryptos);
+
     const [search, setSearch] = useState("");
     const [select, setSelect] = useState("All");
-    const [iexVolumeData, setiexVolumeData] = useState([]);
+    const [allStocks, setAllStocks] = useState([]);
     const [showingStocks, setShowingStocks] = useState("loading");
     const [showingCryptos, setShowingCryptos] = useState("loading");
-     
-    console.log(allCryptos)
+
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        fetch('https://sandbox.iexapis.com/stable/stock/market/list/iexvolume?token=Tpk_fec97062db224c2fb7b0b3836ab0e365')
+        fetch('https://sandbox.iexapis.com/stable/stock/market/list/mostactive?token=Tpk_fec97062db224c2fb7b0b3836ab0e365')
             .then(res => res.json())
             .then(data=> {
-                setiexVolumeData(data)
+                setAllStocks(data)
                 return fetch('https://api.binance.com/api/v3/ticker/24hr')
-                    .then(res => res.json())
-                    .then(data => 
-                        setAllCryptos(data))
+            })
+            .then(res => res.json())
+            .then(data => {
+                const usdtFiltered = data.filter(item => item.symbol.includes("USDT"));
+                const action = allCryptosAction(usdtFiltered);
+                dispatch(action);
             });
-                
                
     }, []);
 
@@ -48,7 +52,7 @@ const Search = () => {
 
     useEffect(() => {
          if(select === "Stock" && search !== ""){
-             const filteredStocks = iexVolumeData.filter(stock => stock.companyName.includes(search.replace(/^./, search[0].toUpperCase())) || stock.symbol.includes(search.toUpperCase()))
+             const filteredStocks = allStocks.filter(stock => stock.companyName.includes(search.replace(/^./, search[0].toUpperCase())) || stock.symbol.includes(search.toUpperCase()))
              setShowingStocks(filteredStocks.map((symbol, index) => {
                 return (
 
@@ -67,7 +71,7 @@ const Search = () => {
 
 
     useEffect(() => {
-        if(allCryptos.lenght){
+        if(allCryptos.length){
             setShowingCryptos(allCryptos.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((symbol, index) => {
                 return (
                         <CryptoTable key={index} symbol={symbol}/>
@@ -77,15 +81,15 @@ const Search = () => {
     }, [allCryptos])
 
     useEffect(() => {
-        if (iexVolumeData.length){
-            setShowingStocks(iexVolumeData.map((symbol, index) => {
+        if (allStocks.length){
+            setShowingStocks(allStocks.map((symbol, index) => {
                 return (
                     <StockTable key={index} symbol={symbol}/>
                 )
             }));
         }
         
-    }, [iexVolumeData])
+    }, [allStocks])
 
    
 

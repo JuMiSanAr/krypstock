@@ -7,6 +7,7 @@ import {portfoliosReducer} from './portfoliosReducer';
 import {specificPortfolioReducer} from './specificPortfolioReducer';
 import {newsReducer} from './newsReducer';
 import {logInUserReducer} from './loginUserReducer';
+import {cryptoReducer} from './cryptoReducer';
 
 const rootReducer = combineReducers({
     logInReducer,
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
     portfoliosReducer,
     specificPortfolioReducer,
     logInUserReducer,
-    newsReducer
+    newsReducer,
+    cryptoReducer
 });
 
 export default rootReducer;
