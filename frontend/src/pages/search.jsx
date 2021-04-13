@@ -14,8 +14,6 @@ import {useDispatch, useSelector} from "react-redux";
 import {allStocksAction, allStockSymbolsAction, searchedStocksAction} from "../store/actions/stocksActions";
 import {iexSandboxKey} from "../store/constants";
 
-
-
 const Search = () => {
 
     const [page, setPage] = React.useState(0);
@@ -48,7 +46,6 @@ const Search = () => {
     }, [currentStockSymbols]);
 
     useEffect(() => {
-
         fetch('https://api.binance.com/api/v3/ticker/24hr')
             .then(res => res.json())
             .then(data => {
