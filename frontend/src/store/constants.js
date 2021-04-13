@@ -23,6 +23,9 @@ export const IEX_VOLUME = 'IEX_VOLUME';
 export const ALL_CRYPTO_NEWS = 'ALL_CRYPTO_NEWS';
 export const ALL_STOCK_NEWS = 'ALL_STOCK_NEWS';
 
+export const CURRENT_CRYPTO = 'CURRENT_CRYPTO';
+export const ALL_CRYPTOS = 'ALL_CRYPTOS';
+
 // Base URLs to use for fetching
 export const baseUrlLocal = 'http://localhost:8000/api/';
 export const baseUrlServer = 'https://krypstock.propulsion-learn.ch/api/';
