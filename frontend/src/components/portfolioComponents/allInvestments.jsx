@@ -35,11 +35,7 @@ const AllInvestments = ({calculations}) => {
                         </div>
                         <div>
                             <p>this week</p>
-                            <PercentContainer>
-                                <i className="fas fa-angle-double-up"></i>
-                                {/* <i class="fas fa-angle-double-down"></i> */}
-                                <InvestmentFont>2.5%</InvestmentFont>
-                            </PercentContainer>
+                            <InvestmentFont><i className="fas fa-angle-double-up"></i> 2.5%</InvestmentFont>
                         </div>
                     </InvestmentsContainer>
                 </ShrinkingComponentWrapper>

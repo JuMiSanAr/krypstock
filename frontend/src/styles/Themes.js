@@ -8,6 +8,7 @@ export const lightTheme = {
     secondBackground:'#7970A3',
     mobile: '576px',
     footerBackground: '#2C254A',
+    boxShadow: '0px 10px 18px #888888'
 }
 
 export const darkTheme = {
@@ -17,6 +18,7 @@ export const darkTheme = {
     secondBackground:'#7970A3',
     mobile: '576px',
     footerBackground: '#7970A3',
+    boxShadow: '0px 10px 18px white'
 }
 
 export const allTheme = {
