@@ -13,7 +13,7 @@ export const TransactionHistory = () => {
     
     //Pagination
     const [page, setPage] = React.useState(0);
-    const rowsPerPage = 5;
+    const rowsPerPage = 4;
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
     };

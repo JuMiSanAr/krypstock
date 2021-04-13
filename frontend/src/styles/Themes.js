@@ -36,6 +36,6 @@ export const allTheme = {
     greenGradient: 'linear-gradient(#81FBB8, #28C76F)',
     blueGradient: 'linear-gradient(#ABDCFF , #0396FF)',
     purpleGradient: 'linear-gradient(#E2B0FF, #9F44D3)',
-    violetGradient: 'linear-gradient(#CE9FFC, #7367F0)'
-
+    violetGradient: 'linear-gradient(#CE9FFC, #7367F0)',
+    redGradient: 'linear-gradient(#FFF6B7, #F6416C)',
 }
