@@ -80,7 +80,7 @@ const StockQuickTrade = (props) => {
                     :
                     <>
                         <TransacWrapper>                    
-                            <div className="transacItem amountInput">
+                            <div className="amountInput">
                                 <label htmlFor="company-input">Portfolio</label>
                                 <select className="selector" defaultValue={'DEFAULT'} onChange={ e => setPortfolioID(e.target.value)} required>
                                     <option value="DEFAULT" disabled>Select portfolio</option>
@@ -91,7 +91,7 @@ const StockQuickTrade = (props) => {
                                     }
                                 </select>
                             </div>
-                            <div className="company transacItem amountInput">
+                            <div className="amountInput">
                                 <label htmlFor="company-input">Company</label>
                                 <input id="company-input" list="stock-symbols" name="company" placeholder="company" value={symbol} onChange={e => setSymbol(e.target.value)} required/>
                                 <datalist id="stock-symbols">
@@ -101,13 +101,12 @@ const StockQuickTrade = (props) => {
                                     )
                                     : null}
                                 </datalist>
-                            
                             </div>
-                            <div className="transacItem amountInput">
+                            <div className="amountInput">
                                 <p>Quantity</p>
                                 <input type="number" placeholder="0" value={volume} onChange={e => setVolume(e.target.value)} required/>
                             </div>
-                            <div className="transacItem amountInput">
+                            <div className="amountInput">
                                 <p>Price per share</p>
                                 <input type="number" placeholder="0" value={pricePerShare} onChange={e => setPricePerShare(e.target.value)} required />
                             </div>

@@ -11,7 +11,7 @@ export const Table = styled.table`
     height: 260px;
     
     thead{
-        background-color: ${props => props.id === 'crypto' ? allTheme.orange : props.id === "trans-history" ? allTheme.turquoise : allTheme.green};
+        background: ${props => props.id === 'crypto' ? allTheme.orangeGradient : props.id === "trans-history" ? allTheme.turquoiseGradient : allTheme.greenGradient};
         /* border-bottom: 1px solid #ffcc00; */
         color: ${({ theme }) => theme === lightTheme ? lightTheme.text : darkTheme.text};
         tr{

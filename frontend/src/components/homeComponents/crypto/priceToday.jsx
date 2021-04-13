@@ -4,9 +4,11 @@ import {Table} from '../../../styles/components/cryptoStyles/cryptoTablesStyles'
 
 
 export const PriceToday = () => {
+
+    
     return (
         <ShrinkingComponentWrapper> 
-            <h2>Price Today</h2>
+            <h3>Price Today</h3>
             <Table id="crypto">
                 <thead>
                     <tr>
