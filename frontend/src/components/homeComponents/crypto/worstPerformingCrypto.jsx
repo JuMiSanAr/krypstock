@@ -30,7 +30,7 @@ const WorstPerformingCrypto = () => {
         }
         
         setWorstCryptos(top10WorstCryptos)
-        console.log(worstCryptos)
+        // console.log(worstCryptos)
     }, [allCryptos] )
 
     const cutUSDT = (currency) => {
