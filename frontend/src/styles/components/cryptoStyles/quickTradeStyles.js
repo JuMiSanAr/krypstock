@@ -12,6 +12,8 @@ export const TransacWrapper = styled.div`
     flex-wrap: wrap;
     flex-direction: column;
     margin-top: 30px;
+
+    /* * {border: solid 1px red;} */
     .transacItem{
         display: flex;
         justify-content: space-between;
@@ -21,6 +23,8 @@ export const TransacWrapper = styled.div`
         display: flex;
         justify-content: space-between;
         align-items: center;
+        min-height: 55px;
+        
         input{
             width: 80px;
             height: 25px;
@@ -33,10 +37,9 @@ export const TransacWrapper = styled.div`
             height: 25px;
             text-align: center;
             outline: none;
-            margin-bottom: 1rem;
+            /* margin-bottom: 1rem; */
         }
     }
-
 `;
 
 export const ButtonWrapper = styled.div`
