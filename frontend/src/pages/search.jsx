@@ -38,9 +38,10 @@ const Search = () => {
             fetch(`https://sandbox.iexapis.com/stable/stock/market/batch?types=quote&symbols=${currentStockSymbols}&token=${iexSandboxKey}`)
                 .then(res => res.json())
                 .then(data=> {
-                    const action = searchedStocksAction(data);
+                    const fetchedData = Object.values(data).map(singleData => singleData.quote);
+                    const action = searchedStocksAction(fetchedData);
                     dispatch(action);
-                    setAllStocks(data);
+                    setAllStocks(fetchedData);
             })
         }
     }, [currentStockSymbols]);
@@ -143,8 +144,8 @@ const Search = () => {
                   <SearchPageInput>
                         <select name="" onChange={(val) => handleSelectChange(val.target.value)} >
                             <option value="All">All</option>
-                            <option  value="Crypto">Crypto</option>
-                            <option  value="Stock">Stock</option>
+                            <option value="Crypto">Crypto</option>
+                            <option value="Stock">Stock</option>
                         </select>
                         <input placeholder="Search....." onChange={event => setSearch(event.target.value)}/>
                         <button type="submit">Search</button>
