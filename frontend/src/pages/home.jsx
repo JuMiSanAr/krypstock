@@ -1,6 +1,6 @@
 // import Button from '../styles/components/buttonStyles';
 import React, {useEffect} from 'react';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import portfoliosFetch from '../store/fetches/portfoliosFetches';
 import {portfoliosAction} from '../store/actions/portfoliosAction';
 import {Crypto }from '../components/homeComponents/crypto/index';
@@ -9,12 +9,11 @@ import { useState } from "react";
 import {DoubleButtonContainer, LeftButton, RightButton, MainContentWrapper} from "../styles/pages/homeStyles"
 
 
-
 const Home = () => {
 
     const dispatch = useDispatch();
 
-    const token = localStorage.getItem('token');
+    const token = useSelector(state => state.logInReducer.token) ;
 
     const [toggleState, setToggleState] = useState(1);
     
@@ -34,15 +33,15 @@ const Home = () => {
     return (
         <>
             <DoubleButtonContainer>
-                <LeftButton onClick={() => toggleTab(1)} numberClicked={toggleState}>Stock</LeftButton>
-                <RightButton onClick={() => toggleTab(2)} numberClicked={toggleState}>Crypto</RightButton>
+                <LeftButton onClick={() => toggleTab(1)} numberClicked={toggleState}>Crypto</LeftButton>
+                <RightButton onClick={() => toggleTab(2)} numberClicked={toggleState}>Stock</RightButton>
             </DoubleButtonContainer>
             <MainContentWrapper>
                 <div className={toggleState === 1 ? "active-content" : "content"}>
-                    <Stock />
+                    <Crypto />
                 </div>
                 <div className={toggleState === 2 ? "active-content" : "content"}>
-                    <Crypto />
+                    <Stock />
                 </div>
             </MainContentWrapper>
         </>

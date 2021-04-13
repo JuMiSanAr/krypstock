@@ -17,6 +17,8 @@ import {useSelector} from "react-redux";
 import { loginUserDataFetch } from '../../store/fetches/loginUserDataFetches';
 import { loginUserAction } from '../../store/actions/loginUserAction';
 import {useDispatch} from 'react-redux';
+import {loginAction} from "../../store/actions/loginActions";
+
 import {BiNews} from 'react-icons/bi';
 
 const Menu = ({open, setOpen}) => {
@@ -42,6 +44,8 @@ const Menu = ({open, setOpen}) => {
 
     const logout = () => {
         localStorage.removeItem('token');
+        const actions=loginAction(null,false)
+        dispatch(actions)
         history.push('/sign-in');
         setOpen(false)
     }

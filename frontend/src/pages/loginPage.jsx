@@ -69,7 +69,7 @@ const LoginPage = () => {
                                     <button><Link to="/sign-up/registration">Registration</Link></button>
                                         <h1>{errorMessage ? 'Invalid username or password' : ''}</h1>
                                     <button onClick={loginHandler}>Login</button>
-                                    <p>Forgot your password?</p>
+                                    <Link to="/password-reset"><p>Forgot your password?</p></Link>
                                 </div>
                             </WrapDivSI>
                         </div>
