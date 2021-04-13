@@ -139,7 +139,6 @@ export const NewsContentWrapper = styled.div`
 export const HeaderTitle = styled.div`
     display: flex;
     justify-content: flex-start;
-
     margin: auto;
     border-left: 2px solid white;
     border-bottom: 10px solid white;
@@ -154,7 +153,10 @@ export const HeaderTitle = styled.div`
             margin: 0 20px 0 20px;
         }
         h3{
-         
+            cursor: pointer;
+            :hover{
+                color: yellow;
+            }
         }
     }
     @media only screen and (max-width: 600px) and (min-width: 320px) {
@@ -165,3 +167,51 @@ export const HeaderTitle = styled.div`
         width: 100vw;
     }
 `;
+
+
+// crypto News Styles home page
+
+export const CryptoNewsWrapper = styled(FlexDiv)`
+    flex-direction: column;
+    justify-content: space-between;  
+    
+    .news_date {
+        font-size: 10px;
+        margin-top: 0px;
+        margin-bottom: 10px;
+    }
+    
+    h3 {
+        margin-bottom: 0px;
+    }
+`
+
+export const CryptoHeadlineWrapper = styled.article`
+    
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        margin-bottom: 10px;
+        img{
+        height: 100px;
+        width: 100px;
+        margin-right: 10px;
+    }
+    .publishDetial{
+        display: flex;
+        flex-direction: column;
+    }
+    .summary{
+        display: none;
+    }
+    span{
+     
+        padding: 10px;
+    }
+    h3{
+        cursor: pointer;
+        margin-bottom: 10px;
+    }
+
+`;
+
