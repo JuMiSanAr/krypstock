@@ -33,7 +33,7 @@ export const BitCoin = () => {
             </form>
            </RadioWrapper> 
            <GraphWrapper>
-               {/*<CandlestickCryptoIntraday/>*/}
+               <CandlestickCryptoIntraday/>
            </GraphWrapper>
                 
         </ShrinkingComponentWrapper>

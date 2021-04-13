@@ -33,10 +33,10 @@ export const Crypto = () => {
     return (
         <AllComponentsWrapper>
             <BitCoin/>
+            <CryptoNews />
             <TopPerformingCrypto />
             <WorstPerformingCrypto />
             <TransactionHistory />
-            <CryptoNews />
             <CryptoQuickTrade fromPage='HomePage' />
         </AllComponentsWrapper>
     )
