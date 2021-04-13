@@ -4,12 +4,13 @@ import styled, {ThemeProvider} from "styled-components";
 import {GlobalStyles} from "./styles/GlobalStyles";
 import Toggle from "./components/darkLightmode/toggler";
 import OurRouter from './routes';
-import React, { useState,  useEffect} from "react";
+import React, { useState} from "react";
 import Burger from "./components/navi/burger";
 import Menu from "./components/navi/menu";
 import history from "./history";
 import { Router } from 'react-router';
 import FooterNav from "./components/footerNav";
+import {useSelector} from "react-redux";
 
 const MenuWrapper = styled.div`
   margin-bottom: 80px;
@@ -24,12 +25,16 @@ const ToggleButton = styled.div`
 
 function App() {
 
+  const userLoggedMenu = useSelector(state => state.logInReducer.authenticated);
+
   const [theme, themeToggler, mountedComponent] = UseDarkMode();
   const themeMode = theme === 'light' ? lightTheme : darkTheme;
 
   const [open, setOpen] = useState(false);
 
   if(!mountedComponent) return <div/>
+
+  console.log(history.location.pathname)
 
 
   return (
@@ -41,17 +46,19 @@ function App() {
            </ToggleButton>
             <Router history={history}>
               {
-                history.location.pathname === "/sign-in" || history.location.pathname === "/sign-up" || history.location.pathname === "/sign-up/registration" || history.location.pathname === "/sign-up/congratulation" || history.location.pathname === "/sign-up/verification" ? "": 
-                <MenuWrapper>
+               userLoggedMenu ? 
+               <MenuWrapper>
                 <Burger  open={open} setOpen={setOpen}/>
                 <Menu  open={open} setOpen={setOpen} />
-                </MenuWrapper>
+                </MenuWrapper> : ""
+                
               }
                
                 <OurRouter />
                 {
-                history.location.pathname === "/sign-in" || history.location.pathname === "/sign-up" || history.location.pathname === "/sign-up/registration" || history.location.pathname === "/sign-up/congratulation" || history.location.pathname === "/sign-up/verification" ? "": 
-                <FooterNav setOpen={setOpen}/>
+                 userLoggedMenu ? <FooterNav setOpen={setOpen}/>
+                 : ""
+                
               }
                 
             </Router>
