@@ -22,7 +22,6 @@ const Portfolio = (props) => {
         .then(data => {
             dispatch(specificPortfolioAction(data))
             const pieValues = [];
-            //const other = [];
             const legend = [];
             const colors = [allTheme.vibrantturquoise, allTheme.darkblue, allTheme.yellow, allTheme.vibrantorange, allTheme.green, allTheme.purple, allTheme.blue];
             let colorIndex = 0;
@@ -37,19 +36,34 @@ const Portfolio = (props) => {
                     })
                 
                     colorIndex++;
+                    console.log(colorIndex)
+
                     if (colorIndex === 7) {
                         colorIndex = 0;
                     }   
                 }
             })
-            console.log(pieValues);
-
             pieValues.sort((a, b) => parseFloat(b.value) - parseFloat(a.value));
 
             const other = pieValues.filter((value, index) => index > 5);
-            console.log(other)
 
             pieValues.splice(6)
+
+            let otherValues = [];
+
+            for (let i=0; i<other.length;i++){
+                let value = other[i].value;
+                otherValues.push(value);
+            }
+
+            const sum = otherValues.reduce((a, b) => a + b, 0)
+            console.log(sum)
+
+            pieValues.push( {
+                title: "Other",
+                value: sum,
+                color: colors[colorIndex]
+            })
 
             for (let i=0; i<pieValues.length;i++){
                 legend.push({
