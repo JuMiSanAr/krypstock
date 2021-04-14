@@ -37,7 +37,7 @@ const Overview = ({calculations}) => {
                 <NetworthContainer>
                     <TempDiv>
                         <Desc>invested</Desc>
-                        <p>{calculation.invested}</p>
+                        <p>{calculation.invested} $</p>
                     </TempDiv>
                     <TempDiv>
                         <Desc>current</Desc>
