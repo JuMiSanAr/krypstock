@@ -17,7 +17,7 @@ const CandlestickCryptoHistorical = (props) => {
         if(props.timeLength!=='1d'){
           FetchCrypto();
         }
-    }, [props.timeLength]);
+    }, [props.timeLength,props.symbol]);
 
     const FetchCrypto = () => {
         var d = new Date();

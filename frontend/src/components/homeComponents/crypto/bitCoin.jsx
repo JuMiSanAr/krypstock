@@ -1,51 +1,92 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {ShrinkingComponentWrapper } from '../../../styles/globalParts/containerStyles';
 import {FormSelectWrapper, GraphWrapper, RadioWrapper} from "../../../styles/components/cryptoStyles/bitCoinStyles";
 import CandlestickCryptoIntraday from "../../charts/candlesticksCryptoIntraday";
 import ChartTimeCrypto from "../../charts/chartSelectTimeCrypto";
 import CandlestickCryptoHistorical from "../../charts/candlesticksCryptoHistorical";
+import {postNewTransactionFetch} from "../../../store/fetches/transactionFetches";
 
 
 
-export const BitCoin = () => {
+export const BitCoin = (props) => {
 
     const [chartTimeframe2, setChartTimeframe2] = useState('1d');
 
     const [intradayData, setIntradayData] = useState([]);
     const [historicalData, setHistoricalData] = useState([]);
 
-    const symbol = ('btcusdt').toUpperCase();
+    // const symbol = ('btcusdt').toUpperCase();
+
+    const [symbol, setSymbol] = useState('BTCUSDT');
+    const type = "C";
+
+    const [incorrectSymbol, setIncorrectSymbol] = useState(false);
+
+    const [allSymbols, setAllSymbols] = useState([]);
+
+
+
+    useEffect( () => {
+
+        let symbolsSet = new Set();
+
+        fetch("https://api.binance.com/api/v3/exchangeInfo")
+        .then(res => res.json())
+        .then(data => {
+            // console.log('crypto data.symbols', data.symbols)
+            const nonDuplicatedSymbols = data.symbols.filter( crypto => crypto['quoteAsset'] === 'USDT'&&
+                    crypto.symbol.includes("USDT") &&
+                        !((crypto.symbol).slice(0, 4) === 'USDT') &&
+                        !crypto.symbol.includes("UPUSDT") &&
+                        !crypto.symbol.includes("BULLUSDT") &&
+                        !crypto.symbol.includes("BEARUSDT") &&
+                        !crypto.symbol.includes("STUSDT") &&
+                        !crypto.symbol.includes("DOWNUSDT") &&
+                        !crypto.symbol.includes("ESUSDT")
+            );
+            for (const crypto of nonDuplicatedSymbols) {
+                symbolsSet.add(crypto.symbol )
+            }
+            symbolsSet = Array.from(symbolsSet)  //convert set to array
+            // console.log('symbolsSet', symbolsSet)
+            setAllSymbols(symbolsSet);
+        })
+    }, []);
+
+    useEffect( () => {
+
+        // console.log('allSymbols', allSymbols)
+    }, [allSymbols])
 
     return (
         <>
          <ShrinkingComponentWrapper> 
            <FormSelectWrapper>
            <div className="title">
-               <h3>BitCoin</h3>
+               <h3 >{symbol}</h3>
             </div>
             <div >
                 <ChartTimeCrypto setChart2={setChartTimeframe2}/>
             </div>
+
            </FormSelectWrapper>
            <RadioWrapper>
-           <form>
-                <label>BTC</label>
-                <input type="radio" name="bitcoin" value="btc" />
-                <label>ETH</label>
-                <input type="radio" name="ethereum" value="eth" />
-                <label htmlFor="other">LTC</label>
-                <input type="radio" name="litecoin" value="ltc" />
-                <label htmlFor="other">XMR</label>
-                <input type="radio" name="monero" value="xmr" />
-            </form>
-           </RadioWrapper> 
+              <label htmlFor="company-input">Cryptocurrency</label>
+                            <input id="company-input" className="selector" list="crypto-symbols" onChange={e => setSymbol(e.target.value)} required/>
+                            <datalist id="crypto-symbols" >
+                                { allSymbols && allSymbols.length !== 0 ?
+                                    allSymbols.map( (symbol, index) =>
+                                    <option value={symbol} key={index} />)
+                                    : null
+                                }
+                            </datalist>
+           </RadioWrapper>
            <GraphWrapper>
                {chartTimeframe2 === '1d'?
                    <CandlestickCryptoIntraday data={intradayData} symbol={symbol} timeLength={chartTimeframe2}/>
                    :
                    <CandlestickCryptoHistorical data={historicalData} symbol={symbol} timeLength={chartTimeframe2}/>}
            </GraphWrapper>
-                
         </ShrinkingComponentWrapper>
         </>
     )

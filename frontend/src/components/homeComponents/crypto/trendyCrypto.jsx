@@ -83,7 +83,7 @@ const TrendyCrypto = () => {
                 </tbody>
             </Table>
             {
-                trendyCryptos && trendyCryptos.length !== 0 ?
+                trendyCryptos && trendyCryptos.length !== dataAmount ?
                 <TablePagination 
                     component="div"
                     count={trendyCryptos.length}
