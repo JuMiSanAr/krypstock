@@ -17,72 +17,58 @@ const TopPerformingStocks = ({gain_stock}) => {
 
     return (
         <ShrinkingComponentWrapper>
-            <FormSelectWrapper>
-                <div className="title">
-                    <h3>Top 10 gain stocks</h3>
-                </div>
-               {/* <SelectorWrapper>
-                    <div className="buySell">
-                        <select className="selector">
-                            <option value="today">Today</option>
-                            <option value="one-week">1 Week</option>
-                            <option value="one-month">1 Month</option>
-                            <option value="one-year">1 Year</option>
-                        </select>
-                    </div>
-                </SelectorWrapper>*/}
-            </FormSelectWrapper>  
+                <h3>Top 10 gain stocks</h3>
             <StockTable id="top-performing">
-                <thead>
-                    <tr>
-                        <th>Company</th>
-                        <th>Price</th>
-                        <th>Change %</th>
-                        <th>Volume</th>
-                    </tr>
-                </thead>
-                <tbody>
-
                 {
-                    gain_stock.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                    .map((data, index) => {
-                        return (
-                            <tr key={index}>
-                        <td>{data.companyName}</td>
-                        <td>{data.latestPrice.toFixed(2)}</td>
-                        <td>
-                            {data.changePercent > 0 ? <i className="fas fa-angle-double-up" style={{color: 'green'}}></i> : data.changePercent < 0 ? <i className="fas fa-angle-double-down" style={{color: 'red'}}></i> : null} 
-                            {Math.abs(data.changePercent * 100).toFixed(2)}%
-                        </td>
-                        <td>{data.volume}</td>
-                    </tr>
-                        )
-                    })
+                    gain_stock && gain_stock.length > 0 ?
+                    <thead>
+                        <tr>
+                            <th>Company</th>
+                            <th>Price</th>
+                            <th>Change %</th>
+                            <th>Volume</th>
+                        </tr>
+                    </thead>
+                    : null
                 }
-
-                  {/*  <tr>
-                        <td>ABC</td>
-                        <td>520</td>
-                        <td>20.20%</td>
-                        <td>1.3M</td>
-                    </tr>
-                    <tr>
-                        <td>ABC</td>
-                        <td>520</td>
-                        <td>20.20%</td>
-                        <td>1.3M</td>
-                    </tr>*/}
+                <tbody>
+                    {
+                        gain_stock && gain_stock.length > 0 ?  
+                        gain_stock.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                        .map((data, index) => {
+                            return (
+                                <tr key={index}>
+                                    <td>{data.companyName}</td>
+                                    <td>{data.latestPrice.toFixed(2)}</td>
+                                    <td>
+                                        {data.changePercent > 0 ? <i className="fas fa-angle-double-up" style={{color: 'green'}}></i> : data.changePercent < 0 ? <i className="fas fa-angle-double-down" style={{color: 'red'}}></i> : null} 
+                                        {Math.abs(data.changePercent * 100).toFixed(2)}%
+                                    </td>
+                                    <td>{data.volume}</td>
+                                </tr>
+                            )
+                        })
+                        : 
+                        <tr>
+                            <td colSpan='4'>No information available</td>
+                        </tr>
+                    }
                 </tbody>
             </StockTable>
-            <TablePagination 
-                component="div"
-                count={gain_stock.length}
-                page={page}
-                onChangePage={handleChangePage}
-                rowsPerPage={rowsPerPage}
-                rowsPerPageOptions={[]}
-                style={{color: darkTheme.text}}
-            />
+            {
+                gain_stock && gain_stock.length > 0 ? 
+                <TablePagination 
+                    component="div"
+                    count={gain_stock.length}
+                    page={page}
+                    onChangePage={handleChangePage}
+                    rowsPerPage={rowsPerPage}
+                    rowsPerPageOptions={[]}
+                    style={{color: darkTheme.text}}
+                />
+                :
+                null
+            }
         </ShrinkingComponentWrapper>
     )
 }

@@ -18,15 +18,24 @@ export const CryptoQuickTrade = (props) => {
     const [pricePerCoin, setPricePerCoin] = useState();
     const type = "C";
 
+    const [incorrectSymbol, setIncorrectSymbol] = useState(false);
+
     const [allSymbols, setAllSymbols] = useState([]);
 
     const submitHandler = (e) => {
-        e.preventDefault();
-        // console.log(buySell, portfolioID, symbol, amount, pricePerCoin,type)
-        postNewTransactionFetch(buySell, portfolioID, symbol, amount, pricePerCoin, type)
-        .then(data => {
-            // console.log('in crypto quicktrade submitHandler', data)
-        })
+        if (allSymbols.includes(symbol)) {
+            e.preventDefault();
+            console.log(buySell, portfolioID, symbol, amount, pricePerCoin,type)
+            postNewTransactionFetch(buySell, portfolioID, symbol, amount, pricePerCoin, type)
+                .then(data => {
+                    // console.log('in crypto quicktrade submitHandler', data)
+                })
+            setIncorrectSymbol(false)
+        } else {
+            e.preventDefault();
+            setIncorrectSymbol(true)
+        }
+
     }
 
     useEffect( () => {
@@ -37,12 +46,20 @@ export const CryptoQuickTrade = (props) => {
         .then(res => res.json())
         .then(data => {
             // console.log('crypto data.symbols', data.symbols)
-            const nonDuplicatedSymbols = data.symbols.filter( crypto => crypto['quoteAsset'] === 'USDT');
+            const nonDuplicatedSymbols = data.symbols.filter( crypto => {
+                return(
+                    crypto['quoteAsset'] === 'USDT' && 
+                    !(crypto['baseAsset'].slice(-2) === 'UP' && crypto['baseAsset'].length >= 4) &&
+                    !(crypto['baseAsset'].slice(-4) === 'DOWN' && crypto['baseAsset'].length >= 6) &&
+                    !(crypto['baseAsset'].slice(-4) === 'BULL' && crypto['baseAsset'].length >= 6) &&
+                    !(crypto['baseAsset'].slice(-4) === 'BEAR' && crypto['baseAsset'].length >= 6) 
+                )
+            });
             for (const crypto of nonDuplicatedSymbols) {
                 symbolsSet.add(crypto.baseAsset)
             }
             symbolsSet = Array.from(symbolsSet)  //convert set to array 
-            // console.log('symbolsSet', symbolsSet)
+            console.log('symbolsSet', symbolsSet)
             setAllSymbols(symbolsSet);
         })
     }, []);
@@ -119,9 +136,15 @@ export const CryptoQuickTrade = (props) => {
                                 <p>Total Price</p>
                                 <span>{`${amount*pricePerCoin ? parseFloat(amount*pricePerCoin).toFixed(2) : '0.00'}  USD`}</span>
                         </div>
-                    </TransacWrapper> 
+                    </TransacWrapper>
+                    {
+                        incorrectSymbol ? <span>Enter a correct cryptocurrency</span> : ''
+                    }
+                    {
+
+                    }
                     <ButtonWrapper>
-                        <button type="submit" value="Submit" disabled={!(allSymbols.includes(symbol))}>Submit</button>
+                        <button type="submit" value="Submit">Submit</button>
                     </ButtonWrapper>
                 </>
                 }
@@ -129,3 +152,5 @@ export const CryptoQuickTrade = (props) => {
         </ShrinkingComponentWrapper>
     )
 }
+
+// disabled={!(allSymbols.includes(symbol))

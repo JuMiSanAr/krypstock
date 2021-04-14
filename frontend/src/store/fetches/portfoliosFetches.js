@@ -4,7 +4,7 @@ import {headersWithToken} from "../constants";
 const portfoliosFetch = () => {
     return fetchAPI(
         'portfolios/',
-        undefined,
+        null,
         'GET',
         headersWithToken
     )
@@ -15,7 +15,7 @@ export default portfoliosFetch;
 export const specificPortfolioFetch = (id) => {
     return fetchAPI(
         `portfolios/${id}/`,
-        undefined,
+        null,
         'GET',
         headersWithToken
     )

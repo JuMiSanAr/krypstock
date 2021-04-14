@@ -18,16 +18,21 @@ const TrendyStocks = ({stock_volume}) => {
         <ShrinkingComponentWrapper>
             <h3>Trendy Stocks Today</h3>
             <StockTable id="trendy-stocks">
-                <thead>
-                    <tr>
-                        <th>Company</th>
-                        <th>Price</th>
-                        <th>Change %</th>
-                        <th>Volume</th>
-                    </tr>
-                </thead>
+                {
+                    stock_volume && stock_volume.length > 0 ? 
+                    <thead>
+                        <tr>
+                            <th>Company</th>
+                            <th>Price</th>
+                            <th>Change %</th>
+                            <th>Volume</th>
+                        </tr>
+                    </thead>
+                    : null
+                }
                 <tbody>
                 {
+                    stock_volume && stock_volume.length > 0 ? 
                     stock_volume.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                     .map((company, index) => {
                         return (
@@ -42,37 +47,26 @@ const TrendyStocks = ({stock_volume}) => {
                             </tr>
                         )
                     })
+                    :
+                    <tr>
+                        <td colSpan='4'>No information available</td>
+                    </tr>
                 }
-
-                    {/*<tr>
-                        <td>ABC</td>
-                        <td>520</td>
-                        <td>20.20%</td>
-                        <td>1.3M</td>
-                    </tr>
-                    <tr>
-                        <td>ABC</td>
-                        <td>520</td>
-                        <td>20.20%</td>
-                        <td>1.3M</td>
-                    </tr>
-                    <tr>
-                        <td>ABC</td>
-                        <td>520</td>
-                        <td>20.20%</td>
-                        <td>1.3M</td>
-                    </tr>*/}
                 </tbody>
             </StockTable>
-            <TablePagination 
-                component="div"
-                count={stock_volume.length}
-                page={page}
-                onChangePage={handleChangePage}
-                rowsPerPage={rowsPerPage}
-                rowsPerPageOptions={[]}
-                style={{color: darkTheme.text}}
-            />
+            {
+                stock_volume && stock_volume.length > 0 ? 
+                <TablePagination 
+                    component="div"
+                    count={stock_volume.length}
+                    page={page}
+                    onChangePage={handleChangePage}
+                    rowsPerPage={rowsPerPage}
+                    rowsPerPageOptions={[]}
+                    style={{color: darkTheme.text}}
+                />
+                : null
+            }
         </ShrinkingComponentWrapper>
     )
 }
