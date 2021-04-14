@@ -1,13 +1,20 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {ShrinkingComponentWrapper } from '../../../styles/globalParts/containerStyles';
 import {FormSelectWrapper, GraphWrapper, RadioWrapper} from "../../../styles/components/cryptoStyles/bitCoinStyles";
-import CandlestickStockHistorical from '../../charts/candlesticksStockHistorical'
-import ChartTimeCryptoframeButton from "../../charts/chartSelectTimeCryptoframeButton";
 import CandlestickCryptoIntraday from "../../charts/candlesticksCryptoIntraday";
+import ChartTimeCrypto from "../../charts/chartSelectTimeCrypto";
+import CandlestickCryptoHistorical from "../../charts/candlesticksCryptoHistorical";
 
 
 
 export const BitCoin = () => {
+
+    const [chartTimeframe2, setChartTimeframe2] = useState('1d');
+
+    const [intradayData, setIntradayData] = useState([]);
+    const [historicalData, setHistoricalData] = useState([]);
+
+    const symbol = ('btcusdt').toUpperCase();
 
     return (
         <>
@@ -17,7 +24,7 @@ export const BitCoin = () => {
                <h3>BitCoin</h3>
             </div>
             <div >
-                <ChartTimeCryptoframeButton/>
+                <ChartTimeCrypto setChart2={setChartTimeframe2}/>
             </div>
            </FormSelectWrapper>
            <RadioWrapper>
@@ -33,7 +40,10 @@ export const BitCoin = () => {
             </form>
            </RadioWrapper> 
            <GraphWrapper>
-               <CandlestickCryptoIntraday/>
+               {chartTimeframe2 === '1d'?
+                   <CandlestickCryptoIntraday data={intradayData} symbol={symbol} timeLength={chartTimeframe2}/>
+                   :
+                   <CandlestickCryptoHistorical data={historicalData} symbol={symbol} timeLength={chartTimeframe2}/>}
            </GraphWrapper>
                 
         </ShrinkingComponentWrapper>

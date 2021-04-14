@@ -66,9 +66,9 @@ const LoginPage = () => {
                                 </div>
                             <WrapDivSI>
                                 <div>
+                                    <button onClick={loginHandler}>Login</button>
                                     <button><Link to="/sign-up/registration">Registration</Link></button>
                                         <h1>{errorMessage ? 'Invalid username or password' : ''}</h1>
-                                    <button onClick={loginHandler}>Login</button>
                                     <Link to="/password-reset"><p>Forgot your password?</p></Link>
                                 </div>
                             </WrapDivSI>

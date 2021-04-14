@@ -111,7 +111,7 @@ const CandlestickCryptoIntraday = (props) => {
                 watermark: {
                     color: 'rgba(255, 255, 255, 0.4)',
                     visible: true,
-                    text: `UTC  ${props.symbol}`,
+                    text: `UTC ${props.symbol} Interval: 1m`,
                     fontSize: 10,
                     horzAlign: 'left',
                     vertAlign: 'bottom',
