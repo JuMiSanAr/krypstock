@@ -56,7 +56,7 @@ const CandlestickCryptoIntraday = (props) => {
         document.getElementById('chartCryptoIntraday').innerHTML = '';
           // fetchCrypto();
         }
-    }, [props.timeLength]);
+    }, [props.timeLength,props.symbol]);
 
         const fetchCrypto = () => {
             const binanceSocket = new WebSocket(`wss://stream.binance.com:9443/ws/${cryptoCurrency}@kline_1m`);
