@@ -47,7 +47,7 @@ const NewsCrypto = (props) => {
                     //         <a href={news.url} target='_blank' rel='noreferrer'>Click here to see the complete article</a>
                     //     </NewsWrapper>
                     // </ShrinkingComponentWrapper>
-                    <CryptoNewsWrapper>
+                    <CryptoNewsWrapper key={index}>
                     <CryptoHeadlineWrapper>
                         <img onClick={()=> window.open(news.url, "_blank")} src={news.urlToImage} alt=""/>
                         <div>
