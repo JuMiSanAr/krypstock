@@ -83,15 +83,15 @@ export const BitCoin = (props) => {
            </FormSelectWrapper>
            <RadioWrapper>
               <label htmlFor="company-input">Cryptocurrency</label>
-                            <input id="company-input" className="selector" list="crypto-symbols" onChange={e => setSymbolInput(e.target.value)} required/>
+                            <input id="company-input" className="selector" list="cryptoSymbols" onChange={e => setSymbolInput(`${e.target.value}USDT`)} required/>
                             <button onClick={() => changeSymbol()}>Bouya button</button>
-                            <datalist id="crypto-symbols" >
+                            {/* <datalist id="cryptosymbols" >
                                 { allSymbols && allSymbols.length !== 0 ?
                                     allSymbols.map( (symbol, index) =>
                                     <option value={symbol} key={index} />)
                                     : null
                                 }
-                            </datalist>
+                            </datalist> */}
            </RadioWrapper>
            <GraphWrapper>
                {
