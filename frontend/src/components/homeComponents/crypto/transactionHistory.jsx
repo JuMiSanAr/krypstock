@@ -18,6 +18,13 @@ export const TransactionHistory = () => {
         setPage(newPage);
     };
 
+    const cutUSDT = (currency) => {
+        let onlyCurrency = currency.split('');
+        onlyCurrency.splice(-4, 4);
+        onlyCurrency.join('');
+        return onlyCurrency;
+    }
+
     return (
         <ShrinkingComponentWrapper> 
             <h3>Transaction History</h3>
@@ -40,7 +47,7 @@ export const TransactionHistory = () => {
                             allData.filter(data => data.type === 'C').slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                             .map( (cryptoData, index) => 
                                 <tr key={"Stock"+ index}>
-                                    <td>{cryptoData.symbol}</td>
+                                    <td>{cryptoData.symbol.slice(-4) === 'USDT' ? cutUSDT(cryptoData.symbol) : cryptoData.symbol}</td>
                                     <td><Moment format="DD.MM.YY">{cryptoData.exec_time}</Moment></td>
                                     <td>{cryptoData.cost}</td>
                                     <td>{cryptoData.buy_sell === "B" ? "BUY" : "SELL"}</td>
