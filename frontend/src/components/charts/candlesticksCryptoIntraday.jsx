@@ -4,42 +4,74 @@ import {createChart, CrosshairMode} from "lightweight-charts";
 const CandlestickCryptoIntraday = (props) => {
 
     const [fetchedData, setData] = useState([]);
-    const cryptoCurrency= props.symbol?(props.symbol).toLowerCase():'btcusdt';
+    const cryptoCurrency = props.symbol?(props.symbol).toLowerCase():'btcusdt';
+    const cryptoCurrencyPrevious = props.symbol?(props.symbol).toUpperCase():'BTCUSDT';
+
+    const [websocketOpen, setWebsocketOpen] = useState(false);
 
     useEffect(() => {
-        fetchCrypto();
+        var d = new Date();
+        let fixedDay=d.getDate();
+        if (fixedDay>=7){
+            d.setDate(d.getDate()-1);
+        }else{
+            d.setMonth(d.getMonth() - 1)
+            d.setDate(d.getDate()-1);
+        }
+
+        const timestamp = d.getTime();
+
+        const API_Call = `https://api.binance.com/api/v3/klines?symbol=${cryptoCurrencyPrevious}&interval=15m&startTime=${timestamp}`;
+
+        fetch(API_Call)
+            .then(res => res.json())
+            .then(data => {
+                const allData = data.map((obj,index) => {
+
+                    let timeFix=obj[0]/1000
+                    // console.log(timeFix)
+                    return {
+                        time: timeFix,
+                        open: obj[1],
+                        high: obj[2],
+                        low: obj[3],
+                        close: obj[4]
+                    }
+                })
+                setData(allData);
+                // return fetchCrypto();
+            })
     }, []);
 
+    useEffect(() => {
+        if (fetchedData.length && !websocketOpen) {
+            fetchCrypto()
+            setWebsocketOpen(true);
+        }
+
+    }, [fetchedData]);
+
      useEffect(() => {
-        if(props.timeLength==='1d'){
-          fetchCrypto();
+        if(props.timeLength!=='1d'){
+        document.getElementById('chartCryptoIntraday').innerHTML = '';
+          // fetchCrypto();
         }
     }, [props.timeLength]);
 
         const fetchCrypto = () => {
-
-
-
             const binanceSocket = new WebSocket(`wss://stream.binance.com:9443/ws/${cryptoCurrency}@kline_1m`);
             binanceSocket.onmessage = event => {
+
+                // console.log(fetchedData)
                 const lastdata= JSON.parse(event.data);
-                const timestamp = lastdata["E"]/1000;
+                const timestamp = Math.floor(lastdata["E"]/1000);
 
                 if (fetchedData.length === 0) {
-                    const newData = [...fetchedData]
-
-                    fetchedData.push({
-                            time: timestamp,
-                            open: lastdata["k"]['o'],
-                            high: lastdata["k"]['h'],
-                            low: lastdata["k"]['l'],
-                            close: lastdata["k"]['c']
-                        })
-
-                        setData(newData);
+                    console.log('no length?!?!??!')
                 }
 
                 if (fetchedData.length > 0 && lastdata["k"]['o'] !== fetchedData[fetchedData.length-1]['open']) {
+                    console.log('here', timestamp)
                     const newData = [...fetchedData]
 
                     fetchedData.push({
@@ -51,9 +83,11 @@ const CandlestickCryptoIntraday = (props) => {
                             close: lastdata["k"]['c']
                         })
 
-                        setData(newData);
+                    setData(newData);
                 }
                 else if (fetchedData.length > 0 && lastdata["k"]['o'] === fetchedData[fetchedData.length-1]['open']) {
+                    console.log('there', timestamp)
+
                     const newData = [...fetchedData]
 
                     fetchedData.pop();
@@ -66,15 +100,15 @@ const CandlestickCryptoIntraday = (props) => {
                             close: lastdata["k"]['c']
                         })
 
-                        setData(newData);
+                    setData(newData);
                 }
         }
     }
 
     useEffect(() => {
 
-        document.getElementById('chartCryptoIntraday').innerHTML = '';
         if (fetchedData.length > 0) {
+            document.getElementById('chartCryptoIntraday').innerHTML = '';
              const chart = createChart(document.getElementById('chartCryptoIntraday'), {
                 width: 300,
                 height: 200,
