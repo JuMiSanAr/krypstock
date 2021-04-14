@@ -86,7 +86,7 @@ const CandlestickCryptoIntraday = (props) => {
                     setData(newData);
                 }
                 else if (fetchedData.length > 0 && lastdata["k"]['o'] === fetchedData[fetchedData.length-1]['open']) {
-                    console.log('there', props.symbol)
+                    // console.log('there', props.symbol)
 
                     const newData = [...fetchedData]
 
