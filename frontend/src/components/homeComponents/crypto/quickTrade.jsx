@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 
 export const CryptoQuickTrade = (props) => {
 
-    const dispatch = useDispatch()
+    // const dispatch = useDispatch()
     const allPortfoliosArray = useSelector(state => state.portfoliosReducer.portfolios)
 
     const [buySell, setBuySell] = useState();
@@ -22,10 +22,10 @@ export const CryptoQuickTrade = (props) => {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        console.log(buySell, portfolioID, symbol, amount, pricePerCoin,type)
+        // console.log(buySell, portfolioID, symbol, amount, pricePerCoin,type)
         postNewTransactionFetch(buySell, portfolioID, symbol, amount, pricePerCoin, type)
         .then(data => {
-            console.log('in crypto quicktrade submitHandler', data)
+            // console.log('in crypto quicktrade submitHandler', data)
         })
     }
 

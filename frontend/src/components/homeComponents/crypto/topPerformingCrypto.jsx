@@ -28,7 +28,6 @@ const TopPerformingCrypto = () => {
         }
         
         setTopCryptos(top10Cryptos)
-        console.log('allCryptos', allCryptos)
     }, [allCryptos] )
 
     const cutUSDT = (currency) => {
