@@ -7,6 +7,7 @@ const CandlestickCryptoHistorical = (props) => {
    // TEMP (Data will come from props)
     const [fetchedData, setData] = useState([]);
     const cryptoCurrency= props.symbol?(props.symbol).toUpperCase():'BTCUSDT';
+    const [ticker,setTicker] = useState('1h')
 
     useEffect(() => {
         FetchCrypto();
@@ -20,6 +21,7 @@ const CandlestickCryptoHistorical = (props) => {
 
     const FetchCrypto = () => {
         var d = new Date();
+        let ticker='1h'
         // console.log(props.timeLength)
       if(props.timeLength==='1w'){
             let fixedDay=d.getDate();
@@ -33,34 +35,42 @@ const CandlestickCryptoHistorical = (props) => {
             let fixedMonth=d.getDate();
             if (fixedMonth>=1){
                 d.setMonth(d.getMonth() - 1);
+                ticker='12h'
             }else{
                 d.setFullYear(d.getFullYear()-1)
                 d.setMonth(d.getMonth() - 1);
+                ticker='12h'
             }
         }else if(props.timeLength==='3m') {
             let fixedMonth = d.getDate();
             if (fixedMonth >= 3) {
                 d.setMonth(d.getMonth() - 3);
+                ticker='1d'
             } else {
                 d.setFullYear(d.getFullYear() - 1)
                 d.setMonth(d.getMonth() - 3);
+                ticker='1d'
             }
         }else if(props.timeLength==='6m'){
             let fixedMonth=d.getDate();
             if (fixedMonth>=6){
                 d.setMonth(d.getMonth() - 6);
+                ticker='1d'
             }else{
                 d.setFullYear(d.getFullYear()-1)
                 d.setMonth(d.getMonth() - 6);
+                ticker='1d'
             }
         }else if(props.timeLength==='1y'){
-                d.setFullYear(d.getFullYear()-1)
+                d.setFullYear(d.getFullYear()-1);
+                ticker='3d';
         }else if(props.timeLength==='5y'){
-                d.setFullYear(d.getFullYear()-5)
+                d.setFullYear(d.getFullYear()-5);
+                ticker='3d';
         }
         const timestamp = d.getTime();
-
-        const API_Call = `https://api.binance.com/api/v3/klines?symbol=${cryptoCurrency}&interval=${props.time}&startTime=${timestamp}`;
+        setTicker(ticker)
+        const API_Call = `https://api.binance.com/api/v3/klines?symbol=${cryptoCurrency}&interval=${ticker}&startTime=${timestamp}`;
         const config = {
                   mode: 'no-cors',
                   headers: {
@@ -130,7 +140,7 @@ const CandlestickCryptoHistorical = (props) => {
                 watermark: {
                     color: 'rgba(255, 255, 255, 0.4)',
                     visible: true,
-                     text: `Market: ${props.symbol} Interval:${props.time}`,
+                     text: `Market: ${props.symbol} Interval:${ticker}`,
                     fontSize: 10,
                     horzAlign: 'left',
                     vertAlign: 'bottom',
