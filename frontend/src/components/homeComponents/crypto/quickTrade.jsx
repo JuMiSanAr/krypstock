@@ -28,11 +28,7 @@ export const CryptoQuickTrade = (props) => {
             console.log(buySell, portfolioID, symbol, amount, pricePerCoin,type)
             postNewTransactionFetch(buySell, portfolioID, symbol, amount, pricePerCoin, type)
                 .then(data => {
-                    console.log(data)
                     // console.log('in crypto quicktrade submitHandler', data)
-                })
-                .catch(response => {
-                    console.log(response)
                 })
             setIncorrectSymbol(false)
         } else {
