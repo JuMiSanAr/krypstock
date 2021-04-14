@@ -25,8 +25,7 @@ const Menu = ({open, setOpen}) => {
     
     const dispatch = useDispatch();
     const userData = useSelector(state => state.logInUserReducer.user_data.data);
-    console.log("from use selector", userData)
-    
+
     const history = useHistory();
 
     const isHidden = open ? true : false;
@@ -57,7 +56,6 @@ const Menu = ({open, setOpen}) => {
     useEffect(() => {
         loginUserDataFetch()
         .then(data => {
-            console.log("from user data",data)
             dispatch(loginUserAction(data))
         })
 

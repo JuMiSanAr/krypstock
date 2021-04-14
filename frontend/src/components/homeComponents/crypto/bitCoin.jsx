@@ -1,7 +1,6 @@
 import React from 'react'
 import {ShrinkingComponentWrapper } from '../../../styles/globalParts/containerStyles';
 import {FormSelectWrapper, GraphWrapper, RadioWrapper} from "../../../styles/components/cryptoStyles/bitCoinStyles";
-import CandlestickStockHistorical from '../../charts/candlesticksStockHistorical'
 import ChartTimeCryptoframeButton from "../../charts/chartSelectTimeCryptoframeButton";
 import CandlestickCryptoIntraday from "../../charts/candlesticksCryptoIntraday";
 

@@ -34,8 +34,6 @@ function App() {
 
   if(!mountedComponent) return <div/>
 
-  console.log(history.location.pathname)
-
 
   return (
     <ThemeProvider setOpen={setOpen} theme={themeMode}>
