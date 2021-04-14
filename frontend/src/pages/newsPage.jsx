@@ -40,7 +40,6 @@ const NewsPage = () => {
                 .then(res => res.json())
                 .then(data => {
                     const action = stockNewsAction(data);
-                    console.log(data)
                     dispatch(action);
                 });
         }

@@ -50,24 +50,23 @@ const CryptoPage = (props) => {
                 <div className="title">
                    <h3>Price Chart</h3>
                 </div>
-                <div >Ticker
-                    <ChartTimeCryptoframeButton setChart={setChartTimeframe}/>
-                </div>
+                {/*<div >Ticker*/}
+                {/*    <ChartTimeCryptoframeButton setChart={setChartTimeframe}/>*/}
+                {/*</div>*/}
                 <div >Time
                     <ChartTimeCrypto setChart2={setChartTimeframe2}/>
                 </div>
               </FormSelectWrapper>
                  <GraphWrapper>
-                 {chartTimeframe === '1m'?
-                   <CandlestickCryptoIntraday data={intradayData} symbol={symbol} time={chartTimeframe} timeLength={chartTimeframe2}/>
+                 {chartTimeframe2 === '1d'?
+                   <CandlestickCryptoIntraday data={intradayData} symbol={symbol} timeLength={chartTimeframe2}/>
                    :
-                   <CandlestickCryptoHistorical data={historicalData} symbol={symbol} time={chartTimeframe} timeLength={chartTimeframe2}/>}
+                   <CandlestickCryptoHistorical data={historicalData} symbol={symbol} timeLength={chartTimeframe2}/>}
                     </GraphWrapper>
                  </ShrinkingComponentWrapper>
                  <ShrinkingComponentWrapper>
-                <NewsCrypto symbol={symbol}/>
+                {/*<NewsCrypto symbol={symbol}/>*/}
             </ShrinkingComponentWrapper>
-        {/*<CryptoList/>*/}
         {/* <FooterNav/> */}
     </AllComponentsWrapper>
         </>
