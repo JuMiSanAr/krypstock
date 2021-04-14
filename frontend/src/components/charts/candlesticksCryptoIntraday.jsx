@@ -66,12 +66,7 @@ const CandlestickCryptoIntraday = (props) => {
                 const lastdata= JSON.parse(event.data);
                 const timestamp = Math.floor(lastdata["E"]/1000);
 
-                if (fetchedData.length === 0) {
-                    console.log('no length?!?!??!')
-                }
-
                 if (fetchedData.length > 0 && lastdata["k"]['o'] !== fetchedData[fetchedData.length-1]['open']) {
-                    console.log('here', timestamp)
                     const newData = [...fetchedData]
 
                     fetchedData.push({
@@ -86,7 +81,6 @@ const CandlestickCryptoIntraday = (props) => {
                     setData(newData);
                 }
                 else if (fetchedData.length > 0 && lastdata["k"]['o'] === fetchedData[fetchedData.length-1]['open']) {
-                    console.log('there', timestamp)
 
                     const newData = [...fetchedData]
 
