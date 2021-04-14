@@ -143,9 +143,9 @@ export const CryptoQuickTrade = (props) => {
                             <label>Amount</label>
                             {
                                 buySell === 'B' ?
-                                <input type="text" name="amount" placeholder={amount} value={amount} onChange={e => setAmount(e.target.value)} required/>
+                                <input type="number" name="amount" placeholder={amount} value={amount} onChange={e => setAmount(e.target.value)} required/>
                                 :
-                                <input type="text" name="amount" placeholder={amount} value={amount} onChange={e => setAmount(e.target.value)} required/>
+                                <input type="number" name="amount" placeholder={amount} value={amount} onChange={e => setAmount(e.target.value)} required/>
                             }
                         </div>
                         <div className="transacItem amountInput">
@@ -153,12 +153,12 @@ export const CryptoQuickTrade = (props) => {
                             <input type="number" placeholder={buySell === 'B' ? bidPrice : buySell === 'S' ? askPrice : "0.00"} value={pricePerCoin} onChange={e => setPricePerCoin(e.target.value)} required />
                         </div>
                         <div className="transacItem">
-                                <p>{'Market Price '} {buySell === 'B' ? '(Bid)' : buySell === 'S' ? '(Ask)' : null}</p>
-                                <span>{`${buySell === 'B' ? bidPrice : buySell === 'S' ? askPrice : "0.00"}  USD`}</span>
+                            <p>{'Market Price '} {buySell === 'B' ? '(Bid)' : buySell === 'S' ? '(Ask)' : null}</p>
+                            <span>{`${buySell === 'B' ? bidPrice : buySell === 'S' ? askPrice : "0.00"}  USD`}</span>
                         </div>
                         <div className="transacItem">
-                                <p>Total Price</p>
-                                <span>{`${amount*pricePerCoin ? parseFloat(amount*pricePerCoin).toFixed(2) : '0.00'}  USD`}</span>
+                            <p>Total Price</p>
+                            <span>{`${amount*pricePerCoin ? parseFloat(amount*pricePerCoin).toFixed(2) : '0.00'}  USD`}</span>
                         </div>
                     </TransacWrapper>
                     {
