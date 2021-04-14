@@ -24,17 +24,22 @@ const WorstPerformingStocks = ({loss_stock}) => {
                 </div>
             </FormSelectWrapper>
             <StockTable id="trendy-stocks">
-                <thead>
-                    <tr>
-                        <th>Company</th>
-                        <th>Price</th>
-                        <th>Change %</th>
-                        <th>Volume</th>
-                    </tr>
-                </thead>
-                <tbody>
-
                 {
+                    loss_stock && loss_stock.length > 0 ?
+                    <thead>
+                        <tr>
+                            <th>Company</th>
+                            <th>Price</th>
+                            <th>Change %</th>
+                            <th>Volume</th>
+                        </tr>
+                    </thead>
+                    : 
+                    null
+                }
+                <tbody>
+                {
+                    loss_stock && loss_stock.length > 0 ?
                     loss_stock.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                     .map((data, index) => {
                         return (
@@ -49,18 +54,27 @@ const WorstPerformingStocks = ({loss_stock}) => {
                             </tr>
                         )
                     })
+                    :
+                    <tr>
+                        <td colSpan='4'>No information available</td>
+                    </tr>
                 }
                 </tbody>
             </StockTable>
-            <TablePagination 
-                component="div"
-                count={loss_stock.length}
-                page={page}
-                onChangePage={handleChangePage}
-                rowsPerPage={rowsPerPage}
-                rowsPerPageOptions={[]}
-                style={{color: darkTheme.text}}
-            />
+            {
+                loss_stock && loss_stock.length > 0 ?
+                <TablePagination 
+                    component="div"
+                    count={loss_stock.length}
+                    page={page}
+                    onChangePage={handleChangePage}
+                    rowsPerPage={rowsPerPage}
+                    rowsPerPageOptions={[]}
+                    style={{color: darkTheme.text}}
+                />
+                : 
+                null
+            }
         </ShrinkingComponentWrapper>
     )
 }
