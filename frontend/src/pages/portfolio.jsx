@@ -22,15 +22,13 @@ const Portfolio = (props) => {
         .then(data => {
             dispatch(specificPortfolioAction(data))
             const pieValues = [];
+            //const other = [];
             const legend = [];
             const colors = [allTheme.vibrantturquoise, allTheme.darkblue, allTheme.yellow, allTheme.vibrantorange, allTheme.green, allTheme.purple, allTheme.blue];
             let colorIndex = 0;
 
             data.calculations.forEach((calculation) => {
                 if (calculation.invested > 0) {
-                    /* const r = Math.floor(Math.random() * 256)
-                    const g = Math.floor(Math.random() * 256)
-                    const b = Math.floor(Math.random() * 256) */
 
                     pieValues.push( {
                         title: calculation.symbol,
@@ -41,18 +39,24 @@ const Portfolio = (props) => {
                     colorIndex++;
                     if (colorIndex === 7) {
                         colorIndex = 0;
-                    }
-                    
+                    }   
                 }
             })
+            console.log(pieValues);
+
+            pieValues.sort((a, b) => parseFloat(b.value) - parseFloat(a.value));
+
+            const other = pieValues.filter((value, index) => index > 5);
+            console.log(other)
+
+            pieValues.splice(6)
+
             for (let i=0; i<pieValues.length;i++){
                 legend.push({
                     title: pieValues[i].title, 
                     color: pieValues[i].color});
                 }
-           
-            console.log(legend);
-            
+
             setPieData(pieValues);
             setLegend(legend);
         })
@@ -105,7 +109,7 @@ const Portfolio = (props) => {
                         
                         <LegendWrapper>
                         {legend.map((legend) =>
-                            <LegendContainer>
+                            <LegendContainer key={legend.id}>
                                 <ColorSquare style={{backgroundColor: legend.color}}></ColorSquare>
                                 <p>{legend.title}</p>
                             </LegendContainer>
