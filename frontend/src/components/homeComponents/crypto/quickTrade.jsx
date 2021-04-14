@@ -140,9 +140,6 @@ export const CryptoQuickTrade = (props) => {
                     {
                         incorrectSymbol ? <span>Enter a correct cryptocurrency</span> : ''
                     }
-                    {
-
-                    }
                     <ButtonWrapper>
                         <button type="submit" value="Submit">Submit</button>
                     </ButtonWrapper>
