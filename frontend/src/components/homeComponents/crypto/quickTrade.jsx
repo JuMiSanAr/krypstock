@@ -29,7 +29,7 @@ export const CryptoQuickTrade = (props) => {
         if (allSymbols.includes(symbol)) {
             e.preventDefault();
             console.log(buySell, portfolioID, symbol, amount, pricePerCoin,type)
-            postNewTransactionFetch(buySell, portfolioID, symbol, amount, pricePerCoin, type)
+            postNewTransactionFetch(buySell, portfolioID, `${symbol}USDT`, amount, pricePerCoin, type)
                 .then(data => {
                     // console.log('in crypto quicktrade submitHandler', data)
                 })
@@ -61,7 +61,7 @@ export const CryptoQuickTrade = (props) => {
                 symbolsSet.add(crypto.baseAsset)
             }
             symbolsSet = Array.from(symbolsSet)  //convert set to array 
-            console.log('symbolsSet', symbolsSet)
+            // console.log('symbolsSet', symbolsSet)
             setAllSymbols(symbolsSet);
         })
     }, []);
@@ -133,9 +133,8 @@ export const CryptoQuickTrade = (props) => {
                                 { allSymbols && allSymbols.length !== 0 ?                                       
                                     allSymbols.map( (symbol, index) => {
                                         // console.log('symbol', symbol)
-                                        return <option value={symbol} key={index}>{symbol}</option>
-                                    })         
-                                    // <option value="BTC"/>                                               
+                                        return <option value={symbol} key={index} />
+                                    })                                      
                                     : null
                                 }
                             </datalist>
@@ -152,6 +151,10 @@ export const CryptoQuickTrade = (props) => {
                         <div className="transacItem amountInput">
                             <p>Price per Coin</p>
                             <input type="number" placeholder={buySell === 'B' ? bidPrice : buySell === 'S' ? askPrice : "0"} value={pricePerCoin} onChange={e => setPricePerCoin(e.target.value)} required />
+                        </div>
+                        <div className="transacItem">
+                                <p>{'Market Price '} {buySell === 'B' ? '(Bid)' : buySell === 'S' ? '(Ask)' : null}</p>
+                                <span>{`${buySell === 'B' ? bidPrice : buySell === 'S' ? askPrice : "0"}  USD`}</span>
                         </div>
                         <div className="transacItem">
                                 <p>Total Price</p>
