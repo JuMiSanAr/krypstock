@@ -12,19 +12,21 @@ export const BitCoin = (props) => {
 
     const [chartTimeframe2, setChartTimeframe2] = useState('1d');
 
-    const [intradayData, setIntradayData] = useState([]);
-    const [historicalData, setHistoricalData] = useState([]);
+    // const [intradayData, setIntradayData] = useState([]);
+    // const [historicalData, setHistoricalData] = useState([]);
 
     // const symbol = ('btcusdt').toUpperCase();
 
     const [symbol, setSymbol] = useState('BTCUSDT');
-    const type = "C";
+    const [symbolInput, setSymbolInput] = useState('');
 
-    const [incorrectSymbol, setIncorrectSymbol] = useState(false);
+    // const type = "C";
+    //
+    // const [incorrectSymbol, setIncorrectSymbol] = useState(false);
 
     const [allSymbols, setAllSymbols] = useState([]);
 
-
+    const [stupidToggle, setStupidToggle] = useState(false);
 
     useEffect( () => {
 
@@ -58,6 +60,15 @@ export const BitCoin = (props) => {
         // console.log('allSymbols', allSymbols)
     }, [allSymbols])
 
+    const changeSymbol = () => {
+        setSymbol(symbolInput);
+        setStupidToggle(true);
+    }
+
+    useEffect(() => {
+        setStupidToggle(false);
+    }, [stupidToggle])
+
     return (
         <>
          <ShrinkingComponentWrapper> 
@@ -72,7 +83,8 @@ export const BitCoin = (props) => {
            </FormSelectWrapper>
            <RadioWrapper>
               <label htmlFor="company-input">Cryptocurrency</label>
-                            <input id="company-input" className="selector" list="crypto-symbols" onChange={e => setSymbol(e.target.value)} required/>
+                            <input id="company-input" className="selector" list="crypto-symbols" onChange={e => setSymbolInput(e.target.value)} required/>
+                            <button onClick={() => changeSymbol()}>Bouya button</button>
                             <datalist id="crypto-symbols" >
                                 { allSymbols && allSymbols.length !== 0 ?
                                     allSymbols.map( (symbol, index) =>
@@ -82,10 +94,15 @@ export const BitCoin = (props) => {
                             </datalist>
            </RadioWrapper>
            <GraphWrapper>
-               {chartTimeframe2 === '1d'?
-                   <CandlestickCryptoIntraday data={intradayData} symbol={symbol} timeLength={chartTimeframe2}/>
+               {
+                   chartTimeframe2 === '1d' && !stupidToggle ?
+                       <CandlestickCryptoIntraday symbol={symbol} timeLength={chartTimeframe2}/>
+                       : ''
+               }
+               {chartTimeframe2 === '1d' ?
+                   ''
                    :
-                   <CandlestickCryptoHistorical data={historicalData} symbol={symbol} timeLength={chartTimeframe2}/>}
+                   <CandlestickCryptoHistorical symbol={symbol} timeLength={chartTimeframe2}/>}
            </GraphWrapper>
         </ShrinkingComponentWrapper>
         </>
