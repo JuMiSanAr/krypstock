@@ -19,20 +19,28 @@ const StockQuickTrade = (props) => {
     const [volume, setVolume] = useState();
     const [pricePerShare, setPricePerShare] = useState();
     const type = "S";
-
     const [allSymbols, setAllSymbols] = useState([]);
+    const [incorrectSymbol, setIncorrectSymbol] = useState(false);
+    const [bidPrice, setBidPrice] = useState(0);
+    const [askPrice, askBidPrice] = useState(0);
+
 
     const submitHandler = (e) => {
-        e.preventDefault();
-        console.log(buySell, portfolioID, symbol, volume, pricePerShare,type)
-        postNewTransactionFetch(buySell, portfolioID, symbol, volume, pricePerShare, type)
-        .then(data => {
-            console.log('in stock quicktrade submitHandler', data)
-        })
+        if(allSymbols.includes(symbol)) {
+            e.preventDefault();
+            console.log(buySell, portfolioID, symbol, volume, pricePerShare,type)
+            postNewTransactionFetch(buySell, portfolioID, symbol, volume, pricePerShare, type)
+            .then(data => {
+                console.log('in stock quicktrade submitHandler', data)
+            })
+            setIncorrectSymbol(false)
+        } else {
+            e.preventDefault();
+            setIncorrectSymbol(true)
+        }
     }
 
     useEffect( () => {
-
         const symbolList = []
 
         fetch('https://sandbox.iexapis.com/beta/ref-data/symbols?token=Tpk_fec97062db224c2fb7b0b3836ab0e365')
@@ -92,7 +100,7 @@ const StockQuickTrade = (props) => {
                                 </select>
                             </div>
                             <div className="amountInput">
-                                <label htmlFor="company-input">Company</label>
+                                <label htmlFor="company-input">Symbol</label>
                                 <input id="company-input" list="stock-symbols" name="company" placeholder="company" value={symbol} onChange={e => setSymbol(e.target.value)} required/>
                                 <datalist id="stock-symbols">
                                     { allSymbols && allSymbols.length !== 0 ?
@@ -108,15 +116,22 @@ const StockQuickTrade = (props) => {
                             </div>
                             <div className="amountInput">
                                 <p>Price per share</p>
-                                <input type="number" placeholder="0" value={pricePerShare} onChange={e => setPricePerShare(e.target.value)} required />
+                                <input type="number" placeholder={buySell === 'B' ? bidPrice : buySell === 'S' ? askPrice : "0.00"} value={pricePerShare} onChange={e => setPricePerShare(e.target.value)} required />
+                            </div>
+                            <div className="transacItem">
+                                <p>{'Market Price '} {buySell === 'B' ? '(Bid)' : buySell === 'S' ? '(Ask)' : null}</p>
+                                <span>{`${buySell === 'B' ? bidPrice : buySell === 'S' ? askPrice : "0.00"}  USD`}</span>
                             </div>
                             <div className="transacItem">
                                 <p>Total Price</p>
                                 <span>{`${volume*pricePerShare ? parseFloat(volume*pricePerShare).toFixed(2) : '0.00' }  USD`}</span>
                             </div>
                         </TransacWrapper> 
+                        {
+                            incorrectSymbol ? <span>Symbol given is invalid</span> : ''
+                        }
                         <ButtonWrapper>
-                            <button type="submit" value="Submit" disabled={!(allSymbols.includes(symbol))}>Submit</button>
+                            <button type="submit" value="Submit">Submit</button>
                         </ButtonWrapper>
                     </>
                 }
@@ -126,3 +141,6 @@ const StockQuickTrade = (props) => {
 }
 
 export default StockQuickTrade
+
+
+// disabled={!(allSymbols.includes(symbol))}
