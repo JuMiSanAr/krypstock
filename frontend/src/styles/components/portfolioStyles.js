@@ -102,3 +102,20 @@ justify-content: center;
 align-items: center;
 padding: 5px;
 `;
+
+export const LegendContainer = styled.div`
+display: flex;
+align-items: center;
+padding: 0 10px;
+`;
+
+export const ColorSquare = styled.div`
+width: 10px;
+height: 10px;
+margin: 10px;
+`;
+
+export const LegendWrapper = styled.div`
+display: flex;
+flex-wrap: wrap;
+`;

@@ -6,6 +6,7 @@ import {ShrinkingComponentWrapper } from '../../styles/globalParts/containerStyl
 import deletePortfolioFetch from '../../store/fetches/deletePortfolioFetches';
 import {useDispatch, useSelector} from "react-redux";
 import { DELETE_PORTFOLIO } from '../../store/constants';
+import {useHistory} from "react-router-dom";
 
 
 
@@ -29,6 +30,7 @@ const Delete = styled.div`
 
 export const PortfolioCollection = () => {
 
+    const history = useHistory();
     const dispatch = useDispatch();
 
     const portfolioData = useSelector(state => state.portfoliosReducer.portfolios);
@@ -43,6 +45,10 @@ export const PortfolioCollection = () => {
         dispatch(action)
     }
 
+    const toPortfolio = (id) => {
+        history.push(`/portfolio/${id}`);
+    }
+
     return (
         <>
              
@@ -52,7 +58,7 @@ export const PortfolioCollection = () => {
 
                         <IconTitle>
                             <FolderIcon fontSize="large"/>
-                            <h2><a href={`https://krypstock.propulsion-learn.ch/portfolio/${portfolio.id}`}>{portfolio.name}</a></h2>
+                            <h2 onClick={() => {toPortfolio(portfolio.id)}}>{portfolio.name}</h2>
                         </IconTitle>
                         <div>
                             <p>
