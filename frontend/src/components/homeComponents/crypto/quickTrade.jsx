@@ -30,9 +30,6 @@ export const CryptoQuickTrade = (props) => {
                 .then(data => {
                     // console.log('in crypto quicktrade submitHandler', data)
                 })
-                .catch(response => {
-                    console.log(response)
-                })
             setIncorrectSymbol(false)
         } else {
             e.preventDefault();

@@ -35,7 +35,7 @@ const CryptoPage = (props) => {
 
     useEffect(() => {
         // cryptoFetcherHistorical(symbol, setHistoricalData, chartTimeframe);
-    }, [chartTimeframe])
+    }, [chartTimeframe2])
 
 
     return (
