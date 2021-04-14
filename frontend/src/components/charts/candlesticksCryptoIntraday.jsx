@@ -29,7 +29,6 @@ const CandlestickCryptoIntraday = (props) => {
                 const allData = data.map((obj,index) => {
 
                     let timeFix=obj[0]/1000
-                    // console.log(timeFix)
                     return {
                         time: timeFix,
                         open: obj[1],
@@ -39,7 +38,6 @@ const CandlestickCryptoIntraday = (props) => {
                     }
                 })
                 setData(allData);
-                // return fetchCrypto();
             })
     }, []);
 
@@ -66,12 +64,7 @@ const CandlestickCryptoIntraday = (props) => {
                 const lastdata= JSON.parse(event.data);
                 const timestamp = Math.floor(lastdata["E"]/1000);
 
-                if (fetchedData.length === 0) {
-                    console.log('no length?!?!??!')
-                }
-
                 if (fetchedData.length > 0 && lastdata["k"]['o'] !== fetchedData[fetchedData.length-1]['open']) {
-                    console.log('here', timestamp)
                     const newData = [...fetchedData]
 
                     fetchedData.push({
@@ -86,7 +79,6 @@ const CandlestickCryptoIntraday = (props) => {
                     setData(newData);
                 }
                 else if (fetchedData.length > 0 && lastdata["k"]['o'] === fetchedData[fetchedData.length-1]['open']) {
-                    // console.log('there', props.symbol)
 
                     const newData = [...fetchedData]
 

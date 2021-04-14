@@ -24,17 +24,23 @@ const AllInvestments = ({calculations}) => {
                     <HeadlineFont>All investments</HeadlineFont >
                     <InvestmentsContainer>
                         <div>
-                            <p>invested</p>
+                            <p>Invested</p>
                             <InvestmentFont>
-                                {totalInvestments} $
+                               $ {totalInvestments}
                             </InvestmentFont>
                         </div>
                         <div>
-                            <p>balance</p>
-                            <InvestmentFont>43'984 $</InvestmentFont>
+                            <p>Current value</p>
+                            <InvestmentFont>
+                               $ {totalInvestments}
+                            </InvestmentFont>
                         </div>
                         <div>
-                            <p>this week</p>
+                            <p>Previous balance</p>
+                            <InvestmentFont>$ 43'984</InvestmentFont>
+                        </div>
+                        <div>
+                            <p>Today</p>
                             <InvestmentFont><i className="fas fa-angle-double-up"></i> 2.5%</InvestmentFont>
                         </div>
                     </InvestmentsContainer>

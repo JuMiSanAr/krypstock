@@ -11,18 +11,23 @@ import {specificPortfolioAction} from "../store/actions/specificPortfolioAction"
 import {useDispatch, useSelector} from "react-redux";
 import { allCryptosAction } from '../store/actions/cryptoActions';
 import {allTheme} from '../styles/Themes';
+import {iexSandboxKey} from "../store/constants";
 
 const Portfolio = (props) => {
+
+    const [portfolioId, setPortfolioId] = useState('');
+
+    const [realtimeDataStock, setRealtimeDataStock] = useState([]);
 
     useEffect(() => {
         const url = window.location.href;
         const id = url.substring(url.lastIndexOf('/') + 1);
         setPortfolioId(id);
+
         specificPortfolioFetch(id)
         .then(data => {
             dispatch(specificPortfolioAction(data))
             const pieValues = [];
-            //const other = [];
             const legend = [];
             const colors = [allTheme.vibrantturquoise, allTheme.darkblue, allTheme.yellow, allTheme.vibrantorange, allTheme.green, allTheme.purple, allTheme.blue];
             let colorIndex = 0;
@@ -35,33 +40,60 @@ const Portfolio = (props) => {
                         value: calculation.invested,
                         color: colors[colorIndex]
                     })
-                
+
                     colorIndex++;
                     if (colorIndex === 7) {
                         colorIndex = 0;
-                    }   
+                    }
                 }
             })
-            console.log(pieValues);
+            // console.log(pieValues);
 
             pieValues.sort((a, b) => parseFloat(b.value) - parseFloat(a.value));
 
             const other = pieValues.filter((value, index) => index > 5);
-            console.log(other)
+            // console.log(other)
 
             pieValues.splice(6)
 
             for (let i=0; i<pieValues.length;i++){
                 legend.push({
-                    title: pieValues[i].title, 
+                    title: pieValues[i].title,
                     color: pieValues[i].color});
                 }
 
             setPieData(pieValues);
             setLegend(legend);
+
+            const stockSymbols = [];
+            const cryptoSymbols = [];
+
+            data.calculations.forEach(symbol => {
+                if (symbol.type === 'S') {
+                    stockSymbols.push(symbol.symbol);
+                } else if (symbol.type === 'C') {
+                    cryptoSymbols.push(symbol.symbol);
+                }
+            })
+
+            let stocksString = '';
+
+             stockSymbols.forEach((symbol, index) => {
+
+                stocksString += symbol;
+                if (index !== stockSymbols.length-1) {
+                    stocksString += ',';
+                }
+            })
+
+            fetch(`https://sandbox.iexapis.com/stable/stock/market/batch?types=price&symbols=${stocksString}&token=${iexSandboxKey}`)
+                .then(res => res.json())
+                .then(data => {
+                    setRealtimeDataStock(data);
+                })
         })
     }, [])
-    
+
     const [pieData, setPieData] = useState([]);
     const [legend, setLegend] = useState([])
 
@@ -75,7 +107,6 @@ const Portfolio = (props) => {
             })
     }, [])
 
-    const [portfolioId, setPortfolioId] = useState('');
 
     const dispatch = useDispatch()
     const portfolioInfo = useSelector(state => state.specificPortfolioReducer.portfolioInfo)
@@ -94,7 +125,6 @@ const Portfolio = (props) => {
                 <ShrinkingComponentWrapper>
                     <CakeChartContainer>
                         <HeadlineFont>My Investments</HeadlineFont>
-
                         {
                             pieData.length > 0 ? <PieChart
                             /* label={props => { return props.dataEntry.title;}}
@@ -106,17 +136,14 @@ const Portfolio = (props) => {
                             labelPosition={70}
                         />  : ''
                         }
-                        
                         <LegendWrapper>
-                        {legend.map((legend) =>
-                            <LegendContainer key={legend.id}>
+                        {legend.map((legend, index) =>
+                            <LegendContainer key={index}>
                                 <ColorSquare style={{backgroundColor: legend.color}}></ColorSquare>
                                 <p>{legend.title}</p>
                             </LegendContainer>
                         )}
                         </LegendWrapper>
-                        
-                        
                     </CakeChartContainer>
                 </ShrinkingComponentWrapper>
                 <ShrinkingComponentWrapper>
