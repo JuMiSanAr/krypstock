@@ -14,17 +14,14 @@ const CandlestickCryptoIntraday = (props) => {
         if(props.timeLength==='1d'){
           fetchCrypto();
         }
-    }, [props.timeLength]);
+    }, [props.timeLength,props.symbol]);
 
         const fetchCrypto = () => {
-
-
 
             const binanceSocket = new WebSocket(`wss://stream.binance.com:9443/ws/${cryptoCurrency}@kline_1m`);
             binanceSocket.onmessage = event => {
                 const lastdata= JSON.parse(event.data);
                 const timestamp = lastdata["E"]/1000;
-
                 if (fetchedData.length === 0) {
                     const newData = [...fetchedData]
 

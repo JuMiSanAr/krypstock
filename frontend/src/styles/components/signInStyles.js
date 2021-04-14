@@ -59,5 +59,9 @@ export const WrapDivSI = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  a {
+    color: #FFFFFF;
+    text-decoration: none;
+    }
 `;
 
