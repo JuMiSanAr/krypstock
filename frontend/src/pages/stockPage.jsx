@@ -24,7 +24,8 @@ const StockPage = (props) => {
     const [intradayData, setIntradayData] = useState([]);
     const [historicalData, setHistoricalData] = useState([]);
 
-    const symbol = 'AAPL';
+    const url = window.location.href;
+    const symbol = url.substring(url.lastIndexOf('/') + 1);
 
     const [keyStats, setKeyStats] = useState('');
 
