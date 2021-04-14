@@ -15,7 +15,11 @@ export const StockTable = ({symbol}) => {
         <>
                      <tr>
                     <td className="headcol"><AddBoxIcon className="addIcon"/></td>
-                    <td onDoubleClick={() => toSymbolPage()}>{symbol.symbol}</td>
+                    <td onClick={() => {
+                        return (
+                            !window.getSelection().toString().length ? toSymbolPage() : ''
+                        )
+                    }}>{symbol.symbol}</td>
                     <td>{symbol.companyName}</td>
                     <td>{symbol.latestPrice}</td>
                     <td>{symbol.change}</td>

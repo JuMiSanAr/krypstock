@@ -20,7 +20,11 @@ export const CryptoTable = ({symbol}) => {
         {
             <tr>
             <td className="headcol"><AddBoxIcon className="addIcon"/></td>
-            <td onDoubleClick={() => toSymbolPage()}>{symbol.symbol}</td>
+            <td onClick={() => {
+                return (
+                    !window.getSelection().toString().length ? toSymbolPage() : ''
+                )
+            }}>{symbol.symbol}</td>
             <td>{symbol.lastPrice}</td>
             <td>{symbol.priceChange}</td>
             <td>{symbol.priceChangePercent}</td>
