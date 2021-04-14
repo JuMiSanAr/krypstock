@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { AllComponentsWrapper, ShrinkingComponentWrapper } from '../styles/globalParts/containerStyles';
-import {HeadlineFont, CakeChartContainer, PortfolioHeadline} from '../styles/components/portfolioStyles';
+import {HeadlineFont, CakeChartContainer, PortfolioHeadline, LegendContainer, ColorSquare, LegendWrapper} from '../styles/components/portfolioStyles';
 import { PieChart } from 'react-minimal-pie-chart';
 import Graph from '../assets/bit.png'
 import PortfolioChart from '../components/charts/portfolioChart';
@@ -45,13 +45,13 @@ const Portfolio = (props) => {
                     
                 }
             })
-            /* for (let i=0; i<pieValues.length;i++){
+            for (let i=0; i<pieValues.length;i++){
                 legend.push({
                     title: pieValues[i].title, 
                     color: pieValues[i].color});
                 }
            
-            console.log(legend); */
+            console.log(legend);
             
             setPieData(pieValues);
             setLegend(legend);
@@ -93,15 +93,25 @@ const Portfolio = (props) => {
 
                         {
                             pieData.length > 0 ? <PieChart
-                            label={props => { return props.dataEntry.title;}}
+                            /* label={props => { return props.dataEntry.title;}}
                             labelStyle={{
                                 fontSize: "7px",
-                                color: "white"
-                              }}
+                                textColor: "white"
+                              }} */
                             data={pieData}
                             labelPosition={70}
                         />  : ''
                         }
+                        
+                        <LegendWrapper>
+                        {legend.map((legend) =>
+                            <LegendContainer>
+                                <ColorSquare style={{backgroundColor: legend.color}}></ColorSquare>
+                                <p>{legend.title}</p>
+                            </LegendContainer>
+                        )}
+                        </LegendWrapper>
+                        
                         
                     </CakeChartContainer>
                 </ShrinkingComponentWrapper>
