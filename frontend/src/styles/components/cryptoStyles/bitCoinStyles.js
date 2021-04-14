@@ -22,7 +22,7 @@ export const FormSelectWrapper = styled.div`
 
 export const RadioWrapper = styled.div`
     display: flex;
-    justify-content: flex-end;
+    flex-direction: column;
 `;
 
 export const GraphWrapper = styled.div`  

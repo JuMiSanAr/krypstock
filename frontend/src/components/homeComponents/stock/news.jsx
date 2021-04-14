@@ -18,6 +18,7 @@ const News = ({stock_news}) => {
         <ShrinkingComponentWrapper>
             <h3>Latest News</h3>
                 {
+                    stock_news && stock_news.length > 0 ?
                     stock_news.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((news, index) => {
 
                         const date = new Date(news.datetime);
@@ -31,7 +32,7 @@ const News = ({stock_news}) => {
                             minute: "2-digit"
                         }
 
-                    const publishDate = date.toLocaleString('en-US', dateOptions);
+                        const publishDate = date.toLocaleString('en-US', dateOptions);
 
                          return (
                             //   <NewsWrapper key={index}>
@@ -61,11 +62,12 @@ const News = ({stock_news}) => {
 
                          )
                         }
-
                     )
+                    : 
+                    <span>No information available</span>
                 }
                 {
-                 stock_news &&  stock_news.length !== 0 ?
+                 stock_news &&  stock_news.length > 0 ?
                 <TablePagination 
                     component="div"
                     count={ stock_news.length}
@@ -76,8 +78,7 @@ const News = ({stock_news}) => {
                     style={{color: darkTheme.text}}
                 />
                 : null
-            }
-
+                }
         </ShrinkingComponentWrapper>
     )
 }
