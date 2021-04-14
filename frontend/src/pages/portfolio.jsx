@@ -49,18 +49,9 @@ const Portfolio = (props) => {
                     }
                 }
             })
-<<<<<<< HEAD
             pieValues.sort((a, b) => parseFloat(b.value) - parseFloat(a.value));
 
             const other = pieValues.filter((value, index) => index > 5);
-=======
-            // console.log(pieValues);
-
-            pieValues.sort((a, b) => parseFloat(b.value) - parseFloat(a.value));
-
-            const other = pieValues.filter((value, index) => index > 5);
-            // console.log(other)
->>>>>>> dev
 
             pieValues.splice(6)
 
