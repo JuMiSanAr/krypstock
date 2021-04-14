@@ -1,25 +1,33 @@
 import React from 'react'
-// import {Table, TableWrapper } from '../../styles/pages/searchStyles'
-// import TablePagination from '@material-ui/core/TablePagination';
-import TrendingUpIcon from '@material-ui/icons/TrendingUp';
 import AddBoxIcon from "@material-ui/icons/AddBox";
 import {useHistory} from "react-router-dom";
 
 
 
-export const CryptoTable = ({symbol}) => {
+
+export const CryptoTable = ({symbol, setSymbolCrypto, setCryptoShowModal}) => {
 
     const history = useHistory();
 
+
     const toSymbolPage = () => {
         history.push(`/crypto/${symbol.symbol}`);
+    }
+
+
+    const addTransaction = () =>{
+        // //   console.log(symbol.symbol) 
+          setSymbolCrypto(symbol.symbol) 
+        //   setShowModal(prev => !prev);
+        setCryptoShowModal(true);
+        
     }
 
     return (
         <>
         {
             <tr>
-            <td className="headcol"><AddBoxIcon className="addIcon"/></td>
+            <td onClick={() => addTransaction()} className="headcol"><AddBoxIcon className="addIcon"/></td>
             <td onClick={() => {
                 return (
                     !window.getSelection().toString().length ? toSymbolPage() : ''
