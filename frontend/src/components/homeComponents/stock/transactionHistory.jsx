@@ -5,21 +5,21 @@ import { StockTable } from '../../../styles/components/stockStyles/tableStyles';
 import { ShrinkingComponentWrapper } from '../../../styles/globalParts/containerStyles';
 import Moment from 'react-moment';
 import TablePagination from '@material-ui/core/TablePagination';
-import {darkTheme, lightTheme} from '../../../styles/Themes';
-import { FormHelperText } from '@material-ui/core';
+import {darkTheme} from '../../../styles/Themes';
+// import { FormHelperText } from '@material-ui/core';
 import {transactionsAction} from '../../../store/actions/transactionsAction';
 
 const TransactionHistory = (props) => {
 
     const dispatch = useDispatch();
-    const [page, setPage] = React.useState(0);
+    const [page, setPage] = useState(0);
     const rowsPerPage = 4;
     const allData = useSelector(state => state.transactionsReducer.transactions);
     
     useEffect(() => {
         transactionFetch()
         .then(data => {
-            console.log("data.results", data.results);
+            // console.log("data.results", data.results);
             const action = transactionsAction(data.results)
             dispatch(action);
         })     

@@ -2,13 +2,21 @@ import React, {useEffect, useState} from 'react';
 // import {ShrinkingComponentWrapper} from "../../styles/globalParts/containerStyles";
 // import {NewsWrapper} from "../../styles/components/stockStyles/newsStyles";
 import {CryptoHeadlineWrapper, CryptoNewsWrapper} from "../../styles/components/stockStyles/newsStyles";
+import TablePagination from '@material-ui/core/TablePagination';
+import {darkTheme} from '../../styles/Themes';
+
 const NewsCrypto = (props) => {
 
     const [allNews, setAllNews] = useState([]);
     const apiKey = "c9f83156011c478e9d57aafff581a35d"
     const symbol = (props.symbol).slice(0,3)
 
-    const [newsNumberShown, setNewsNumberShown] = useState(2);
+     //Pagination
+     const [page, setPage] = useState(0);
+     const rowsPerPage = 3;
+     const handleChangePage = (event, newPage) => {
+         setPage(newPage);
+     };
 
     useEffect(() => {
         fetchNews();
@@ -28,7 +36,7 @@ const NewsCrypto = (props) => {
     return (
         <>
             <h3>Latest news about {(props.symbol).toUpperCase()}</h3>
-            {allNews.length > 0 ? allNews.slice(0, newsNumberShown).map((news, index) => {
+            {allNews.length > 0 ? allNews.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((news, index) => {
                 return (
                     // <ShrinkingComponentWrapper key={index}>
                     //     <NewsWrapper>
@@ -55,13 +63,19 @@ const NewsCrypto = (props) => {
             })
             : ''
             }
-               {/* <ShowMore> */}
-            {
-                    newsNumberShown < 30 ?
-                        <h3 onClick={() => setNewsNumberShown(newsNumberShown+5)}>Show more</h3>
-                        : ''
+               {
+                 allNews &&  allNews.length !== 0 ?
+                <TablePagination 
+                    component="div"
+                    count={ allNews.length}
+                    page={page}
+                    onChangePage={handleChangePage}
+                    rowsPerPage={rowsPerPage}
+                    rowsPerPageOptions={[]}
+                    style={{color: darkTheme.text}}
+                />
+                : null
             }
-            {/* </ShowMore> */}
         </>
     )
 }

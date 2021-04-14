@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { FormSelectWrapper } from "../../../styles/components/cryptoStyles/bitCoinStyles";
-import { SelectorWrapper } from "../../../styles/components/cryptoStyles/quickTradeStyles";
+// import { SelectorWrapper } from "../../../styles/components/cryptoStyles/quickTradeStyles";
 import { StockTable } from "../../../styles/components/stockStyles/tableStyles"
 import { ShrinkingComponentWrapper } from "../../../styles/globalParts/containerStyles"
 import TablePagination from '@material-ui/core/TablePagination';

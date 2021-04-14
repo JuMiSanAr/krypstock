@@ -19,8 +19,6 @@ const WorstPerformingCrypto = () => {
 
     useEffect( () => {
         const top10WorstCryptos = [];
-        
-        console.log('topCryptos', worstCryptos)
 
         if (allCryptos.length > 0) {
             allCryptos.sort( (a,b) => a.priceChangePercent - b.priceChangePercent) // sort in ascending order

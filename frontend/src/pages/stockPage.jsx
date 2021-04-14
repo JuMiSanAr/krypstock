@@ -24,7 +24,8 @@ const StockPage = (props) => {
     const [intradayData, setIntradayData] = useState([]);
     const [historicalData, setHistoricalData] = useState([]);
 
-    const symbol = 'AAPL';
+    const url = window.location.href;
+    const symbol = url.substring(url.lastIndexOf('/') + 1);
 
     const [keyStats, setKeyStats] = useState('');
 
@@ -46,8 +47,9 @@ const StockPage = (props) => {
     return (
         <>
     <AllComponentsWrapper>
-        <h1 className='stockCompanyTitle'>{companyName}</h1>
+   
         <ShrinkingComponentWrapper>
+        <h1 className='stockCompanyTitle'>{companyName}</h1>
             <StockPageInfoCard symbol={symbol} setCompanyName={setCompanyName} setCompanyMarket={setCompanyMarket}/>
         </ShrinkingComponentWrapper>
         <ShrinkingComponentWrapper>
@@ -79,10 +81,17 @@ const StockPage = (props) => {
                         ''
                 }
             </GraphWrapper>
-        </ShrinkingComponentWrapper>
-        <StockStats keyStats={keyStats}/>
-        <PortfoliosWithStock symbol={symbol}/>
-        <NewsStock symbol={symbol} companyName={companyName}/>
+            </ShrinkingComponentWrapper>
+            <ShrinkingComponentWrapper>
+            <h3>Key stats</h3>
+            <StockStats keyStats={keyStats}/>
+            </ShrinkingComponentWrapper>
+            <ShrinkingComponentWrapper>
+            <PortfoliosWithStock symbol={symbol}/>
+            </ShrinkingComponentWrapper>
+            <ShrinkingComponentWrapper>
+            <NewsStock symbol={symbol} companyName={companyName}/>
+            </ShrinkingComponentWrapper>
     </AllComponentsWrapper>
         </>
     )
