@@ -20,7 +20,10 @@ const CryptoPage = (props) => {
     const [intradayData, setIntradayData] = useState([]);
     const [historicalData, setHistoricalData] = useState([]);
 
-    const symbol = ('btcusdt').toUpperCase();
+    const url = window.location.href;
+    const symbol = url.substring(url.lastIndexOf('/') + 1).toUpperCase();
+
+    // const symbol = ('btcusdt').toUpperCase();
 
     // useEffect(() => {
     //  WebSocket.close();
@@ -64,8 +67,6 @@ const CryptoPage = (props) => {
                  <ShrinkingComponentWrapper>
                 <NewsCrypto symbol={symbol}/>
             </ShrinkingComponentWrapper>
-        
-      
         {/*<CryptoList/>*/}
         {/* <FooterNav/> */}
     </AllComponentsWrapper>
