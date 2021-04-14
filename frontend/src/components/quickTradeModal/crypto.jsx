@@ -18,8 +18,13 @@ export const CryptoModal = ({ showCryptoModal, setCryptoShowModal, symbol }) => 
     const [pricePerCoin, setPricePerCoin] = useState();
     const type = "C";
 
+    const allCryptos = useSelector(state => state.cryptoReducer.allCryptos);
+    const [bidPrice, setBidPrice] = useState(0);
+    const [askPrice, setAskPrice] = useState(0);
+
     const dispatch = useDispatch();
 
+    console.log("hello", allCryptos)
 
     const submitHandler = (e) => {
             e.preventDefault();
@@ -41,6 +46,20 @@ export const CryptoModal = ({ showCryptoModal, setCryptoShowModal, symbol }) => 
     }
   };
 
+  useEffect( () => {
+    console.log("symbol", symbol)
+        const crypto = allCryptos.filter( crypto => crypto.symbol === symbol);
+        if (buySell === 'B') {
+            setBidPrice(Number(crypto[0].bidPrice).toFixed(2)) 
+        } else if (buySell === 'S') {
+            setAskPrice(Number(crypto[0].askPrice).toFixed(2));
+        } 
+    // else {
+    //     console.log('symbol', symbol)
+    // }
+}, [symbol, buySell])
+
+
 // fetching portfolio list here becuase it takes time
 // to get portfolio list from redux store unless 
 // we go back to portfolio page to fetch
@@ -52,6 +71,9 @@ export const CryptoModal = ({ showCryptoModal, setCryptoShowModal, symbol }) => 
           dispatch(action); 
       })
   }, []);
+
+
+
 
   return (
     <>
@@ -129,8 +151,15 @@ export const CryptoModal = ({ showCryptoModal, setCryptoShowModal, symbol }) => 
                                     </div>
                                     <div>
                                     <input className="input" type="number" placeholder="0" value={pricePerCoin} onChange={e => setPricePerCoin(e.target.value)} required />
+                                    </div> 
+                                </div>
+                                <div className="amountInput">
+                                    <div>
+                                    <p>{'Market Price '} {buySell === 'B' ? '(Bid)' : buySell === 'S' ? '(Ask)' : null}</p>
                                     </div>
-                                    
+                                <div>
+                                <span>{`${buySell === 'B' ? bidPrice : buySell === 'S' ? askPrice : "0"}  USD`}</span> 
+                                </div>
                                 </div>
                                 <div className="transacItem amountInput">
                                     <div>
