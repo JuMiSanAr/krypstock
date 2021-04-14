@@ -98,15 +98,14 @@ useEffect(()=>{
     return (
         <AllComponentsWrapper>
             <MarketOverview/>
-            {topFiveNews ? <News stock_news={topFiveNews}/> : "...LOADING"}
+            <News stock_news={topFiveNews}/>
             <StockQuickTrade fromPage='HomePage' />
             <TransactionHistory />
-            {stockVolumeData ? <TrendyStocks stock_volume={stockVolumeData}/> : "...LOADING"}
-            {gainData ? <TopPerformingStocks gain_stock={gainData}/> : "...LOADING"}
-            {lossData ? <WorstPerformingStocks loss_stock={lossData}/> : "...LOADING"}
+            <TrendyStocks stock_volume={stockVolumeData} />
+            <TopPerformingStocks gain_stock={gainData} />
+            <WorstPerformingStocks loss_stock={lossData} />
         </AllComponentsWrapper>
     )
-
 }
 
 export default Stock
