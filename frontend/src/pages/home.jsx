@@ -6,7 +6,8 @@ import {portfoliosAction} from '../store/actions/portfoliosAction';
 import {Crypto }from '../components/homeComponents/crypto/index';
 import Stock from '../components/homeComponents/stock/index.jsx';
 import { useState } from "react";
-import {DoubleButtonContainer, LeftButton, RightButton, MainContentWrapper} from "../styles/pages/homeStyles"
+import {DoubleButtonContainer, LeftButton, RightButton, MainContentWrapper} from "../styles/pages/homeStyles";
+import { Redirect } from "react-router-dom"
 
 
 const Home = () => {
@@ -30,21 +31,27 @@ const Home = () => {
         }
     }, [token]);
 
-
     return (
         <>
+            {token ?
+            <>
             <DoubleButtonContainer>
-                <LeftButton onClick={() => toggleTab(1)} numberClicked={toggleState}>Stock</LeftButton>
-                <RightButton onClick={() => toggleTab(2)} numberClicked={toggleState}>Crypto</RightButton>
+                <LeftButton onClick={() => toggleTab(1)} numberClicked={toggleState}>Crypto</LeftButton>
+                <RightButton onClick={() => toggleTab(2)} numberClicked={toggleState}>Stock</RightButton>
             </DoubleButtonContainer>
             <MainContentWrapper>
                 <div className={toggleState === 1 ? "active-content" : "content"}>
-                    <Stock />
-                </div>
-                <div className={toggleState === 2 ? "active-content" : "content"}>
                     <Crypto />
                 </div>
+                <div className={toggleState === 2 ? "active-content" : "content"}>
+                    <Stock />
+                </div>
             </MainContentWrapper>
+            </>
+                :
+                <Redirect to='/sign-in'/>
+            }
+
         </>
     )
 }

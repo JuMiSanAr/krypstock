@@ -7,7 +7,7 @@ export const stockFetcherIntraday = (symbol, updateState) => {
         fetch(API_Call)
             .then(res => res.json())
             .then(data => {
-                let nullFetch = false;
+                // let nullFetch = false;
                 const allData = [];
 
                 data.forEach(obj => {
@@ -37,17 +37,18 @@ export const stockFetcherIntraday = (symbol, updateState) => {
                             close: obj['marketClose']
                         });
                     }
-                    else {
-                        nullFetch = true;
-                    }
+                    // else {
+                    //     nullFetch = true;
+                    // }
                 })
+                updateState(allData)
 
-                if (!nullFetch) {
-                    updateState(allData);
-                }
-                else {
-                    updateState(null);
-                }
+                // if (!nullFetch) {
+                //     updateState(allData);
+                // }
+                // else {
+                //     updateState(null);
+                // }
 
                 // let nullValues = false;
                 //

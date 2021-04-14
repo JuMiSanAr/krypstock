@@ -28,6 +28,6 @@ export const RadioWrapper = styled.div`
 export const GraphWrapper = styled.div`  
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    margin-top: 70px;
     overflow: hidden;
 `;
