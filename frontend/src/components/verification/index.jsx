@@ -206,3 +206,14 @@ const Verification = () => {
 }
 
 export default Verification;
+
+// {calculation.type === "S"
+//                     ? <>
+//                             <button onClick={()=>{setStockShowModal(true);setStockSymbol(calculation.symbol);}}>BUY/SELL</button>
+//                             <StockModal stockSymbol={stockSymbol}  symbol = {stockSymbol} showStockModal={showStockModal} setStockShowModal={setStockShowModal}/>
+//                       </>
+//                     : <>
+//                             <button onClick={()=>{setCryptoShowModal(true);setSymbolCrypto(calculation.symbol);}}>BUY/SELL</button>
+//                             <CryptoModal  symbol = {symbolCrypto} showCryptoModal={showCryptoModal} setCryptoShowModal={setCryptoShowModal}/>
+//                       </>
+//                     }
