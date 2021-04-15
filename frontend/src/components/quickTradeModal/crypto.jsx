@@ -12,10 +12,10 @@ import {useDispatch} from "react-redux";
 
 export const CryptoModal = ({ showCryptoModal, setCryptoShowModal, symbol }) => {
     const allPortfoliosArray = useSelector(state => state.portfoliosReducer.portfolios) 
-    const [buySell, setBuySell] = useState();  
+    const [buySell, setBuySell] = useState('');
     const [portfolioID, setPortfolioID] = useState();
-    const [amount, setAmount] = useState();
-    const [pricePerCoin, setPricePerCoin] = useState();
+    const [amount, setAmount] = useState(0);
+    const [pricePerCoin, setPricePerCoin] = useState(0);
     const type = "C";
 
     const allCryptos = useSelector(state => state.cryptoReducer.allCryptos);
@@ -23,8 +23,6 @@ export const CryptoModal = ({ showCryptoModal, setCryptoShowModal, symbol }) => 
     const [askPrice, setAskPrice] = useState(0);
 
     const dispatch = useDispatch();
-
-    console.log("hello", allCryptos)
 
     const submitHandler = (e) => {
             e.preventDefault();
@@ -47,7 +45,6 @@ export const CryptoModal = ({ showCryptoModal, setCryptoShowModal, symbol }) => 
   };
 
   useEffect( () => {
-    console.log("symbol", symbol)
         const crypto = allCryptos.filter( crypto => crypto.symbol === symbol);
         if (buySell === 'B') {
             setBidPrice(Number(crypto[0].bidPrice).toFixed(2)) 
@@ -134,7 +131,7 @@ export const CryptoModal = ({ showCryptoModal, setCryptoShowModal, symbol }) => 
                                     <label htmlFor="company-input">Cryptocurrency</label>
                                     </div>
                                     <div>
-                                    <p className="selector">{symbol}</p>
+                                    <p className="selector">{symbol ? symbol.slice(0, -4) : ''}</p>
                                     </div> 
                                 </div>  
                                 <div className="amountInput">

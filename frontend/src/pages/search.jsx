@@ -62,7 +62,14 @@ const Search = () => {
         fetch('https://api.binance.com/api/v3/ticker/24hr')
             .then(res => res.json())
             .then(data => {
-                const usdtFiltered = data.filter(item => item.symbol.includes("USDT"));
+                const usdtFiltered = data.filter(item => item.symbol.includes("USDT")&&
+                        !((item.symbol).slice(0, 4) === 'USDT') &&
+                        !item.symbol.includes("UPUSDT") &&
+                        !item.symbol.includes("BULLUSDT") &&
+                        !item.symbol.includes("BEARUSDT") &&
+                        !item.symbol.includes("STUSDT") &&
+                        !item.symbol.includes("DOWNUSDT") &&
+                        !item.symbol.includes("ESUSDT"));
                 const action = allCryptosAction(usdtFiltered);
                 dispatch(action);
             });

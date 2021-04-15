@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import AddBoxIcon from "@material-ui/icons/AddBox";
 import {useHistory} from "react-router-dom";
 
@@ -9,6 +9,7 @@ export const CryptoTable = ({symbol, setSymbolCrypto, setCryptoShowModal}) => {
 
     const history = useHistory();
 
+    const slicedSymbol = symbol.symbol.slice(0, -4);
 
     const toSymbolPage = () => {
         history.push(`/crypto/${symbol.symbol}`);
@@ -32,7 +33,7 @@ export const CryptoTable = ({symbol, setSymbolCrypto, setCryptoShowModal}) => {
                 return (
                     !window.getSelection().toString().length ? toSymbolPage() : ''
                 )
-            }}>{symbol.symbol}</td>
+            }}>{slicedSymbol}</td>
             <td>{symbol.lastPrice}</td>
             <td>{symbol.priceChange}</td>
             <td>{symbol.priceChangePercent}</td>

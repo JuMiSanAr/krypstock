@@ -20,10 +20,10 @@ export const postNewTransactionFetch = (buySell, portfolioID, company, volume, p
         'transactions/new/',
         {
             buy_sell: buySell,
-            portfolio: parseInt(portfolioID),
+            portfolio: portfolioID,
             symbol: company,
-            quantity: parseInt(volume),
-            price: parseInt(pricePerShare),
+            quantity: parseFloat(volume),
+            price: parseFloat(pricePerShare),
             type: type,
         },
         'POST',
