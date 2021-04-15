@@ -33,7 +33,7 @@ const Home = () => {
 
             transactionFetch()
                 .then(data => {
-                    console.log("data.results", data.results);
+                    // console.log("data.results", data.results);
                     const action = transactionsAction(data.results)
                     dispatch(action);
                 })     

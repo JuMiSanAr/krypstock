@@ -12,7 +12,7 @@ export const CryptoQuickTrade = (props) => {
 
     const allTransactions = useSelector(state => state.transactionsReducer.transactions);
     useEffect(() => {
-        console.log('allData', allTransactions)
+        // console.log('allData', allTransactions)
     }, [allTransactions])
 
     const dispatch = useDispatch();
