@@ -20,6 +20,7 @@ export const CryptoModal = ({ showCryptoModal, setCryptoShowModal, symbol }) => 
 
     const dispatch = useDispatch();
 
+    const slicedSymbol = symbol.slice(0, -4);
 
     const submitHandler = (e) => {
             e.preventDefault();
@@ -112,7 +113,7 @@ export const CryptoModal = ({ showCryptoModal, setCryptoShowModal, symbol }) => 
                                     <label htmlFor="company-input">Cryptocurrency</label>
                                     </div>
                                     <div>
-                                    <p className="selector">{symbol}</p>
+                                    <p className="selector">{slicedSymbol}</p>
                                     </div> 
                                 </div>  
                                 <div className="amountInput">

@@ -18,6 +18,12 @@ const Portfolio = (props) => {
     const [portfolioId, setPortfolioId] = useState('');
 
     const [realtimeDataStock, setRealtimeDataStock] = useState([]);
+    const [realtimeDataCrypto, setRealtimeDataCrypto] = useState([]);
+
+    const [stockSymbols, setStockSymbols] = useState([]);
+    const [cryptoSymbols, setCryptoSymbols] = useState([]);
+
+    const allCryptoInfo = useSelector(state => state.cryptoReducer.allCryptos);
 
     useEffect(() => {
         const url = window.location.href;
@@ -65,13 +71,12 @@ const Portfolio = (props) => {
             setPieData(pieValues);
             setLegend(legend);
 
-            const stockSymbols = [];
-            const cryptoSymbols = [];
-
             data.calculations.forEach(symbol => {
                 if (symbol.type === 'S') {
+                    // setStockSymbols([...stockSymbols, symbol.symbol])
                     stockSymbols.push(symbol.symbol);
                 } else if (symbol.type === 'C') {
+                    // setCryptoSymbols([...cryptoSymbols, symbol.symbol])
                     cryptoSymbols.push(symbol.symbol);
                 }
             })
@@ -93,6 +98,12 @@ const Portfolio = (props) => {
                 })
         })
     }, [])
+
+    useEffect(() => {
+        if (allCryptoInfo.length) {
+            allCryptoInfo.filter(crypto => cryptoSymbols.includes(crypto.symbol))
+        }
+    }, [allCryptoInfo]);
 
     const [pieData, setPieData] = useState([]);
     const [legend, setLegend] = useState([])
