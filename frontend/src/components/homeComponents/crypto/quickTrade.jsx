@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 export const CryptoQuickTrade = (props) => {
 
     const allCryptos = useSelector(state => state.cryptoReducer.allCryptos);  //get price
-    console.log("CryptoQuickTrade ~ allCryptos", allCryptos)
+    // console.log("CryptoQuickTrade ~ allCryptos", allCryptos)
   
     // const dispatch = useDispatch()
     const allPortfoliosArray = useSelector(state => state.portfoliosReducer.portfolios)
@@ -21,6 +21,7 @@ export const CryptoQuickTrade = (props) => {
     const type = "C";
     const [allSymbols, setAllSymbols] = useState([]);
     const [incorrectSymbol, setIncorrectSymbol] = useState(false);
+    const [notEnoughCoins, setNotEnoughCoins] = useState(false);
     const [bidPrice, setBidPrice] = useState(0);
     const [askPrice, setAskPrice] = useState(0);
     
@@ -33,8 +34,12 @@ export const CryptoQuickTrade = (props) => {
                     console.log('in crypto quicktrade submitHandler', data)
                 })
                 .catch(error => {
-                    console.log('error', error.response)
-                    console.log("You don't have enough coins to sell")
+                    // console.log(error.split('')[error.length-1])
+                    if (error.toString().slice(-1) === '3') {
+                        console.log('error', error)
+                        // console.log("You don't have enough coins to sell")
+                        setNotEnoughCoins(true);
+                    }
                 })
             setIncorrectSymbol(false)
         } else {
@@ -49,14 +54,17 @@ export const CryptoQuickTrade = (props) => {
             return singleSymbol.slice(0, -4)})
         // symbolsArray.sort()
         setAllSymbols(symbolsArray.sort());
-        console.log("useEffect ~ symbolsArray", symbolsArray)
-        console.log('allSymbols', allSymbols)
+        // console.log("useEffect ~ symbolsArray", symbolsArray)
+        // console.log('allSymbols', allSymbols)
     }, [allCryptos]);
 
     useEffect( () => {
+
+        setNotEnoughCoins(false)
+
         if (allSymbols.includes(symbol)) {
             const crypto = allCryptos.filter( crypto => crypto.symbol === `${symbol}USDT`);
-            console.log("symbolInputHandler ~ crypto", crypto)
+            // console.log("symbolInputHandler ~ crypto", crypto)
             if (buySell === 'B') {
                 setBidPrice(Number(crypto[0].bidPrice).toFixed(2)) 
             } else if (buySell === 'S') {
@@ -152,6 +160,9 @@ export const CryptoQuickTrade = (props) => {
                     </TransacWrapper>
                     {
                         incorrectSymbol ? <span>Currency given is invalid</span> : ''
+                    }
+                    {
+                        notEnoughCoins ? <span>Not enough coins to sell at this amount</span> : ''
                     }
                     <ButtonWrapper>
                         <button type="submit" value="Submit">Submit</button>
