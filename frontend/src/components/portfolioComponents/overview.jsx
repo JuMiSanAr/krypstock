@@ -4,12 +4,12 @@ import {HeadlineFont, Headline, OverviewBar, TempDiv, Desc, NetworthContainer, I
 import {useSelector} from 'react-redux';
 import {allTheme} from '../../styles/Themes';
 
-const Overview = ({calculations}) => {
+const Overview = ({calculations, realtimeData}) => {
 
     let colors = [allTheme.vibrantturquoise, allTheme.darkblue, allTheme.yellow, allTheme.vibrantorange];
     let currentColor = -1;
 
-    const specificPortfolioArray = useSelector(state => state.specificPortfolioReducer.calculations)
+    // console.log(realtimeData, calculations)
 
     const getBackgroundColor = () => {
         if (currentColor >= colors.length) {
@@ -18,6 +18,10 @@ const Overview = ({calculations}) => {
             currentColor++;
         }
         return colors[currentColor];
+    }
+
+    const getCurrentSymbolValue = (symbol) => {
+
     }
 
     return (
@@ -41,7 +45,7 @@ const Overview = ({calculations}) => {
                     </TempDiv>
                     <TempDiv>
                         <Desc>current</Desc>
-                        <p>34924</p>
+                        <p>Something</p>
                     </TempDiv>
                 </NetworthContainer>
                 <div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect }  from 'react';
-import { useDispatch } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import { loginAction } from '../store/actions/loginActions';
 import {useHistory} from 'react-router-dom';
 import logo from "../assets/logo/logo_with_name.png";
@@ -14,6 +14,8 @@ const LoginPage = () => {
 
     const [errorMessage, setErrorMessage] = useState(false);
 
+    const token = useSelector(state => state.logInReducer.token);
+
     const dispatch = useDispatch();
     const history = useHistory()
 
@@ -23,12 +25,18 @@ const LoginPage = () => {
             localStorage.setItem('token', data.access);
             const action = loginAction(data.access, true);
             dispatch(action);
-            history.push('/');
+
         })
         .catch(() => {
                 setErrorMessage(true);
             })
     }
+
+    useEffect(() => {
+        if (token) {
+            history.push('/');
+        }
+    }, [token]);
 
 
 

@@ -49,7 +49,6 @@ const AllInvestments = ({calculations, realtimeData}) => {
 
     useEffect(() => {
         if (yesterdayValue) {
-            console.log(currentValue, yesterdayValue)
             setDailyChange((currentValue - yesterdayValue) / yesterdayValue * 100);
         }
     }, [yesterdayValue]);
@@ -91,18 +90,18 @@ const AllInvestments = ({calculations, realtimeData}) => {
                         </div>
                         <div>
                             <p>Total %</p>
-                            <InvestmentFont>{differencePercentage.toFixed(2)}%</InvestmentFont>
+                            <InvestmentFont>{differencePercentage ? differencePercentage.toFixed(2) : ''}%</InvestmentFont>
                         </div>
                         <div>
                             <p>Today %</p>
-                            <InvestmentFont><i className="fas fa-angle-double-up"></i> {dailyChange}%</InvestmentFont>
+                            <InvestmentFont><i className="fas fa-angle-double-up"></i> {dailyChange ? dailyChange.toFixed(2) : ''}%</InvestmentFont>
                         </div>
                     </InvestmentsContainer>
-                    <HeadlineFont>Overall portfolio balance</HeadlineFont >
+                    <HeadlineFont>Executed P&L</HeadlineFont >
                     <InvestmentsContainer>
                         <div>
                             <InvestmentFont>
-                               $ {overallBalance.toFixed(2)}
+                               $ {overallBalance ? overallBalance.toFixed(2) : '0.00'}
                             </InvestmentFont>
                         </div>
                     </InvestmentsContainer>
