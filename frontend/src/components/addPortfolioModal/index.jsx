@@ -26,7 +26,7 @@ export const Modal = ({ showModal, setShowModal }) => {
   const saveHandler = () => {
         createPortfolioFetch(title, description)
             .then(data => {
-                const newPortfolios = [...allCurrentPortfolios, data];
+                const newPortfolios = [data, ...allCurrentPortfolios];
                 const action = portfoliosAction(newPortfolios);
                 dispatch(action);
             })
