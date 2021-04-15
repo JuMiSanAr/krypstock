@@ -6,9 +6,16 @@ import {SelectorWrapper, TransacWrapper, ButtonWrapper} from '../../../styles/co
 import { postNewTransactionFetch } from '../../../store/fetches/transactionFetches'; 
 import { Link } from 'react-router-dom';
 import { ErrorSpan } from '../../../styles/globalParts/textStyles';
+import { addTransactionAction } from '../../../store/actions/transactionsAction';
 
 export const CryptoQuickTrade = (props) => {
 
+    const allTransactions = useSelector(state => state.transactionsReducer.transactions);
+    useEffect(() => {
+        console.log('allData', allTransactions)
+    }, [allTransactions])
+
+    const dispatch = useDispatch();
     const allCryptos = useSelector(state => state.cryptoReducer.allCryptos);  //get price
     // console.log("CryptoQuickTrade ~ allCryptos", allCryptos)
   
@@ -33,6 +40,7 @@ export const CryptoQuickTrade = (props) => {
             postNewTransactionFetch(buySell, portfolioID, `${symbol}USDT`, amount, pricePerCoin, type)
                 .then(data => {
                     console.log('in crypto quicktrade submitHandler', data)
+                    dispatch(addTransactionAction(data));
                 })
                 .catch(error => {
                     // console.log(error.split('')[error.length-1])

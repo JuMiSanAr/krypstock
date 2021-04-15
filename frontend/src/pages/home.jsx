@@ -8,6 +8,8 @@ import Stock from '../components/homeComponents/stock/index.jsx';
 import { useState } from "react";
 import {DoubleButtonContainer, LeftButton, RightButton, MainContentWrapper} from "../styles/pages/homeStyles";
 import { Redirect } from "react-router-dom"
+import transactionFetch from '../store/fetches/transactionFetches';
+import { transactionsAction } from '../store/actions/transactionsAction';
 
 
 const Home = () => {
@@ -25,9 +27,16 @@ const Home = () => {
     useEffect( () => {
         if (token) {
             portfoliosFetch()
-            .then(data => {
-                dispatch(portfoliosAction(data.results))
-            })
+                .then(data => {
+                    dispatch(portfoliosAction(data.results))
+                })
+
+            transactionFetch()
+                .then(data => {
+                    console.log("data.results", data.results);
+                    const action = transactionsAction(data.results)
+                    dispatch(action);
+                })     
         }
     }, [token]);
 
