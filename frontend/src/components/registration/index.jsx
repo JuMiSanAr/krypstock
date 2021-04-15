@@ -1,9 +1,10 @@
 import React, {useState} from 'react'
-import {MainContainerR, WrapDivR} from "../../styles/components/registrationStyles";
+import {InputWrapper, MainContainerR} from "../../styles/components/registrationStyles";
 import {signupCodeFetch} from "../../store/fetches/signup_fetches";
 import history from "../../history";
 import logo from "../../assets/logo/logo_with_name.png";
-import {WrapDiv} from "../../styles/components/signUpStyles";
+// import {WrapDiv} from "../../styles/components/signUpStyles";
+import {HeaderWrapper, LoginWrapper,  ButtonWrapper} from "../../styles/components/signInStyles";
 
 
 const Registration = (props) => {
@@ -36,7 +37,39 @@ const Registration = (props) => {
 
     return (
         <>
-            <MainContainerR>
+         <HeaderWrapper>
+            </HeaderWrapper>
+             <LoginWrapper>
+             <img src={logo} out="logo" alt="logo"/>
+               <MainContainerR> 
+               <h4>Enter your email address</h4>    
+               <InputWrapper>
+                         <input
+                        required
+                        onChange={event => setEmail(event.target.value)}
+                        name='email'
+                        type='text'
+                        placeholder='E-Mail address'
+                        onKeyUp={ event => event.key === 'Enter' ? sendEmail() : ''}
+                        />
+                        {errorEmptyEmail ?
+                            <h1>Email field cannot be empty</h1>
+                            : ''}
+                        {errorAlreadyActivated ?
+                            <>
+                            <h1>It looks like there's an existing account that uses this email</h1>
+                            <h1>Please log in using your email and password instead</h1>
+                            </>
+                            : ''}
+                         <ButtonWrapper>
+                         <button onClick={sendEmail}>Register</button>
+                        </ButtonWrapper>
+                      
+               </InputWrapper>
+            </MainContainerR> 
+            </LoginWrapper>
+
+            {/* <MainContainerR>
                 <div>
                     <WrapDiv>
                         <img src={logo} out="logo" alt="logo"/>
@@ -67,7 +100,7 @@ const Registration = (props) => {
                          <button onClick={sendEmail}>Register</button>
                     </WrapDivR>
                 </div>
-            </MainContainerR>
+            </MainContainerR> */}
         </>
     )
 }
