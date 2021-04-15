@@ -24,7 +24,6 @@ export const CryptoModal = ({ showCryptoModal, setCryptoShowModal, symbol }) => 
 
     const dispatch = useDispatch();
 
-    console.log("hello", allCryptos)
 
     const submitHandler = (e) => {
             e.preventDefault();
@@ -47,7 +46,6 @@ export const CryptoModal = ({ showCryptoModal, setCryptoShowModal, symbol }) => 
   };
 
   useEffect( () => {
-    console.log("symbol", symbol)
         const crypto = allCryptos.filter( crypto => crypto.symbol === symbol);
         if (buySell === 'B') {
             setBidPrice(Number(crypto[0].bidPrice).toFixed(2)) 
