@@ -48,26 +48,24 @@ const LoginPage = () => {
              <img src={logo} out="logo" alt="logo"/>
                <MainContainerSI>     
                <InputWrapper>
-                                        <input
-                                            required
-                                            onChange={event => setEmail(event.target.value)}
-                                            value={email}
-                                            name='username'
-                                            type='text'
-                                            placeholder='Email'
-                                        />
-                                  
-                                       <input
-                                            required
-                                            onChange={event => setPassword(event.target.value)}
-                                            value={password}
-                                            name='password'
-                                            type='password'
-                                            placeholder='Password'
-                                            onKeyUp={ event => event.key === 'Enter' ? loginHandler() : ''}
-                                        />
-                           
-                        </InputWrapper>
+                    <input
+                        required
+                        onChange={event => setEmail(event.target.value)}
+                        value={email}
+                        name='username'
+                        type='text'
+                        placeholder='Email'
+                    />
+                    <input
+                        required
+                        onChange={event => setPassword(event.target.value)}
+                        value={password}
+                        name='password'
+                        type='password'
+                        placeholder='Password'
+                        onKeyUp={ event => event.key === 'Enter' ? loginHandler() : ''}
+                    />
+                </InputWrapper>
                         <ButtonWrapper>
                                     <button onClick={loginHandler}>Login</button>
                                     <button><Link className="link linkbutton" to="/sign-up/registration">Registration</Link></button>

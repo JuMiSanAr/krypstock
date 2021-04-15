@@ -81,7 +81,6 @@ export const HeaderWrapper = styled.div`
        height: 800px;
        margin-top:-200px;
        clip-path: circle(63.4% at 49% 26%);
-  
   }
   
 `;
@@ -91,7 +90,6 @@ export const LoginWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  
 
   @media only screen and (max-width: 600px) and (min-width: 320px) {
     margin-top: -650px;
@@ -119,11 +117,12 @@ export const MainContainerSI = styled.div`
   .linkbutton{
     color: white;
   }
-
+  
+  h4{
+   color: #6d82e5;
+ }
 
   @media only screen and (max-width: 600px) and (min-width: 320px) {
-    width:300px;
-    min-height:400px;
     z-index: 999;
   }
 
