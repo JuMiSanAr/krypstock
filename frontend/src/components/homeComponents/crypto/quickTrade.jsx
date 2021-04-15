@@ -8,6 +8,8 @@ import { Link } from 'react-router-dom';
 
 export const CryptoQuickTrade = (props) => {
 
+    const allCryptos = useSelector(state => state.cryptoReducer.allCryptos);
+
     // const dispatch = useDispatch()
     const allPortfoliosArray = useSelector(state => state.portfoliosReducer.portfolios)
 
@@ -17,16 +19,17 @@ export const CryptoQuickTrade = (props) => {
     const [amount, setAmount] = useState();
     const [pricePerCoin, setPricePerCoin] = useState();
     const type = "C";
-
-    const [incorrectSymbol, setIncorrectSymbol] = useState(false);
-
     const [allSymbols, setAllSymbols] = useState([]);
-
+    
+    const [incorrectSymbol, setIncorrectSymbol] = useState(false);
+    const [bidPrice, setBidPrice] = useState(0);
+    const [askPrice, setAskPrice] = useState(0);
+    
     const submitHandler = (e) => {
         if (allSymbols.includes(symbol)) {
             e.preventDefault();
             console.log(buySell, portfolioID, symbol, amount, pricePerCoin,type)
-            postNewTransactionFetch(buySell, portfolioID, symbol, amount, pricePerCoin, type)
+            postNewTransactionFetch(buySell, portfolioID, `${symbol}USDT`, amount, pricePerCoin, type)
                 .then(data => {
                     // console.log('in crypto quicktrade submitHandler', data)
                 })
@@ -35,7 +38,6 @@ export const CryptoQuickTrade = (props) => {
             e.preventDefault();
             setIncorrectSymbol(true)
         }
-
     }
 
     useEffect( () => {
@@ -59,14 +61,25 @@ export const CryptoQuickTrade = (props) => {
                 symbolsSet.add(crypto.baseAsset)
             }
             symbolsSet = Array.from(symbolsSet)  //convert set to array 
-            console.log('symbolsSet', symbolsSet)
+            // console.log('symbolsSet', symbolsSet)
             setAllSymbols(symbolsSet);
         })
     }, []);
-    
+
     useEffect( () => {
-        // console.log('allSymbols', allSymbols)
-    }, [allSymbols])
+        if (allSymbols.includes(symbol)) {
+            const crypto = allCryptos.filter( crypto => crypto.symbol === `${symbol}USDT`);
+            console.log("symbolInputHandler ~ crypto", crypto)
+            if (buySell === 'B') {
+                setBidPrice(Number(crypto[0].bidPrice).toFixed(2)) 
+            } else if (buySell === 'S') {
+                setAskPrice(Number(crypto[0].askPrice).toFixed(2));
+            }
+        } 
+        // else {
+        //     console.log('symbol', symbol)
+        // }
+    }, [symbol, buySell])
 
     return (
         <ShrinkingComponentWrapper> 
@@ -115,33 +128,41 @@ export const CryptoQuickTrade = (props) => {
                         </div>
                         <div className="currSelect amountInput">
                             <label htmlFor="company-input">Cryptocurrency</label>
-                            <input id="company-input" className="selector" list="crypto-symbols" onChange={e => setSymbol(e.target.value)} required/>
-                            <datalist id="crypto-symbols" >
-                                { allSymbols && allSymbols.length !== 0 ?
-                                    allSymbols.map( (symbol, index) => 
-                                    <option value={symbol} key={index} />)
+                            <input id="company-input" className="selector" list="cryptoSymbols" style={{"text-transform":"uppercase"}} onChange={e => setSymbol(e.target.value.toUpperCase())} required/>
+                            <datalist id="cryptoSymbols" >
+                                { allSymbols && allSymbols.length !== 0 ?                                       
+                                    allSymbols.map( (symbol, index) => {
+                                        // console.log('symbol', symbol)
+                                        return <option value={symbol} key={index} />
+                                    })                                      
                                     : null
                                 }
                             </datalist>
                         </div>  
                         <div className="transacItem amountInput">
                             <label>Amount</label>
-                            <input type="text" name="amount" placeholder="amount" value={amount} onChange={e => setAmount(e.target.value)} required/>
+                            {
+                                buySell === 'B' ?
+                                <input type="number" name="amount" placeholder={amount} value={amount} onChange={e => setAmount(e.target.value)} required/>
+                                :
+                                <input type="number" name="amount" placeholder={amount} value={amount} onChange={e => setAmount(e.target.value)} required/>
+                            }
                         </div>
                         <div className="transacItem amountInput">
                             <p>Price per Coin</p>
-                            <input type="number" placeholder="0" value={pricePerCoin} onChange={e => setPricePerCoin(e.target.value)} required />
+                            <input type="number" placeholder={buySell === 'B' ? bidPrice : buySell === 'S' ? askPrice : "0.00"} value={pricePerCoin} onChange={e => setPricePerCoin(e.target.value)} required />
                         </div>
                         <div className="transacItem">
-                                <p>Total Price</p>
-                                <span>{`${amount*pricePerCoin ? parseFloat(amount*pricePerCoin).toFixed(2) : '0.00'}  USD`}</span>
+                            <p>{'Market Price '} {buySell === 'B' ? '(Bid)' : buySell === 'S' ? '(Ask)' : null}</p>
+                            <span>{`${buySell === 'B' ? bidPrice : buySell === 'S' ? askPrice : "0.00"}  USD`}</span>
+                        </div>
+                        <div className="transacItem">
+                            <p>Total Price</p>
+                            <span>{`${amount*pricePerCoin ? parseFloat(amount*pricePerCoin).toFixed(2) : '0.00'}  USD`}</span>
                         </div>
                     </TransacWrapper>
                     {
-                        incorrectSymbol ? <span>Enter a correct cryptocurrency</span> : ''
-                    }
-                    {
-
+                        incorrectSymbol ? <span>Currency given is invalid</span> : ''
                     }
                     <ButtonWrapper>
                         <button type="submit" value="Submit">Submit</button>

@@ -23,10 +23,10 @@ const Overview = ({calculations}) => {
     return (
         <ShrinkingComponentWrapper>
             <Headline>Overview</Headline>
-            {calculations.map((calculation) => 
+            {calculations.map((calculation, index) =>
             {if (calculation.invested > 0) {
                 return (
-            <OverviewBar style={{backgroundColor: getBackgroundColor()}}>
+            <OverviewBar key={index} style={{backgroundColor: getBackgroundColor()}}>
                 <IconConatiner>
                     {calculation.type === "S"
                     ? <i className="fas fa-briefcase"></i>
@@ -37,7 +37,7 @@ const Overview = ({calculations}) => {
                 <NetworthContainer>
                     <TempDiv>
                         <Desc>invested</Desc>
-                        <p>{calculation.invested}</p>
+                        <p>{calculation.invested} $</p>
                     </TempDiv>
                     <TempDiv>
                         <Desc>current</Desc>

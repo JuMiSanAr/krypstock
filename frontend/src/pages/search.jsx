@@ -2,19 +2,32 @@ import React, {useEffect, useState} from 'react';
 import {
     AllComponentsWrapper,
 } from "../styles/globalParts/containerStyles";
-import AddBoxIcon from '@material-ui/icons/AddBox';
+// import AddBoxIcon from '@material-ui/icons/AddBox';
 import {ContentWrapper, SearchPageInput, 
     Title, SearchWrapperTitle, 
     TableContainerWrapper, Table, TableWrapper } from '../styles/pages/searchStyles'
 import { CryptoTable } from '../components/searchCryptoStockTable/cryptoTable';
-import TablePagination from '@material-ui/core/TablePagination';
+// import TablePagination from '@material-ui/core/TablePagination';
 import { StockTable } from '../components/searchCryptoStockTable/stockTable';
 import {allCryptosAction} from "../store/actions/cryptoActions";
 import {useDispatch, useSelector} from "react-redux";
 import {allStocksAction, allStockSymbolsAction, searchedStocksAction} from "../store/actions/stocksActions";
 import {iexAPIKey, iexSandboxKey} from "../store/constants";
+import { CryptoModal } from '../components/quickTradeModal/crypto';
+import { StockModal } from '../components/quickTradeModal/stock';
+
 
 const Search = () => {
+
+    //Modal 
+    const [showStockModal, setStockShowModal] = useState(false);
+    const [showCryptoModal, setCryptoShowModal] = useState(false);
+    const [symbolCrypto, setSymbolCrypto] = useState();
+    const [stockName, setStockName] = useState();
+    const [stockSymbol, setStockSymbol] = useState();
+
+
+    /***********/
 
     const [page, setPage] = React.useState(0);
     const rowsPerPage = 10;
@@ -123,15 +136,15 @@ const Search = () => {
             }else if(select === "Crypto" && search !== ""){
                 const filteredCrypto = allCryptos.filter(crypto => crypto.symbol.includes(search.toUpperCase()))
                 setShowingCryptos(filteredCrypto.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((symbol, index) => {
-                return (
-                    <CryptoTable key={index} symbol={symbol}/>
+                    return (
+                    <CryptoTable setStockSymbol={setStockSymbol} setSymbolCrypto={setSymbolCrypto} setCryptoShowModal={setCryptoShowModal} key={index} symbol={symbol}/>       
                 )
             }))
             } else if (search !== '') {
             const filteredCrypto = allCryptos.filter(crypto => crypto.symbol.includes(search.toUpperCase()));
             setShowingCryptos(filteredCrypto.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((symbol, index) => {
                 return (
-                    <CryptoTable key={index} symbol={symbol}/>
+                    <CryptoTable setStockSymbol={setStockSymbol} setSymbolCrypto={setSymbolCrypto} setCryptoShowModal={setCryptoShowModal} key={index} symbol={symbol}/>
                 )
             }))
 
@@ -151,7 +164,7 @@ const Search = () => {
             if(allCryptos.length){
                 setShowingCryptos(allCryptos.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((symbol, index) => {
                     return (
-                        <CryptoTable key={index} symbol={symbol}/>
+                        <CryptoTable setStockSymbol={setStockSymbol} setSymbolCrypto={setSymbolCrypto} setCryptoShowModal={setCryptoShowModal} key={index} symbol={symbol}/>
                     )
                 }))
             }
@@ -162,7 +175,7 @@ const Search = () => {
         if(allCryptos.length){
             setShowingCryptos(allCryptos.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((symbol, index) => {
                 return (
-                    <CryptoTable key={index} symbol={symbol}/>
+                    <CryptoTable setStockSymbol={setStockSymbol} setSymbolCrypto={setSymbolCrypto} setCryptoShowModal={setCryptoShowModal} key={index} symbol={symbol}/>
                 )
             }))
         }
@@ -173,7 +186,9 @@ const Search = () => {
     // };
 
     return (
-        <>          
+        <> 
+                <CryptoModal  symbol = {symbolCrypto} showCryptoModal={showCryptoModal} setCryptoShowModal={setCryptoShowModal}/> 
+                <StockModal stockSymbol={stockSymbol}  symbol = {stockName} showStockModal={showStockModal} setStockShowModal={setStockShowModal}/> 
                   <ContentWrapper>
                       <img src="https://res.cloudinary.com/tennam/image/upload/v1618181574/Propulsion/1393720.jpg" alt="" /> 
                   <SearchPageInput>
@@ -187,11 +202,11 @@ const Search = () => {
                     </SearchPageInput>
                     </ContentWrapper>
                     <AllComponentsWrapper>
+                    <SearchWrapperTitle>
                     <Title>
                       {select}
                     </Title>
-                    <SearchWrapperTitle>
-                    </SearchWrapperTitle>  
+                    </SearchWrapperTitle> 
                    <TableContainerWrapper>
                        {
                            select !== "Stock" ?
@@ -250,7 +265,7 @@ const Search = () => {
                         <tbody>
                             {searchedStocks ? searchedStocks.map((symbol, index) => {
                                 return (
-                                    <StockTable key={index} symbol={symbol}/>
+                                    <StockTable setStockSymbol={setStockSymbol} setStockShowModal={setStockShowModal} setStockName={setStockName} key={index} symbol={symbol}/>
                                 )
                             }) : ''}
                         </tbody>
