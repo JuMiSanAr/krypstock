@@ -119,11 +119,12 @@ export const MainContainerSI = styled.div`
   .linkbutton{
     color: white;
   }
-
+  
+  h4{
+   color: #6d82e5;
+ }
 
   @media only screen and (max-width: 600px) and (min-width: 320px) {
-    width:300px;
-    min-height:400px;
     z-index: 999;
   }
 
