@@ -1,6 +1,11 @@
 import React, {useEffect, useState} from 'react'
 import {ShrinkingComponentWrapper } from '../../../styles/globalParts/containerStyles';
-import {FormSelectWrapper, GraphWrapper, ButtonWrapper} from "../../../styles/components/cryptoStyles/bitCoinStyles";
+import {
+    FormSelectWrapper,
+    GraphWrapper,
+    ButtonWrapper,
+    CryptoWrapper
+} from "../../../styles/components/cryptoStyles/bitCoinStyles";
 import CandlestickCryptoIntraday from "../../charts/candlesticksCryptoIntraday";
 import ChartTimeCrypto from "../../charts/chartSelectTimeCrypto";
 import CandlestickCryptoHistorical from "../../charts/candlesticksCryptoHistorical";
@@ -79,7 +84,7 @@ export const BitCoin = (props) => {
                     <button onClick={() => changeSymbol()}>Update</button>
                  </ButtonWrapper>
            </FormSelectWrapper>
-
+            <CryptoWrapper>
           <FormSelectWrapper>
               <label htmlFor="company-input">Cryptocurrency</label>
                             <input id="company-input" className="selector" list="cryptoSymbols" onChange={e => setSymbolInput(`${e.target.value}USDT`)} required/>
@@ -93,7 +98,8 @@ export const BitCoin = (props) => {
                                     <option value={symbol} key={index} />)
                                     : null
                                 }
-                            </datalist> */}
+                          </datalist> */}
+                 </CryptoWrapper>
            <GraphWrapper>
                {
                    chartTimeframe2 === '1d' && !stupidToggle ?
