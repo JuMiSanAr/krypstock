@@ -7,7 +7,7 @@ import {StockModal2} from "../quickTradeModal/stockOverview";
 import {CryptoModal2} from "../quickTradeModal/cryptoOverview";
 
 
-const Overview = ({calculations}) => {
+const Overview = ({calculations, realtimeData}) => {
 
     const [showStockModal, setStockShowModal] = useState(false);
     const [showCryptoModal, setCryptoShowModal] = useState(false);
@@ -16,6 +16,8 @@ const Overview = ({calculations}) => {
 
     let colors = [allTheme.vibrantturquoise, allTheme.darkblue, allTheme.yellow, allTheme.vibrantorange];
     let currentColor = -1;
+
+    // console.log(realtimeData, calculations)
 
     const specificPortfolioArray = useSelector(state => state.specificPortfolioReducer.calculations)
 
@@ -27,6 +29,11 @@ const Overview = ({calculations}) => {
         }
         return colors[currentColor];
     }
+
+    const getCurrentSymbolValue = (symbol) => {
+
+    }
+
     return (<>
             <CryptoModal2  symbol = {`${symbolCrypto}`} showCryptoModal={showCryptoModal} setCryptoShowModal={setCryptoShowModal}/>
             <StockModal2 stockSymbol={stockSymbol}  symbol = {stockSymbol} showStockModal={showStockModal} setStockShowModal={setStockShowModal}/>
