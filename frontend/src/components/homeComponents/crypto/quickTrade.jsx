@@ -13,7 +13,7 @@ export const CryptoQuickTrade = (props) => {
   
     // const dispatch = useDispatch()
     const allPortfoliosArray = useSelector(state => state.portfoliosReducer.portfolios)
-    const [buySell, setBuySell] = useState();
+    const [buySell, setBuySell] = useState("B");
     const [symbol, setSymbol] = useState();
     const [portfolioID, setPortfolioID] = useState();
     const [amount, setAmount] = useState();
@@ -91,8 +91,9 @@ export const CryptoQuickTrade = (props) => {
                 :
                 <SelectorWrapper>
                     <div className="buySell">
-                        <select className="selector" defaultValue={'DEFAULT'} onChange={e => setBuySell(e.target.value)} required>
-                            <option value="DEFAULT" disabled>Select</option>
+                        {/* <select className="selector" defaultValue={'DEFAULT'} onChange={e => setBuySell(e.target.value)} required> */}
+                        <select className="selector" onChange={e => setBuySell(e.target.value)} required>
+                            {/* <option value="DEFAULT" disabled>Select</option> */}
                             <option value="B">Buy</option>
                             <option value="S">Sell</option>
                         </select>
@@ -114,7 +115,12 @@ export const CryptoQuickTrade = (props) => {
                     <TransacWrapper>
                         <div className="amountInput">
                             <label htmlFor="company-input">Portfolio</label>
-                            <select className="selector" defaultValue={'DEFAULT'} onChange={ e => setPortfolioID(e.target.value)} required>
+                            <select 
+                                className="selector" 
+                                defaultValue={'DEFAULT'} 
+                                onChange={ e => setPortfolioID(e.target.value)} 
+                                required
+                            >
                                 <option value="DEFAULT" disabled>Select portfolio</option>
                                 {
                                     allPortfoliosArray.map( (portfolio, index) => 
@@ -125,13 +131,19 @@ export const CryptoQuickTrade = (props) => {
                         </div>
                         <div className="currSelect amountInput">
                             <label htmlFor="company-input">Cryptocurrency</label>
-                            <input id="company-input" className="selector" list="cryptoSymbols" style={{"text-transform":"uppercase"}} onChange={e => setSymbol(e.target.value.toUpperCase())} required/>
+                            <input 
+                                id="company-input" 
+                                className="selector" 
+                                list="cryptoSymbols" 
+                                style={{"text-transform":"uppercase"}} 
+                                onChange={e => setSymbol(e.target.value.toUpperCase())} 
+                                required
+                            />
                             <datalist id="cryptoSymbols" >
                                 { allSymbols && allSymbols.length !== 0 ?                                       
-                                    allSymbols.map( (symbol, index) => {
-                                        // console.log('symbol', symbol)
-                                        return <option value={symbol} key={index} />
-                                    })                                      
+                                    allSymbols.map( (symbol, index) => 
+                                    <option value={symbol} key={index} />
+                                    )                                      
                                     : null
                                 }
                             </datalist>
@@ -140,14 +152,40 @@ export const CryptoQuickTrade = (props) => {
                             <label>Amount</label>
                             {
                                 buySell === 'B' ?
-                                <input type="number" name="amount" step=".01" placeholder={amount} value={amount} onChange={e => setAmount(e.target.value)} required/>
+                                <input 
+                                    type="number" 
+                                    name="amount" 
+                                    step="0.000001" 
+                                    min="0.000001"
+                                    placeholder={amount} 
+                                    value={amount} 
+                                    onChange={e => setAmount(e.target.value)} 
+                                    required
+                                />
                                 :
-                                <input type="number" name="amount" step=".01" placeholder={amount} value={amount} onChange={e => setAmount(e.target.value)} required/>
+                                <input 
+                                    type="number" 
+                                    name="amount" 
+                                    step="0.000001" 
+                                    min="0.000001"
+                                    placeholder={amount} 
+                                    value={amount} 
+                                    onChange={e => setAmount(e.target.value)} 
+                                    required
+                                />
                             }
                         </div>
                         <div className="transacItem amountInput">
                             <p>Price per Coin</p>
-                            <input type="number" step=".01" placeholder={buySell === 'B' ? bidPrice : buySell === 'S' ? askPrice : "0.00"} value={pricePerCoin} onChange={e => setPricePerCoin(e.target.value)} required />
+                            <input 
+                                type="number" 
+                                step="0.001" 
+                                min="0.001"
+                                placeholder={buySell === 'B' ? bidPrice : buySell === 'S' ? askPrice : "0.00"} 
+                                value={pricePerCoin} 
+                                onChange={e => setPricePerCoin(e.target.value)} 
+                                required 
+                            />
                         </div>
                         <div className="transacItem">
                             <p>{'Market Price '} {buySell === 'B' ? '(Bid)' : buySell === 'S' ? '(Ask)' : null}</p>
