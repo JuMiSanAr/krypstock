@@ -5,6 +5,7 @@ import {FormSelectWrapper} from "../../../styles/components/cryptoStyles/bitCoin
 import {SelectorWrapper, TransacWrapper, ButtonWrapper} from '../../../styles/components/cryptoStyles/quickTradeStyles'
 import { postNewTransactionFetch } from '../../../store/fetches/transactionFetches'; 
 import { Link } from 'react-router-dom';
+import { ErrorSpan } from '../../../styles/globalParts/textStyles';
 
 export const CryptoQuickTrade = (props) => {
 
@@ -59,9 +60,6 @@ export const CryptoQuickTrade = (props) => {
     }, [allCryptos]);
 
     useEffect( () => {
-
-        setNotEnoughCoins(false)
-
         if (allSymbols.includes(symbol)) {
             const crypto = allCryptos.filter( crypto => crypto.symbol === `${symbol}USDT`);
             // console.log("symbolInputHandler ~ crypto", crypto)
@@ -70,13 +68,15 @@ export const CryptoQuickTrade = (props) => {
             } else if (buySell === 'S') {
                 setAskPrice(Number(crypto[0].askPrice).toFixed(2));
             }
-        } 
-
-        if (!(allSymbols.includes(symbol))) {
+        } else {
             setBidPrice(0)
             setAskPrice(0)
         }
     }, [symbol, buySell])
+    
+    useEffect( () => {
+        setNotEnoughCoins(false)
+    }, [symbol, buySell, portfolioID, amount])
 
     return (
         <ShrinkingComponentWrapper> 
@@ -91,9 +91,8 @@ export const CryptoQuickTrade = (props) => {
                 :
                 <SelectorWrapper>
                     <div className="buySell">
-                        {/* <select className="selector" defaultValue={'DEFAULT'} onChange={e => setBuySell(e.target.value)} required> */}
-                        <select className="selector" onChange={e => setBuySell(e.target.value)} required>
-                            {/* <option value="DEFAULT" disabled>Select</option> */}
+                        <select className="selector" defaultValue={''} onChange={e => setBuySell(e.target.value)} required>
+                            <option value="" disabled>Select</option>
                             <option value="B">Buy</option>
                             <option value="S">Sell</option>
                         </select>
@@ -117,11 +116,11 @@ export const CryptoQuickTrade = (props) => {
                             <label htmlFor="company-input">Portfolio</label>
                             <select 
                                 className="selector" 
-                                defaultValue={'DEFAULT'} 
                                 onChange={ e => setPortfolioID(e.target.value)} 
+                                defaultValue={""}
                                 required
                             >
-                                <option value="DEFAULT" disabled>Select portfolio</option>
+                                <option value="" disabled>Select portfolio</option>
                                 {
                                     allPortfoliosArray.map( (portfolio, index) => 
                                         <option key={index} value={portfolio.id}>{`${portfolio.name}`}</option>
@@ -197,10 +196,10 @@ export const CryptoQuickTrade = (props) => {
                         </div>
                     </TransacWrapper>
                     {
-                        incorrectSymbol ? <span>Currency given is invalid</span> : ''
+                        incorrectSymbol ? <ErrorSpan><em>Symbol given is invalid</em></ErrorSpan> : ''
                     }
                     {
-                        notEnoughCoins ? <span>Not enough coins to sell at this amount</span> : ''
+                        notEnoughCoins ? <ErrorSpan><em>Not enough coins to sell at this amount</em></ErrorSpan> : ''
                     }
                     <ButtonWrapper>
                         <button type="submit" value="Submit">Submit</button>
