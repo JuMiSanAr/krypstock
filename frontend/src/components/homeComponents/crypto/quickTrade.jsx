@@ -173,3 +173,5 @@ export const CryptoQuickTrade = (props) => {
         </ShrinkingComponentWrapper>
     )
 }
+
+
