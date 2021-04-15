@@ -56,7 +56,7 @@ class NewTransaction(CreateAPIView):
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
     def perform_create(self, serializer, portfolio):
-        transaction_amount = int(self.request.data['quantity']) * int(self.request.data['price'])
+        transaction_amount = float(self.request.data['quantity']) * float(self.request.data['price'])
         serializer.save(user=self.request.user, cost=transaction_amount, portfolio=portfolio)
 
 
