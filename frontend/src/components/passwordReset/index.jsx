@@ -1,10 +1,9 @@
 import React, {useState} from 'react'
-import {MainContainer, WrapDiv} from '../../styles/components/signUpStyles'
 import logo from '../../assets/logo/logo_with_name.png'
 import {Link} from 'react-router-dom'
 import {resetCodeFetch, signupCodeFetch} from "../../store/fetches/signup_fetches";
 import history from "../../history";
-import {WrapDivR} from "../../styles/components/registrationStyles";
+import { HeaderWrapper, LoginWrapper, InputWrapper, ButtonWrapper,  MainContainerSI,} from '../../styles/components/signInStyles';
 const PasswordReset = () => {
 
     const [ email, setEmail ] = useState('');
@@ -33,7 +32,33 @@ const PasswordReset = () => {
 
     return (
         <>
-        <MainContainer>
+
+        <HeaderWrapper>
+        </HeaderWrapper>
+        <LoginWrapper> 
+             <img src={logo} out="logo" alt="logo"/>
+             <MainContainerSI>
+               <h4>Enter your email address</h4>
+               <InputWrapper>
+                         <input
+                        required
+                        onChange={event => setEmail(event.target.value)}
+                        name='email'
+                        type='text'
+                        placeholder='E-Mail address'
+                        onKeyUp={ event => event.key === 'Enter' ? sendEmail() : ''}
+                        />
+                        {errorEmptyEmail ?
+                            <h1>Email field cannot be empty</h1>
+                            : ''}
+                   <ButtonWrapper>
+                   <button onClick={sendEmail}>Reset your password</button>
+                   </ButtonWrapper>
+               </InputWrapper>    
+        </MainContainerSI>
+        </LoginWrapper> 
+
+        {/* <MainContainer>
             <div>
                     <WrapDiv>
                         <img src={logo} out="logo" alt="logo"/>
@@ -58,7 +83,7 @@ const PasswordReset = () => {
                          <button onClick={sendEmail}>Reset your password</button>
                     </WrapDivR>
                 </div>
-        </MainContainer>
+        </MainContainer> */}
         </>
     )
 }
