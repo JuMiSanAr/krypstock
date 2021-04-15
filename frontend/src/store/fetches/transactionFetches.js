@@ -6,7 +6,7 @@ import {headersWithToken} from "../constants";
 const transactionFetch = () => {
     return fetchAPI(
         'transactions/',
-        undefined,
+        null,
         'GET',
         headersWithToken
     )

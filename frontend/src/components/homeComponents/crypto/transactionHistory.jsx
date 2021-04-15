@@ -10,6 +10,7 @@ import {darkTheme} from '../../../styles/Themes';
 export const TransactionHistory = () => {
 
     const allData = useSelector(state => state.transactionsReducer.transactions);
+    // console.log("TransactionHistory ~ allData", allData)
 
     const auth = useSelector((state => state.logInReducer.authenticated));
     
@@ -19,14 +20,7 @@ export const TransactionHistory = () => {
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
     };
-
-    const cutUSDT = (currency) => {
-        let onlyCurrency = currency.split('');
-        onlyCurrency.splice(-4, 4);
-        onlyCurrency.join('');
-        return onlyCurrency;
-    }
-
+    
     return (
         <ShrinkingComponentWrapper> 
             <h3>Transaction History</h3>
@@ -49,7 +43,7 @@ export const TransactionHistory = () => {
                             allData.filter(data => data.type === 'C').slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                             .map( (cryptoData, index) => 
                                 <tr key={"Stock"+ index}>
-                                    <td>{cryptoData.symbol.slice(-4) === 'USDT' ? cutUSDT(cryptoData.symbol) : cryptoData.symbol}</td>
+                                    <td>{cryptoData.symbol.slice(-4) === 'USDT' ? cryptoData.symbol.slice(0, -4) : cryptoData.symbol}</td>
                                     <td><Moment format="DD.MM.YY">{cryptoData.exec_time}</Moment></td>
                                     <td>{cryptoData.cost}</td>
                                     <td>{cryptoData.buy_sell === "B" ? "BUY" : "SELL"}</td>
@@ -80,3 +74,14 @@ export const TransactionHistory = () => {
 }
 
 
+// active: true
+// buy_sell: "B"
+// cost: "500"
+// exec_time: "2021-04-15T07:42:55.376565Z"
+// id: 107
+// portfolio: {id: 3, name: "Eve's crypto portfolio", description: "My portfolio for crypto investment"}
+// price: "5"
+// quantity: "100"
+// symbol: "1INCHUSDT"
+// type: "C"
+// user: {id: 4, username: "eve", first_name: "", last_name: "", email: "eve@hotmail.com", …}

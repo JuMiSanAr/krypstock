@@ -8,3 +8,7 @@ export const CenterSpan = styled.span`
     width: 100%;
     text-align: center;
 `
+
+export const ErrorSpan = styled.span`
+    font-size: 0.8rem;
+`

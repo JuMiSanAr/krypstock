@@ -5,8 +5,11 @@ import { StockTable } from "../../../styles/components/stockStyles/tableStyles"
 import { ShrinkingComponentWrapper } from "../../../styles/globalParts/containerStyles"
 import TablePagination from '@material-ui/core/TablePagination';
 import {darkTheme} from '../../../styles/Themes';
+import {useHistory} from 'react-router-dom';
 
 const TopPerformingStocks = ({gain_stock}) => {
+
+    const history = useHistory()
 
     //Pagination
     const [page, setPage] = useState(0);
@@ -14,6 +17,10 @@ const TopPerformingStocks = ({gain_stock}) => {
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
     };
+
+    const specificStockPage = (symbol) => {
+        history.push(`/stock/${symbol}`)
+    }
 
     return (
         <ShrinkingComponentWrapper>
@@ -38,7 +45,7 @@ const TopPerformingStocks = ({gain_stock}) => {
                         .map((data, index) => {
                             return (
                                 <tr key={index}>
-                                    <td>{data.companyName}</td>
+                                    <td className="clickStock" onClick={()=> specificStockPage(data.symbol)}>{data.companyName}</td>
                                     <td>{data.latestPrice.toFixed(2)}</td>
                                     <td>
                                         {data.changePercent > 0 ? <i className="fas fa-angle-double-up" style={{color: 'green'}}></i> : data.changePercent < 0 ? <i className="fas fa-angle-double-down" style={{color: 'red'}}></i> : null} 

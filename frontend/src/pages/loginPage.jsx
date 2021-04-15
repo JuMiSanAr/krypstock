@@ -1,5 +1,5 @@
 import React, { useState, useEffect }  from 'react';
-import { useDispatch } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import { loginAction } from '../store/actions/loginActions';
 import {useHistory} from 'react-router-dom';
 import logo from "../assets/logo/logo_with_name.png";
@@ -14,6 +14,8 @@ const LoginPage = () => {
 
     const [errorMessage, setErrorMessage] = useState(false);
 
+    const token = useSelector(state => state.logInReducer.token);
+
     const dispatch = useDispatch();
     const history = useHistory()
 
@@ -23,12 +25,18 @@ const LoginPage = () => {
             localStorage.setItem('token', data.access);
             const action = loginAction(data.access, true);
             dispatch(action);
-            history.push('/');
+
         })
         .catch(() => {
                 setErrorMessage(true);
             })
     }
+
+    useEffect(() => {
+        if (token) {
+            history.push('/');
+        }
+    }, [token]);
 
 
 
@@ -40,26 +48,24 @@ const LoginPage = () => {
              <img src={logo} out="logo" alt="logo"/>
                <MainContainerSI>     
                <InputWrapper>
-                                        <input
-                                            required
-                                            onChange={event => setEmail(event.target.value)}
-                                            value={email}
-                                            name='username'
-                                            type='text'
-                                            placeholder='Email'
-                                        />
-                                  
-                                       <input
-                                            required
-                                            onChange={event => setPassword(event.target.value)}
-                                            value={password}
-                                            name='password'
-                                            type='password'
-                                            placeholder='Password'
-                                            onKeyUp={ event => event.key === 'Enter' ? loginHandler() : ''}
-                                        />
-                           
-                        </InputWrapper>
+                    <input
+                        required
+                        onChange={event => setEmail(event.target.value)}
+                        value={email}
+                        name='username'
+                        type='text'
+                        placeholder='Email'
+                    />
+                    <input
+                        required
+                        onChange={event => setPassword(event.target.value)}
+                        value={password}
+                        name='password'
+                        type='password'
+                        placeholder='Password'
+                        onKeyUp={ event => event.key === 'Enter' ? loginHandler() : ''}
+                    />
+                </InputWrapper>
                         <ButtonWrapper>
                                     <button onClick={loginHandler}>Login</button>
                                     <button><Link className="link linkbutton" to="/sign-up/registration">Registration</Link></button>
