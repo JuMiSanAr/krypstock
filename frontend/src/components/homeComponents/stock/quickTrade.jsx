@@ -15,7 +15,7 @@ const StockQuickTrade = (props) => {
     const allPortfoliosArray = useSelector(state => state.portfoliosReducer.portfolios)
     // console.log('allPortfoliosArray', allPortfoliosArray)
 
-    const [buySell, setBuySell] = useState("B");
+    const [buySell, setBuySell] = useState();
     const [portfolioID, setPortfolioID] = useState();
     const [symbol, setSymbol] = useState();
     const [volume, setVolume] = useState();

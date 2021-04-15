@@ -14,7 +14,7 @@ export const CryptoQuickTrade = (props) => {
   
     // const dispatch = useDispatch()
     const allPortfoliosArray = useSelector(state => state.portfoliosReducer.portfolios)
-    const [buySell, setBuySell] = useState("B");
+    const [buySell, setBuySell] = useState();
     const [symbol, setSymbol] = useState();
     const [portfolioID, setPortfolioID] = useState();
     const [amount, setAmount] = useState();
