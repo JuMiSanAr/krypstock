@@ -10,7 +10,10 @@ export const GAIN_DATA = 'GAIN_DATA';
 export const LOSS_DATA = 'LOSS_DATA';
 
 export const CURRENT_STOCK = 'CURRENT_STOCK';
+
 export const ALL_TRANSACTIONS = 'ALL_TRANSACTION';
+export const ADD_TRANSACTION = 'ADD_TRANSACTION';
+
 export const ALL_PORTFOLIOS = 'ALL_PORTFOLIOS';
 export const SPECIFIC_PORTFOLIO = 'SPECIFIC_PORTFOLIO';
 
