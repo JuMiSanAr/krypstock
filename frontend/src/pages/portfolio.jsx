@@ -20,6 +20,8 @@ const Portfolio = (props) => {
     const [realtimeDataStock, setRealtimeDataStock] = useState([]);
     const [realtimeDataCrypto, setRealtimeDataCrypto] = useState([]);
 
+    const [realtimeDataCombined, setRealtimeDataCombined] = useState([]);
+
     const [stockSymbols, setStockSymbols] = useState([]);
     const [cryptoSymbols, setCryptoSymbols] = useState([]);
 
@@ -69,7 +71,6 @@ const Portfolio = (props) => {
             }
 
             const sum = otherValues.reduce((a, b) => a + b, 0)
-            console.log(sum)
 
             pieValues.push( {
                 title: "Other",
@@ -105,20 +106,38 @@ const Portfolio = (props) => {
                     stocksString += ',';
                 }
             })
-
-            fetch(`https://sandbox.iexapis.com/stable/stock/market/batch?types=price&symbols=${stocksString}&token=${iexSandboxKey}`)
-                .then(res => res.json())
-                .then(data => {
-                    setRealtimeDataStock(data);
-                })
+            if (stocksString !== '') {
+                fetch(`https://sandbox.iexapis.com/stable/stock/market/batch?types=price&symbols=${stocksString}&token=${iexSandboxKey}`)
+                    .then(res => res.json())
+                    .then(data => {
+                        const fetchedData = Object.entries(data).map(entry => {
+                                return {
+                                    symbol: entry[0],
+                                    price: parseFloat(entry[1].price)
+                                }
+                            }
+                        )
+                        setRealtimeDataStock(fetchedData);
+                    })
+            }
         })
     }, [])
 
     useEffect(() => {
         if (allCryptoInfo.length) {
-            allCryptoInfo.filter(crypto => cryptoSymbols.includes(crypto.symbol))
+            setRealtimeDataCrypto(allCryptoInfo.filter(crypto => cryptoSymbols.includes(crypto.symbol)));
         }
     }, [allCryptoInfo]);
+
+    useEffect(() => {
+        if (stockSymbols && cryptoSymbols) {
+            setRealtimeDataCombined(realtimeDataStock.concat(realtimeDataCrypto));
+        } else if (stockSymbols) {
+            setRealtimeDataCombined(realtimeDataStock);
+        } else {
+            setRealtimeDataCombined(realtimeDataCrypto);
+        }
+    }, [realtimeDataStock, realtimeDataCrypto, stockSymbols, cryptoSymbols]);
 
     const [pieData, setPieData] = useState([]);
     const [legend, setLegend] = useState([])
@@ -133,7 +152,6 @@ const Portfolio = (props) => {
             })
     }, [])
 
-
     const dispatch = useDispatch()
     const portfolioInfo = useSelector(state => state.specificPortfolioReducer.portfolioInfo)
 
@@ -142,7 +160,7 @@ const Portfolio = (props) => {
             <PortfolioHeadline>{portfolioInfo.name}</PortfolioHeadline>
             <AllComponentsWrapper>
                 {
-                    portfolioInfo.calculations ? <AllInvestments calculations={portfolioInfo.calculations}/> : ''
+                    portfolioInfo.calculations ? <AllInvestments realtimeData={realtimeDataCombined} calculations={portfolioInfo.calculations}/> : ''
                 }
                 {
                     portfolioInfo.calculations ? <Overview calculations={portfolioInfo.calculations} transactions={portfolioInfo.transactions}/> : ''
