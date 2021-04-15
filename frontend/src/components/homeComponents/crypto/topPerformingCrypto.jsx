@@ -59,7 +59,7 @@ const TopPerformingCrypto = () => {
                         .map( (crypto, index) => 
                         <tr key={index}>
                             <td>{topCryptos.indexOf(crypto) + 1}</td>
-                            <td>{cutUSDT(crypto.symbol)}</td>
+                            <td>{crypto.symbol.slice(0, -4)}</td>
                             <td>{Number(crypto.lastPrice).toFixed(2)}</td>
                             <td>
                                 {crypto.priceChangePercent > 0 ? <i className="fas fa-angle-double-up" style={{color: 'green'}}></i> : crypto.priceChangePercent < 0 ? <i className="fas fa-angle-double-down" style={{color: 'red'}}></i> : null} 

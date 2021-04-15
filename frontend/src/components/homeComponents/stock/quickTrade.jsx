@@ -6,6 +6,7 @@ import { ShrinkingComponentWrapper } from '../../../styles/globalParts/container
 import { postNewTransactionFetch } from '../../../store/fetches/transactionFetches'; 
 import { Link } from 'react-router-dom';
 import SymbolFetch from '../../../store/fetches/symbolFetches';
+import {iexSandboxKey} from '../../../store/constants'
 
 const StockQuickTrade = (props) => {
 
@@ -24,7 +25,7 @@ const StockQuickTrade = (props) => {
     const [bidPrice, setBidPrice] = useState(0);
     const [askPrice, askBidPrice] = useState(0);
 
-
+    // https://sandbox.iexapis.com/stable/stock/${symbol}/price?token=${iexSandboxKey}
     const submitHandler = (e) => {
         if(allSymbols.includes(symbol)) {
             e.preventDefault();
@@ -101,7 +102,7 @@ const StockQuickTrade = (props) => {
                             </div>
                             <div className="amountInput">
                                 <label htmlFor="company-input">Symbol</label>
-                                <input id="company-input" list="stock-symbols" name="company" placeholder="company" value={symbol} onChange={e => setSymbol(e.target.value)} required/>
+                                <input id="company-input" list="stock-symbols" name="company" style={{"text-transform":"uppercase"}} placeholder="company" value={symbol} onChange={e => setSymbol(e.target.value)} required/>
                                 <datalist id="stock-symbols">
                                     { allSymbols && allSymbols.length !== 0 ?
                                     allSymbols.map( (symbol, index) => 
@@ -112,11 +113,27 @@ const StockQuickTrade = (props) => {
                             </div>
                             <div className="amountInput">
                                 <p>Quantity</p>
-                                <input type="number" placeholder="0" value={volume} onChange={e => setVolume(e.target.value)} required/>
+                                <input 
+                                    type="number" 
+                                    step="1" 
+                                    min="1"
+                                    placeholder="1" 
+                                    value={volume} 
+                                    onChange={e => setVolume(e.target.value)} 
+                                    required
+                                />
                             </div>
                             <div className="amountInput">
                                 <p>Price per share</p>
-                                <input type="number" placeholder={buySell === 'B' ? bidPrice : buySell === 'S' ? askPrice : "0.00"} value={pricePerShare} onChange={e => setPricePerShare(e.target.value)} required />
+                                <input 
+                                    type="number" 
+                                    step="0.0001" 
+                                    min="0.0001"
+                                    placeholder={buySell === 'B' ? bidPrice : buySell === 'S' ? askPrice : "0.00"} 
+                                    value={pricePerShare} 
+                                    onChange={e => setPricePerShare(e.target.value)} 
+                                    required 
+                                />
                             </div>
                             <div className="transacItem">
                                 <p>{'Market Price '} {buySell === 'B' ? '(Bid)' : buySell === 'S' ? '(Ask)' : null}</p>

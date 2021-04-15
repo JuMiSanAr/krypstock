@@ -2,10 +2,10 @@ import React, { useState, useEffect }  from 'react';
 import { useDispatch } from 'react-redux';
 import { loginAction } from '../store/actions/loginActions';
 import {useHistory} from 'react-router-dom';
-import {MainContainerSI, WrapDivSI} from "../styles/components/signInStyles";
 import logo from "../assets/logo/logo_with_name.png";
 import loginFetch from "../store/fetches/logInFetches";
 import {Link} from "react-router-dom";
+import {HeaderWrapper, LoginWrapper, InputWrapper, ButtonWrapper,  MainContainerSI, WrapDivSI} from "../styles/components/signInStyles";
 
 
 const LoginPage = () => {
@@ -34,9 +34,40 @@ const LoginPage = () => {
 
     return (
         <>
-
-               <MainContainerSI>
-                    <WrapDivSI>
+            <HeaderWrapper>
+            </HeaderWrapper>
+             <LoginWrapper>
+             <img src={logo} out="logo" alt="logo"/>
+               <MainContainerSI>     
+               <InputWrapper>
+                                        <input
+                                            required
+                                            onChange={event => setEmail(event.target.value)}
+                                            value={email}
+                                            name='username'
+                                            type='text'
+                                            placeholder='Email'
+                                        />
+                                  
+                                       <input
+                                            required
+                                            onChange={event => setPassword(event.target.value)}
+                                            value={password}
+                                            name='password'
+                                            type='password'
+                                            placeholder='Password'
+                                            onKeyUp={ event => event.key === 'Enter' ? loginHandler() : ''}
+                                        />
+                           
+                        </InputWrapper>
+                        <ButtonWrapper>
+                                    <button onClick={loginHandler}>Login</button>
+                                    <button><Link className="link linkbutton" to="/sign-up/registration">Registration</Link></button>
+                                        <h1>{errorMessage ? 'Invalid username or password' : ''}</h1>
+                        </ButtonWrapper>
+                        <Link className="link" to="/password-reset"><p>Forgot your password?</p></Link>
+               
+                    {/* <WrapDivSI>
                     <img src={logo} out="logo" alt="logo"/>
                     </WrapDivSI>
                     <WrapDivSI id="sign-in-form">
@@ -73,20 +104,10 @@ const LoginPage = () => {
                                 </div>
                             </WrapDivSI>
                         </div>
-                    </WrapDivSI>
-                </MainContainerSI>
+                    </WrapDivSI>*/}
 
-
-
-
-
-
-
-
-
-
-
-
+                </MainContainerSI> 
+                </LoginWrapper>
 
         </>
     )
