@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { AllComponentsWrapper, ShrinkingComponentWrapper } from '../styles/globalParts/containerStyles';
-import {HeadlineFont, CakeChartContainer, PortfolioHeadline, LegendContainer, ColorSquare, LegendWrapper} from '../styles/components/portfolioStyles';
+import {CakeChartContainer, PortfolioHeadline, LegendContainer, ColorSquare, LegendWrapper, Headline} from '../styles/components/portfolioStyles';
 import { PieChart } from 'react-minimal-pie-chart';
 import PortfolioChart from '../components/charts/portfolioChart';
 import AllInvestments from '../components/portfolioComponents/allInvestments';
@@ -164,7 +164,7 @@ const Portfolio = (props) => {
 
                 <ShrinkingComponentWrapper>
                     <CakeChartContainer>
-                        <HeadlineFont>My Investments</HeadlineFont>
+                        <Headline>My Investments</Headline>
                         {
                             pieData.length > 0 ? <PieChart
                             /* label={props => { return props.dataEntry.title;}}
@@ -187,15 +187,11 @@ const Portfolio = (props) => {
                     </CakeChartContainer>
                 </ShrinkingComponentWrapper>
                 <ShrinkingComponentWrapper>
-                    <HeadlineFont>Total value over time</HeadlineFont>
+                    <Headline>Total value over time</Headline>
                     {
                         portfolioInfo.transactions ? <PortfolioChart data={portfolioInfo.transactions}/> : ''
                     }
                 </ShrinkingComponentWrapper>
-                {/* <ShrinkingComponentWrapper>
-                    <HeadlineFont>Comparison</HeadlineFont>
-                    <img src={Graph}></img>     
-                </ShrinkingComponentWrapper> */}
             </AllComponentsWrapper>
         </>
     )

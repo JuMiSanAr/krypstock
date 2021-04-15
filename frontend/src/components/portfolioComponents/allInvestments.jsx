@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { ShrinkingComponentWrapper } from '../../styles/globalParts/containerStyles';
-import {InvestmentsContainer, InvestmentFont, HeadlineFont} from '../../styles/components/portfolioStyles';
+import {InvestmentsContainer, InvestmentFont, HeadlineFont, Desc} from '../../styles/components/portfolioStyles';
 
 
 const AllInvestments = ({calculations, realtimeData}) => {
@@ -75,23 +75,23 @@ const AllInvestments = ({calculations, realtimeData}) => {
                     <HeadlineFont>Current status</HeadlineFont >
                     <InvestmentsContainer>
                         <div>
-                            <p>Invested</p>
+                            <Desc>Invested</Desc>
                             <InvestmentFont>
                                $ {totalInvestments}
                             </InvestmentFont>
                         </div>
                         <div>
-                            <p>Current value</p>
+                            <Desc>Current value</Desc>
                             <InvestmentFont>
                                $ {currentValue}
                             </InvestmentFont>
                         </div>
                         <div>
-                            <p>Total %</p>
+                            <Desc>Total %</Desc>
                             <InvestmentFont>{differencePercentage.toFixed(2)}%</InvestmentFont>
                         </div>
                         <div>
-                            <p>Today %</p>
+                            <Desc>Today %</Desc>
                             <InvestmentFont><i className="fas fa-angle-double-up"></i> {dailyChange}%</InvestmentFont>
                         </div>
                     </InvestmentsContainer>
