@@ -6,7 +6,7 @@ export const FormSelectWrapper = styled.div`
    display: flex;
    justify-content: space-between;
    align-items: center;
-
+   
    .selector{
      border-style: none;
      border-radius: 5px;
@@ -17,6 +17,18 @@ export const FormSelectWrapper = styled.div`
     :focus {
         outline: none;
         }
+   }
+`;
+
+
+export const CryptoWrapper= styled.div`
+   display: flex;
+   justify-content: flex-end;
+   width:100%
+   ;
+   input{
+   margin-left:10px;
+   margin-right:10px;
    }
 `;
 
