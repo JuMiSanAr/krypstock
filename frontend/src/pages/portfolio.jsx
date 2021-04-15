@@ -106,14 +106,11 @@ const Portfolio = (props) => {
                 }
             })
             if (stocksString !== '') {
-                fetch(`https://sandbox.iexapis.com/stable/stock/market/batch?types=price&symbols=${stocksString}&token=${iexSandboxKey}`)
+                fetch(`https://sandbox.iexapis.com/stable/stock/market/batch?types=quote&symbols=${stocksString}&token=${iexSandboxKey}`)
                     .then(res => res.json())
                     .then(data => {
                         const fetchedData = Object.entries(data).map(entry => {
-                                return {
-                                    symbol: entry[0],
-                                    price: parseFloat(entry[1].price)
-                                }
+                                return entry[1].quote;
                             }
                         )
                         setRealtimeDataStock(fetchedData);
