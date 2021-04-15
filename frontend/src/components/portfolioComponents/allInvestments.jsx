@@ -9,6 +9,9 @@ import {InvestmentsContainer, PercentContainer, InvestmentFont, HeadlineFont} fr
 const AllInvestments = ({calculations, realtimeData}) => {
 
     const [currentValue, setCurrentValue] = useState(null);
+    const [yesterdayValue, setYesterdayValue] = useState(null);
+
+    const [dailyChange, setDailyChange] = useState(null);
 
     const calculateTotalInvestments = (calc) => {
         let total = 0;
@@ -26,22 +29,34 @@ const AllInvestments = ({calculations, realtimeData}) => {
 
     useEffect(() => {
         if (realtimeData.length > 0) {
+            let yesterdayPrices= 0;
             const calculateValue = calculations.reduce((acc, calc) => {
                 const realtimeValue = realtimeData.filter(item => item.symbol === calc.symbol);
-                if (calc.type === 'S') {
-                    return acc + calc.quantity * realtimeValue[0].price;
-                } else {
+                if (calc.type === 'S' && calc.quantity && realtimeValue[0]) {
+                    yesterdayPrices += calc.quantity * realtimeValue[0].previousClose;
+                    return acc + calc.quantity * realtimeValue[0].latestPrice;
+                } else if (calc.type === 'C' && calc.quantity && realtimeValue[0]) {
+                    yesterdayPrices += calc.quantity * parseFloat(realtimeValue[0].prevClosePrice);
                     return acc + calc.quantity * parseFloat(realtimeValue[0].lastPrice);
+                } else {
+                    return acc;
                 }
             }, 0);
+            setYesterdayValue(yesterdayPrices);
             setCurrentValue(calculateValue.toFixed(2));
         }
-
     }, [realtimeData]);
 
     useEffect(() => {
+        if (yesterdayValue) {
+            console.log(currentValue, yesterdayValue)
+            setDailyChange((currentValue - yesterdayValue) / yesterdayValue * 100);
+        }
+    }, [yesterdayValue]);
+
+    useEffect(() => {
         if (currentValue > 0) {
-            setDifferencePercentage(((currentValue - totalInvestments) / totalInvestments * 100));
+            setDifferencePercentage((currentValue - totalInvestments) / totalInvestments * 100);
         }
     }, [currentValue]);
 
@@ -80,7 +95,7 @@ const AllInvestments = ({calculations, realtimeData}) => {
                         </div>
                         <div>
                             <p>Today %</p>
-                            <InvestmentFont><i className="fas fa-angle-double-up"></i> 2.5%</InvestmentFont>
+                            <InvestmentFont><i className="fas fa-angle-double-up"></i> {dailyChange}%</InvestmentFont>
                         </div>
                     </InvestmentsContainer>
                     <HeadlineFont>Overall portfolio balance</HeadlineFont >
