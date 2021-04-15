@@ -135,7 +135,7 @@ export const CryptoQuickTrade = (props) => {
                                 id="company-input" 
                                 className="selector" 
                                 list="cryptoSymbols" 
-                                style={{"text-transform":"uppercase"}} 
+                                style={{"textTransform":"uppercase"}} 
                                 onChange={e => setSymbol(e.target.value.toUpperCase())} 
                                 required
                             />

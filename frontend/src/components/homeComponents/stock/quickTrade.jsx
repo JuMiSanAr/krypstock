@@ -14,7 +14,7 @@ const StockQuickTrade = (props) => {
     const allPortfoliosArray = useSelector(state => state.portfoliosReducer.portfolios)
     // console.log('allPortfoliosArray', allPortfoliosArray)
 
-    const [buySell, setBuySell] = useState();
+    const [buySell, setBuySell] = useState("B");
     const [portfolioID, setPortfolioID] = useState();
     const [symbol, setSymbol] = useState();
     const [volume, setVolume] = useState();
@@ -23,9 +23,8 @@ const StockQuickTrade = (props) => {
     const [allSymbols, setAllSymbols] = useState([]);
     const [incorrectSymbol, setIncorrectSymbol] = useState(false);
     const [bidPrice, setBidPrice] = useState(0);
-    const [askPrice, askBidPrice] = useState(0);
+    const [askPrice, setAskPrice] = useState(0);
 
-    // https://sandbox.iexapis.com/stable/stock/${symbol}/price?token=${iexSandboxKey}
     const submitHandler = (e) => {
         if(allSymbols.includes(symbol)) {
             e.preventDefault();
@@ -41,9 +40,8 @@ const StockQuickTrade = (props) => {
         }
     }
 
-    useEffect( () => {
+    useEffect( () => {  //get all stock symbols
         const symbolList = []
-
         fetch('https://sandbox.iexapis.com/beta/ref-data/symbols?token=Tpk_fec97062db224c2fb7b0b3836ab0e365')
             .then(res => res.json())
             .then(data => {
@@ -55,6 +53,29 @@ const StockQuickTrade = (props) => {
             })  
     }, [])
     
+    useEffect( () => {   // get price of specific symbol
+        console.log('symbol',symbol)
+
+       if (allSymbols.includes(symbol)) {
+            fetch(`https://sandbox.iexapis.com/stable/stock/${symbol}/price?token=${iexSandboxKey}`)
+                .then(res => res.json())
+                .then(data => {
+                    console.log("useState ~ data", data)
+                    if (buySell === 'B') {
+                        setBidPrice(data)
+                    } else if ( buySell === 'S') {
+                        setAskPrice(data)
+                    }
+                })
+                .catch( error => {console.log('error', error)})
+       }
+
+       if (!(allSymbols.includes(symbol))) {
+        setBidPrice(0)
+        setAskPrice(0)
+        }
+    }, [symbol, buySell])
+
     return(
         <ShrinkingComponentWrapper>
             <form onSubmit={submitHandler}>
@@ -68,8 +89,9 @@ const StockQuickTrade = (props) => {
                     :
                     <SelectorWrapper>
                         <div className="buySell">
-                            <select className="selector" defaultValue={'DEFAULT'} onChange={e => setBuySell(e.target.value)} required>
-                                <option value="DEFAULT" disabled>Select</option>
+                            {/* <select className="selector" defaultValue={'DEFAULT'} onChange={e => setBuySell(e.target.value)} required> */}
+                            <select className="selector" onChange={e => setBuySell(e.target.value)} required>
+                                {/* <option value="DEFAULT" disabled>Select</option> */}
                                 <option value="B">Buy</option>
                                 <option value="S">Sell</option>
                             </select>
@@ -102,8 +124,16 @@ const StockQuickTrade = (props) => {
                             </div>
                             <div className="amountInput">
                                 <label htmlFor="company-input">Symbol</label>
-                                <input id="company-input" list="stock-symbols" name="company" style={{"text-transform":"uppercase"}} placeholder="company" value={symbol} onChange={e => setSymbol(e.target.value)} required/>
-                                <datalist id="stock-symbols">
+                                <input 
+                                    id="company-input" 
+                                    list="stockSymbols" 
+                                    name="company" 
+                                    style={{"textTransform":"uppercase"}} 
+                                    // value={symbol} 
+                                    onChange={e => setSymbol(e.target.value.toUpperCase())} 
+                                    required
+                                />
+                                <datalist id="stockSymbols">
                                     { allSymbols && allSymbols.length !== 0 ?
                                     allSymbols.map( (symbol, index) => 
                                     <option value={symbol} key={index} />
