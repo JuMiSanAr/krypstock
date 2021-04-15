@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {specificPortfolioFetch} from '../../store/fetches/portfoliosFetches';
 import { specificPortfolioAction } from '../../store/actions/specificPortfolioAction';
@@ -6,8 +6,13 @@ import { ShrinkingComponentWrapper } from '../../styles/globalParts/containerSty
 import {InvestmentsContainer, PercentContainer, InvestmentFont, HeadlineFont} from '../../styles/components/portfolioStyles';
 
 
-const AllInvestments = ({calculations}) => {
-    
+const AllInvestments = ({calculations, realtimeData}) => {
+
+    const [currentValue, setCurrentValue] = useState(null);
+    const [yesterdayValue, setYesterdayValue] = useState(null);
+
+    const [dailyChange, setDailyChange] = useState(null);
+
     const calculateTotalInvestments = (calc) => {
         let total = 0;
         calc.forEach(singleCalc => {
@@ -16,12 +21,61 @@ const AllInvestments = ({calculations}) => {
         return total;
     }
 
-    let totalInvestments = calculateTotalInvestments(calculations);
+    const totalInvestments = calculateTotalInvestments(calculations).toFixed(2);
+
+    const [differencePercentage, setDifferencePercentage] = useState(0);
+
+    const [overallBalance, setOverallBalance] = useState(0);
+
+    useEffect(() => {
+        if (realtimeData.length > 0) {
+            let yesterdayPrices= 0;
+            const calculateValue = calculations.reduce((acc, calc) => {
+                const realtimeValue = realtimeData.filter(item => item.symbol === calc.symbol);
+                if (calc.type === 'S' && calc.quantity && realtimeValue[0]) {
+                    yesterdayPrices += calc.quantity * realtimeValue[0].previousClose;
+                    return acc + calc.quantity * realtimeValue[0].latestPrice;
+                } else if (calc.type === 'C' && calc.quantity && realtimeValue[0]) {
+                    yesterdayPrices += calc.quantity * parseFloat(realtimeValue[0].prevClosePrice);
+                    return acc + calc.quantity * parseFloat(realtimeValue[0].lastPrice);
+                } else {
+                    return acc;
+                }
+            }, 0);
+            setYesterdayValue(yesterdayPrices);
+            setCurrentValue(calculateValue.toFixed(2));
+        }
+    }, [realtimeData]);
+
+    useEffect(() => {
+        if (yesterdayValue) {
+            console.log(currentValue, yesterdayValue)
+            setDailyChange((currentValue - yesterdayValue) / yesterdayValue * 100);
+        }
+    }, [yesterdayValue]);
+
+    useEffect(() => {
+        if (currentValue > 0) {
+            setDifferencePercentage((currentValue - totalInvestments) / totalInvestments * 100);
+        }
+    }, [currentValue]);
+
+    useEffect(() => {
+        if (calculations.length > 0) {
+            setOverallBalance(calculations.reduce((acc, calc) => {
+                if (calc.overall_balance) {
+                    return acc + calc.overall_balance;
+                } else {
+                    return acc + calc.previous_balance;
+                }
+            }, 0))
+        }
+    }, [calculations]);
 
     return (
         <ShrinkingComponentWrapper>
                 <h1>{}</h1>
-                    <HeadlineFont>All investments</HeadlineFont >
+                    <HeadlineFont>Current status</HeadlineFont >
                     <InvestmentsContainer>
                         <div>
                             <p>Invested</p>
@@ -32,16 +86,24 @@ const AllInvestments = ({calculations}) => {
                         <div>
                             <p>Current value</p>
                             <InvestmentFont>
-                               $ {totalInvestments}
+                               $ {currentValue}
                             </InvestmentFont>
                         </div>
                         <div>
-                            <p>Previous balance</p>
-                            <InvestmentFont>$ 43'984</InvestmentFont>
+                            <p>Total %</p>
+                            <InvestmentFont>{differencePercentage.toFixed(2)}%</InvestmentFont>
                         </div>
                         <div>
-                            <p>Today</p>
-                            <InvestmentFont><i className="fas fa-angle-double-up"></i> 2.5%</InvestmentFont>
+                            <p>Today %</p>
+                            <InvestmentFont><i className="fas fa-angle-double-up"></i> {dailyChange}%</InvestmentFont>
+                        </div>
+                    </InvestmentsContainer>
+                    <HeadlineFont>Overall portfolio balance</HeadlineFont >
+                    <InvestmentsContainer>
+                        <div>
+                            <InvestmentFont>
+                               $ {overallBalance.toFixed(2)}
+                            </InvestmentFont>
                         </div>
                     </InvestmentsContainer>
                 </ShrinkingComponentWrapper>
