@@ -16,6 +16,7 @@ const MenuWrapper = styled.div`
   margin-bottom: 80px;
 `;
 const ToggleButton = styled.div`
+    z-index: 999;
     width: 100vw;
     display:flex;
     flex-wrap: wrap;
