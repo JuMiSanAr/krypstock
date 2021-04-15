@@ -1,13 +1,10 @@
 import React,{useState} from 'react'
-import {MainContainerV, WrapDivV} from '../../styles/components/verificationStyles'
+import {MainContainerV, InputWrapper, VerificationWrapper} from '../../styles/components/verificationStyles'
 import logo from "../../assets/logo/logo_with_name.png";
 import {Link} from 'react-router-dom'
 import {activateAccountFetch} from "../../store/fetches/signup_fetches";
 import history from "../../history";
-import {WrapDiv} from "../../styles/components/signUpStyles";
-import {StockModal} from "../quickTradeModal/stock";
-import {CryptoModal} from "../quickTradeModal/crypto";
-
+import {HeaderWrapper, ButtonWrapper,} from "../../styles/components/signInStyles";
 
 const Verification = () => {
 
@@ -58,7 +55,77 @@ const Verification = () => {
 
     return (
         <>
-            <MainContainerV>
+         <HeaderWrapper>
+            </HeaderWrapper>
+             <VerificationWrapper>
+             <img src={logo} out="logo" alt="logo"/>
+               <MainContainerV>  
+               <h4>Set your password and username</h4>   
+               <InputWrapper>
+                    <input
+                        required
+                        onChange={event => setEmail(event.target.value)}
+                        // value={}
+                        name='email'
+                        type='text'
+                        placeholder='E-Mail address'
+                    />
+              
+                    <input
+                        required
+                        onChange={event => setCode(event.target.value)}
+                        // value={}
+                        name='code'
+                        type='text'
+                        placeholder='Validation code'
+                    />
+             
+                    <input
+                        required
+                        onChange={event => setUsername(event.target.value)}
+                        // value={}
+                        name='username'
+                        type='text'
+                        placeholder='Username'
+                    />
+               
+                    <input
+                        required
+                        onChange={event => setPassword1(event.target.value)}
+                        // value={}
+                        name='password'
+                        type='password'
+                        placeholder='Password'
+                    />
+                
+                    <input
+                        required
+                        onChange={event => setPassword2(event.target.value)}
+                        // value={}
+                        name='password repeat'
+                        type='password'
+                        placeholder='Password repeat'
+                        onKeyUp={ event => event.key === 'Enter' ? activateAccount() : ''}
+                    />
+               
+                   {errorEmpty ?
+                    <h1>Please make sure to fill in all fields</h1>
+                        : ''}
+                    {errorCode ?
+                        <h1>Email and code don't match</h1>
+                        : ''}
+                    {errorPassword ?
+                        <>
+                        <h1>The two passwords introduced didn't match</h1>
+                        </>
+                    : ''}
+                    <ButtonWrapper>
+                        <button onClick={activateAccount}>Finish Registration</button>
+                    </ButtonWrapper>
+               </InputWrapper>
+               </MainContainerV> 
+            </VerificationWrapper>
+            {/* <MainContainerV>
                 <div>
                 <WrapDiv>
                     <img src={logo} out="logo" alt="logo"/>
@@ -133,7 +200,7 @@ const Verification = () => {
                 <button onClick={activateAccount}>Finish Registration</button>
                 </WrapDivV>
                 </div>
-            </MainContainerV>
+            </MainContainerV> */}
         </>
     )
 }
