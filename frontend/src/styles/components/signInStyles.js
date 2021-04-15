@@ -157,6 +157,5 @@ export const ButtonWrapper = styled.div`
      font-weight: bold;
      font-size: 1.25rem;
      background: linear-gradient(45deg, #6e83e6, #c96de6);
-     /* box-shadow: 1px 2px 10px #888888 */
    }
 `;
