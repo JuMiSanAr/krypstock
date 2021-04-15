@@ -2,7 +2,8 @@ import styled from "styled-components";
 import {darkTheme, lightTheme} from "../../styles/Themes";
 
 export const FooterWrapper = styled.div`
-    position: sticky;
+    /* position: sticky; */
+    position: fixed;
     display: flex;
     justify-content: space-around;
     bottom: 0;

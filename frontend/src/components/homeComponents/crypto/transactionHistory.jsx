@@ -10,6 +10,8 @@ import {darkTheme} from '../../../styles/Themes';
 export const TransactionHistory = () => {
 
     const allData = useSelector(state => state.transactionsReducer.transactions);
+
+    const auth = useSelector((state => state.logInReducer.authenticated));
     
     //Pagination
     const [page, setPage] = React.useState(0);
@@ -30,7 +32,7 @@ export const TransactionHistory = () => {
             <h3>Transaction History</h3>
             <Table id="trans-history">
                     {
-                        allData && allData.length !== 0 ?
+                        allData && allData.length !== 0 && auth ?
                         <thead>
                             <tr>
                             <th>Currency</th>
@@ -43,7 +45,7 @@ export const TransactionHistory = () => {
                     }
                     <tbody>
                         {
-                            allData && allData.length !== 0 ?
+                            allData && allData.length !== 0 && auth ?
                             allData.filter(data => data.type === 'C').slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                             .map( (cryptoData, index) => 
                                 <tr key={"Stock"+ index}>
@@ -61,7 +63,7 @@ export const TransactionHistory = () => {
                     </tbody>
             </Table>
             {
-                allData && allData.length !== 0 ?
+                allData && allData.length !== 0 && auth ?
                 <TablePagination 
                     component="div"
                     count={allData.filter(data => data.type === 'C').length}

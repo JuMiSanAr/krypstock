@@ -1,11 +1,15 @@
 import React, {useEffect, useState} from 'react'
 import {ShrinkingComponentWrapper } from '../../../styles/globalParts/containerStyles';
-import {FormSelectWrapper, GraphWrapper, RadioWrapper} from "../../../styles/components/cryptoStyles/bitCoinStyles";
+import {
+    FormSelectWrapper,
+    GraphWrapper,
+    ButtonWrapper,
+    CryptoWrapper
+} from "../../../styles/components/cryptoStyles/bitCoinStyles";
 import CandlestickCryptoIntraday from "../../charts/candlesticksCryptoIntraday";
 import ChartTimeCrypto from "../../charts/chartSelectTimeCrypto";
 import CandlestickCryptoHistorical from "../../charts/candlesticksCryptoHistorical";
 import {postNewTransactionFetch} from "../../../store/fetches/transactionFetches";
-
 
 
 export const BitCoin = (props) => {
@@ -76,23 +80,26 @@ export const BitCoin = (props) => {
            <div className="title">
                <h3 >{symbol}</h3>
             </div>
-            <div >
-                <ChartTimeCrypto setChart2={setChartTimeframe2}/>
-            </div>
-
+                <ButtonWrapper>
+                    <button onClick={() => changeSymbol()}>Update</button>
+                 </ButtonWrapper>
            </FormSelectWrapper>
-           <RadioWrapper>
+            <CryptoWrapper>
+          <FormSelectWrapper>
               <label htmlFor="company-input">Cryptocurrency</label>
                             <input id="company-input" className="selector" list="cryptoSymbols" onChange={e => setSymbolInput(`${e.target.value}USDT`)} required/>
-                            <button onClick={() => changeSymbol()}>Bouya button</button>
+           <div >
+                <ChartTimeCrypto setChart2={setChartTimeframe2}/>
+            </div>
+            </FormSelectWrapper>
                             {/* <datalist id="cryptosymbols" >
                                 { allSymbols && allSymbols.length !== 0 ?
                                     allSymbols.map( (symbol, index) =>
                                     <option value={symbol} key={index} />)
                                     : null
                                 }
-                            </datalist> */}
-           </RadioWrapper>
+                          </datalist> */}
+                 </CryptoWrapper>
            <GraphWrapper>
                {
                    chartTimeframe2 === '1d' && !stupidToggle ?

@@ -17,6 +17,14 @@ const Portfolio = (props) => {
     const [portfolioId, setPortfolioId] = useState('');
 
     const [realtimeDataStock, setRealtimeDataStock] = useState([]);
+    const [realtimeDataCrypto, setRealtimeDataCrypto] = useState([]);
+
+    const [realtimeDataCombined, setRealtimeDataCombined] = useState([]);
+
+    const [stockSymbols, setStockSymbols] = useState([]);
+    const [cryptoSymbols, setCryptoSymbols] = useState([]);
+
+    const allCryptoInfo = useSelector(state => state.cryptoReducer.allCryptos);
 
     useEffect(() => {
         const url = window.location.href;
@@ -61,8 +69,12 @@ const Portfolio = (props) => {
             }
 
             const sum = otherValues.reduce((a, b) => a + b, 0)
+<<<<<<< HEAD
             console.log(sum)
             console.log(colorIndex)
+=======
+
+>>>>>>> dev
             pieValues.push( {
                 title: "Other",
                 value: sum,
@@ -80,13 +92,12 @@ const Portfolio = (props) => {
             setLegend(legend);
             
 
-            const stockSymbols = [];
-            const cryptoSymbols = [];
-
             data.calculations.forEach(symbol => {
                 if (symbol.type === 'S') {
+                    // setStockSymbols([...stockSymbols, symbol.symbol])
                     stockSymbols.push(symbol.symbol);
                 } else if (symbol.type === 'C') {
+                    // setCryptoSymbols([...cryptoSymbols, symbol.symbol])
                     cryptoSymbols.push(symbol.symbol);
                 }
             })
@@ -100,14 +111,38 @@ const Portfolio = (props) => {
                     stocksString += ',';
                 }
             })
-
-            fetch(`https://sandbox.iexapis.com/stable/stock/market/batch?types=price&symbols=${stocksString}&token=${iexSandboxKey}`)
-                .then(res => res.json())
-                .then(data => {
-                    setRealtimeDataStock(data);
-                })
+            if (stocksString !== '') {
+                fetch(`https://sandbox.iexapis.com/stable/stock/market/batch?types=price&symbols=${stocksString}&token=${iexSandboxKey}`)
+                    .then(res => res.json())
+                    .then(data => {
+                        const fetchedData = Object.entries(data).map(entry => {
+                                return {
+                                    symbol: entry[0],
+                                    price: parseFloat(entry[1].price)
+                                }
+                            }
+                        )
+                        setRealtimeDataStock(fetchedData);
+                    })
+            }
         })
     }, [])
+
+    useEffect(() => {
+        if (allCryptoInfo.length) {
+            setRealtimeDataCrypto(allCryptoInfo.filter(crypto => cryptoSymbols.includes(crypto.symbol)));
+        }
+    }, [allCryptoInfo]);
+
+    useEffect(() => {
+        if (stockSymbols && cryptoSymbols) {
+            setRealtimeDataCombined(realtimeDataStock.concat(realtimeDataCrypto));
+        } else if (stockSymbols) {
+            setRealtimeDataCombined(realtimeDataStock);
+        } else {
+            setRealtimeDataCombined(realtimeDataCrypto);
+        }
+    }, [realtimeDataStock, realtimeDataCrypto, stockSymbols, cryptoSymbols]);
 
     const [pieData, setPieData] = useState([]);
     const [legend, setLegend] = useState([])
@@ -122,7 +157,6 @@ const Portfolio = (props) => {
             })
     }, [])
 
-
     const dispatch = useDispatch()
     const portfolioInfo = useSelector(state => state.specificPortfolioReducer.portfolioInfo)
 
@@ -131,7 +165,7 @@ const Portfolio = (props) => {
             <PortfolioHeadline>{portfolioInfo.name}</PortfolioHeadline>
             <AllComponentsWrapper>
                 {
-                    portfolioInfo.calculations ? <AllInvestments calculations={portfolioInfo.calculations}/> : ''
+                    portfolioInfo.calculations ? <AllInvestments realtimeData={realtimeDataCombined} calculations={portfolioInfo.calculations}/> : ''
                 }
                 {
                     portfolioInfo.calculations ? <Overview calculations={portfolioInfo.calculations} transactions={portfolioInfo.transactions}/> : ''
