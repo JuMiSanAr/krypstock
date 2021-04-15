@@ -20,8 +20,8 @@ export const SearchPageInput = styled.div`
         width: 294px;
         /* margin-right: 5px; */
         border: none;
-        border-top-left-radius: 20px;
-        border-bottom-left-radius: 20px;
+        border-radius: 10px;
+        //border-bottom-left-radius: 20px;
         font-size:20px;
         padding: 5px 0 5px 30px;
         margin: 5px;
