@@ -17,8 +17,6 @@ const Overview = ({calculations, realtimeData}) => {
     let colors = [allTheme.vibrantturquoise, allTheme.darkblue, allTheme.yellow, allTheme.vibrantorange];
     let currentColor = -1;
 
-    // console.log(realtimeData, calculations)
-
     const specificPortfolioArray = useSelector(state => state.specificPortfolioReducer.calculations)
 
     const getBackgroundColor = () => {
@@ -31,7 +29,7 @@ const Overview = ({calculations, realtimeData}) => {
     }
 
     const getCurrentSymbolValue = (symbol) => {
-
+        return <p>HEY</p>
     }
 
     return (<>
@@ -65,7 +63,7 @@ const Overview = ({calculations, realtimeData}) => {
                     </TempDiv>
                     <TempDiv>
                         <Desc>current</Desc>
-                        <p>34924</p>
+                        {getCurrentSymbolValue(calculation.symbol)}
                     </TempDiv>
                 </NetworthContainer>
                 <div>
