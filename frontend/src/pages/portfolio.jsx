@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { AllComponentsWrapper, ShrinkingComponentWrapper } from '../styles/globalParts/containerStyles';
-import {HeadlineFont, CakeChartContainer, PortfolioHeadline, LegendContainer, ColorSquare, LegendWrapper} from '../styles/components/portfolioStyles';
+import {CakeChartContainer, PortfolioHeadline, LegendContainer, ColorSquare, LegendWrapper, Headline} from '../styles/components/portfolioStyles';
 import { PieChart } from 'react-minimal-pie-chart';
-import Graph from '../assets/bit.png'
 import PortfolioChart from '../components/charts/portfolioChart';
 import AllInvestments from '../components/portfolioComponents/allInvestments';
 import Overview from '../components/portfolioComponents/overview';
@@ -39,9 +38,11 @@ const Portfolio = (props) => {
             const legend = [];
             const colors = [allTheme.vibrantturquoise, allTheme.darkblue, allTheme.yellow, allTheme.vibrantorange, allTheme.green, allTheme.purple, allTheme.blue];
             let colorIndex = 0;
-
+            data.calculations.sort((a, b) => parseFloat(b.invested) - parseFloat(a.invested));
+    
             data.calculations.forEach((calculation) => {
-                if (calculation.invested > 0) {
+               
+                if (calculation.invested > 0 && colorIndex < 6) {
 
                     pieValues.push( {
                         title: calculation.symbol,
@@ -50,33 +51,30 @@ const Portfolio = (props) => {
                     })
 
                     colorIndex++;
-                    console.log(colorIndex)
-
-                    if (colorIndex === 7) {
-                        colorIndex = 0;
-                    }
+                    
                 }
             })
-            pieValues.sort((a, b) => parseFloat(b.value) - parseFloat(a.value));
+            console.log(data.calculations)
 
-            const other = pieValues.filter((value, index) => index > 5);
-
-            pieValues.splice(6)
+            if (data.calculations.length >= 7){
+            const other = data.calculations.filter((value, index) => index > 5);
+            console.log(other)
+            //data.calculations.splice(6)
 
             let otherValues = [];
 
-            for (let i=0; i<other.length;i++){
-                let value = other[i].value;
+            for (let i=0; i<other.length -1;i++){
+                let value = other[i].invested;
                 otherValues.push(value);
             }
 
             const sum = otherValues.reduce((a, b) => a + b, 0)
-
             pieValues.push( {
                 title: "Other",
                 value: sum,
                 color: colors[colorIndex]
             })
+            }
 
             for (let i=0; i<pieValues.length;i++){
                 legend.push({
@@ -86,6 +84,7 @@ const Portfolio = (props) => {
 
             setPieData(pieValues);
             setLegend(legend);
+            
 
             data.calculations.forEach(symbol => {
                 if (symbol.type === 'S') {
@@ -165,7 +164,7 @@ const Portfolio = (props) => {
 
                 <ShrinkingComponentWrapper>
                     <CakeChartContainer>
-                        <HeadlineFont>My Investments</HeadlineFont>
+                        <Headline>My Investments</Headline>
                         {
                             pieData.length > 0 ? <PieChart
                             /* label={props => { return props.dataEntry.title;}}
@@ -188,14 +187,10 @@ const Portfolio = (props) => {
                     </CakeChartContainer>
                 </ShrinkingComponentWrapper>
                 <ShrinkingComponentWrapper>
-                    <HeadlineFont>Total value over time</HeadlineFont>
+                    <Headline>Total value over time</Headline>
                     {
                         portfolioInfo.transactions ? <PortfolioChart data={portfolioInfo.transactions}/> : ''
                     }
-                </ShrinkingComponentWrapper>
-                <ShrinkingComponentWrapper>
-                    <HeadlineFont>Comparison</HeadlineFont>
-                    <img src={Graph}></img>     
                 </ShrinkingComponentWrapper>
             </AllComponentsWrapper>
         </>

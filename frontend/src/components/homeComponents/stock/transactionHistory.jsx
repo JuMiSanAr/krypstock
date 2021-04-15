@@ -15,15 +15,6 @@ const TransactionHistory = (props) => {
     const [page, setPage] = useState(0);
     const rowsPerPage = 4;
     const allData = useSelector(state => state.transactionsReducer.transactions);
-    
-    useEffect(() => {
-        transactionFetch()
-        .then(data => {
-            // console.log("data.results", data.results);
-            const action = transactionsAction(data.results)
-            dispatch(action);
-        })     
-    }, []);
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);

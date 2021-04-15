@@ -9,6 +9,9 @@ export const Table = styled.table`
     /* border-style: solid; */
     color: ${({ theme }) => theme === lightTheme ?lightTheme.text : darkTheme.text};;
     height: 260px;
+    .clickCrypto{
+        cursor: pointer;
+    }
     
     thead{
         background: ${props => props.id === 'crypto' ? allTheme.greenGradient : props.id === "trans-history" ? allTheme.turquoiseGradient : props.id === 'crypto-worst' ? allTheme.redGradient : allTheme.orangeGradient};

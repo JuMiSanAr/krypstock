@@ -14,6 +14,9 @@ export const StockTable = styled.table`
     height: 260px;
     /* display: block; */
     /* table-layout: fixed; */
+    .clickStock{
+        cursor: pointer;
+    }
 
     thead{
         background: ${props => props.id === 'trendy-stocks' ? allTheme.orangeGradient : props.id === "transaction-history" ? allTheme.turquoiseGradient : allTheme.greenGradient};

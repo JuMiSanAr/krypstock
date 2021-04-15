@@ -1,4 +1,4 @@
-import {ALL_TRANSACTIONS} from "../constants";
+import {ADD_TRANSACTION, ALL_TRANSACTIONS} from "../constants";
 
 const initialState = {
     transactions: []
@@ -10,6 +10,11 @@ export const transactionsReducer = (state=initialState, action)=>{
         return {
             ...state, 
             transactions: action.payload
+        }
+    } else if (action.type===ADD_TRANSACTION){
+        return {
+            ...state,
+            transactions: [action.payload,...state.transactions]
         }
     }
     return state;

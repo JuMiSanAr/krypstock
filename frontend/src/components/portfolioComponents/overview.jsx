@@ -20,7 +20,7 @@ const Overview = ({calculations}) => {
     const specificPortfolioArray = useSelector(state => state.specificPortfolioReducer.calculations)
 
     const getBackgroundColor = () => {
-        if (currentColor >= colors.length) {
+        if (currentColor >= colors.length -1) {
             currentColor = 0;
         } else {
             currentColor++;
