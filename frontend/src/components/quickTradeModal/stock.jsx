@@ -19,7 +19,6 @@ export const StockModal = ({ showStockModal, setStockShowModal, symbol, stockSym
     const [marketPrice, setMarketPrice] = useState(0);
     const [notEnoughStocks, setNotEnoughStocks] = useState(false);
 
-    // console.log("symbol", stockSymbol)
     const submitHandler = (e) => {
         e.preventDefault();
         // console.log(buySell, portfolioID, symbol, volume, pricePerShare,type)
@@ -28,10 +27,7 @@ export const StockModal = ({ showStockModal, setStockShowModal, symbol, stockSym
             console.log('in stock quicktrade submitHandler', data)
         })
         .catch(error => {
-            // console.log(error.split('')[error.length-1])
             if (error.toString().slice(-1) === '3') {
-                console.log('error', error)
-                console.log("You don't have enough coins to sell")
                 setNotEnoughStocks(true);
             }
         })
@@ -44,7 +40,6 @@ export const StockModal = ({ showStockModal, setStockShowModal, symbol, stockSym
             fetch(`https://sandbox.iexapis.com/stable/stock/${stockSymbol}/price?token=${iexSandboxKey}`)
             .then(res => res.json())
             .then(data => {
-                // console.log("useState ~ data", data)
                 setMarketPrice(data)
             })
             .catch( error => {console.log('error', error)})
