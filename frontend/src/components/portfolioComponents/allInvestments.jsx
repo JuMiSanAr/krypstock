@@ -1,9 +1,6 @@
-import React, {useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {specificPortfolioFetch} from '../../store/fetches/portfoliosFetches';
-import { specificPortfolioAction } from '../../store/actions/specificPortfolioAction';
+import React from 'react';
 import { ShrinkingComponentWrapper } from '../../styles/globalParts/containerStyles';
-import {InvestmentsContainer, PercentContainer, InvestmentFont, HeadlineFont} from '../../styles/components/portfolioStyles';
+import {InvestmentsContainer, InvestmentFont, HeadlineFont} from '../../styles/components/portfolioStyles';
 
 
 const AllInvestments = ({calculations}) => {
