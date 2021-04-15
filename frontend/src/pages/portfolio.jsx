@@ -69,12 +69,6 @@ const Portfolio = (props) => {
             }
 
             const sum = otherValues.reduce((a, b) => a + b, 0)
-<<<<<<< HEAD
-            console.log(sum)
-            console.log(colorIndex)
-=======
-
->>>>>>> dev
             pieValues.push( {
                 title: "Other",
                 value: sum,

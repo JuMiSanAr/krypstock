@@ -1,11 +1,4 @@
-<<<<<<< HEAD
-import React from 'react';
-=======
 import React, {useEffect, useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {specificPortfolioFetch} from '../../store/fetches/portfoliosFetches';
-import { specificPortfolioAction } from '../../store/actions/specificPortfolioAction';
->>>>>>> dev
 import { ShrinkingComponentWrapper } from '../../styles/globalParts/containerStyles';
 import {InvestmentsContainer, InvestmentFont, HeadlineFont} from '../../styles/components/portfolioStyles';
 

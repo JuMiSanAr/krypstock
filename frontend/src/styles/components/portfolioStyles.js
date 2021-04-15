@@ -18,7 +18,7 @@ i{
 
 export const InvestmentFont = styled.p`
 font-weight: 600;
-font-size: 20px;
+font-size: 16px;
 
 i{
     padding: 0;
