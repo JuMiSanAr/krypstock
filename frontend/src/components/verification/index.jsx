@@ -5,6 +5,8 @@ import {Link} from 'react-router-dom'
 import {activateAccountFetch} from "../../store/fetches/signup_fetches";
 import history from "../../history";
 import {WrapDiv} from "../../styles/components/signUpStyles";
+import {StockModal} from "../quickTradeModal/stock";
+import {CryptoModal} from "../quickTradeModal/crypto";
 
 
 const Verification = () => {
@@ -137,3 +139,14 @@ const Verification = () => {
 }
 
 export default Verification;
+
+// {calculation.type === "S"
+//                     ? <>
+//                             <button onClick={()=>{setStockShowModal(true);setStockSymbol(calculation.symbol);}}>BUY/SELL</button>
+//                             <StockModal stockSymbol={stockSymbol}  symbol = {stockSymbol} showStockModal={showStockModal} setStockShowModal={setStockShowModal}/>
+//                       </>
+//                     : <>
+//                             <button onClick={()=>{setCryptoShowModal(true);setSymbolCrypto(calculation.symbol);}}>BUY/SELL</button>
+//                             <CryptoModal  symbol = {symbolCrypto} showCryptoModal={showCryptoModal} setCryptoShowModal={setCryptoShowModal}/>
+//                       </>
+//                     }
