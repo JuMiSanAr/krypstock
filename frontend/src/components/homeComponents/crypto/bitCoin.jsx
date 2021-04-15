@@ -5,6 +5,7 @@ import CandlestickCryptoIntraday from "../../charts/candlesticksCryptoIntraday";
 import ChartTimeCrypto from "../../charts/chartSelectTimeCrypto";
 import CandlestickCryptoHistorical from "../../charts/candlesticksCryptoHistorical";
 import {postNewTransactionFetch} from "../../../store/fetches/transactionFetches";
+import {ButtonWrapper, TransacWrapper} from "../../../styles/components/cryptoStyles/quickTradeStyles";
 
 
 
@@ -81,18 +82,20 @@ export const BitCoin = (props) => {
             </div>
 
            </FormSelectWrapper>
-           <RadioWrapper>
+           <FormSelectWrapper>
               <label htmlFor="company-input">Cryptocurrency</label>
                             <input id="company-input" className="selector" list="crypto-symbols" onChange={e => setSymbolInput(e.target.value)} required/>
-                            <button onClick={() => changeSymbol()}>Bouya button</button>
-                            <datalist id="crypto-symbols" >
+                               <ButtonWrapper>
+                                   <button onClick={() => changeSymbol()}>Update</button>
+                               </ButtonWrapper>
+                           <datalist id="crypto-symbols" >
                                 { allSymbols && allSymbols.length !== 0 ?
                                     allSymbols.map( (symbol, index) =>
                                     <option value={symbol} key={index} />)
                                     : null
                                 }
                             </datalist>
-           </RadioWrapper>
+           </FormSelectWrapper>
            <GraphWrapper>
                {
                    chartTimeframe2 === '1d' && !stupidToggle ?
