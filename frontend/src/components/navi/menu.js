@@ -20,6 +20,7 @@ import {useDispatch} from 'react-redux';
 import {loginAction} from "../../store/actions/loginActions";
 
 import {BiNews} from 'react-icons/bi';
+import {FaSearchDollar} from 'react-icons/fa';
 
 const Menu = ({open, setOpen}) => {
     
@@ -31,13 +32,23 @@ const Menu = ({open, setOpen}) => {
     const isHidden = open ? true : false;
 /*  const tabIndex = isHidden ? 0 : -1;*/
 
+  
+
+    const toDashboard = () => {
+        history.push('/');
+        setOpen(false)
+    }
     const toPortfolios = () => {
         history.push('/portfolio-list');
         setOpen(false)
     }
+    const toSearch = () => {
+        history.push('/search');
+        setOpen(false)
+    }
 
-    const toDashboard = () => {
-        history.push('/');
+    const toNews = () => {
+        history.push('/news');
         setOpen(false)
     }
 
@@ -48,10 +59,7 @@ const Menu = ({open, setOpen}) => {
         history.push('/sign-in');
         setOpen(false)
     }
-    const toNews = () => {
-        history.push('/news');
-        setOpen(false)
-    }
+    
 
     useEffect(() => {
         loginUserDataFetch()
@@ -85,13 +93,18 @@ const Menu = ({open, setOpen}) => {
                 <ArrowForwardIosIcon/>
                 </MenuItemWrapper> */}
                 <MenuItemWrapper>
+                <FaSearchDollar size={24}/>
+                <span className="move-right-3"  onClick={() => toSearch()}>Search</span>
+                <ArrowForwardIosIcon/>
+                </MenuItemWrapper>
+                <MenuItemWrapper>
                 <BiNews size={24}/>
-                <span className="move-right-3"  onClick={() => toNews()}>News</span>
+                <span className="move-right-4"  onClick={() => toNews()}>News</span>
                 <ArrowForwardIosIcon/>
                 </MenuItemWrapper>
                 <MenuItemWrapper>
                 <ExitToAppIcon/>
-                <span className="move-right-4" onClick={() => logout()}>Logout</span>
+                <span className="move-right-5" onClick={() => logout()}>Logout</span>
                 <ArrowForwardIosIcon/>
                 </MenuItemWrapper>
             </MenuContentWrapper>
