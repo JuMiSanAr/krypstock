@@ -83,19 +83,18 @@ export const BitCoin = (props) => {
 
            </FormSelectWrapper>
            <FormSelectWrapper>
+           <RadioWrapper>
               <label htmlFor="company-input">Cryptocurrency</label>
-                            <input id="company-input" className="selector" list="crypto-symbols" onChange={e => setSymbolInput(e.target.value)} required/>
-                               <ButtonWrapper>
-                                   <button onClick={() => changeSymbol()}>Update</button>
-                               </ButtonWrapper>
-                           <datalist id="crypto-symbols" >
+                            <input id="company-input" className="selector" list="cryptoSymbols" onChange={e => setSymbolInput(`${e.target.value}USDT`)} required/>
+                            <button onClick={() => changeSymbol()}>Bouya button</button>
+                            {/* <datalist id="cryptosymbols" >
                                 { allSymbols && allSymbols.length !== 0 ?
                                     allSymbols.map( (symbol, index) =>
                                     <option value={symbol} key={index} />)
                                     : null
                                 }
-                            </datalist>
-           </FormSelectWrapper>
+                            </datalist> */}
+           </RadioWrapper>
            <GraphWrapper>
                {
                    chartTimeframe2 === '1d' && !stupidToggle ?
