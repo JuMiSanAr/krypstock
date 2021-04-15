@@ -20,10 +20,20 @@ export const FormSelectWrapper = styled.div`
    }
 `;
 
-export const RadioWrapper = styled.div`
+export const ButtonWrapper = styled.div`
     display: flex;
-    input {
-    width: 15%;
+    justify-content:flex-end;
+    
+    button{
+        background-color: #6418C3;
+        text-transform: uppercase;
+        font-weight: 600;
+        height: 30px;
+        width: 90px;
+        border-radius: 10px;
+        border: none;
+        color: white;
+        margin-bottom:10px;
     }
 `;
 
