@@ -31,13 +31,6 @@ const WorstPerformingCrypto = () => {
         // console.log(worstCryptos)
     }, [allCryptos] )
 
-    const cutUSDT = (currency) => {
-        let onlyCurrency = currency.split('');
-        onlyCurrency.splice(-4, 4);
-        onlyCurrency.join('');
-        return onlyCurrency;
-    }
-
     return (
         <ShrinkingComponentWrapper> 
             <h3>Top 10 Losers</h3>
@@ -60,7 +53,7 @@ const WorstPerformingCrypto = () => {
                         .map( (crypto, index) => 
                         <tr key={index}>
                             <td>{worstCryptos.indexOf(crypto) + 1}</td>
-                            <td>{cutUSDT(crypto.symbol)}</td>
+                            <td>{crypto.symbol.slice(0, -4)}</td>
                             <td>{Number(crypto.lastPrice).toFixed(2)}</td>
                             <td>
                                 {crypto.priceChangePercent > 0 ? <i className="fas fa-angle-double-up" style={{color: 'green'}}></i> : crypto.priceChangePercent < 0 ? <i className="fas fa-angle-double-down" style={{color: 'red'}}></i> : null} 

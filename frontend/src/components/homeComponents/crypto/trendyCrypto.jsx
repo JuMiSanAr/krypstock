@@ -32,17 +32,6 @@ const TrendyCrypto = () => {
         // console.log('allCryptos', allCryptos)
     }, [allCryptos] )
 
-    const cutUSDT = (currency) => {
-        let onlyCurrency = currency.split('');
-        onlyCurrency.splice(-4, 4);
-        onlyCurrency.join('');
-        return onlyCurrency;
-    }
-
-    // const numberWithCommas = (number) => {
-    //     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    // }
-
     return (
         <ShrinkingComponentWrapper> 
             <h3>Top 20 Trendy Currencies</h3>
@@ -66,7 +55,7 @@ const TrendyCrypto = () => {
                         .map( (crypto, index) => 
                         <tr key={index}>
                             <td>{trendyCryptos.indexOf(crypto) + 1}</td>
-                            <td>{cutUSDT(crypto.symbol)}</td>
+                            <td>{crypto.symbol.slice(0, -4)}</td>
                             <td>{Number(crypto.lastPrice).toFixed(2)}</td>
                             {/* <td>{numberWithCommas(crypto.lastPrice)}</td> */}
                             <td>

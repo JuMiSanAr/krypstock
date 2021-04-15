@@ -112,11 +112,11 @@ const StockQuickTrade = (props) => {
                             </div>
                             <div className="amountInput">
                                 <p>Quantity</p>
-                                <input type="number" placeholder="0" value={volume} onChange={e => setVolume(e.target.value)} required/>
+                                <input type="number" step=".01" placeholder="0" value={volume} onChange={e => setVolume(e.target.value)} required/>
                             </div>
                             <div className="amountInput">
                                 <p>Price per share</p>
-                                <input type="number" placeholder={buySell === 'B' ? bidPrice : buySell === 'S' ? askPrice : "0.00"} value={pricePerShare} onChange={e => setPricePerShare(e.target.value)} required />
+                                <input type="number" step=".01" placeholder={buySell === 'B' ? bidPrice : buySell === 'S' ? askPrice : "0.00"} value={pricePerShare} onChange={e => setPricePerShare(e.target.value)} required />
                             </div>
                             <div className="transacItem">
                                 <p>{'Market Price '} {buySell === 'B' ? '(Bid)' : buySell === 'S' ? '(Ask)' : null}</p>
