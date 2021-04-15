@@ -1,4 +1,4 @@
-import { ALL_TRANSACTIONS } from "../constants";
+import { ADD_TRANSACTION, ALL_TRANSACTIONS } from "../constants";
 
 export const transactionsAction = (data) => {
     return {
@@ -6,3 +6,10 @@ export const transactionsAction = (data) => {
         payload: data
     }
 };
+
+export const addTransactionAction = (data) => {
+    return {
+        type: ADD_TRANSACTION,
+        payload: data
+    }
+}
