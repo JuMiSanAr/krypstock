@@ -35,7 +35,7 @@ const Overview = ({calculations, realtimeData}) => {
         const thisCalc = calculations.filter(calc => calc.symbol === symbol)[0].quantity;
         const thisPrice = type === 'C' ? realtimeData.filter(data => data.symbol === symbol)[0].lastPrice : realtimeData.filter(data => data.symbol === symbol)[0].latestPrice;
         const currentValue = thisCalc * thisPrice;
-        return <p>{currentValue.toFixed(2)}</p>
+        return <p>$ {currentValue.toFixed(2)}</p>
     }
 
     const getPercentageChanges = (symbol, type) => {
@@ -112,7 +112,7 @@ const Overview = ({calculations, realtimeData}) => {
                     <NetworthContainer>
                         <TempDiv>
                             <Desc>Invested</Desc>
-                            <p>{calculation.invested.toFixed(2)} $</p>
+                            <p>$ {calculation.invested.toFixed(2)}</p>
                         </TempDiv>
                         <TempDiv>
                             <Desc>Current value</Desc>
