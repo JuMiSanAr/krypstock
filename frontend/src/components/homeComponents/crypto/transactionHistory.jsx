@@ -6,6 +6,7 @@ import { Table } from '../../../styles/components/cryptoStyles/cryptoTablesStyle
 import TablePagination from '@material-ui/core/TablePagination';
 import Moment from 'react-moment';
 import { darkTheme } from '../../../styles/Themes';
+import { TitleSpan } from '../../../styles/globalParts/textStyles';
 
 export const TransactionHistory = () => {
 
@@ -23,7 +24,7 @@ export const TransactionHistory = () => {
 
     return (
         <ShrinkingComponentWrapper>
-            <h3>Transaction History</h3>
+            <TitleSpan>Transaction History</TitleSpan>
             <Table id="trans-history">
                 {
                     allData && allData.length !== 0 && auth ?

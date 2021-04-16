@@ -5,6 +5,7 @@ import { ShrinkingComponentWrapper } from '../../../styles/globalParts/container
 import Moment from 'react-moment';
 import TablePagination from '@material-ui/core/TablePagination';
 import {darkTheme} from '../../../styles/Themes';
+import { TitleSpan } from '../../../styles/globalParts/textStyles';
 
 const TransactionHistory = (props) => {
 
@@ -18,7 +19,7 @@ const TransactionHistory = (props) => {
 
     return (
         <ShrinkingComponentWrapper>
-            <h3>Transaction History</h3>
+            <TitleSpan>Transaction History</TitleSpan>
             <StockTable id="transaction-history">
                 {
                     allData && allData.length !== 0 ?

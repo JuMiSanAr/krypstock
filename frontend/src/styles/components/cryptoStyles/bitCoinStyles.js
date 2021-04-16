@@ -8,8 +8,8 @@ import styled from 'styled-components';
 export const FormSelectWrapper = styled.div `
    display: flex;
    justify-content: space-between;
-   align-items: center;
-   
+    align-items: center;
+
    .selector{
      border-style: none;
      border-radius: 5px;
@@ -19,7 +19,7 @@ export const FormSelectWrapper = styled.div `
      background:${({ theme }) => theme === lightTheme ? darkTheme.body : lightTheme.body};
     :focus {
         outline: none;
-        }
+    }
    }
 `;
 

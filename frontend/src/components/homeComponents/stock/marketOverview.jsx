@@ -1,5 +1,6 @@
 import React from 'react';
 import { ShrinkingComponentWrapper } from '../../../styles/globalParts/containerStyles';
+import { TitleSpan } from '../../../styles/globalParts/textStyles';
 import CandlestickStockIntraday from '../../charts/candlesticksStockIntraday';
 // import Graph from '../../../assets/stock_graph.png'
 
@@ -7,7 +8,7 @@ const MarketOverview = () => {
 
     return (
         <ShrinkingComponentWrapper>
-            <h3>Intraday Overview</h3>
+            <TitleSpan>Intraday Overview</TitleSpan>
             {/* <img src={Graph} /> */}
             <CandlestickStockIntraday/>
         </ShrinkingComponentWrapper>
