@@ -18,13 +18,14 @@ export const darkTheme = {
     secondBackground:'#7970A3',
     mobile: '576px',
     footerBackground: '#7970A3',
-    boxShadow: '0px 10px 18px white'
+    boxShadow: '0px 10px 18px white',
+    inputBackground: '#1F193A'
 }
 
 export const allTheme = {
     turquoise: '#05A49E',
     orange: '#eb8153',
-    purple: '#6747bf',
+    purple: '#6418C3', 
     blue: '#4a8cda',
     green: '#62a838',
     yellow: '#ffab2d',
@@ -35,7 +36,8 @@ export const allTheme = {
     orangeGradient: 'linear-gradient(#FEB692, #EA5455)',
     greenGradient: 'linear-gradient(#81FBB8, #28C76F)',
     blueGradient: 'linear-gradient(#ABDCFF , #0396FF)',
-    purpleGradient: 'linear-gradient(#E2B0FF, #9F44D3)',
+    purpleGradient: 'linear-gradient(#a164ec, #6418C3)',
+    purpleGradient2: 'linear-gradient(#c098f2, #6418C3)',
     violetGradient: 'linear-gradient(#CE9FFC, #7367F0)',
     redGradient: 'linear-gradient(#FFF6B7, #F6416C)',
 }

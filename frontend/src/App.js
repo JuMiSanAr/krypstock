@@ -64,12 +64,10 @@ function App() {
               <OurRouter />
               }
                 
-                {
-                 userLoggedMenu ? <FooterNav setOpen={setOpen}/>
-                 : ""
-                
+              {
+                userLoggedMenu ? <FooterNav setOpen={setOpen}/>
+                : ""
               }
-                
             </Router>
         </>
     </ThemeProvider>

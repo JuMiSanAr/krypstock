@@ -23,7 +23,6 @@ export const DoubleButtonContainer = styled.div`
 `;
 
 export const LeftButton = styled.button`
-    /* background-color: ${props => props.numberClicked === 1 ? darkTheme.secondBackground : '#6418C3'}; */
     background: ${props => props.numberClicked === 1 ? allTheme.purpleGradient : darkTheme.secondBackground};
     text-transform: uppercase;
     font-weight: ${props => props.numberClicked === 1 ? 600 : 1000};
@@ -33,7 +32,7 @@ export const LeftButton = styled.button`
     border-radius: 10px 0 0 10px;
     border: none;
     /* color: ${props => props.numberClicked === 1 ? '#363537' : 'white'}; */
-    color: ${props => props.numberClicked === 1 ? 'lightgray' : 'white'};
+    color: ${props => props.numberClicked === 1 ? 'white' : 'lightgray'};
 
     cursor: pointer;
     border-radius: 50px 0 0 50px;
@@ -52,6 +51,17 @@ export const RightButton = styled(LeftButton)`
     background: ${props => props.numberClicked === 1 ? darkTheme.secondBackground : allTheme.purpleGradient};
     border-radius: 0 10px 10px 0;
     font-weight: ${props => props.numberClicked === 1 ? 1000 : 600};
-    color: ${props => props.numberClicked === 1 ?  'white' : 'lightgray'};
+    color: ${props => props.numberClicked === 1 ?  'lightgray' : 'white'};
     border-radius: 0 50px 50px 0;
 `;
+
+export const AllContentWrapper = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    /* * {
+        border: solid 1px red;
+    } */
+`
