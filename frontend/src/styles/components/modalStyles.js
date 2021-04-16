@@ -1,8 +1,13 @@
 import styled from 'styled-components';
-import { MdClose } from 'react-icons/md';
-import {darkTheme, lightTheme} from "../../styles/Themes";
+import {
+  MdClose
+} from 'react-icons/md';
+import {
+  darkTheme,
+  lightTheme
+} from "../../styles/Themes";
 
-export const Background = styled.div`
+export const Background = styled.div `
   /* width: 100vw; */
   height: 100vh;
   background: rgba(0, 0, 0, 0.8);
@@ -14,7 +19,7 @@ export const Background = styled.div`
   margin-top: -124px;
 `;
 
-export const ModalContent = styled.div`
+export const ModalContent = styled.div `
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -52,7 +57,8 @@ export const ModalContent = styled.div`
   }
 `;
 
-export const CloseModalButton = styled(MdClose)`
+export const CloseModalButton = styled(MdClose)
+`
   cursor: pointer;
   position: absolute;
   top: 20px;
@@ -63,7 +69,7 @@ export const CloseModalButton = styled(MdClose)`
   z-index: 10;
 `;
 
-export const ContentWrapper = styled.div`
+export const ContentWrapper = styled.div `
  display: flex;
  justify-content: center;
  align-items: center;
@@ -73,7 +79,7 @@ export const ContentWrapper = styled.div`
 
 // Crypto Quick transaction table
 
-export const CryptStockFormSelectWrapper = styled.div`
+export const CryptStockFormSelectWrapper = styled.div `
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -92,7 +98,7 @@ export const CryptStockFormSelectWrapper = styled.div`
     }
 `;
 
-export const CrypStockTransacWrapper = styled.div`
+export const CrypStockTransacWrapper = styled.div `
   .extra-margin{
     /* margin: 10px 0 10px 0; */
     margin-top: 15px;

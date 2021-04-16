@@ -1,15 +1,14 @@
-
 import styled from "styled-components";
 
 
 
-export const WrapDivR = styled.div`
+export const WrapDivR = styled.div `
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
-export const  MainContainerR = styled.div`
+export const MainContainerR = styled.div `
  display: flex;
   flex-direction: column;
   justify-content: center;
@@ -36,7 +35,7 @@ export const  MainContainerR = styled.div`
   }
 
 `;
-export const InputWrapper = styled.div`
+export const InputWrapper = styled.div `
     display: flex;
     flex-direction: column;
     /* align-items: center;

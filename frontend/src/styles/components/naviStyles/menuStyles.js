@@ -1,8 +1,11 @@
 import styled from "styled-components";
-import {darkTheme, lightTheme} from "../../Themes";
+import {
+    darkTheme,
+    lightTheme
+} from "../../Themes";
 
 
-export const StyledMenu = styled.nav`
+export const StyledMenu = styled.nav `
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -40,7 +43,7 @@ export const MenuWrapper = styled.div `
     padding: 0 20px 0  20px ;
 `;
 
-export const MenuItemWrapper = styled.div`
+export const MenuItemWrapper = styled.div `
     display:flex;
     justify-content: flex-start;
     align-items: center;
@@ -65,7 +68,7 @@ export const MenuItemWrapper = styled.div`
    }
 `;
 
-export const LogoIconWrapper = styled.div`
+export const LogoIconWrapper = styled.div `
     display: flex;
     justify-content: space-between;
     align-items: center;

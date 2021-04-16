@@ -11,12 +11,14 @@ const CandlestickCryptoHistorical = (props) => {
 
     useEffect(() => {
         FetchCrypto();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
         if(props.timeLength!=='1d'){
           FetchCrypto();
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.timeLength,props.symbol]);
 
     const FetchCrypto = () => {
@@ -71,13 +73,13 @@ const CandlestickCryptoHistorical = (props) => {
         const timestamp = d.getTime();
         setTicker(ticker)
         const API_Call = `https://api.binance.com/api/v3/klines?symbol=${cryptoCurrency}&interval=${ticker}&startTime=${timestamp}`;
-        const config = {
-                  mode: 'no-cors',
-                  headers: {
-                    "Content-Type": "application/json",
-                    "Access-Control-Allow-Credentials": "true"
-                  }
-                }
+        // const config = {
+        //           mode: 'no-cors',
+        //           headers: {
+        //             "Content-Type": "application/json",
+        //             "Access-Control-Allow-Credentials": "true"
+        //           }
+        //         }
 
         fetch(API_Call)
             .then(res => res.json())
@@ -168,6 +170,7 @@ const CandlestickCryptoHistorical = (props) => {
 
             candleSeries.setData(fetchedData);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [fetchedData]);
 
         return (<>

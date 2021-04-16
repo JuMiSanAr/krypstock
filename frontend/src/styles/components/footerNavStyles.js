@@ -1,7 +1,10 @@
 import styled from "styled-components";
-import {darkTheme, lightTheme} from "../../styles/Themes";
+import {
+    darkTheme,
+    lightTheme
+} from "../../styles/Themes";
 
-export const FooterWrapper = styled.div`
+export const FooterWrapper = styled.div `
     /* position: sticky; */
     position: fixed;
     display: flex;

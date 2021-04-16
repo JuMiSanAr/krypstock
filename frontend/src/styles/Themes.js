@@ -5,7 +5,7 @@ export const lightTheme = {
     // body: '#c4b6ff',
     text: '#363537',
     background: '#FFF',
-    secondBackground:'#7970A3',
+    secondBackground: '#7970A3',
     mobile: '576px',
     footerBackground: '#2C254A',
     boxShadow: '0px 10px 18px #888888'
@@ -15,7 +15,7 @@ export const darkTheme = {
     body: '#2C254A',
     text: '#FAFAFA',
     background: '#3B3363',
-    secondBackground:'#7970A3',
+    secondBackground: '#7970A3',
     mobile: '576px',
     footerBackground: '#7970A3',
     boxShadow: '0px 10px 18px white',
@@ -25,7 +25,7 @@ export const darkTheme = {
 export const allTheme = {
     turquoise: '#05A49E',
     orange: '#eb8153',
-    purple: '#6418C3', 
+    purple: '#6418C3',
     blue: '#4a8cda',
     green: '#62a838',
     yellow: '#ffab2d',

@@ -1,7 +1,11 @@
 import styled from 'styled-components';
-import {darkTheme, lightTheme, allTheme} from "../../Themes";
+import {
+    darkTheme,
+    lightTheme,
+    allTheme
+} from "../../Themes";
 
-export const Table = styled.table`
+export const Table = styled.table `
     width: 100%;
     /* background-color: ${({ theme }) => theme === lightTheme ? darkTheme.body : lightTheme.body}; */
     border-collapse: collapse;

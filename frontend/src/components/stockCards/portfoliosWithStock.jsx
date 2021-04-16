@@ -11,24 +11,20 @@ const PortfoliosWithStock = (props) => {
 
     const [portfolios, setPortfolios] = useState([]);
 
-    const portfolioData = useSelector(state => state.portfoliosReducer.portfolios);
-    const portfoliosFetched = useSelector(state => state.portfoliosReducer.portfoliosFetched);
-
     useEffect(() => {
         // if (!portfoliosFetched) {
             portfoliosFetch()
                 .then(data => {
-
                     const action = portfoliosAction(data);
                     dispatch(action);
 
                     const thisPortfolios = data.filter(portfolio => {
                         let result = false;
 
-                        portfolio.calculations.forEach(calculation => {
+                        portfolio.calculations.forEach(calculation => { 
                             if (calculation.symbol === props.symbol) {
                                 result = true;
-                            }
+                            } 
                         })
 
                         return result;
@@ -61,7 +57,7 @@ const PortfoliosWithStock = (props) => {
             {portfolios.length > 0 ?
                 <>
                     <h3>My portfolios with this stock</h3>
-                    <PortfolioCollectionBasic/>
+                    <PortfolioCollectionBasic portfolios={portfolios}/>
                 </>
                 : ''
             }

@@ -1,7 +1,11 @@
 import styled from 'styled-components';
-import {darkTheme, lightTheme, allTheme} from "../../Themes";
+import {
+    darkTheme,
+    lightTheme,
+    allTheme
+} from "../../Themes";
 
-export const StockTable = styled.table`
+export const StockTable = styled.table `
     /* * {
         border: solid 1px red;
     } */

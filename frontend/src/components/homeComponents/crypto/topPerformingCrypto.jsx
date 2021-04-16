@@ -1,10 +1,10 @@
-import React, {useEffect, useState} from 'react';
-import {useSelector} from 'react-redux';
-import {ShrinkingComponentWrapper } from '../../../styles/globalParts/containerStyles';
-import {Table} from '../../../styles/components/cryptoStyles/cryptoTablesStyles'
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { ShrinkingComponentWrapper } from '../../../styles/globalParts/containerStyles';
+import { Table } from '../../../styles/components/cryptoStyles/cryptoTablesStyles'
 import TablePagination from '@material-ui/core/TablePagination';
-import {darkTheme} from '../../../styles/Themes';
-import {useHistory} from 'react-router-dom';
+import { darkTheme } from '../../../styles/Themes';
+import { useHistory } from 'react-router-dom';
 
 
 
@@ -17,64 +17,64 @@ const TopPerformingCrypto = () => {
     const dataAmount = 10;
     //Pagination
     const [page, setPage] = useState(0);
-    const rowsPerPage = 4;
+    const rowsPerPage = 5;
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
     };
 
-    useEffect( () => {
+    useEffect(() => {
         const top10Cryptos = [];
 
         if (allCryptos.length > 0) {
-            allCryptos.sort( (a,b) => b.priceChangePercent - a.priceChangePercent ) // sort in descending order
+            allCryptos.sort((a, b) => b.priceChangePercent - a.priceChangePercent) // sort in descending order
             for (let i = 0; i < dataAmount; i++) {
                 top10Cryptos.push(allCryptos[i]);
             }
         }
-        
-        setTopCryptos(top10Cryptos)
-    }, [allCryptos] )
 
-    const cutUSDT = (currency) => {
-        let onlyCurrency = currency.split('');
-        onlyCurrency.splice(-4, 4);
-        onlyCurrency.join('');
-        return onlyCurrency;
-    }
+        setTopCryptos(top10Cryptos)
+    }, [allCryptos])
+
+    // const cutUSDT = (currency) => {
+    //     let onlyCurrency = currency.split('');
+    //     onlyCurrency.splice(-4, 4);
+    //     onlyCurrency.join('');
+    //     return onlyCurrency;
+    // }
 
     const specificCryptoPage = (symbol) => {
         history.push(`/crypto/${symbol}`)
     }
 
     return (
-        <ShrinkingComponentWrapper> 
+        <ShrinkingComponentWrapper>
             <h3>Top 10 Gainers</h3>
             <Table id="crypto">
                 {
                     topCryptos !== [] && topCryptos.length === dataAmount ?
-                    <thead>
-                        <tr>
-                        <th colSpan='2'>Currency</th>
-                        <th>Price</th>
-                        <th>Change %</th>
-                        </tr>
-                    </thead>
-                    :
-                    null
+                        <thead>
+                            <tr>
+                                <th colSpan='2'>Currency</th>
+                                <th>Price</th>
+                                <th>Change %</th>
+                            </tr>
+                        </thead>
+                        :
+                        null
                 }
                 <tbody>
-                    {topCryptos !== [] && topCryptos.length === dataAmount ? 
+                    {topCryptos !== [] && topCryptos.length === dataAmount ?
                         topCryptos.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                        .map( (crypto, index) => 
-                        <tr key={index}>
-                            <td>{topCryptos.indexOf(crypto) + 1}</td>
-                            <td className="clickCrypto" onClick={()=> specificCryptoPage(crypto.symbol)}>{crypto.symbol.slice(0, -4)}</td>
-                            <td>{Number(crypto.lastPrice).toFixed(2)}</td>
-                            <td>
-                                {crypto.priceChangePercent > 0 ? <i className="fas fa-angle-double-up" style={{color: 'green'}}></i> : crypto.priceChangePercent < 0 ? <i className="fas fa-angle-double-down" style={{color: 'red'}}></i> : null} 
-                                {Math.abs(Number(crypto.priceChangePercent)).toFixed(2)}%
+                            .map((crypto, index) =>
+                                <tr key={index}>
+                                    <td>{topCryptos.indexOf(crypto) + 1}</td>
+                                    <td className="clickCrypto" onClick={() => specificCryptoPage(crypto.symbol)}>{crypto.symbol.slice(0, -4)}</td>
+                                    <td>{Number(crypto.lastPrice).toFixed(2)}</td>
+                                    <td>
+                                        {crypto.priceChangePercent > 0 ? <i className="fas fa-angle-double-up" style={{ color: 'green' }}></i> : crypto.priceChangePercent < 0 ? <i className="fas fa-angle-double-down" style={{ color: 'red' }}></i> : null}
+                                        {Math.abs(Number(crypto.priceChangePercent)).toFixed(2)}%
                             </td>
-                        </tr>)
+                                </tr>)
                         :
                         <tr>
                             <td colSpan='3'>No information available</td>
@@ -84,16 +84,16 @@ const TopPerformingCrypto = () => {
             </Table>
             {
                 topCryptos && topCryptos.length !== 0 ?
-                <TablePagination 
-                    component="div"
-                    count={topCryptos.length}
-                    page={page}
-                    onChangePage={handleChangePage}
-                    rowsPerPage={rowsPerPage}
-                    rowsPerPageOptions={[]}
-                    style={{color: darkTheme.text}}
-                />
-                : null
+                    <TablePagination
+                        component="div"
+                        count={topCryptos.length}
+                        page={page}
+                        onChangePage={handleChangePage}
+                        rowsPerPage={rowsPerPage}
+                        rowsPerPageOptions={[]}
+                        style={{ color: darkTheme.text }}
+                    />
+                    : null
             }
         </ShrinkingComponentWrapper>
     )

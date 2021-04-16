@@ -1,7 +1,6 @@
-
 import styled from "styled-components";
 
-export const MainContainer = styled.div`
+export const MainContainer = styled.div `
   height: 100vh;
   display: flex-start;
   
@@ -18,9 +17,8 @@ export const MainContainer = styled.div`
   }
 `;
 
-export const WrapDiv = styled.div`
+export const WrapDiv = styled.div `
   display: flex;
   justify-content: center;
   align-items: center;
 `;
-

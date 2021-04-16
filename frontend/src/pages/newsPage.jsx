@@ -1,13 +1,13 @@
 import FooterNav from "../components/footerNav"
-import {DoubleButtonContainer, LeftButton, MainContentWrapper, RightButton} from "../styles/pages/homeStyles";
-import React, {useEffect, useState} from "react";
-import {AllComponentsWrapper, ShrinkingComponentWrapper} from "../styles/globalParts/containerStyles";
-import {iexSandboxKey} from "../store/constants";
-import {stockNewsAction} from "../store/actions/newsActions";
-import {useDispatch, useSelector} from "react-redux";
+import { DoubleButtonContainer, LeftButton, MainContentWrapper, RightButton } from "../styles/pages/homeStyles";
+import React, { useEffect, useState } from "react";
+import { AllComponentsWrapper, ShrinkingComponentWrapper } from "../styles/globalParts/containerStyles";
+import { iexSandboxKey } from "../store/constants";
+import { stockNewsAction } from "../store/actions/newsActions";
+import { useDispatch, useSelector } from "react-redux";
 import NewsStock from "../components/newsFeed/newsStock";
 import SingleStockNewsFeed from "../components/newsFeed/singleStockNewsFeed";
-import {ShowMore, HeroHeader, NewsContentWrapper, HeaderTitle} from '../styles/components/stockStyles/newsStyles'
+import { ShowMore, HeroHeader, NewsContentWrapper, HeaderTitle } from '../styles/components/stockStyles/newsStyles'
 import SingleCryptoNewsFeed from "../components/newsFeed/singleCryptoNews";
 
 const NewsPage = () => {
@@ -23,7 +23,7 @@ const NewsPage = () => {
     const [toggleState, setToggleState] = useState(1);
     const toggleTab = (index) => {
         setToggleState(index);
-      };
+    };
 
     const allStockNews = useSelector(state => state.newsReducer.stockNews);
 
@@ -53,8 +53,8 @@ const NewsPage = () => {
         fetch(API_Call)
             .then(res => res.json())
             .then(data => {
-                    setCryptoNews(data.articles);
-                });
+                setCryptoNews(data.articles);
+            });
     }
 
     // const fetchCryptoNews = () => {
@@ -80,19 +80,19 @@ const NewsPage = () => {
             <HeroHeader>
             </HeroHeader>
             <HeaderTitle>
-               <h1>News</h1>
-               <div className="toggleTitle">
-               <span>/</span>
-               <h3 onClick={() => toggleTab(1)} numberClicked={toggleState}>Crypto</h3>
-               <span>/</span>
-               <h3 onClick={() => toggleTab(2)} numberClicked={toggleState}>Stock</h3>
-               </div>
-               
+                <h1>News</h1>
+                <div className="toggleTitle">
+                    <span>/</span>
+                    <h3 onClick={() => toggleTab(1)} numberClicked={toggleState}>Crypto</h3>
+                    <span>/</span>
+                    <h3 onClick={() => toggleTab(2)} numberClicked={toggleState}>Stock</h3>
+                </div>
+
             </HeaderTitle>
-            
+
             {/* <AllComponentsWrapper> */}
             <NewsContentWrapper>
-        
+
                 {/* <h1>News</h1> */}
                 {/* <DoubleButtonContainer>
                     <LeftButton onClick={() => toggleTab(1)} numberClicked={toggleState}>Stock</LeftButton>
@@ -103,30 +103,30 @@ const NewsPage = () => {
                     allStockNews.length > 0 && toggleState === 2 ?
                         allStockNews.slice(0, newsNumberShown).map((news, index) => {
                             return (
-                                <SingleStockNewsFeed key={index} news={news}/>
+                                <SingleStockNewsFeed key={index} news={news} />
                             )
                         })
                         : ''
                 }
-                 {
+                {
                     crytoNews.length > 0 && toggleState === 1 ?
-                    crytoNews.slice(0, newsNumberShown).map((news, index) => {
+                        crytoNews.slice(0, newsNumberShown).map((news, index) => {
                             return (
-                                <SingleCryptoNewsFeed key={index} news={news}/>
+                                <SingleCryptoNewsFeed key={index} news={news} />
                             )
                         })
                         : ''
                 }
-          </NewsContentWrapper>
+            </NewsContentWrapper>
             {/* </AllComponentsWrapper> */}
             <ShowMore>
-            {
+                {
                     newsNumberShown < 30 ?
-                        <h3 onClick={() => setNewsNumberShown(newsNumberShown+5)}>Show more</h3>
+                        <h3 onClick={() => setNewsNumberShown(newsNumberShown + 5)}>Show more</h3>
                         : ''
-            }
+                }
             </ShowMore>
-    
+
         </>
     )
 }

@@ -1,12 +1,9 @@
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react'
 import { BitCoin } from './bitCoin'
-import { AllComponentsWrapper} from '../../../styles/globalParts/containerStyles';
-// import { PriceToday } from './priceToday';
 import {TransactionHistory} from './transactionHistory'
-import { CryptoNews } from './cryptoNews';
 import { CryptoQuickTrade } from './quickTrade';
-import {allCryptosAction} from "../../../store/actions/cryptoActions";
-import {useDispatch} from "react-redux";
+import { allCryptosAction } from "../../../store/actions/cryptoActions";
+import { useDispatch } from "react-redux";
 import TopPerformingCrypto from './topPerformingCrypto';
 import WorstPerformingCrypto from './worstPerformingCrypto';
 import TrendyCrypto from './trendyCrypto';
@@ -34,11 +31,12 @@ export const Crypto = () => {
                 const action = allCryptosAction(usdtFiltered);
                 dispatch(action);
             })
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return (
         <>
-            <BitCoin/>
+            <BitCoin />
             <TrendyCrypto />
             {/*<CryptoNews />*/}
             <TopPerformingCrypto />

@@ -51,7 +51,7 @@ const PortfolioChart = ({data}) => {
     lineWidth: 2,
   });
 
-  const background = chart.applyOptions({
+  chart.applyOptions({
     layout: {
         backgroundColor: 'rgb(59,52,99)',
         textColor: 'white',
@@ -62,6 +62,7 @@ const PortfolioChart = ({data}) => {
   areaSeries.setData(
     graphData
   );
+  // eslint-disable-next-line react-hooks/exhaustive-deps
 }, [])
   
    

@@ -1,7 +1,10 @@
 import styled from "styled-components";
-import {darkTheme, lightTheme} from "../Themes";
+import {
+    darkTheme,
+    lightTheme
+} from "../Themes";
 
-export const AllComponentsWrapper = styled.div`
+export const AllComponentsWrapper = styled.div `
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -11,7 +14,7 @@ export const AllComponentsWrapper = styled.div`
     }  */
 `
 
-export const FullWidthComponentWrapper = styled.div`
+export const FullWidthComponentWrapper = styled.div `
     width: 90%;
     border-radius: 15px;
     margin: 1rem; 
@@ -29,7 +32,8 @@ export const FullWidthComponentWrapper = styled.div`
 `
 
 
-export const ShrinkingComponentWrapper = styled(FullWidthComponentWrapper)`
+export const ShrinkingComponentWrapper = styled(FullWidthComponentWrapper)
+`
 
     /* *{
         border: solid 1px red;
@@ -62,14 +66,15 @@ export const ShrinkingComponentWrapper = styled(FullWidthComponentWrapper)`
     }
 `
 
-export const ShrinkingComponentWrapperNoBackground = styled(FullWidthComponentWrapper)`
+export const ShrinkingComponentWrapperNoBackground = styled(FullWidthComponentWrapper)
+`
     @media (min-width: 450px) {
         width: 40%;
         background-color: transparent; 
     }
 `
 
-export const PageWrapper = styled.div`
+export const PageWrapper = styled.div `
     margin-bottom: 60px; 
 
     @media (min-width: 450px) {
