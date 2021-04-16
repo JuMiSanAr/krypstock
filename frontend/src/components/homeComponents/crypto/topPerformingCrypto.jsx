@@ -17,7 +17,7 @@ const TopPerformingCrypto = () => {
     const dataAmount = 10;
     //Pagination
     const [page, setPage] = useState(0);
-    const rowsPerPage = 4;
+    const rowsPerPage = 5;
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
     };
@@ -35,12 +35,12 @@ const TopPerformingCrypto = () => {
         setTopCryptos(top10Cryptos)
     }, [allCryptos])
 
-    const cutUSDT = (currency) => {
-        let onlyCurrency = currency.split('');
-        onlyCurrency.splice(-4, 4);
-        onlyCurrency.join('');
-        return onlyCurrency;
-    }
+    // const cutUSDT = (currency) => {
+    //     let onlyCurrency = currency.split('');
+    //     onlyCurrency.splice(-4, 4);
+    //     onlyCurrency.join('');
+    //     return onlyCurrency;
+    // }
 
     const specificCryptoPage = (symbol) => {
         history.push(`/crypto/${symbol}`)

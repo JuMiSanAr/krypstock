@@ -189,23 +189,23 @@ const Search = () => {
     // };
 
     return (
-        <>
-            <CryptoModal symbol={symbolCrypto} showCryptoModal={showCryptoModal} setCryptoShowModal={setCryptoShowModal} />
-            <StockModal stockSymbol={stockSymbol} symbol={stockName} showStockModal={showStockModal} setStockShowModal={setStockShowModal} />
-            <ContentWrapper>
-                <img src="https://res.cloudinary.com/tennam/image/upload/v1618181574/Propulsion/1393720.jpg" alt="" />
-                <SearchPageInput>
-                    <select name="" onChange={(val) => handleSelectChange(val.target.value)} >
-                        <option value="All">All</option>
-                        <option value="Crypto">Crypto</option>
-                        <option value="Stock">Stock</option>
-                    </select>
-                    <input placeholder="Search..." onChange={event => setSearch(event.target.value)} />
-                    <Content type="submit" onClick={() => searchHandler()}><i class="fas fa-search"></i></Content>
-                </SearchPageInput>
-            </ContentWrapper>
-            <AllComponentsWrapper>
-                <SearchWrapperTitle>
+        <> 
+                <CryptoModal  symbol = {symbolCrypto} showCryptoModal={showCryptoModal} setCryptoShowModal={setCryptoShowModal}/> 
+                <StockModal stockSymbol={stockSymbol}  symbol = {stockName} showStockModal={showStockModal} setStockShowModal={setStockShowModal}/> 
+                  <ContentWrapper>
+                      <img src="https://res.cloudinary.com/tennam/image/upload/v1618181574/Propulsion/1393720.jpg" alt="" /> 
+                  <SearchPageInput>
+                  <input placeholder="Search..." onChange={event => setSearch(event.target.value)}/>
+                        <select name="" onChange={(val) => handleSelectChange(val.target.value)} >
+                            <option value="All">All</option>
+                            <option value="Crypto">Crypto</option>
+                            <option value="Stock">Stock</option>
+                        </select>
+                        <Content type="submit" onClick={() => searchHandler()}><i class="fas fa-search"></i></Content>
+                    </SearchPageInput>
+                    </ContentWrapper>
+                    <AllComponentsWrapper>
+                    <SearchWrapperTitle>
                     <Title>
                         {select}
                     </Title>

@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import logo from '../../assets/logo/logo_with_name.png'
-import { Link } from 'react-router-dom'
-import { resetCodeFetch, signupCodeFetch } from "../../store/fetches/signup_fetches";
+import {resetCodeFetch} from "../../store/fetches/signup_fetches";
 import history from "../../history";
 import { HeaderWrapper, LoginWrapper, InputWrapper, ButtonWrapper, MainContainerSI, } from '../../styles/components/signInStyles';
 const PasswordReset = () => {

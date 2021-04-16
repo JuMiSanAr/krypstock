@@ -1,11 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import { ShrinkingComponentWrapper } from '../../styles/globalParts/containerStyles';
-import {HeadlineFont, Headline, OverviewBar, TempDiv, Desc, NetworthContainer, IconConatiner, ValueText} from '../../styles/components/portfolioStyles';
+import {HeadlineFont, NetworthContainerTop, Headline, OverviewBar, TempDiv, Desc, InvestmentFont, NetworthContainer, IconConatiner, ValueText} from '../../styles/components/portfolioStyles';
 import {useSelector} from 'react-redux';
 import {allTheme} from '../../styles/Themes';
 import {StockModal2} from "../quickTradeModal/stockOverview";
 import {CryptoModal2} from "../quickTradeModal/cryptoOverview";
-import {Content} from "../../styles/components/buttonStyles";
+import {Content, BuySell} from "../../styles/components/buttonStyles";
 
 
 const Overview = ({calculations, realtimeData, portfolioname, portfolioID, portfolioCreated}) => {
@@ -23,14 +23,9 @@ const Overview = ({calculations, realtimeData, portfolioname, portfolioID, portf
     const [symbolCrypto, setSymbolCrypto] = useState();
     const [stockSymbol, setStockSymbol] = useState();
 
-    const [currentValues, setCurrentValues] = useState([]);
-    const [addingCurrentValue, setAddingCurrentValue] = useState({});
-
     let colors = [allTheme.vibrantturquoise, allTheme.darkblue, allTheme.yellow, allTheme.vibrantorange];
     let currentColor = -1;
 
-    const specificPortfolioArray = useSelector(state => state.specificPortfolioReducer.calculations)
-    console.log('specific portfolio',specificPortfolioArray)
     const getBackgroundColor = () => {
         if (currentColor >= colors.length -1) {
             currentColor = 0;
@@ -63,20 +58,20 @@ const Overview = ({calculations, realtimeData, portfolioname, portfolioID, portf
         const percentageChangeTotal = (currentValue - thisCalc.invested) / thisCalc.invested * 100;
 
         return (
-            <NetworthContainer>
+            <NetworthContainerTop>
                 <TempDiv>
                     <Desc>Total</Desc>
-                    <p>
+                    <InvestmentFont>
                         {percentageChangeTotal > 0 ?
                             <i className="fas fa-angle-double-up" style={{color: 'green'}}></i>
                             :
                             <i className="fas fa-angle-double-down" style={{color: 'red'}}></i>
                         }
-                        {percentageChangeTotal.toFixed(2)} %</p>
+                        {percentageChangeTotal.toFixed(2)} %</InvestmentFont>
                 </TempDiv>
                 <TempDiv>
                     <Desc>Today</Desc>
-                    <p>
+                    <InvestmentFont>
                         {todayStringDate !== portfolioStringDate && percentageChangeToday > 0 ? <i className="fas fa-angle-double-up" style={{color: 'green'}}></i> : ''}
                         {todayStringDate !== portfolioStringDate && percentageChangeToday < 0 ? <i className="fas fa-angle-double-down" style={{color: 'red'}}></i> : ''}
                         {todayStringDate === portfolioStringDate && percentageChangeTotal > 0 ? <i className="fas fa-angle-double-up" style={{color: 'green'}}></i> : ''}
@@ -84,9 +79,9 @@ const Overview = ({calculations, realtimeData, portfolioname, portfolioID, portf
 
                         {todayStringDate !== portfolioStringDate ? percentageChangeToday.toFixed(2) : ''}
                         {todayStringDate === portfolioStringDate ? percentageChangeTotal.toFixed(2) : ''}
-                        %</p>
+                        %</InvestmentFont>
                 </TempDiv>
-            </NetworthContainer>
+            </NetworthContainerTop>
         )
     }
 
@@ -105,41 +100,43 @@ const Overview = ({calculations, realtimeData, portfolioname, portfolioID, portf
                         : <i className="fab fa-btc"></i>
                         }
                         <HeadlineFont>{calculation.symbol}</HeadlineFont>
-                        {calculation.type === "S"
+
+                    
+                    {calculation.type === "S"
                         ? <>
-                                <Content onClick={()=>{
+                                <BuySell onClick={()=>{
                                     setStockShowModal(true);
                                     setStockSymbol(calculation.symbol);
-                                }}>BUY/SELL</Content>
+                                }}>BUY / SELL</BuySell>
                           </>
                         : <>
-                                <Content onClick={()=>{
+                                <BuySell onClick={()=>{
                                     setCryptoShowModal(true);
                                     setSymbolCrypto(calculation.symbol);
-                                }}>BUY/SELL</Content>
+                                }}>BUY / SELL</BuySell>
                           </>
-                        }
+                    }  
                     </IconConatiner>
                     <NetworthContainer>
                         <TempDiv>
                             <Desc>Invested</Desc>
-                            <ValueText>$ {calculation.invested.toFixed(2)}</ValueText>
+                            <InvestmentFont>$ {calculation.invested.toFixed(2)}</InvestmentFont>
                         </TempDiv>
                         <TempDiv>
                             <Desc>Current value</Desc>
-                            <ValueText>{realtimeData.length === calculations.length ?
+                            <InvestmentFont>{realtimeData.length === calculations.length ?
                                 getCurrentSymbolValue(calculation.symbol, calculation.type)
                                 : ''}
-                            </ValueText>
+                            </InvestmentFont>
                         </TempDiv>
                         <TempDiv>
                             <Desc>Quantity</Desc>
-                            <ValueText>{calculation.quantity.toFixed(2)}</ValueText>
+                            <InvestmentFont>{calculation.quantity.toFixed(2)}</InvestmentFont>
                         </TempDiv>
                     </NetworthContainer>
                     {realtimeData.length === calculations.length ?
                         getPercentageChanges(calculation.symbol, calculation.type)
-                        : ''}
+                        : ''} 
                 </OverviewBar>
             )}})}
         </ShrinkingComponentWrapper>

@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 // import {MainContainerV, WrapDivV} from '../../styles/components/verificationStyles'
-import logo from "../../assets/logo/logo_with_name.png";
-import { activatePasswordAccountFetch } from "../../store/fetches/signup_fetches";
+import {activatePasswordAccountFetch} from "../../store/fetches/signup_fetches";
 import history from "../../history";
 // import {WrapDiv} from "../../styles/components/signUpStyles";
 

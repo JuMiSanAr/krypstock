@@ -9,7 +9,6 @@ import {
 import CandlestickCryptoIntraday from "../../charts/candlesticksCryptoIntraday";
 import ChartTimeCrypto from "../../charts/chartSelectTimeCrypto";
 import CandlestickCryptoHistorical from "../../charts/candlesticksCryptoHistorical";
-import { postNewTransactionFetch } from "../../../store/fetches/transactionFetches";
 
 
 export const BitCoin = (props) => {

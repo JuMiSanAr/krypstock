@@ -12,6 +12,7 @@ export const InvestmentsContainer = styled.div `
 display: flex;
 align-items: center;
 justify-content: space-between;
+padding-bottom: 10px;
 i{
     color: green;
     padding: 10px;
@@ -20,7 +21,7 @@ i{
 
 export const InvestmentFont = styled.p `
 font-weight: 600;
-font-size: 12px;
+font-size: 14px;
 
 i{
     padding: 0;
@@ -83,14 +84,20 @@ padding-top: 5px;
 p {
     margin: 0;
     padding: 0 5px 5px 0;
+    //font-weight: 600;
 }
 i{
     padding-right: 5px;
 }
 `;
 
-export const Desc = styled.p `
-font-size: 10px;
+export const Desc = styled.p`
+font-size: 11px;
+`;
+
+export const DescOverview = styled.p`
+font-size: 11px;
+font-weight: 600;
 `;
 
 export const ValueText = styled.p `
@@ -102,7 +109,12 @@ padding-top: 7px;
 padding-bottom: 7px;
 `;
 
-export const IconConatiner = styled.div `
+export const NetworthContainerTop = styled.div`
+padding-left: 15px;
+`;
+
+
+export const IconConatiner = styled.div`
 display: flex;
 flex-direction: column;
 justify-content: center;

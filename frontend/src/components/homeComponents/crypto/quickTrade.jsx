@@ -13,6 +13,7 @@ export const CryptoQuickTrade = (props) => {
     const allTransactions = useSelector(state => state.transactionsReducer.transactions);
     useEffect(() => {
         // console.log('allData', allTransactions)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [allTransactions])
 
     const dispatch = useDispatch();
@@ -65,6 +66,7 @@ export const CryptoQuickTrade = (props) => {
         setAllSymbols(symbolsArray.sort());
         // console.log("useEffect ~ symbolsArray", symbolsArray)
         // console.log('allSymbols', allSymbols)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [allCryptos]);
 
     useEffect( () => {
@@ -82,10 +84,12 @@ export const CryptoQuickTrade = (props) => {
             setBidPrice(0)
             setAskPrice(0)
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [symbol, buySell])
     
     useEffect( () => {
         setNotEnoughCoins(false)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [symbol, buySell, portfolioID, amount])
 
     return (
