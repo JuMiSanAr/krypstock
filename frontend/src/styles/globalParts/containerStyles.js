@@ -13,8 +13,6 @@ export const AllComponentsWrapper = styled.div`
 
 export const FullWidthComponentWrapper = styled.div`
     width: 90%;
-    /* height: 350px; */
-    /* dont forget to change the height */
     border-radius: 15px;
     margin: 1rem; 
     background: ${({ theme }) => theme === lightTheme ? lightTheme.background : darkTheme.background};
