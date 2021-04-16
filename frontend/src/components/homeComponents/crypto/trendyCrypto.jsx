@@ -48,7 +48,7 @@ const TrendyCrypto = () => {
                         <th colSpan='2'>Currency</th>
                         <th>Price</th>
                         <th>Change %</th>
-                        <th>Volume in Million (USDT)</th>
+                        <th>Volume (M)</th>
                         </tr>
                     </thead>
                     :

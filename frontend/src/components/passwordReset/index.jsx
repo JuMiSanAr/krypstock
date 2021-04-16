@@ -57,33 +57,6 @@ const PasswordReset = () => {
                </InputWrapper>    
         </MainContainerSI>
         </LoginWrapper> 
-
-        {/* <MainContainer>
-            <div>
-                    <WrapDiv>
-                        <img src={logo} out="logo" alt="logo"/>
-                    </WrapDiv>
-                    <WrapDivR>
-                        <h4>Enter your email address</h4>
-                    </WrapDivR>
-                    <WrapDivR>
-                         <input
-                        required
-                        onChange={event => setEmail(event.target.value)}
-                        name='email'
-                        type='text'
-                        placeholder='E-Mail address'
-                        onKeyUp={ event => event.key === 'Enter' ? sendEmail() : ''}
-                        />
-                        {errorEmptyEmail ?
-                            <h1>Email field cannot be empty</h1>
-                            : ''}
-                    </WrapDivR>
-                    <WrapDivR>
-                         <button onClick={sendEmail}>Reset your password</button>
-                    </WrapDivR>
-                </div>
-        </MainContainer> */}
         </>
     )
 }
