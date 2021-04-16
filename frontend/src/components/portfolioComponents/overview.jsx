@@ -58,17 +58,17 @@ const Overview = ({calculations, realtimeData, portfolioname, portfolioID}) => {
             <NetworthContainer>
                 <TempDiv>
                     <Desc>Total</Desc>
-                    <ValueText>
+                    <p>
                         {percentageChangeTotal > 0 ?
                             <i className="fas fa-angle-double-up" style={{color: 'green'}}></i>
                             :
                             <i className="fas fa-angle-double-down" style={{color: 'red'}}></i>
                         }
-                        {percentageChangeTotal.toFixed(2)} %</ValueText>
+                        {percentageChangeTotal.toFixed(2)} %</p>
                 </TempDiv>
                 <TempDiv>
                     <Desc>Today</Desc>
-                    <p>
+                    <p> 
                         {percentageChangeToday > 0 ?
                             <i className="fas fa-angle-double-up" style={{color: 'green'}}></i>
                             :
@@ -119,15 +119,14 @@ const Overview = ({calculations, realtimeData, portfolioname, portfolioID}) => {
                             <Desc>Current value</Desc>
                             <ValueText>{realtimeData.length === calculations.length ?
                                 getCurrentSymbolValue(calculation.symbol, calculation.type)
-                                : ''}</ValueText>
+                                : ''}
+                            </ValueText>
                         </TempDiv>
-                    </NetworthContainer>
-                    <div>
                         <TempDiv>
                             <Desc>Quantity</Desc>
                             <ValueText>{calculation.quantity.toFixed(2)}</ValueText>
                         </TempDiv>
-                    </div>
+                    </NetworthContainer>
                     {realtimeData.length === calculations.length ?
                         getPercentageChanges(calculation.symbol, calculation.type)
                         : ''}

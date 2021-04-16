@@ -80,7 +80,10 @@ export const TempDiv = styled.div`
 padding-top: 5px;
 p {
     margin: 0;
-    padding: 0 5px 5px 5px;
+    padding: 0 5px 5px 0;
+}
+i{
+    padding-right: 5px;
 }
 `;
 
