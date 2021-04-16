@@ -19,10 +19,10 @@ const PortfoliosWithStock = (props) => {
             portfoliosFetch()
                 .then(data => {
 
-                    const action = portfoliosAction(data.results);
+                    const action = portfoliosAction(data);
                     dispatch(action);
 
-                    const thisPortfolios = data.results.filter(portfolio => {
+                    const thisPortfolios = data.filter(portfolio => {
                         let result = false;
 
                         portfolio.calculations.forEach(calculation => {
