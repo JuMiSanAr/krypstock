@@ -9,7 +9,7 @@ export const MainContainerC = styled.div`
     background: white;
     box-shadow: 0px 5px 15px #888888;
     border-radius: 40px;
-    width:350px;
+    width:300px;
     min-height: 350px;
     .link{
       text-decoration: none;
@@ -19,6 +19,7 @@ export const MainContainerC = styled.div`
     }
   h4{
     color: #6d82e5;
+    text-align: center;
   }
 
   @media only screen and (max-width: 600px) and (min-width: 320px) {
