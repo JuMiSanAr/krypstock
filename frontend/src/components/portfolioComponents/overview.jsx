@@ -7,7 +7,7 @@ import {StockModal2} from "../quickTradeModal/stockOverview";
 import {CryptoModal2} from "../quickTradeModal/cryptoOverview";
 
 
-const Overview = ({calculations, realtimeData}) => {
+const Overview = ({calculations, realtimeData, portfolioname, portfolioID}) => {
 
     const [showStockModal, setStockShowModal] = useState(false);
     const [showCryptoModal, setCryptoShowModal] = useState(false);
@@ -21,7 +21,7 @@ const Overview = ({calculations, realtimeData}) => {
     let currentColor = -1;
 
     const specificPortfolioArray = useSelector(state => state.specificPortfolioReducer.calculations)
-
+    console.log('specific portfolio',specificPortfolioArray)
     const getBackgroundColor = () => {
         if (currentColor >= colors.length -1) {
             currentColor = 0;
@@ -80,8 +80,8 @@ const Overview = ({calculations, realtimeData}) => {
     }
 
     return (<>
-            <CryptoModal2  symbol = {`${symbolCrypto}`} showCryptoModal={showCryptoModal} setCryptoShowModal={setCryptoShowModal}/>
-            <StockModal2 stockSymbol={stockSymbol}  symbol = {stockSymbol} showStockModal={showStockModal} setStockShowModal={setStockShowModal}/>
+            <CryptoModal2  symbol = {`${symbolCrypto}`} showCryptoModal={showCryptoModal} setCryptoShowModal={setCryptoShowModal} portfolioname={portfolioname} portfolioID={portfolioID}/>
+            <StockModal2 stockSymbol={stockSymbol}  symbol = {stockSymbol} showStockModal={showStockModal} setStockShowModal={setStockShowModal} portfolioname={portfolioname} portfolioID={portfolioID}/>
             <ShrinkingComponentWrapper>
             <Headline>Overview</Headline>
             {calculations.map((calculation, index) =>
