@@ -134,7 +134,7 @@ export const StockModal2 = ({ showStockModal, setStockShowModal, symbol, stockSy
                             </div>
                         </CrypStockTransacWrapper>
                         {
-                            notEnoughStocks ? <ErrorSpan><em>Not enough stocks to sell at this amount</em></ErrorSpan> : ''
+                            notEnoughStocks ? <div className="amountInput"><ErrorSpan><em>Not enough stocks to sell at this amount</em></ErrorSpan></div> : ''
                         }
                         <ButtonWrapper>
                             <button type="submit" value="Submit" onClick={submitHandler}>Submit</button>
