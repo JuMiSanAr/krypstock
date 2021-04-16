@@ -13,6 +13,8 @@ export const ErrorSpan = styled.span`
     font-size: 0.8rem;
 `
 
-export const TitleH3 = styled.h3`
-    vertical-align: middle;
+export const TitleH3 = styled.span`
+    font-size: 1.2rem;
+    font-weight: bold;
+    /* vertical-align: middle; */
 `

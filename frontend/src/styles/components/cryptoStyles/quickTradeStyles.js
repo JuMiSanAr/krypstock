@@ -13,7 +13,7 @@ export const TransacWrapper = styled.div`
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-    margin-top: 30px;
+    margin-top: 15px;
 
     /* * {border: solid 1px red;} */
     .transacItem{
@@ -59,14 +59,24 @@ export const ButtonWrapper = styled.div`
 
     .buy{
         background-color: ${allTheme.greenBuy};
+        :focus {
+            outline: none;
+        }
+        :hover {
+            cursor: pointer;
+        }
     }
 
     .sell{
         background-color: ${allTheme.redSell};
-
+        :focus {
+            outline: none;
+        }
+        :hover {
+            cursor: pointer;
+        }
     }
-`;
-
+`
 
 export const BuySellSelectorWrapper = styled(SelectorWrapper)`
     border-radius: 11px;
@@ -76,7 +86,6 @@ export const BuySellSelectorWrapper = styled(SelectorWrapper)`
         border: solid 1px red;
     }
 `
-
 
 export const BuySelectButton = styled.button`
     width: 50%;

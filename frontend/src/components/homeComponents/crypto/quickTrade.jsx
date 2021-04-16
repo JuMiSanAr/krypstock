@@ -68,8 +68,6 @@ export const CryptoQuickTrade = (props) => {
     }, [allCryptos]);
 
     useEffect( () => {
-
-        console.log('buySell', buySell)
         if (allSymbols.includes(symbol)) {
             const crypto = allCryptos.filter( crypto => crypto.symbol === `${symbol}USDT`);
             // console.log("symbolInputHandler ~ crypto", crypto)
@@ -91,19 +89,19 @@ export const CryptoQuickTrade = (props) => {
     return (
         <ShrinkingComponentWrapper> 
             <form onSubmit={submitHandler}>
-                <FormSelectWrapper>
-                <div className="title">
-                    {props.fromPage === 'HomePage' ? <TitleH3>Crypto Quick Trade</TitleH3> : <h3>Crypto Trade</h3>}
-                </div>
-                {
-                !allPortfoliosArray || allPortfoliosArray.length === 0 ?
-                null
-                :
-                <BuySellSelectorWrapper>
-                    <BuySelectButton type="button" buySell={buySell} onClick={e => setBuySell("B")}>BUY</BuySelectButton>
-                    <SellSelectButton type="button" buySell={buySell} onClick={e => setBuySell("S")}>SELL</SellSelectButton>
-                </BuySellSelectorWrapper>
-                }
+                <FormSelectWrapper className="quickTrade">
+                    {/* <div className="title"> */}
+                    {props.fromPage === 'HomePage' ? <TitleH3>Crypto Quick Trade</TitleH3> : <TitleH3>Crypto Trade</TitleH3>}
+
+                    {
+                    !allPortfoliosArray || allPortfoliosArray.length === 0 ?
+                    null
+                    :
+                    <BuySellSelectorWrapper>
+                        <BuySelectButton type="button" buySell={buySell} onClick={e => setBuySell("B")}>BUY</BuySelectButton>
+                        <SellSelectButton type="button" buySell={buySell} onClick={e => setBuySell("S")}>SELL</SellSelectButton>
+                    </BuySellSelectorWrapper>
+                    }
                 </FormSelectWrapper>  
                 {
                 !allPortfoliosArray || allPortfoliosArray.length === 0 ?
