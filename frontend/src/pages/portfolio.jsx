@@ -156,10 +156,19 @@ const Portfolio = (props) => {
             <PortfolioHeadline>{portfolioInfo.name}</PortfolioHeadline>
             <AllComponentsWrapper>
                 {
-                    portfolioInfo.calculations ? <AllInvestments realtimeData={realtimeDataCombined} calculations={portfolioInfo.calculations}/> : ''
+                    portfolioInfo.calculations ? <AllInvestments realtimeData={realtimeDataCombined}
+                                                                 calculations={portfolioInfo.calculations}
+                                                                 portfolioCreated={portfolioInfo.created}/>
+                                                                 : ''
                 }
                 {
-                    portfolioInfo.calculations ? <Overview calculations={portfolioInfo.calculations} realtimeData={realtimeDataCombined} transactions={portfolioInfo.transactions} portfolioname={portfolioInfo.name} portfolioID={portfolioInfo.id}/> : ''
+                    portfolioInfo.calculations ? <Overview calculations={portfolioInfo.calculations}
+                                                           realtimeData={realtimeDataCombined}
+                                                           transactions={portfolioInfo.transactions}
+                                                           portfolioname={portfolioInfo.name}
+                                                           portfolioID={portfolioInfo.id}
+                                                           portfolioCreated={portfolioInfo.created}/>
+                                                           : ''
                 }
 
                 <ShrinkingComponentWrapper>

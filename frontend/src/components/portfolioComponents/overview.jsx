@@ -8,7 +8,15 @@ import {CryptoModal2} from "../quickTradeModal/cryptoOverview";
 import {Content} from "../../styles/components/buttonStyles";
 
 
-const Overview = ({calculations, realtimeData, portfolioname, portfolioID}) => {
+const Overview = ({calculations, realtimeData, portfolioname, portfolioID, portfolioCreated}) => {
+
+    const todayDate = new Date()
+    const month = ("0" + (todayDate.getMonth() + 1)).slice(-2);
+    const day = ("0" + todayDate.getDate()).slice(-2);
+    const year = todayDate.getFullYear();
+
+    const todayStringDate = `${year}-${month}-${day}`;
+    const portfolioStringDate = portfolioCreated.slice(0, 10);
 
     const [showStockModal, setStockShowModal] = useState(false);
     const [showCryptoModal, setCryptoShowModal] = useState(false);
@@ -68,13 +76,15 @@ const Overview = ({calculations, realtimeData, portfolioname, portfolioID}) => {
                 </TempDiv>
                 <TempDiv>
                     <Desc>Today</Desc>
-                    <p> 
-                        {percentageChangeToday > 0 ?
-                            <i className="fas fa-angle-double-up" style={{color: 'green'}}></i>
-                            :
-                            <i className="fas fa-angle-double-down" style={{color: 'red'}}></i>
-                        }
-                        {percentageChangeToday.toFixed(2)} %</p>
+                    <p>
+                        {todayStringDate !== portfolioStringDate && percentageChangeToday > 0 ? <i className="fas fa-angle-double-up" style={{color: 'green'}}></i> : ''}
+                        {todayStringDate !== portfolioStringDate && percentageChangeToday < 0 ? <i className="fas fa-angle-double-down" style={{color: 'red'}}></i> : ''}
+                        {todayStringDate === portfolioStringDate && percentageChangeTotal > 0 ? <i className="fas fa-angle-double-up" style={{color: 'green'}}></i> : ''}
+                        {todayStringDate === portfolioStringDate && percentageChangeTotal < 0 ? <i className="fas fa-angle-double-down" style={{color: 'red'}}></i> : ''}
+
+                        {todayStringDate !== portfolioStringDate ? percentageChangeToday.toFixed(2) : ''}
+                        {todayStringDate === portfolioStringDate ? percentageChangeTotal.toFixed(2) : ''}
+                        %</p>
                 </TempDiv>
             </NetworthContainer>
         )
