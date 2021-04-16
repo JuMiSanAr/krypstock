@@ -10,8 +10,6 @@ import {DoubleButtonContainer, LeftButton, RightButton, MainContentWrapper} from
 import { Redirect } from "react-router-dom"
 import transactionFetch from '../store/fetches/transactionFetches';
 import { transactionsAction } from '../store/actions/transactionsAction';
-import { PageWrapper } from '../styles/globalParts/containerStyles';
-
 
 const Home = () => {
 
