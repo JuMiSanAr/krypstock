@@ -11,10 +11,9 @@ import {useDispatch} from "react-redux";
 import {specificPortfolioAction} from "../../store/actions/specificPortfolioAction";
 
 
-export const CryptoModal2 = ({ showCryptoModal, setCryptoShowModal, symbol }) => {
+export const CryptoModal2 = ({ showCryptoModal, setCryptoShowModal, symbol, portfolioname, portfolioID }) => {
     const allPortfoliosArray = useSelector(state => state.portfoliosReducer.portfolios) 
     const [buySell, setBuySell] = useState('');
-    const [portfolioID, setPortfolioID] = useState();
     const [amount, setAmount] = useState(0);
     const [pricePerCoin, setPricePerCoin] = useState(0);
     const type = "C";
@@ -24,6 +23,7 @@ export const CryptoModal2 = ({ showCryptoModal, setCryptoShowModal, symbol }) =>
     const [askPrice, setAskPrice] = useState(0);
     console.log('symbol',allCryptos)
     const dispatch = useDispatch();
+
 
     const submitHandler = (e) => {
             e.preventDefault();
@@ -38,7 +38,6 @@ export const CryptoModal2 = ({ showCryptoModal, setCryptoShowModal, symbol }) =>
                             dispatch(action)
                         })
                 })
-     
                 setCryptoShowModal(false)
     }
 
@@ -122,14 +121,7 @@ export const CryptoModal2 = ({ showCryptoModal, setCryptoShowModal, symbol }) =>
                                     <label htmlFor="company-input">Portfolio</label>
                                     </div>
                                     <div>
-                                    <select className="selector" defaultValue={'DEFAULT'} onChange={ e => setPortfolioID(e.target.value)} required>
-                                        <option value="DEFAULT" disabled>Select portfolio</option>
-                                        {
-                                            allPortfoliosArray.map( (portfolio, index) => 
-                                                <option key={index} value={portfolio.id}>{`${portfolio.name}`}</option>
-                                            )
-                                        }
-                                    </select>
+                                                    <p value={portfolioID}>{`${portfolioname}`}</p>
                                     </div>
                                    
                                 </div>
