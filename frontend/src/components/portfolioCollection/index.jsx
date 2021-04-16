@@ -72,23 +72,6 @@ export const PortfolioCollection = () => {
                     </ShrinkingComponentWrapper>)
                  })
              }
-               
-                {/* <ShrinkingComponentWrapper>
-
-                    <IconTitle>
-                        <FolderIcon fontSize="large"/>
-                        <h2>My Cryto Collection</h2>
-                    </IconTitle>
-                    <div>
-                        <p>
-                            A while back I needed to count the amount of letters that a piece of text in an email template had a
-                        </p>
-                    </div>
-                    <Delete>
-                        <DeleteIcon />
-                    </Delete>
-
-                </ShrinkingComponentWrapper>    */}
         </>
     )
 }

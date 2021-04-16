@@ -72,45 +72,6 @@ const LoginPage = () => {
                                         <h1>{errorMessage ? 'Invalid username or password' : ''}</h1>
                         </ButtonWrapper>
                         <Link className="link" to="/password-reset"><p>Forgot your password?</p></Link>
-               
-                    {/* <WrapDivSI>
-                    <img src={logo} out="logo" alt="logo"/>
-                    </WrapDivSI>
-                    <WrapDivSI id="sign-in-form">
-                        <div>
-                                <div>
-                                    <WrapDivSI>
-                                        <input
-                                            required
-                                            onChange={event => setEmail(event.target.value)}
-                                            value={email}
-                                            name='username'
-                                            type='text'
-                                            placeholder='Email'
-                                        />
-                                    </WrapDivSI>
-                                    <WrapDivSI>
-                                       <input
-                                            required
-                                            onChange={event => setPassword(event.target.value)}
-                                            value={password}
-                                            name='password'
-                                            type='password'
-                                            placeholder='Password'
-                                            onKeyUp={ event => event.key === 'Enter' ? loginHandler() : ''}
-                                        />
-                                    </WrapDivSI>
-                                </div>
-                            <WrapDivSI>
-                                <div>
-                                    <button onClick={loginHandler}>Login</button>
-                                    <button><Link to="/sign-up/registration">Registration</Link></button>
-                                        <h1>{errorMessage ? 'Invalid username or password' : ''}</h1>
-                                    <Link to="/password-reset"><p>Forgot your password?</p></Link>
-                                </div>
-                            </WrapDivSI>
-                        </div>
-                    </WrapDivSI>*/}
 
                 </MainContainerSI> 
                 </LoginWrapper>

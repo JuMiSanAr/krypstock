@@ -10,7 +10,6 @@ export const FooterWrapper = styled.div`
     padding-bottom: 1rem;
     padding-top: 1rem;
     width: 100vw;
-    z-index: 2;
     background: ${({ theme }) => theme === lightTheme ? lightTheme.footerBackground : darkTheme.footerBackground};
 
     * {
