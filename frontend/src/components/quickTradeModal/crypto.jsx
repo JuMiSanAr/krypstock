@@ -64,7 +64,7 @@ export const CryptoModal = ({ showCryptoModal, setCryptoShowModal, symbol }) => 
   useEffect(() => {
     portfoliosFetch()
       .then(data =>{
-          const action = portfoliosAction(data.results);
+          const action = portfoliosAction(data);
           dispatch(action); 
       })
   }, []);

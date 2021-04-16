@@ -10,4 +10,4 @@ class PortfolioSerializerNoTransaction(serializers.ModelSerializer):
 
     class Meta:
         model = Portfolio
-        fields = ['id', 'name', 'description']
+        fields = ['id', 'name', 'created', 'description']
