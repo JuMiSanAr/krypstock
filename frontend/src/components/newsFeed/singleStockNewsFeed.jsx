@@ -1,4 +1,3 @@
-import {ShrinkingComponentWrapper} from "../../styles/globalParts/containerStyles";
 import {HeadlineWrapper, NewsWrapper} from "../../styles/components/stockStyles/newsStyles";
 import React from "react";
 
