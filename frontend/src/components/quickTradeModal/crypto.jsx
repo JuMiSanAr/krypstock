@@ -29,11 +29,11 @@ export const CryptoModal = ({ showCryptoModal, setCryptoShowModal, symbol }) => 
             console.log(buySell, portfolioID, symbol, amount, pricePerCoin,type)
             postNewTransactionFetch(buySell, portfolioID, symbol, amount, pricePerCoin, type)
                 .then(data => {
-                    console.log(data)
+                    setCryptoShowModal(false)
                     // console.log('in crypto quicktrade submitHandler', data)
                 })
      
-                setCryptoShowModal(false)
+              
     }
 
   const modalRef = useRef();
