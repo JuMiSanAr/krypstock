@@ -164,7 +164,7 @@ export const CryptoModal2 = ({ showCryptoModal, setCryptoShowModal, symbol, port
                                 </div>
                             </CrypStockTransacWrapper>
                             {
-                                 notEnoughCoins ? <ErrorSpan><em>Not enough coins to sell at this amount</em></ErrorSpan> : ''
+                                notEnoughCoins ? <div className="amountInput"><ErrorSpan><em>Not enough coins to sell at this amount</em></ErrorSpan> </div>: ''
                             }
                             <ButtonWrapper>
                                 <button type="submit" value="Submit" onClick={submitHandler}>Submit</button>

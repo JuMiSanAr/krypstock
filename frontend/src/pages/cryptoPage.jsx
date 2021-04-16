@@ -14,7 +14,6 @@ import CryptoList from "../components/charts/cryptoList";
 
 const CryptoPage = (props) => {
 
-    const [chartTimeframe, setChartTimeframe] = useState('1m');
     const [chartTimeframe2, setChartTimeframe2] = useState('1d');
 
     const [intradayData, setIntradayData] = useState([]);
@@ -23,18 +22,7 @@ const CryptoPage = (props) => {
     const url = window.location.href;
     const symbol = url.substring(url.lastIndexOf('/') + 1).toUpperCase();
 
-    // const symbol = ('btcusdt').toUpperCase();
-
-    // useEffect(() => {
-    //  WebSocket.close();
-    // }, []);
-
-    // useEffect(() => {
-    //     // cryptoFetcherHistorical(symbol, setHistoricalData, chartTimeframe);
-    // }, [chartTimeframe])
-
     useEffect(() => {
-        // cryptoFetcherHistorical(symbol, setHistoricalData, chartTimeframe);
     }, [chartTimeframe2])
 
 
@@ -43,16 +31,13 @@ const CryptoPage = (props) => {
             <AllComponentsWrapper>
                 <h1>{symbol}</h1>
                 <ShrinkingComponentWrapper>
-                    <CryptoPageInfoCard data={symbol}/>
+                    <CryptoPageInfoCard symbol={symbol}/>
                 </ShrinkingComponentWrapper>
                 <ShrinkingComponentWrapper>
                  <FormSelectWrapper>
                 <div className="title">
                    <h3>Price Chart</h3>
                 </div>
-                {/*<div >Ticker*/}
-                {/*    <ChartTimeCryptoframeButton setChart={setChartTimeframe}/>*/}
-                {/*</div>*/}
                 <div >Time
                     <ChartTimeCrypto setChart2={setChartTimeframe2}/>
                 </div>
@@ -65,7 +50,7 @@ const CryptoPage = (props) => {
                     </GraphWrapper>
                  </ShrinkingComponentWrapper>
                  <ShrinkingComponentWrapper>
-                <NewsCrypto symbol={symbol}/>
+                {/*<NewsCrypto symbol={symbol}/>*/}
             </ShrinkingComponentWrapper>
         {/* <FooterNav/> */}
     </AllComponentsWrapper>
