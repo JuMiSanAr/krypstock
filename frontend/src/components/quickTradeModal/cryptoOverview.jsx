@@ -121,9 +121,8 @@ export const CryptoModal2 = ({ showCryptoModal, setCryptoShowModal, symbol, port
                                     <label htmlFor="company-input">Portfolio</label>
                                     </div>
                                     <div>
-                                                    <p value={portfolioID}>{`${portfolioname}`}</p>
+                                        <p value={portfolioID}>{`${portfolioname}`}</p>
                                     </div>
-                                   
                                 </div>
                                 <div className="currSelect amountInput">
                                     <div>

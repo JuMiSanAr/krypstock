@@ -1,4 +1,7 @@
 import React, {useEffect, useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {specificPortfolioFetch} from '../../store/fetches/portfoliosFetches';
+import { specificPortfolioAction } from '../../store/actions/specificPortfolioAction';
 import { ShrinkingComponentWrapper } from '../../styles/globalParts/containerStyles';
 import {InvestmentsContainer, InvestmentFont, HeadlineFont, Desc} from '../../styles/components/portfolioStyles';
 
@@ -46,7 +49,6 @@ const AllInvestments = ({calculations, realtimeData}) => {
 
     useEffect(() => {
         if (yesterdayValue) {
-            console.log(currentValue, yesterdayValue)
             setDailyChange((currentValue - yesterdayValue) / yesterdayValue * 100);
         }
     }, [yesterdayValue]);
@@ -88,18 +90,37 @@ const AllInvestments = ({calculations, realtimeData}) => {
                         </div>
                         <div>
                             <Desc>Total %</Desc>
-                            <InvestmentFont>{differencePercentage.toFixed(2)}%</InvestmentFont>
+                            <InvestmentFont>
+                                {differencePercentage > 0 ? <i className="fas fa-angle-double-up" style={{color: 'green'}}></i> : ''}
+                                {differencePercentage < 0 ? <i className="fas fa-angle-double-down" style={{color: 'red'}}></i> : ''}
+                                {differencePercentage ? differencePercentage.toFixed(2) : ''}%
+                            </InvestmentFont>
                         </div>
                         <div>
                             <Desc>Today %</Desc>
-                            <InvestmentFont><i className="fas fa-angle-double-up"></i> {dailyChange}%</InvestmentFont>
+                            <InvestmentFont>
+                                {dailyChange > 0 ? <i className="fas fa-angle-double-up" style={{color: 'green'}}></i> : ''}
+                                {dailyChange < 0 ? <i className="fas fa-angle-double-down" style={{color: 'red'}}></i> : ''}
+                                {dailyChange ? dailyChange.toFixed(2) : ''}%
+                            </InvestmentFont>
                         </div>
                     </InvestmentsContainer>
-                    <HeadlineFont>Overall portfolio balance</HeadlineFont >
+                    <HeadlineFont>Historical</HeadlineFont >
                     <InvestmentsContainer>
                         <div>
+                            <Desc>Executed P&L</Desc>
                             <InvestmentFont>
-                               $ {overallBalance.toFixed(2)}
+                                {overallBalance > 0 ? <i className="fas fa-angle-double-up" style={{color: 'green'}}></i> : ''}
+                                {overallBalance < 0 ? <i className="fas fa-angle-double-down" style={{color: 'red'}}></i> : ''}
+                               $ {overallBalance ? overallBalance.toFixed(2) : '0.00'}
+                            </InvestmentFont>
+                        </div>
+                        <div>
+                            <Desc>Overall balance</Desc>
+                            <InvestmentFont>
+                                {parseFloat(currentValue) + overallBalance > 0 ? <i className="fas fa-angle-double-up" style={{color: 'green'}}></i> : ''}
+                                {parseFloat(currentValue) + overallBalance < 0 ? <i className="fas fa-angle-double-down" style={{color: 'red'}}></i> : ''}
+                               $ {parseFloat(currentValue) + overallBalance}
                             </InvestmentFont>
                         </div>
                     </InvestmentsContainer>
