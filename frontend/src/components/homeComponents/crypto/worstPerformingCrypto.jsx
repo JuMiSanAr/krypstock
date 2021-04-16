@@ -4,9 +4,10 @@ import {ShrinkingComponentWrapper } from '../../../styles/globalParts/containerS
 import {Table} from '../../../styles/components/cryptoStyles/cryptoTablesStyles'
 import TablePagination from '@material-ui/core/TablePagination';
 import {darkTheme} from '../../../styles/Themes';
+import {useHistory} from 'react-router-dom';
 
 const WorstPerformingCrypto = () => {
-
+    const history = useHistory()
     let allCryptos = useSelector(state => state.cryptoReducer.allCryptos)
     const [worstCryptos, setWorstCryptos] = useState([]);
     const dataAmount = 10;
@@ -31,6 +32,10 @@ const WorstPerformingCrypto = () => {
         // console.log(worstCryptos)
     }, [allCryptos] )
 
+    const specificCryptoPage = (symbol) => {
+        history.push(`/crypto/${symbol}`)
+    }
+
     return (
         <ShrinkingComponentWrapper> 
             <h3>Top 10 Losers</h3>
@@ -53,7 +58,7 @@ const WorstPerformingCrypto = () => {
                         .map( (crypto, index) => 
                         <tr key={index}>
                             <td>{worstCryptos.indexOf(crypto) + 1}</td>
-                            <td>{crypto.symbol.slice(0, -4)}</td>
+                            <td className="clickCrypto" onClick={()=> specificCryptoPage(crypto.symbol)}>{crypto.symbol.slice(0, -4)}</td>
                             <td>{Number(crypto.lastPrice).toFixed(2)}</td>
                             <td>
                                 {crypto.priceChangePercent > 0 ? <i className="fas fa-angle-double-up" style={{color: 'green'}}></i> : crypto.priceChangePercent < 0 ? <i className="fas fa-angle-double-down" style={{color: 'red'}}></i> : null} 

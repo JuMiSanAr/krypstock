@@ -1,4 +1,7 @@
 import React, {useEffect, useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {specificPortfolioFetch} from '../../store/fetches/portfoliosFetches';
+import { specificPortfolioAction } from '../../store/actions/specificPortfolioAction';
 import { ShrinkingComponentWrapper } from '../../styles/globalParts/containerStyles';
 import {InvestmentsContainer, InvestmentFont, HeadlineFont, Desc} from '../../styles/components/portfolioStyles';
 
@@ -46,7 +49,6 @@ const AllInvestments = ({calculations, realtimeData}) => {
 
     useEffect(() => {
         if (yesterdayValue) {
-            console.log(currentValue, yesterdayValue)
             setDailyChange((currentValue - yesterdayValue) / yesterdayValue * 100);
         }
     }, [yesterdayValue]);
@@ -88,18 +90,18 @@ const AllInvestments = ({calculations, realtimeData}) => {
                         </div>
                         <div>
                             <Desc>Total %</Desc>
-                            <InvestmentFont>{differencePercentage.toFixed(2)}%</InvestmentFont>
+                            <InvestmentFont>{differencePercentage ? differencePercentage.toFixed(2) : ''}%</InvestmentFont>
                         </div>
                         <div>
                             <Desc>Today %</Desc>
-                            <InvestmentFont><i className="fas fa-angle-double-up"></i> {dailyChange}%</InvestmentFont>
+                            <InvestmentFont><i className="fas fa-angle-double-up"></i> {dailyChange ? dailyChange.toFixed(2) : ''}%</InvestmentFont>
                         </div>
                     </InvestmentsContainer>
-                    <HeadlineFont>Overall portfolio balance</HeadlineFont >
+                    <HeadlineFont>Executed P&L</HeadlineFont >
                     <InvestmentsContainer>
                         <div>
                             <InvestmentFont>
-                               $ {overallBalance.toFixed(2)}
+                               $ {overallBalance ? overallBalance.toFixed(2) : '0.00'}
                             </InvestmentFont>
                         </div>
                     </InvestmentsContainer>

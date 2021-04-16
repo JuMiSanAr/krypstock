@@ -1,13 +1,12 @@
-import React, { useRef, useState,  useEffect } from 'react';
+import React, { useRef, useState } from 'react';
 import { Background, CloseModalButton, ContentWrapper, ModalContent, CryptStockFormSelectWrapper, CrypStockTransacWrapper } from '../../styles/components/modalStyles';
 import {useSelector} from "react-redux";
 import { ButtonWrapper} from '../../styles/components/cryptoStyles/quickTradeStyles'
 import { Link } from 'react-router-dom';
 import {ShrinkingComponentWrapper } from '../../styles/globalParts/containerStyles';
 import { postNewTransactionFetch } from '../../store/fetches/transactionFetches';
-import { iexSandboxKey } from '../../store/constants';
 
-export const StockModal = ({ showStockModal, setStockShowModal, symbol, stockSymbol }) => {
+export const StockModal2 = ({ showStockModal, setStockShowModal, symbol, stockSymbol }) => {
     const allPortfoliosArray = useSelector(state => state.portfoliosReducer.portfolios)
     
     const [buySell, setBuySell] = useState();
@@ -16,9 +15,7 @@ export const StockModal = ({ showStockModal, setStockShowModal, symbol, stockSym
     const [pricePerShare, setPricePerShare] = useState();
     const type = "S";
 
-    const [marketPrice, setMarketPrice] = useState(0);
-    const [notEnoughStocks, setNotEnoughStocks] = useState(false);
-
+    // console.log("symbol", stockSymbol)
     const submitHandler = (e) => {
         e.preventDefault();
         // console.log(buySell, portfolioID, symbol, volume, pricePerShare,type)
@@ -26,28 +23,8 @@ export const StockModal = ({ showStockModal, setStockShowModal, symbol, stockSym
         .then(data => {
             console.log('in stock quicktrade submitHandler', data)
         })
-        .catch(error => {
-            if (error.toString().slice(-1) === '3') {
-                setNotEnoughStocks(true);
-            }
-        })
         setStockShowModal(false);
     }
-
-    useEffect( () => {   // get price of specific symbol
-        console.log('stock symbol',stockSymbol)
-        if (stockSymbol) {
-            fetch(`https://sandbox.iexapis.com/stable/stock/${stockSymbol}/price?token=${iexSandboxKey}`)
-            .then(res => res.json())
-            .then(data => {
-                setMarketPrice(data)
-            })
-            .catch( error => {console.log('error', error)})
-        } else {
-            setMarketPrice(0)
-        }
-    }, [stockSymbol, buySell])
-
 
   const modalRef = useRef();
 
@@ -130,10 +107,6 @@ export const StockModal = ({ showStockModal, setStockShowModal, symbol, stockSym
                                </div>  
                             </div>
                             <div className="amountInput">
-                                <p>Market Price</p>
-                                <span>{`${marketPrice}  USD`}</span>
-                            </div>
-                            <div className="amountInput">
                                 <div>
                                 <p>Total Price</p>
                                 </div>
@@ -142,9 +115,6 @@ export const StockModal = ({ showStockModal, setStockShowModal, symbol, stockSym
                                 </div>   
                             </div>
                         </CrypStockTransacWrapper> 
-                        {
-                            notEnoughStocks ? <em>Not enough stocks to sell at this amount</em>: ''
-                        }
                         <ButtonWrapper>
                             {/* <button type="submit" value="Submit">Submit</button> */}
                             <button type="submit" value="Submit" onClick={submitHandler}>Submit</button>

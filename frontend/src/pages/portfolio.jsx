@@ -159,7 +159,7 @@ const Portfolio = (props) => {
                     portfolioInfo.calculations ? <AllInvestments realtimeData={realtimeDataCombined} calculations={portfolioInfo.calculations}/> : ''
                 }
                 {
-                    portfolioInfo.calculations ? <Overview calculations={portfolioInfo.calculations} transactions={portfolioInfo.transactions}/> : ''
+                    portfolioInfo.calculations ? <Overview realtimeData={realtimeDataCombined} calculations={portfolioInfo.calculations}/> : ''
                 }
 
                 <ShrinkingComponentWrapper>

@@ -4,9 +4,10 @@ import {ShrinkingComponentWrapper } from '../../../styles/globalParts/containerS
 import {Table} from '../../../styles/components/cryptoStyles/cryptoTablesStyles'
 import TablePagination from '@material-ui/core/TablePagination';
 import {darkTheme} from '../../../styles/Themes';
+import {useHistory} from 'react-router-dom';
 
 const TrendyCrypto = () => {
-
+    const history = useHistory()
     let allCryptos = useSelector(state => state.cryptoReducer.allCryptos)
     const [trendyCryptos, setTrendyCryptos] = useState([]);
     const dataAmount = 20;
@@ -32,6 +33,10 @@ const TrendyCrypto = () => {
         // console.log('allCryptos', allCryptos)
     }, [allCryptos] )
 
+    const specificCryptoPage = (symbol) => {
+        history.push(`/crypto/${symbol}`)
+    }
+
     return (
         <ShrinkingComponentWrapper> 
             <h3>Top 20 Trendy Currencies</h3>
@@ -55,7 +60,7 @@ const TrendyCrypto = () => {
                         .map( (crypto, index) => 
                         <tr key={index}>
                             <td>{trendyCryptos.indexOf(crypto) + 1}</td>
-                            <td>{crypto.symbol.slice(0, -4)}</td>
+                            <td className="clickCrypto" onClick={()=> specificCryptoPage(crypto.symbol)}>{crypto.symbol.slice(0, -4)}</td>
                             <td>{Number(crypto.lastPrice).toFixed(2)}</td>
                             {/* <td>{numberWithCommas(crypto.lastPrice)}</td> */}
                             <td>
