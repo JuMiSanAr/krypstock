@@ -193,12 +193,12 @@ const Search = () => {
                   <ContentWrapper>
                       <img src="https://res.cloudinary.com/tennam/image/upload/v1618181574/Propulsion/1393720.jpg" alt="" /> 
                   <SearchPageInput>
+                  <input placeholder="Search..." onChange={event => setSearch(event.target.value)}/>
                         <select name="" onChange={(val) => handleSelectChange(val.target.value)} >
                             <option value="All">All</option>
                             <option value="Crypto">Crypto</option>
                             <option value="Stock">Stock</option>
                         </select>
-                        <input placeholder="Search..." onChange={event => setSearch(event.target.value)}/>
                         <Content type="submit" onClick={() => searchHandler()}><i class="fas fa-search"></i></Content>
                     </SearchPageInput>
                     </ContentWrapper>

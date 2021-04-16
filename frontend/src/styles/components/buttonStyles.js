@@ -13,9 +13,27 @@ text-transform: uppercase;
 font-weight: 600;
 height: 43px;
 margin-top:5px;
+margin-left: 10px;
 border-radius: 10px;
 border: none;
 color: white;
+padding: 0 45px 0 45px;
+`;
+
+export const BuySell = styled.button`
+background-color: rgba(255, 255, 255, 0.3);
+text-transform: uppercase;
+font-weight: 400;
+font-size: 11px;
+height: 30px;
+border-radius: 10px;
+border: 1px solid white;
+color: white;
+margin-top: 15px;
+cursor: pointer;
+:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+}
 `;
 
 const DoubleButtonContainer = styled.div`
