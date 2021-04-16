@@ -90,18 +90,37 @@ const AllInvestments = ({calculations, realtimeData}) => {
                         </div>
                         <div>
                             <Desc>Total %</Desc>
-                            <InvestmentFont>{differencePercentage ? differencePercentage.toFixed(2) : ''}%</InvestmentFont>
+                            <InvestmentFont>
+                                {differencePercentage > 0 ? <i className="fas fa-angle-double-up" style={{color: 'green'}}></i> : ''}
+                                {differencePercentage < 0 ? <i className="fas fa-angle-double-down" style={{color: 'red'}}></i> : ''}
+                                {differencePercentage ? differencePercentage.toFixed(2) : ''}%
+                            </InvestmentFont>
                         </div>
                         <div>
                             <Desc>Today %</Desc>
-                            <InvestmentFont><i className="fas fa-angle-double-up"></i> {dailyChange ? dailyChange.toFixed(2) : ''}%</InvestmentFont>
+                            <InvestmentFont>
+                                {dailyChange > 0 ? <i className="fas fa-angle-double-up" style={{color: 'green'}}></i> : ''}
+                                {dailyChange < 0 ? <i className="fas fa-angle-double-down" style={{color: 'red'}}></i> : ''}
+                                {dailyChange ? dailyChange.toFixed(2) : ''}%
+                            </InvestmentFont>
                         </div>
                     </InvestmentsContainer>
-                    <HeadlineFont>Executed P&L</HeadlineFont >
+                    <HeadlineFont>Historical</HeadlineFont >
                     <InvestmentsContainer>
                         <div>
+                            <Desc>Executed P&L</Desc>
                             <InvestmentFont>
+                                {overallBalance > 0 ? <i className="fas fa-angle-double-up" style={{color: 'green'}}></i> : ''}
+                                {overallBalance < 0 ? <i className="fas fa-angle-double-down" style={{color: 'red'}}></i> : ''}
                                $ {overallBalance ? overallBalance.toFixed(2) : '0.00'}
+                            </InvestmentFont>
+                        </div>
+                        <div>
+                            <Desc>Overall balance</Desc>
+                            <InvestmentFont>
+                                {parseFloat(currentValue) + overallBalance > 0 ? <i className="fas fa-angle-double-up" style={{color: 'green'}}></i> : ''}
+                                {parseFloat(currentValue) + overallBalance < 0 ? <i className="fas fa-angle-double-down" style={{color: 'red'}}></i> : ''}
+                               $ {parseFloat(currentValue) + overallBalance}
                             </InvestmentFont>
                         </div>
                     </InvestmentsContainer>
