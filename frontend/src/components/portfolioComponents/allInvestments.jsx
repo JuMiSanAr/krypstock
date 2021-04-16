@@ -118,9 +118,17 @@ const AllInvestments = ({calculations, realtimeData}) => {
                         <div>
                             <Desc>Overall balance</Desc>
                             <InvestmentFont>
-                                {parseFloat(currentValue) + overallBalance > 0 ? <i className="fas fa-angle-double-up" style={{color: 'green'}}></i> : ''}
-                                {parseFloat(currentValue) + overallBalance < 0 ? <i className="fas fa-angle-double-down" style={{color: 'red'}}></i> : ''}
-                               $ {parseFloat(currentValue) + overallBalance}
+                                {(parseFloat(currentValue) - totalInvestments).toFixed(2) > 0 ? <i className="fas fa-angle-double-up" style={{color: 'green'}}></i> : ''}
+                                {(parseFloat(currentValue) - totalInvestments).toFixed(2) < 0 ? <i className="fas fa-angle-double-down" style={{color: 'red'}}></i> : ''}
+                               $ {(parseFloat(currentValue) - totalInvestments).toFixed(2)}
+                            </InvestmentFont>
+                        </div>
+                        <div>
+                            <Desc>Overall change %</Desc>
+                            <InvestmentFont>
+                                {(parseFloat(currentValue) - totalInvestments).toFixed(2) > 0 ? <i className="fas fa-angle-double-up" style={{color: 'green'}}></i> : ''}
+                                {(parseFloat(currentValue) - totalInvestments).toFixed(2) < 0 ? <i className="fas fa-angle-double-down" style={{color: 'red'}}></i> : ''}
+                               $ {((parseFloat(currentValue) - totalInvestments) / totalInvestments * 100).toFixed(2)}
                             </InvestmentFont>
                         </div>
                     </InvestmentsContainer>
