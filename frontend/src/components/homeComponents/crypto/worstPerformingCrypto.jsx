@@ -5,6 +5,7 @@ import { Table } from '../../../styles/components/cryptoStyles/cryptoTablesStyle
 import TablePagination from '@material-ui/core/TablePagination';
 import { darkTheme } from '../../../styles/Themes';
 import { useHistory } from 'react-router-dom';
+import { TitleSpan } from '../../../styles/globalParts/textStyles';
 
 const WorstPerformingCrypto = () => {
     const history = useHistory()
@@ -13,7 +14,7 @@ const WorstPerformingCrypto = () => {
     const dataAmount = 10;
     //Pagination
     const [page, setPage] = useState(0);
-    const rowsPerPage = 5;
+    const rowsPerPage = 4;
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
     };
@@ -38,7 +39,7 @@ const WorstPerformingCrypto = () => {
 
     return (
         <ShrinkingComponentWrapper>
-            <h3>Top 10 Losers</h3>
+            <TitleSpan>Top 10 Losers</TitleSpan>
             <Table id="crypto-worst">
                 {
                     worstCryptos !== [] && worstCryptos.length === dataAmount ?

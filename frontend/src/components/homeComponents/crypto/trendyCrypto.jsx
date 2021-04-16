@@ -5,6 +5,7 @@ import { Table } from '../../../styles/components/cryptoStyles/cryptoTablesStyle
 import TablePagination from '@material-ui/core/TablePagination';
 import { darkTheme } from '../../../styles/Themes';
 import { useHistory } from 'react-router-dom';
+import { TitleSpan } from '../../../styles/globalParts/textStyles';
 
 const TrendyCrypto = () => {
     const history = useHistory()
@@ -44,7 +45,7 @@ const TrendyCrypto = () => {
 
     return (
         <ShrinkingComponentWrapper>
-            <h3>Top 20 Trendy Currencies</h3>
+            <TitleSpan>Top 20 Trendy Currencies</TitleSpan>
             <Table id="crypto">
                 {
                     trendyCryptos && trendyCryptos.length === dataAmount ?

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import {
-    allTheme
+    allTheme, darkTheme, lightTheme
 } from "../../Themes";
 
 export const SelectorWrapper = styled.div `
@@ -52,7 +52,7 @@ export const ButtonWrapper = styled.div `
     button{
         text-transform: uppercase;
         font-weight: 600;
-        height: 30px;
+        height: 40px;
         width: 90px;
         border-radius: 10px;
         border: none;
@@ -80,14 +80,15 @@ export const ButtonWrapper = styled.div `
     }
 `
 
-export const BuySellSelectorWrapper = styled(SelectorWrapper)
-`
+export const BuySellSelectorWrapper = styled(SelectorWrapper)`
     border-radius: 11px;
     width: 35%;
-    border: solid 1px ${allTheme.gray};
-    * {
+    border: ${({ theme }) => theme === lightTheme ? `solid 1px ${allTheme.gray}` : `solid 1px ${allTheme.gray}`};
+    //dont forget to change border color for light theme
+    
+    /* * {
         border: solid 1px red;
-    }
+    } */
 `
 
 export const BuySelectButton = styled.button`
@@ -96,7 +97,7 @@ export const BuySelectButton = styled.button`
     border-radius: ${props => props.buySell === "B" ? '10px 10px 10px 10px' : '10px 0 0 10px'};
     border: ${props => props.buySell === "B" ? `solid 1.5px ${allTheme.greenBuy}` : `none`};
     background: transparent;
-    color: white;
+    color: ${({ theme }) => theme === lightTheme ? lightTheme.text : darkTheme.text};
 
     :focus {
         outline: none;
@@ -107,13 +108,11 @@ export const BuySelectButton = styled.button`
     }
 `
 
-export const SellSelectButton = styled(BuySelectButton)
-`
+export const SellSelectButton = styled(BuySelectButton)`
     border-radius: ${props => props.buySell === "S" ? '10px 10px 10px 10px' : '0 10px 10px 0'};
     border: ${props => props.buySell === "S" ? `solid 1.5px ${allTheme.redSell}` : `none`};
 
     :focus {
         outline: none;
     }
-
 `

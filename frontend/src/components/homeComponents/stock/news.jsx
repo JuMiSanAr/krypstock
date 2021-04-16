@@ -5,6 +5,7 @@ import { ShrinkingComponentWrapper } from '../../../styles/globalParts/container
 import {CryptoHeadlineWrapper, CryptoNewsWrapper  } from '../../../styles/components/stockStyles/newsStyles';
 import TablePagination from '@material-ui/core/TablePagination';
 import {darkTheme} from '../../../styles/Themes';
+import { TitleSpan } from '../../../styles/globalParts/textStyles';
 
 const News = ({stock_news}) => {
   //Pagination
@@ -16,7 +17,7 @@ const News = ({stock_news}) => {
 
     return (
         <ShrinkingComponentWrapper>
-            <h3>Latest News</h3>
+            <TitleSpan>Latest News</TitleSpan>
                 {
                     stock_news && stock_news.length > 0 ?
                     stock_news.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((news, index) => {

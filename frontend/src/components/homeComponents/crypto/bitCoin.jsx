@@ -9,6 +9,7 @@ import {
 import CandlestickCryptoIntraday from "../../charts/candlesticksCryptoIntraday";
 import ChartTimeCrypto from "../../charts/chartSelectTimeCrypto";
 import CandlestickCryptoHistorical from "../../charts/candlesticksCryptoHistorical";
+import { TitleSpan } from '../../../styles/globalParts/textStyles';
 
 
 export const BitCoin = (props) => {
@@ -77,7 +78,7 @@ export const BitCoin = (props) => {
             <ShrinkingComponentWrapper>
                 <FormSelectWrapper>
                     <div className="title">
-                        <h3 >{symbol}</h3>
+                        <TitleSpan >{symbol}</TitleSpan>
                     </div>
                     <ButtonWrapper>
                         <button onClick={() => changeSymbol()}>Update</button>

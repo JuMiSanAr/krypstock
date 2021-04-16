@@ -5,7 +5,7 @@ import {FormSelectWrapper} from "../../../styles/components/cryptoStyles/bitCoin
 import {SelectorWrapper, TransacWrapper, ButtonWrapper, BuySelectButton, SellSelectButton, BuySellSelectorWrapper} from '../../../styles/components/cryptoStyles/quickTradeStyles'
 import { postNewTransactionFetch } from '../../../store/fetches/transactionFetches'; 
 import { Link } from 'react-router-dom';
-import { ErrorSpan, TitleH3 } from '../../../styles/globalParts/textStyles';
+import { ErrorSpan, TitleSpan } from '../../../styles/globalParts/textStyles';
 import { addTransactionAction } from '../../../store/actions/transactionsAction';
 
 export const CryptoQuickTrade = (props) => {
@@ -94,9 +94,7 @@ export const CryptoQuickTrade = (props) => {
         <ShrinkingComponentWrapper> 
             <form onSubmit={submitHandler}>
                 <FormSelectWrapper className="quickTrade">
-                    {/* <div className="title"> */}
-                    {props.fromPage === 'HomePage' ? <TitleH3>Crypto Quick Trade</TitleH3> : <TitleH3>Crypto Trade</TitleH3>}
-
+                    {props.fromPage === 'HomePage' ? <TitleSpan>Crypto Quick Trade</TitleSpan> : <TitleSpan>Crypto Trade</TitleSpan>}
                     {
                     !allPortfoliosArray || allPortfoliosArray.length === 0 ?
                     null
@@ -182,7 +180,7 @@ export const CryptoQuickTrade = (props) => {
                             }
                         </div>
                         <div className="transacItem amountInput">
-                            <p>Price per Coin</p>
+                            <p>Price per coin</p>
                             <input 
                                 type="number" 
                                 step="0.001" 
