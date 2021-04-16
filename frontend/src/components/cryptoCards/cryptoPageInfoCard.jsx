@@ -5,7 +5,7 @@ import {CryptoPageInfoWrapper} from "../../styles/components/cryptoStyles/crypto
 
 const CryptoPageInfoCard = (props) => {
     const [fetchedData,setData]=useState([])
-    const [cryptoInfo, setCryptoInfo] = useState({});
+
 
     useEffect(() => {
         fetch('https://api.binance.com/api/v3/ticker/24hr')
@@ -13,32 +13,23 @@ const CryptoPageInfoCard = (props) => {
             .then(data => {
                 // console.log(data)
                 const allData = data.map((obj,index) => {
-
-                    if(props.symbol===obj.symbol){
-                        setCryptoInfo(obj)
-                    console.log(cryptoInfo)
-                    }
-                    return {
+                    const cryptoSymbol=obj.symbol
+                    const c=props.symbol
+                        if(c===cryptoSymbol){
+                            fetchedData.push(obj)
+                    } return {
                     }
                 })
-                setData(allData);
-                if(props.symbol){
-                 setCryptoInfo(data)
-            console.log(cryptoInfo)
-             }
+                console.log('fetched data',fetchedData["symbol"])
             });
     }, []);
 
-    // useEffect(() => {
-
-    // }, [stockInfo]);
     return (
         <CryptoPageInfoWrapper>
             <tbody>
-                {/*<tr>*/}
-                {/*    <td className='key'>Symbol:</td>*/}
-                {/*    <td>{cryptoInfo.symbol}</td>*/}
-                {/*</tr>*/}
+                <tr>
+                    <td className='key'><h1>{props.symbol}</h1></td>
+                </tr>
                 {/*<tr>*/}
                 {/*    <td className='key'>Country:</td>*/}
                 {/*    <td>{cryptoInfo.country}</td>*/}

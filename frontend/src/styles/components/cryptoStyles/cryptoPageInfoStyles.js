@@ -11,7 +11,7 @@ export const CryptoPageInfoWrapper = styled.table`
     border-collapse: collapse;
     color: ${({ theme }) => theme === lightTheme ? lightTheme.text : darkTheme.text};;
     /* overflow-y: scroll; */
-    height: 260px;
+    height: 1vh;
     /* display: block; */
     /* table-layout: fixed; */
 

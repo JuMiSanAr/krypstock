@@ -5,6 +5,7 @@ import {AllComponentsWrapper, ShrinkingComponentWrapper} from "../styles/globalP
 import NewsCrypto from "../components/newsFeed/newsCrypto";
 import CandlestickCryptoHistorical from "../components/charts/candlesticksCryptoHistorical";
 import ChartTimeCrypto from "../components/charts/chartSelectTimeCrypto";
+import CryptoPageInfoCard from "../components/cryptoCards/cryptoPageInfoCard";
 
 const CryptoPage = (props) => {
 
@@ -23,7 +24,7 @@ const CryptoPage = (props) => {
     return (
         <>
             <AllComponentsWrapper>
-                <h1>{symbol}</h1>
+
                 <ShrinkingComponentWrapper>
                     <CryptoPageInfoCard symbol={symbol}/>
                 </ShrinkingComponentWrapper>
