@@ -24,14 +24,15 @@ export const StockModal = ({ showStockModal, setStockShowModal, symbol, stockSym
         // console.log(buySell, portfolioID, symbol, volume, pricePerShare,type)
         postNewTransactionFetch(buySell, portfolioID, stockSymbol, volume, pricePerShare, type)
         .then(data => {
-            console.log('in stock quicktrade submitHandler', data)
+            setStockShowModal(false);
+            // console.log('in stock quicktrade submitHandler', data)
         })
         .catch(error => {
             if (error.toString().slice(-1) === '3') {
                 setNotEnoughStocks(true);
             }
         })
-        setStockShowModal(false);
+       
     }
 
     useEffect( () => {   // get price of specific symbol

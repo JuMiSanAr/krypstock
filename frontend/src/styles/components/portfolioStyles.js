@@ -33,14 +33,12 @@ justify-content: space-between;
 
 export const OverviewDescription = styled.p`
 font-size: 14px;
-
 `;
 
 export const OverviewBar = styled.div`
 display: flex;
 align-items: center;
 justify-content: space-around;
-background-color: ${allTheme.vibrantturquoise};
 border-radius: 14px;
 margin: 10px 0;
 i{
@@ -57,7 +55,7 @@ i{
     font-size: 20px;
 }
 > * {
-    width: 25%;
+    width: 33%;
 }
 `;
 
@@ -82,12 +80,19 @@ export const TempDiv = styled.div`
 padding-top: 5px;
 p {
     margin: 0;
-    padding: 0 5px 5px 5px;
+    padding: 0 5px 5px 0;
+}
+i{
+    padding-right: 5px;
 }
 `;
 
 export const Desc = styled.p`
 font-size: 10px;
+`;
+
+export const ValueText = styled.p`
+font-size: 12px;
 `;
 
 export const NetworthContainer = styled.div`

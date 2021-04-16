@@ -1,13 +1,22 @@
 import React, {useEffect, useState} from 'react';
 import { ShrinkingComponentWrapper } from '../../styles/globalParts/containerStyles';
-import {HeadlineFont, Headline, OverviewBar, TempDiv, Desc, NetworthContainer, IconConatiner} from '../../styles/components/portfolioStyles';
+import {HeadlineFont, Headline, OverviewBar, TempDiv, Desc, NetworthContainer, IconConatiner, ValueText} from '../../styles/components/portfolioStyles';
 import {useSelector} from 'react-redux';
 import {allTheme} from '../../styles/Themes';
 import {StockModal2} from "../quickTradeModal/stockOverview";
 import {CryptoModal2} from "../quickTradeModal/cryptoOverview";
+import {Content} from "../../styles/components/buttonStyles";
 
 
-const Overview = ({calculations, realtimeData, portfolioname, portfolioID}) => {
+const Overview = ({calculations, realtimeData, portfolioname, portfolioID, portfolioCreated}) => {
+
+    const todayDate = new Date()
+    const month = ("0" + (todayDate.getMonth() + 1)).slice(-2);
+    const day = ("0" + todayDate.getDate()).slice(-2);
+    const year = todayDate.getFullYear();
+
+    const todayStringDate = `${year}-${month}-${day}`;
+    const portfolioStringDate = portfolioCreated.slice(0, 10);
 
     const [showStockModal, setStockShowModal] = useState(false);
     const [showCryptoModal, setCryptoShowModal] = useState(false);
@@ -68,12 +77,14 @@ const Overview = ({calculations, realtimeData, portfolioname, portfolioID}) => {
                 <TempDiv>
                     <Desc>Today</Desc>
                     <p>
-                        {percentageChangeToday > 0 ?
-                            <i className="fas fa-angle-double-up" style={{color: 'green'}}></i>
-                            :
-                            <i className="fas fa-angle-double-down" style={{color: 'red'}}></i>
-                        }
-                        {percentageChangeToday.toFixed(2)} %</p>
+                        {todayStringDate !== portfolioStringDate && percentageChangeToday > 0 ? <i className="fas fa-angle-double-up" style={{color: 'green'}}></i> : ''}
+                        {todayStringDate !== portfolioStringDate && percentageChangeToday < 0 ? <i className="fas fa-angle-double-down" style={{color: 'red'}}></i> : ''}
+                        {todayStringDate === portfolioStringDate && percentageChangeTotal > 0 ? <i className="fas fa-angle-double-up" style={{color: 'green'}}></i> : ''}
+                        {todayStringDate === portfolioStringDate && percentageChangeTotal < 0 ? <i className="fas fa-angle-double-down" style={{color: 'red'}}></i> : ''}
+
+                        {todayStringDate !== portfolioStringDate ? percentageChangeToday.toFixed(2) : ''}
+                        {todayStringDate === portfolioStringDate ? percentageChangeTotal.toFixed(2) : ''}
+                        %</p>
                 </TempDiv>
             </NetworthContainer>
         )
@@ -96,37 +107,36 @@ const Overview = ({calculations, realtimeData, portfolioname, portfolioID}) => {
                         <HeadlineFont>{calculation.symbol}</HeadlineFont>
                         {calculation.type === "S"
                         ? <>
-                                <button onClick={()=>{
+                                <Content onClick={()=>{
                                     setStockShowModal(true);
                                     setStockSymbol(calculation.symbol);
-                                }}>BUY/SELL</button>
+                                }}>BUY/SELL</Content>
                           </>
                         : <>
-                                <button onClick={()=>{
+                                <Content onClick={()=>{
                                     setCryptoShowModal(true);
                                     setSymbolCrypto(calculation.symbol);
-                                }}>BUY/SELL</button>
+                                }}>BUY/SELL</Content>
                           </>
                         }
                     </IconConatiner>
                     <NetworthContainer>
                         <TempDiv>
                             <Desc>Invested</Desc>
-                            <p>$ {calculation.invested.toFixed(2)}</p>
+                            <ValueText>$ {calculation.invested.toFixed(2)}</ValueText>
                         </TempDiv>
                         <TempDiv>
                             <Desc>Current value</Desc>
-                            {realtimeData.length === calculations.length ?
+                            <ValueText>{realtimeData.length === calculations.length ?
                                 getCurrentSymbolValue(calculation.symbol, calculation.type)
                                 : ''}
+                            </ValueText>
                         </TempDiv>
-                    </NetworthContainer>
-                    <div>
                         <TempDiv>
                             <Desc>Quantity</Desc>
-                            <p>{calculation.quantity.toFixed(2)}</p>
+                            <ValueText>{calculation.quantity.toFixed(2)}</ValueText>
                         </TempDiv>
-                    </div>
+                    </NetworthContainer>
                     {realtimeData.length === calculations.length ?
                         getPercentageChanges(calculation.symbol, calculation.type)
                         : ''}
