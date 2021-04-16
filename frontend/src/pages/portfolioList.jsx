@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-
 import { AllComponentsWrapper } from '../styles/globalParts/containerStyles';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import { Modal } from '../components/addPortfolioModal';
@@ -20,6 +19,9 @@ const AddIcon = styled.div`
 
 const PortfolioList = () => {
   const [showModal, setShowModal] = useState(false);
+
+ 
+
   const openModal = () => {
     setShowModal(prev => !prev);
   };
@@ -38,6 +40,8 @@ const PortfolioList = () => {
       })
   }, []);
 
+ 
+
   return (
     <AllComponentsWrapper>
       <AddIcon>
@@ -46,7 +50,7 @@ const PortfolioList = () => {
       </AddIcon>
       <Modal showModal={showModal} setShowModal={setShowModal} />
       {
-        portfolioData && portfoliosFetched ? <PortfolioCollection /> : ""
+        portfolioData && portfoliosFetched ? <PortfolioCollection/> : ""
       }
       {
         !portfolioData && !portfoliosFetched ? '...LOADING' : ''
