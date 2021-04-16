@@ -23,14 +23,13 @@ export const PortfolioCollectionBasic = ({portfolios}) => {
              {
                  portfolios.map((portfolio, index) => {
                     return (<ShrinkingComponentWrapper key={index}>
-
                         <IconTitle>
-                            <FolderIcon fontSize="large"/>
+                            <FolderIcon fontSize="large" />
                             <h3><a href={`https://krypstock.propulsion-learn.ch/portfolio/${portfolio.id}`}>{portfolio.name}</a></h3>
                         </IconTitle>
                     </ShrinkingComponentWrapper>)
-                 })
-             }
+                })
+            }
         </>
     )
 }

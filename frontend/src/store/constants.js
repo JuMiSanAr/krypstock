@@ -1,5 +1,3 @@
-
-
 // Action types
 export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
@@ -45,8 +43,8 @@ export const headers = new Headers({
 });
 
 export const headersWithToken = new Headers({
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${token}`
 })
 
 // Iexcloud keys

@@ -21,10 +21,10 @@ const PortfoliosWithStock = (props) => {
                     const thisPortfolios = data.filter(portfolio => {
                         let result = false;
 
-                        portfolio.calculations.forEach(calculation => {
+                        portfolio.calculations.forEach(calculation => { 
                             if (calculation.symbol === props.symbol) {
                                 result = true;
-                            }
+                            } 
                         })
 
                         return result;

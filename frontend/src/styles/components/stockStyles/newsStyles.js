@@ -1,11 +1,15 @@
 import styled from "styled-components";
-import {lightTheme, darkTheme} from "../../Themes";
+import {
+    lightTheme,
+    darkTheme
+} from "../../Themes";
 
-export const FlexDiv = styled.div`
+export const FlexDiv = styled.div `
     display: flex;
 `
 
-export const NewsWrapper = styled(FlexDiv)`
+export const NewsWrapper = styled(FlexDiv)
+`
     flex-direction: column;
     justify-content: space-between;
      
@@ -33,7 +37,7 @@ export const NewsWrapper = styled(FlexDiv)`
     }
 `
 
-export const HeadlineWrapper = styled.article`
+export const HeadlineWrapper = styled.article `
     /* display: flex;
     margin-bottom: 10px;
     padding: 5px;
@@ -92,7 +96,7 @@ export const HeadlineWrapper = styled.article`
 
 `;
 
-export const DateAuthorWrapper = styled.div`
+export const DateAuthorWrapper = styled.div `
     margin-bottom: 8px;
     span{
     font-size: 10px;
@@ -100,12 +104,12 @@ export const DateAuthorWrapper = styled.div`
     }
 `;
 
-export const ShowMore = styled.div`
+export const ShowMore = styled.div `
     display: flex;
     justify-content: center;
 `;
 
-export const HeroHeader = styled.header`
+export const HeroHeader = styled.header `
   height: 400px;
   width: 100vw;
   margin-top: -200px;
@@ -120,7 +124,7 @@ export const HeroHeader = styled.header`
 
 `;
 
-export const NewsContentWrapper = styled.div`
+export const NewsContentWrapper = styled.div `
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -136,7 +140,7 @@ export const NewsContentWrapper = styled.div`
     }
 `;
 
-export const HeaderTitle = styled.div`
+export const HeaderTitle = styled.div `
     display: flex;
     justify-content: flex-start;
     margin: auto;
@@ -171,7 +175,8 @@ export const HeaderTitle = styled.div`
 
 // crypto News Styles home page
 
-export const CryptoNewsWrapper = styled(FlexDiv)`
+export const CryptoNewsWrapper = styled(FlexDiv)
+`
     flex-direction: column;
     justify-content: space-between;  
     
@@ -186,7 +191,7 @@ export const CryptoNewsWrapper = styled(FlexDiv)`
     }
 `
 
-export const CryptoHeadlineWrapper = styled.article`
+export const CryptoHeadlineWrapper = styled.article `
     
         display: flex;
         align-items: center;
@@ -214,4 +219,3 @@ export const CryptoHeadlineWrapper = styled.article`
     }
 
 `;
-

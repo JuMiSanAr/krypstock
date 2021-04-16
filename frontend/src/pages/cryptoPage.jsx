@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import CandlestickCryptoIntraday from "../components/charts/candlesticksCryptoIntraday";
-import {FormSelectWrapper, GraphWrapper} from "../styles/components/cryptoStyles/bitCoinStyles";
-import {AllComponentsWrapper, ShrinkingComponentWrapper} from "../styles/globalParts/containerStyles";
+import { FormSelectWrapper, GraphWrapper } from "../styles/components/cryptoStyles/bitCoinStyles";
+import { AllComponentsWrapper, ShrinkingComponentWrapper } from "../styles/globalParts/containerStyles";
 import NewsCrypto from "../components/newsFeed/newsCrypto";
 import CandlestickCryptoHistorical from "../components/charts/candlesticksCryptoHistorical";
 import ChartTimeCrypto from "../components/charts/chartSelectTimeCrypto";
@@ -53,12 +53,12 @@ const CryptoPage = (props) => {
                    :
                    <CandlestickCryptoHistorical data={historicalData} symbol={symbol} timeLength={chartTimeframe2}/>}
                     </GraphWrapper>
-                 </ShrinkingComponentWrapper>
-                 <ShrinkingComponentWrapper>
-                <NewsCrypto symbol={symbol}/>
-            </ShrinkingComponentWrapper>
-        {/* <FooterNav/> */}
-    </AllComponentsWrapper>
+                </ShrinkingComponentWrapper>
+                <ShrinkingComponentWrapper>
+                    <NewsCrypto symbol={symbol} />
+                </ShrinkingComponentWrapper>
+                {/* <FooterNav/> */}
+            </AllComponentsWrapper>
         </>
     )
 }

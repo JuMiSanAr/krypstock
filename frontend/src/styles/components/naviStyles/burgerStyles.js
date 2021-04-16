@@ -1,7 +1,10 @@
 import styled from 'styled-components';
-import {darkTheme, lightTheme} from "../../../styles/Themes";
+import {
+  darkTheme,
+  lightTheme
+} from "../../../styles/Themes";
 
-export const StyledBurger = styled.button`
+export const StyledBurger = styled.button `
   position: absolute;
   top: 5%;
   left: 2rem;
@@ -41,4 +44,3 @@ export const StyledBurger = styled.button`
     }
   }
 `;
-

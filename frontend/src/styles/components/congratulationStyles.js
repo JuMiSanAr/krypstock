@@ -1,7 +1,6 @@
-
 import styled from "styled-components";
 
-export const MainContainerC = styled.div`
+export const MainContainerC = styled.div `
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -29,7 +28,7 @@ export const MainContainerC = styled.div`
   }
 `;
 
-export const InputWrapper = styled.div`
+export const InputWrapper = styled.div `
     display: flex;
     flex-direction: column;
     padding-top: 20px;
