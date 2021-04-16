@@ -40,6 +40,7 @@ const CandlestickCryptoIntraday = (props) => {
                 })
                 setData(allData);
             })
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
@@ -47,7 +48,7 @@ const CandlestickCryptoIntraday = (props) => {
             fetchCrypto()
             setWebsocketOpen(true);
         }
-
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [fetchedData]);
 
      useEffect(() => {
@@ -62,6 +63,7 @@ const CandlestickCryptoIntraday = (props) => {
             binanceSocket?.close();
             fetchCrypto();
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[props.symbol])
 
     const fetchCrypto = () => {
@@ -178,6 +180,7 @@ const CandlestickCryptoIntraday = (props) => {
                 },
             });
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [fetchedData])
 
         return (

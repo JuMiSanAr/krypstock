@@ -1,17 +1,13 @@
-import React, {useEffect, useState} from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import transactionFetch from '../../../store/fetches/transactionFetches';
+import React, { useState} from 'react';
+import { useSelector } from 'react-redux';
 import { StockTable } from '../../../styles/components/stockStyles/tableStyles';
 import { ShrinkingComponentWrapper } from '../../../styles/globalParts/containerStyles';
 import Moment from 'react-moment';
 import TablePagination from '@material-ui/core/TablePagination';
 import {darkTheme} from '../../../styles/Themes';
-// import { FormHelperText } from '@material-ui/core';
-import {transactionsAction} from '../../../store/actions/transactionsAction';
 
 const TransactionHistory = (props) => {
 
-    const dispatch = useDispatch();
     const [page, setPage] = useState(0);
     const rowsPerPage = 4;
     const allData = useSelector(state => state.transactionsReducer.transactions);

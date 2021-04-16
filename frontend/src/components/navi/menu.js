@@ -29,7 +29,7 @@ const Menu = ({open, setOpen}) => {
 
     const history = useHistory();
 
-    const isHidden = open ? true : false;
+    const isHidden = !!open;
 /*  const tabIndex = isHidden ? 0 : -1;*/
 
   
@@ -66,7 +66,7 @@ const Menu = ({open, setOpen}) => {
         .then(data => {
             dispatch(loginUserAction(data))
         })
-
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
   return (

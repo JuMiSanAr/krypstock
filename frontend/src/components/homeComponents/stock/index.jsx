@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import {AllComponentsWrapper} from '../../../styles/globalParts/containerStyles';
 import MarketOverview from './marketOverview.jsx';
 import News from './news';
 import StockQuickTrade from './quickTrade';
@@ -66,6 +65,7 @@ useEffect(()=>{
             dispatch(action);
         });
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     // useEffect(() => {

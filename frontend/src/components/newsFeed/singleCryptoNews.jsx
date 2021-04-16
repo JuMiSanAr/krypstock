@@ -4,20 +4,6 @@ import React from "react";
 
 const SingleCryptoNewsFeed = ({news}) => {
 
-
-    const date = new Date(news.datetime);
-
-    const dateOptions = {
-    // weekday: 'long',
-    // year: "numeric",
-    month: "long",
-    day: "numeric",
-    hour: "2-digit",
-    minute: "2-digit"
-    }
-
-    const stringDate = date.toLocaleString('en-US', dateOptions);
-
     return (
         <NewsWrapper>
         <HeadlineWrapper>

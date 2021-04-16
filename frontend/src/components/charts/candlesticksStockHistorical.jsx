@@ -76,7 +76,7 @@ const CandlestickStockHistorical = (props) => {
 
             candleSeries.setData(props.data);
         }
-
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.data]);
 
     return (
