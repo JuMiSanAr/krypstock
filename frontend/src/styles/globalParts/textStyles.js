@@ -12,3 +12,7 @@ export const CenterSpan = styled.span`
 export const ErrorSpan = styled.span`
     font-size: 0.8rem;
 `
+
+export const TitleH3 = styled.h3`
+    vertical-align: middle;
+`

@@ -30,6 +30,7 @@ const TrendyCrypto = () => {
         }
         
         setTrendyCryptos(top20TrendyCryptos)
+        // console.log('trendy cryptos',trendyCryptos)
         // console.log('allCryptos', allCryptos)
     }, [allCryptos] )
 
@@ -37,12 +38,16 @@ const TrendyCrypto = () => {
         history.push(`/crypto/${symbol}`)
     }
 
+    // useEffect( () => {
+    //     console.log(trendyCryptos)
+    // }, [trendyCryptos])
+
     return (
         <ShrinkingComponentWrapper> 
             <h3>Top 20 Trendy Currencies</h3>
             <Table id="crypto">
                 {
-                    trendyCryptos !== [] && trendyCryptos.length === dataAmount ?
+                    trendyCryptos && trendyCryptos.length === dataAmount ?
                     <thead>
                         <tr>
                         <th colSpan='2'>Currency</th>
@@ -55,14 +60,13 @@ const TrendyCrypto = () => {
                     null
                 }
                 <tbody>
-                    {trendyCryptos !== [] && trendyCryptos.length === dataAmount ? 
+                    {trendyCryptos && trendyCryptos.length === dataAmount ? 
                         trendyCryptos.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                         .map( (crypto, index) => 
                         <tr key={index}>
                             <td>{trendyCryptos.indexOf(crypto) + 1}</td>
                             <td className="clickCrypto" onClick={()=> specificCryptoPage(crypto.symbol)}>{crypto.symbol.slice(0, -4)}</td>
                             <td>{Number(crypto.lastPrice).toFixed(2)}</td>
-                            {/* <td>{numberWithCommas(crypto.lastPrice)}</td> */}
                             <td>
                                 {crypto.priceChangePercent > 0 ? <i className="fas fa-angle-double-up" style={{color: 'green'}}></i> : crypto.priceChangePercent < 0 ? <i className="fas fa-angle-double-down" style={{color: 'red'}}></i> : null} 
                                 {Math.abs(Number(crypto.priceChangePercent)).toFixed(2)}%
@@ -77,10 +81,10 @@ const TrendyCrypto = () => {
                 </tbody>
             </Table>
             {
-                trendyCryptos && trendyCryptos.length !== dataAmount ?
+                trendyCryptos && trendyCryptos.length === dataAmount ?
                 <TablePagination 
                     component="div"
-                    count={trendyCryptos.length}
+                    count={dataAmount}
                     page={page}
                     onChangePage={handleChangePage}
                     rowsPerPage={rowsPerPage}

@@ -31,6 +31,10 @@ export const FullWidthComponentWrapper = styled.div`
 
 export const ShrinkingComponentWrapper = styled(FullWidthComponentWrapper)`
 
+    /* *{
+        border: solid 1px red;
+    } */
+
     .empty {
         min-height: 240px;
         display: flex;

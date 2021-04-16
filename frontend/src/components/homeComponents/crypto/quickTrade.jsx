@@ -2,10 +2,10 @@ import React, {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {ShrinkingComponentWrapper } from '../../../styles/globalParts/containerStyles';
 import {FormSelectWrapper} from "../../../styles/components/cryptoStyles/bitCoinStyles";
-import {SelectorWrapper, TransacWrapper, ButtonWrapper} from '../../../styles/components/cryptoStyles/quickTradeStyles'
+import {SelectorWrapper, TransacWrapper, ButtonWrapper, BuySelectButton, SellSelectButton, BuySellSelectorWrapper} from '../../../styles/components/cryptoStyles/quickTradeStyles'
 import { postNewTransactionFetch } from '../../../store/fetches/transactionFetches'; 
 import { Link } from 'react-router-dom';
-import { ErrorSpan } from '../../../styles/globalParts/textStyles';
+import { ErrorSpan, TitleH3 } from '../../../styles/globalParts/textStyles';
 import { addTransactionAction } from '../../../store/actions/transactionsAction';
 
 export const CryptoQuickTrade = (props) => {
@@ -21,7 +21,7 @@ export const CryptoQuickTrade = (props) => {
   
     // const dispatch = useDispatch()
     const allPortfoliosArray = useSelector(state => state.portfoliosReducer.portfolios)
-    const [buySell, setBuySell] = useState();
+    const [buySell, setBuySell] = useState("B");
     const [symbol, setSymbol] = useState();
     const [portfolioID, setPortfolioID] = useState();
     const [amount, setAmount] = useState();
@@ -68,6 +68,8 @@ export const CryptoQuickTrade = (props) => {
     }, [allCryptos]);
 
     useEffect( () => {
+
+        console.log('buySell', buySell)
         if (allSymbols.includes(symbol)) {
             const crypto = allCryptos.filter( crypto => crypto.symbol === `${symbol}USDT`);
             // console.log("symbolInputHandler ~ crypto", crypto)
@@ -91,21 +93,16 @@ export const CryptoQuickTrade = (props) => {
             <form onSubmit={submitHandler}>
                 <FormSelectWrapper>
                 <div className="title">
-                    {props.fromPage === 'HomePage' ? <h3>Crypto Quick Trade</h3> : <h3>Crypto Trade</h3>}
+                    {props.fromPage === 'HomePage' ? <TitleH3>Crypto Quick Trade</TitleH3> : <h3>Crypto Trade</h3>}
                 </div>
                 {
                 !allPortfoliosArray || allPortfoliosArray.length === 0 ?
                 null
                 :
-                <SelectorWrapper>
-                    <div className="buySell">
-                        <select className="selector" defaultValue={''} onChange={e => setBuySell(e.target.value)} required>
-                            <option value="" disabled>Select</option>
-                            <option value="B">Buy</option>
-                            <option value="S">Sell</option>
-                        </select>
-                    </div>
-                </SelectorWrapper>
+                <BuySellSelectorWrapper>
+                    <BuySelectButton type="button" buySell={buySell} onClick={e => setBuySell("B")}>BUY</BuySelectButton>
+                    <SellSelectButton type="button" buySell={buySell} onClick={e => setBuySell("S")}>SELL</SellSelectButton>
+                </BuySellSelectorWrapper>
                 }
                 </FormSelectWrapper>  
                 {
@@ -210,7 +207,12 @@ export const CryptoQuickTrade = (props) => {
                         notEnoughCoins ? <ErrorSpan><em>Not enough coins to sell at this amount</em></ErrorSpan> : ''
                     }
                     <ButtonWrapper>
-                        <button type="submit" value="Submit">Submit</button>
+                        {
+                            buySell === 'B' ?
+                            <button className="buy" type="submit" value="Submit">Buy</button>
+                            :
+                            <button className="sell" type="submit" value="Submit">Sell</button>                          
+                        }
                     </ButtonWrapper>
                 </>
                 }
