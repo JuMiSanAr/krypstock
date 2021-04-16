@@ -96,7 +96,7 @@ useEffect(()=>{
     // }, []);
 
     return (
-        <AllComponentsWrapper>
+        <>
             <MarketOverview/>
             <News stock_news={topFiveNews}/>
             <StockQuickTrade fromPage='HomePage' />
@@ -104,7 +104,7 @@ useEffect(()=>{
             <TrendyStocks stock_volume={stockVolumeData} />
             <TopPerformingStocks gain_stock={gainData} />
             <WorstPerformingStocks loss_stock={lossData} />
-        </AllComponentsWrapper>
+        </>
     )
 }
 

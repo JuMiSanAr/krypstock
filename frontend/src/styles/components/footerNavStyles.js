@@ -17,6 +17,7 @@ export const FooterWrapper = styled.div`
         
         :hover {
             cursor: pointer;
+            color: white;
         }
     }
 

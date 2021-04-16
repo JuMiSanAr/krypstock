@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { allTheme } from "../../Themes";
 
 export const SelectorWrapper = styled.div`
     display:flex;
@@ -46,7 +47,7 @@ export const ButtonWrapper = styled.div`
     display: flex;
     justify-content:flex-end;
     button{
-        background-color: #6418C3;
+        background-color: ${allTheme.purple};
         text-transform: uppercase;
         font-weight: 600;
         height: 30px;
