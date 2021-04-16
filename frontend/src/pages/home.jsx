@@ -27,13 +27,13 @@ const Home = () => {
         if (token) {
             portfoliosFetch()
                 .then(data => {
-                    dispatch(portfoliosAction(data.results))
+                    dispatch(portfoliosAction(data))
                 })
 
             transactionFetch()
                 .then(data => {
                     // console.log("data.results", data.results);
-                    const action = transactionsAction(data.results)
+                    const action = transactionsAction(data)
                     dispatch(action);
                 })     
         }
