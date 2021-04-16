@@ -10,7 +10,7 @@ export const UseDarkMode = () => {
     };
 
     const themeToggler = () => {
-        theme === 'dark' ? setMode('light')  : setMode('dark')
+        theme === 'dark' ? setMode('light') : setMode('dark')
     };
 
     useEffect(() => {

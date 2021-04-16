@@ -2,11 +2,11 @@ import React from 'react'
 import styled from "styled-components";
 import DeleteIcon from '@material-ui/icons/Delete';
 import FolderIcon from '@material-ui/icons/Folder';
-import {ShrinkingComponentWrapper } from '../../styles/globalParts/containerStyles';
+import { ShrinkingComponentWrapper } from '../../styles/globalParts/containerStyles';
 import deletePortfolioFetch from '../../store/fetches/deletePortfolioFetches';
-import {useDispatch, useSelector} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { DELETE_PORTFOLIO } from '../../store/constants';
-import {useHistory} from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 
 
@@ -34,14 +34,14 @@ export const PortfolioCollection = () => {
     const dispatch = useDispatch();
 
     const portfolioData = useSelector(state => state.portfoliosReducer.portfolios);
- 
+
     // console.log("from port collection", portfolioList)
-    const handleDelete = (id)=>{
+    const handleDelete = (id) => {
         deletePortfolioFetch(id);
         const action = {
             type: DELETE_PORTFOLIO,
             payload: id,
-        } 
+        }
         dispatch(action)
     }
 
@@ -51,14 +51,14 @@ export const PortfolioCollection = () => {
 
     return (
         <>
-             
-             {
-                 portfolioData.map((portfolio, index) => {
+
+            {
+                portfolioData.map((portfolio, index) => {
                     return (<ShrinkingComponentWrapper key={index}>
 
                         <IconTitle>
-                            <FolderIcon fontSize="large"/>
-                            <h2 onClick={() => {toPortfolio(portfolio.id)}}>{portfolio.name}</h2>
+                            <FolderIcon fontSize="large" />
+                            <h2 onClick={() => { toPortfolio(portfolio.id) }}>{portfolio.name}</h2>
                         </IconTitle>
                         <div>
                             <p>
@@ -66,12 +66,12 @@ export const PortfolioCollection = () => {
                             </p>
                         </div>
                         <Delete>
-                            <DeleteIcon onClick={()=>handleDelete(portfolio.id)} />
+                            <DeleteIcon onClick={() => handleDelete(portfolio.id)} />
                         </Delete>
 
                     </ShrinkingComponentWrapper>)
-                 })
-             }
+                })
+            }
         </>
     )
 }

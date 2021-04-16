@@ -10,7 +10,6 @@ const PortfoliosWithStock = (props) => {
     const dispatch = useDispatch();
 
     const [portfolios, setPortfolios] = useState([]);
-    const [addToPorfolio, setAddToPorfolio] = useState(false);
 
     const portfolioData = useSelector(state => state.portfoliosReducer.portfolios);
     const portfoliosFetched = useSelector(state => state.portfoliosReducer.portfoliosFetched);

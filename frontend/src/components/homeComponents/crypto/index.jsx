@@ -1,12 +1,12 @@
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react'
 import { BitCoin } from './bitCoin'
-import { AllComponentsWrapper} from '../../../styles/globalParts/containerStyles';
+import { AllComponentsWrapper } from '../../../styles/globalParts/containerStyles';
 // import { PriceToday } from './priceToday';
-import {TransactionHistory} from './transactionHistory'
+import { TransactionHistory } from './transactionHistory'
 import { CryptoNews } from './cryptoNews';
 import { CryptoQuickTrade } from './quickTrade';
-import {allCryptosAction} from "../../../store/actions/cryptoActions";
-import {useDispatch} from "react-redux";
+import { allCryptosAction } from "../../../store/actions/cryptoActions";
+import { useDispatch } from "react-redux";
 import TopPerformingCrypto from './topPerformingCrypto';
 import WorstPerformingCrypto from './worstPerformingCrypto';
 import TrendyCrypto from './trendyCrypto';
@@ -38,7 +38,7 @@ export const Crypto = () => {
 
     return (
         <>
-            <BitCoin/>
+            <BitCoin />
             <TrendyCrypto />
             {/*<CryptoNews />*/}
             <TopPerformingCrypto />

@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from "styled-components";
 import FolderIcon from '@material-ui/icons/Folder';
-import {ShrinkingComponentWrapper } from '../../styles/globalParts/containerStyles';
-import {useSelector} from "react-redux";
+import { ShrinkingComponentWrapper } from '../../styles/globalParts/containerStyles';
+import { useSelector } from "react-redux";
 
 
 
@@ -25,16 +25,16 @@ export const PortfolioCollectionBasic = () => {
 
     return (
         <>
-             {
-                 portfolioData.map((portfolio, index) => {
+            {
+                portfolioData.map((portfolio, index) => {
                     return (<ShrinkingComponentWrapper key={index}>
                         <IconTitle>
-                            <FolderIcon fontSize="large"/>
+                            <FolderIcon fontSize="large" />
                             <h3><a href={`https://krypstock.propulsion-learn.ch/portfolio/${portfolio.id}`}>{portfolio.name}</a></h3>
                         </IconTitle>
                     </ShrinkingComponentWrapper>)
-                 })
-             }
+                })
+            }
         </>
     )
 }

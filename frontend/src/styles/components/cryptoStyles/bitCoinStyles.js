@@ -1,8 +1,11 @@
-import {darkTheme, lightTheme} from "../../Themes";
+import {
+    darkTheme,
+    lightTheme
+} from "../../Themes";
 import styled from 'styled-components';
 
 
-export const FormSelectWrapper = styled.div`
+export const FormSelectWrapper = styled.div `
    display: flex;
    justify-content: space-between;
    align-items: center;
@@ -21,7 +24,7 @@ export const FormSelectWrapper = styled.div`
 `;
 
 
-export const CryptoWrapper= styled.div`
+export const CryptoWrapper = styled.div `
    display: flex;
    justify-content: flex-end;
    width:100%
@@ -32,7 +35,7 @@ export const CryptoWrapper= styled.div`
    }
 `;
 
-export const ButtonWrapper = styled.div`
+export const ButtonWrapper = styled.div `
     display: flex;
     justify-content:flex-end;
     
@@ -49,7 +52,7 @@ export const ButtonWrapper = styled.div`
     }
 `;
 
-export const GraphWrapper = styled.div`  
+export const GraphWrapper = styled.div `  
     display: flex;
     justify-content: center;
     margin-top: 70px;
