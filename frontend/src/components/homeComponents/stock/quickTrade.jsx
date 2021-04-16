@@ -28,6 +28,7 @@ const StockQuickTrade = (props) => {
         if(allSymbols.includes(symbol)) {
             e.preventDefault();
             console.log(buySell, portfolioID, symbol, volume, pricePerShare,type)
+            
             postNewTransactionFetch(buySell, portfolioID, symbol, volume, pricePerShare, type)
             .then(data => {
                 console.log('in stock quicktrade submitHandler', data)
