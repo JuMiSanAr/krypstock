@@ -40,12 +40,12 @@ const Overview = ({calculations, realtimeData}) => {
 
     const getPercentageChanges = (symbol, type) => {
         const thisCalc = calculations.filter(calc => calc.symbol === symbol)[0];
+        const thisRealtime = realtimeData.filter(data => data.symbol === symbol)[0];
 
         const thisQuantity = thisCalc.quantity;
-        const thisRealtime = realtimeData.filter(data => data.symbol === symbol);
 
-        const thisPrice = type === 'C' ? thisRealtime[0].lastPrice : thisRealtime[0].latestPrice;
-        const yesterdayPrice = type === 'C' ? thisRealtime[0].prevClosePrice : thisRealtime[0].previousClose;
+        const thisPrice = type === 'C' ? thisRealtime.lastPrice : thisRealtime.latestPrice;
+        const yesterdayPrice = type === 'C' ? thisRealtime.prevClosePrice : thisRealtime.previousClose;
 
         const yesterdayValue = thisQuantity * yesterdayPrice;
         const currentValue = thisQuantity * thisPrice;
@@ -56,7 +56,7 @@ const Overview = ({calculations, realtimeData}) => {
         return (
             <NetworthContainer>
                 <TempDiv>
-                    <Desc>total</Desc>
+                    <Desc>Total</Desc>
                     <p>
                         {percentageChangeTotal > 0 ?
                             <i className="fas fa-angle-double-up" style={{color: 'green'}}></i>
@@ -66,7 +66,7 @@ const Overview = ({calculations, realtimeData}) => {
                         {percentageChangeTotal.toFixed(2)} %</p>
                 </TempDiv>
                 <TempDiv>
-                    <Desc>today</Desc>
+                    <Desc>Today</Desc>
                     <p>
                         {percentageChangeToday > 0 ?
                             <i className="fas fa-angle-double-up" style={{color: 'green'}}></i>
@@ -111,11 +111,11 @@ const Overview = ({calculations, realtimeData}) => {
                     </IconConatiner>
                     <NetworthContainer>
                         <TempDiv>
-                            <Desc>invested</Desc>
+                            <Desc>Invested</Desc>
                             <p>{calculation.invested.toFixed(2)} $</p>
                         </TempDiv>
                         <TempDiv>
-                            <Desc>current</Desc>
+                            <Desc>Current value</Desc>
                             {realtimeData.length === calculations.length ?
                                 getCurrentSymbolValue(calculation.symbol, calculation.type)
                                 : ''}
@@ -123,7 +123,7 @@ const Overview = ({calculations, realtimeData}) => {
                     </NetworthContainer>
                     <div>
                         <TempDiv>
-                            <Desc>quantity</Desc>
+                            <Desc>Quantity</Desc>
                             <p>{calculation.quantity.toFixed(2)}</p>
                         </TempDiv>
                     </div>
