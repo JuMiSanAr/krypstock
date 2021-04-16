@@ -33,7 +33,6 @@ function OurRouter() {
         <Route path="/news/" exact component={NewsPage} />
         <Route path="/stock/:symbol" exact component={StockPage} />
         <Route path="/crypto/:symbol" exact component={CryptoPage} />
-        <Route path="/cryptos/" exact component={CryptosPage} />
         <Route path="/portfolio-list/" exact component={PortfolioList} />
         <Route path="*" component={() => "404 NOT FOUND"} />
       </Switch>

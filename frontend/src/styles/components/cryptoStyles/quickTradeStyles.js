@@ -8,6 +8,7 @@ export const SelectorWrapper = styled.div`
     }
 `;
 
+
 export const TransacWrapper = styled.div`
     display: flex;
     flex-wrap: wrap;
@@ -47,7 +48,6 @@ export const ButtonWrapper = styled.div`
     display: flex;
     justify-content:flex-end;
     button{
-        background-color: ${allTheme.purple};
         text-transform: uppercase;
         font-weight: 600;
         height: 30px;
@@ -56,4 +56,51 @@ export const ButtonWrapper = styled.div`
         border: none;
         color: white;
     }
+
+    .buy{
+        background-color: ${allTheme.greenBuy};
+    }
+
+    .sell{
+        background-color: ${allTheme.redSell};
+
+    }
 `;
+
+
+export const BuySellSelectorWrapper = styled(SelectorWrapper)`
+    border-radius: 11px;
+    width: 35%;
+    border: solid 1px ${allTheme.gray};
+    * {
+        border: solid 1px red;
+    }
+`
+
+
+export const BuySelectButton = styled.button`
+    width: 50%;
+    height: 2.25rem;
+    border-radius: ${props => props.buySell === "B" ? '10px 10px 10px 10px' : '10px 0 0 10px'};
+    border: ${props => props.buySell === "B" ? `solid 1.5px ${allTheme.greenBuy}` : `none`};
+    background: transparent;
+    color: white;
+
+    :focus {
+        outline: none;
+    }
+
+    :hover {
+        cursor: pointer;
+    }
+`
+
+export const SellSelectButton = styled(BuySelectButton)`
+    border-radius: ${props => props.buySell === "S" ? '10px 10px 10px 10px' : '0 10px 10px 0'};
+    border: ${props => props.buySell === "S" ? `solid 1.5px ${allTheme.redSell}` : `none`};
+
+    :focus {
+        outline: none;
+    }
+
+`

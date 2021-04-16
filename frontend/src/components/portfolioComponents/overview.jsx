@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import { ShrinkingComponentWrapper } from '../../styles/globalParts/containerStyles';
 import {HeadlineFont, NetworthContainerTop, Headline, OverviewBar, TempDiv, Desc, InvestmentFont, NetworthContainer, IconConatiner, ValueText} from '../../styles/components/portfolioStyles';
 import {useSelector} from 'react-redux';
@@ -23,14 +23,9 @@ const Overview = ({calculations, realtimeData, portfolioname, portfolioID, portf
     const [symbolCrypto, setSymbolCrypto] = useState();
     const [stockSymbol, setStockSymbol] = useState();
 
-    const [currentValues, setCurrentValues] = useState([]);
-    const [addingCurrentValue, setAddingCurrentValue] = useState({});
-
     let colors = [allTheme.vibrantturquoise, allTheme.darkblue, allTheme.yellow, allTheme.vibrantorange];
     let currentColor = -1;
 
-    const specificPortfolioArray = useSelector(state => state.specificPortfolioReducer.calculations)
-    console.log('specific portfolio',specificPortfolioArray)
     const getBackgroundColor = () => {
         if (currentColor >= colors.length -1) {
             currentColor = 0;

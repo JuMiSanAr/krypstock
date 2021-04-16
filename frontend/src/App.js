@@ -30,7 +30,7 @@ function App() {
   const userLoggedMenu = useSelector(state => state.logInReducer.authenticated);
 
   const [theme, themeToggler, mountedComponent] = UseDarkMode();
-  const themeMode = theme === 'light' ? lightTheme : darkTheme;
+  const themeMode = theme === 'dark' ? darkTheme : lightTheme;
 
   const [open, setOpen] = useState(false);
 

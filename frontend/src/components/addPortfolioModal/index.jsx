@@ -29,10 +29,8 @@ export const Modal = ({ showModal, setShowModal }) => {
                 const newPortfolios = [data, ...allCurrentPortfolios];
                 const action = portfoliosAction(newPortfolios);
                 dispatch(action);
-            })
-        
-        setShowModal(false)
-       
+                setShowModal(false)
+            })  
     }
 
   return (

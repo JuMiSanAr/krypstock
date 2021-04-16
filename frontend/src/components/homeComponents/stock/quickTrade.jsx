@@ -1,17 +1,15 @@
 import React, {useState, useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import {useSelector} from 'react-redux';
 import { FormSelectWrapper } from '../../../styles/components/cryptoStyles/bitCoinStyles';
 import { ButtonWrapper, SelectorWrapper, TransacWrapper } from '../../../styles/components/cryptoStyles/quickTradeStyles';
 import { ShrinkingComponentWrapper } from '../../../styles/globalParts/containerStyles';
 import { postNewTransactionFetch } from '../../../store/fetches/transactionFetches'; 
 import { Link } from 'react-router-dom';
-import SymbolFetch from '../../../store/fetches/symbolFetches';
 import {iexSandboxKey} from '../../../store/constants'
 import { ErrorSpan } from '../../../styles/globalParts/textStyles';
 
 const StockQuickTrade = (props) => {
 
-    const dispatch = useDispatch()
     const allPortfoliosArray = useSelector(state => state.portfoliosReducer.portfolios)
     // console.log('allPortfoliosArray', allPortfoliosArray)
 
@@ -30,6 +28,7 @@ const StockQuickTrade = (props) => {
         if(allSymbols.includes(symbol)) {
             e.preventDefault();
             console.log(buySell, portfolioID, symbol, volume, pricePerShare,type)
+            
             postNewTransactionFetch(buySell, portfolioID, symbol, volume, pricePerShare, type)
             .then(data => {
                 console.log('in stock quicktrade submitHandler', data)
@@ -59,7 +58,7 @@ const StockQuickTrade = (props) => {
                     symbolList.push(stock.symbol)
                 }
                 setAllSymbols(symbolList)
-            })  
+            })
     }, [])
     
     useEffect( () => {   // get price of specific symbol
@@ -75,6 +74,7 @@ const StockQuickTrade = (props) => {
         } else {
             setMarketPrice(0)
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [symbol, buySell])
     
     useEffect( () => {
