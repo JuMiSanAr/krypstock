@@ -6,7 +6,15 @@ import { ShrinkingComponentWrapper } from '../../styles/globalParts/containerSty
 import {InvestmentsContainer, InvestmentFont, HeadlineFont, Desc} from '../../styles/components/portfolioStyles';
 
 
-const AllInvestments = ({calculations, realtimeData}) => {
+const AllInvestments = ({calculations, realtimeData, portfolioCreated}) => {
+
+    const todayDate = new Date()
+    const month = ("0" + (todayDate.getMonth() + 1)).slice(-2);
+    const day = ("0" + todayDate.getDate()).slice(-2);
+    const year = todayDate.getFullYear();
+
+    const todayStringDate = `${year}-${month}-${day}`;
+    const portfolioStringDate = portfolioCreated.slice(0, 10);
 
     const [currentValue, setCurrentValue] = useState(null);
     const [yesterdayValue, setYesterdayValue] = useState(null);
@@ -99,9 +107,14 @@ const AllInvestments = ({calculations, realtimeData}) => {
                         <div>
                             <Desc>Today %</Desc>
                             <InvestmentFont>
-                                {dailyChange > 0 ? <i className="fas fa-angle-double-up" style={{color: 'green'}}></i> : ''}
-                                {dailyChange < 0 ? <i className="fas fa-angle-double-down" style={{color: 'red'}}></i> : ''}
-                                {dailyChange ? dailyChange.toFixed(2) : ''}%
+                                {todayStringDate !== portfolioStringDate && dailyChange > 0 ? <i className="fas fa-angle-double-up" style={{color: 'green'}}></i> : ''}
+                                {todayStringDate !== portfolioStringDate && dailyChange < 0 ? <i className="fas fa-angle-double-down" style={{color: 'red'}}></i> : ''}
+                                {todayStringDate === portfolioStringDate && differencePercentage > 0 ? <i className="fas fa-angle-double-up" style={{color: 'green'}}></i> : ''}
+                                {todayStringDate === portfolioStringDate && differencePercentage < 0 ? <i className="fas fa-angle-double-down" style={{color: 'red'}}></i> : ''}
+
+                                {dailyChange && todayStringDate !== portfolioStringDate ? dailyChange.toFixed(2) : ''}
+                                {dailyChange && todayStringDate === portfolioStringDate ? differencePercentage.toFixed(2) : ''}
+                                %
                             </InvestmentFont>
                         </div>
                     </InvestmentsContainer>
