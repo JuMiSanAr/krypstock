@@ -62,3 +62,10 @@ export const ShrinkingComponentWrapperNoBackground = styled(FullWidthComponentWr
     }
 `
 
+export const PageWrapper = styled.div`
+    margin-bottom: 60px; 
+
+    @media (min-width: 450px) {
+        margin-bottom: 0px;
+    }
+`
