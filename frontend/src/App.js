@@ -11,6 +11,7 @@ import history from "./history";
 import { Router } from 'react-router';
 import FooterNav from "./components/footerNav";
 import {useSelector} from "react-redux";
+import { PageWrapper } from "./styles/globalParts/containerStyles";
 
 const MenuWrapper = styled.div`
   margin-bottom: 80px;
@@ -50,10 +51,15 @@ function App() {
                 <Burger  open={open} setOpen={setOpen}/>
                 <Menu  open={open} setOpen={setOpen} />
                 </MenuWrapper> : ""
-                
               }
-               
+              {userLoggedMenu ? 
+              <PageWrapper>
                 <OurRouter />
+              </PageWrapper> 
+              :
+              <OurRouter />
+              }
+                
                 {
                  userLoggedMenu ? <FooterNav setOpen={setOpen}/>
                  : ""
