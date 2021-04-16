@@ -15,6 +15,7 @@ import {allStocksAction, allStockSymbolsAction, searchedStocksAction} from "../s
 import {iexAPIKey, iexSandboxKey} from "../store/constants";
 import { CryptoModal } from '../components/quickTradeModal/crypto';
 import { StockModal } from '../components/quickTradeModal/stock';
+import {Content} from '../styles/components/buttonStyles';
 
 
 const Search = () => {
@@ -197,8 +198,8 @@ const Search = () => {
                             <option value="Crypto">Crypto</option>
                             <option value="Stock">Stock</option>
                         </select>
-                        <input placeholder="Search....." onChange={event => setSearch(event.target.value)}/>
-                        <button type="submit" onClick={() => searchHandler()}>Search</button>
+                        <input placeholder="Search..." onChange={event => setSearch(event.target.value)}/>
+                        <Content type="submit" onClick={() => searchHandler()}><i class="fas fa-search"></i></Content>
                     </SearchPageInput>
                     </ContentWrapper>
                     <AllComponentsWrapper>
