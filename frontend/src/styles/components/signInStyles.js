@@ -6,7 +6,7 @@ export const HeaderWrapper = styled.div`
 
  @media only screen and (max-width: 600px) and (min-width: 320px) {
       z-index: -1;
-      background:  linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(255,255,255,0.3051202623906706) 0%, rgba(255,255,255,1) 65%),  url(https://res.cloudinary.com/tennam/image/upload/v1618061102/Propulsion/download_1.jpg);
+      background: linear-gradient(4deg, rgba(255,255,255,1) 0%, rgba(235,129,83,0.7637429971988796) 100%),  url(https://res.cloudinary.com/tennam/image/upload/v1618583330/Propulsion/crypto-investing.jpg);
        width: 100%;
        height: 800px;
        margin-top:-200px;
@@ -38,8 +38,8 @@ export const MainContainerSI = styled.div`
   align-items: center;
   background: white;
   box-shadow: 0px 5px 15px #888888;
-  border-radius: 40px;
-  width:350px;
+  border-radius: 20px;
+  width:300px;
   min-height: 350px;
   .link{
     text-decoration: none;
@@ -64,7 +64,7 @@ export const InputWrapper = styled.div`
   padding-top: 20px;
   input{
     width:250px;
-    height: 40px;
+    height: 50px;
     margin-bottom: 1rem;
     border: solid 1px lightgray;
     padding-left: 1.25rem;
@@ -76,7 +76,17 @@ export const ButtonWrapper = styled.div`
   display: flex;
   flex-direction: column;
      button {
-     width:275px;
+      background-color: #6418C3;
+      text-transform: uppercase;
+      font-weight: 600;
+      height: 50px;
+      /* width: 100%; */
+      width:275px;
+      border-radius: 10px;
+      border: none;
+      color: white;
+      margin-top: 10px;
+     /* width:275px;
      height: 35px;
      margin-top: 10px;
      background-color: white;
@@ -85,6 +95,6 @@ export const ButtonWrapper = styled.div`
      color: white;
      font-weight: bold;
      font-size: 1.25rem;
-     background: linear-gradient(45deg, #6e83e6, #c96de6);
+     background: linear-gradient(45deg, #6e83e6, #c96de6); */
    }
 `;

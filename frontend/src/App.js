@@ -30,7 +30,7 @@ function App() {
   const userLoggedMenu = useSelector(state => state.logInReducer.authenticated);
 
   const [theme, themeToggler, mountedComponent] = UseDarkMode();
-  const themeMode = theme === 'light' ? lightTheme : darkTheme;
+  const themeMode = theme === 'dark' ? darkTheme : lightTheme;
 
   const [open, setOpen] = useState(false);
 
@@ -41,9 +41,13 @@ function App() {
     <ThemeProvider setOpen={setOpen} theme={themeMode}>
         <>
           <GlobalStyles/>
-           <ToggleButton>
-          <Toggle theme={theme} toggleTheme={themeToggler} />
-           </ToggleButton>
+          {
+               userLoggedMenu ? 
+               <ToggleButton>
+               <Toggle theme={theme} toggleTheme={themeToggler} />
+                </ToggleButton> : ""
+              }
+          
             <Router history={history}>
               {
                userLoggedMenu ? 

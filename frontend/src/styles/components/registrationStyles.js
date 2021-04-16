@@ -17,7 +17,7 @@ export const  MainContainerR = styled.div`
   background: white;
   box-shadow: 0px 5px 15px #888888;
   border-radius: 40px;
-  width:350px;
+  width:300px;
   min-height: 350px;
   .link{
     text-decoration: none;
