@@ -12,7 +12,6 @@ background-color: #6418C3;
 text-transform: uppercase;
 font-weight: 600;
 height: 43px;
-width: 12%;
 margin-top:5px;
 border-radius: 10px;
 border: none;

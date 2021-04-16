@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import { ShrinkingComponentWrapper } from '../../styles/globalParts/containerStyles';
-import {HeadlineFont, Headline, OverviewBar, TempDiv, Desc, NetworthContainer, IconConatiner} from '../../styles/components/portfolioStyles';
+import {HeadlineFont, Headline, OverviewBar, TempDiv, Desc, NetworthContainer, IconConatiner, ValueText} from '../../styles/components/portfolioStyles';
 import {useSelector} from 'react-redux';
 import {allTheme} from '../../styles/Themes';
 import {StockModal2} from "../quickTradeModal/stockOverview";
 import {CryptoModal2} from "../quickTradeModal/cryptoOverview";
+import {Content} from "../../styles/components/buttonStyles";
 
 
 const Overview = ({calculations, realtimeData}) => {
@@ -57,13 +58,13 @@ const Overview = ({calculations, realtimeData}) => {
             <NetworthContainer>
                 <TempDiv>
                     <Desc>Total</Desc>
-                    <p>
+                    <ValueText>
                         {percentageChangeTotal > 0 ?
                             <i className="fas fa-angle-double-up" style={{color: 'green'}}></i>
                             :
                             <i className="fas fa-angle-double-down" style={{color: 'red'}}></i>
                         }
-                        {percentageChangeTotal.toFixed(2)} %</p>
+                        {percentageChangeTotal.toFixed(2)} %</ValueText>
                 </TempDiv>
                 <TempDiv>
                     <Desc>Today</Desc>
@@ -96,35 +97,35 @@ const Overview = ({calculations, realtimeData}) => {
                         <HeadlineFont>{calculation.symbol}</HeadlineFont>
                         {calculation.type === "S"
                         ? <>
-                                <button onClick={()=>{
+                                <Content onClick={()=>{
                                     setStockShowModal(true);
                                     setStockSymbol(calculation.symbol);
-                                }}>BUY/SELL</button>
+                                }}>BUY/SELL</Content>
                           </>
                         : <>
-                                <button onClick={()=>{
+                                <Content onClick={()=>{
                                     setCryptoShowModal(true);
                                     setSymbolCrypto(calculation.symbol);
-                                }}>BUY/SELL</button>
+                                }}>BUY/SELL</Content>
                           </>
                         }
                     </IconConatiner>
                     <NetworthContainer>
                         <TempDiv>
                             <Desc>Invested</Desc>
-                            <p>$ {calculation.invested.toFixed(2)}</p>
+                            <ValueText>$ {calculation.invested.toFixed(2)}</ValueText>
                         </TempDiv>
                         <TempDiv>
                             <Desc>Current value</Desc>
-                            {realtimeData.length === calculations.length ?
+                            <ValueText>{realtimeData.length === calculations.length ?
                                 getCurrentSymbolValue(calculation.symbol, calculation.type)
-                                : ''}
+                                : ''}</ValueText>
                         </TempDiv>
                     </NetworthContainer>
                     <div>
                         <TempDiv>
                             <Desc>Quantity</Desc>
-                            <p>{calculation.quantity.toFixed(2)}</p>
+                            <ValueText>{calculation.quantity.toFixed(2)}</ValueText>
                         </TempDiv>
                     </div>
                     {realtimeData.length === calculations.length ?
