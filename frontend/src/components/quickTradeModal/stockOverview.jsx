@@ -10,7 +10,6 @@ export const StockModal2 = ({ showStockModal, setStockShowModal, symbol, stockSy
     const allPortfoliosArray = useSelector(state => state.portfoliosReducer.portfolios)
     
     const [buySell, setBuySell] = useState();
-    const [portfolioId, setPortfolioId] = useState();
     const [volume, setVolume] = useState();
     const [pricePerShare, setPricePerShare] = useState();
     const type = "S";
@@ -45,7 +44,6 @@ export const StockModal2 = ({ showStockModal, setStockShowModal, symbol, stockSy
                 <ModalContent> 
                 {/* <form onSubmit={submitHandler}> */}
                 <form>
-                <h3 className="stock-company-name">{symbol}</h3>
                 <CryptStockFormSelectWrapper>
                     <div className="title">
                        <h4>Stock Quick Trade</h4> 
@@ -75,7 +73,7 @@ export const StockModal2 = ({ showStockModal, setStockShowModal, symbol, stockSy
                     :
                     <>
                         <CrypStockTransacWrapper>                    
-                            <div className="amountInput extra-margin">
+                            <div className="amountInput">
                                 <div>
                                 <label htmlFor="company-input">Portfolio</label>
                                 </div>
@@ -83,7 +81,15 @@ export const StockModal2 = ({ showStockModal, setStockShowModal, symbol, stockSy
                                     <p value={portfolioID}>{`${portfolioname}`}</p>
                                 </div>
                             </div>
-                            <div className="amountInput margin-quantity">
+                            <div className="currSelect amountInput">
+                                    <div>
+                                    <label htmlFor="company-input">Stock</label>
+                                    </div>
+                                    <div>
+                                    <p className="selector">{symbol}</p>
+                                    </div>
+                                </div>
+                            <div className="amountInput">
                                 <div>
                                 <p>Quantity</p>
                                 </div>

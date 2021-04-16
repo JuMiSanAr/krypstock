@@ -32,7 +32,8 @@ const PortfolioList = () => {
     useEffect(() => {
       portfoliosFetch()
         .then(data =>{
-            const action = portfoliosAction(data.results);
+              console.log(data)
+            const action = portfoliosAction(data);
             dispatch(action); 
         })
     }, []);

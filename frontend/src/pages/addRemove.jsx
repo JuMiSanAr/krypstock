@@ -18,7 +18,7 @@ const AddRemovePage = () => {
         if (token) {
             portfoliosFetch()
             .then(data => {
-                dispatch(portfoliosAction(data.results))
+                dispatch(portfoliosAction(data))
             })
         }
     }, [token]);
