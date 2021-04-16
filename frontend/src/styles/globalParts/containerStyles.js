@@ -56,6 +56,11 @@ export const ShrinkingComponentWrapper = styled(FullWidthComponentWrapper)
         }
     }
 
+    .title {
+        display: flex;
+        align-items: center;
+    }
+
     @media (min-width: 450px) {
         width: 40%;
     }

@@ -4,6 +4,7 @@ import { ShrinkingComponentWrapper } from "../../../styles/globalParts/container
 import TablePagination from '@material-ui/core/TablePagination';
 import {darkTheme} from '../../../styles/Themes';
 import {useHistory} from 'react-router-dom';
+import { TitleSpan } from '../../../styles/globalParts/textStyles';
 
 
 const TrendyStocks = ({stock_volume}) => {
@@ -22,7 +23,7 @@ const TrendyStocks = ({stock_volume}) => {
 
     return (
         <ShrinkingComponentWrapper>
-            <h3>Trendy Stocks Today</h3>
+            <TitleSpan>Trendy Stocks Today</TitleSpan>
             <StockTable id="trendy-stocks">
                 {
                     stock_volume && stock_volume.length > 0 ? 

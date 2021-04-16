@@ -5,6 +5,7 @@ import { ShrinkingComponentWrapper } from "../../../styles/globalParts/container
 import TablePagination from '@material-ui/core/TablePagination';
 import {darkTheme} from '../../../styles/Themes';
 import {useHistory} from 'react-router-dom';
+import { TitleSpan } from '../../../styles/globalParts/textStyles';
 
 const TopPerformingStocks = ({gain_stock}) => {
 
@@ -23,7 +24,7 @@ const TopPerformingStocks = ({gain_stock}) => {
 
     return (
         <ShrinkingComponentWrapper>
-                <h3>Top 10 gain stocks</h3>
+            <TitleSpan>Top 10 gain stocks</TitleSpan>
             <StockTable id="top-performing">
                 {
                     gain_stock && gain_stock.length > 0 ?

@@ -6,6 +6,7 @@ import { ShrinkingComponentWrapper } from "../../../styles/globalParts/container
 import TablePagination from '@material-ui/core/TablePagination';
 import {darkTheme} from '../../../styles/Themes';
 import {useHistory} from 'react-router-dom';
+import { TitleSpan } from '../../../styles/globalParts/textStyles';
 
 
 const WorstPerformingStocks = ({loss_stock}) => {
@@ -26,10 +27,10 @@ const WorstPerformingStocks = ({loss_stock}) => {
         <ShrinkingComponentWrapper>
             <FormSelectWrapper>
                 <div className="title">
-                    <h3>Top 10 loss stocks</h3>
+                    <TitleSpan>Top 10 loss stocks</TitleSpan>
                 </div>
             </FormSelectWrapper>
-            <StockTable id="trendy-stocks">
+            <StockTable id="loss-stocks">
                 {
                     loss_stock && loss_stock.length > 0 ?
                     <thead>

@@ -13,6 +13,8 @@ export const Table = styled.table `
     /* border-style: solid; */
     color: ${({ theme }) => theme === lightTheme ?lightTheme.text : darkTheme.text};;
     height: 260px;
+    margin-top: 1rem;
+
     .clickCrypto{
         cursor: pointer;
     }

@@ -14,16 +14,15 @@ export const StockTable = styled.table `
     /* background-color: ${({ theme }) => theme === lightTheme ? darkTheme.body : lightTheme.body}; */
     border-collapse: collapse;
     color: ${({ theme }) => theme === lightTheme ? lightTheme.text : darkTheme.text};;
-    /* overflow-y: scroll; */
     height: 260px;
-    /* display: block; */
-    /* table-layout: fixed; */
+    margin-top: 1rem;
+
     .clickStock{
         cursor: pointer;
     }
 
     thead{
-        background: ${props => props.id === 'trendy-stocks' ? allTheme.orangeGradient : props.id === "transaction-history" ? allTheme.turquoiseGradient : allTheme.greenGradient};
+        background: ${props => props.id === 'trendy-stocks' ? allTheme.vibrantorange : props.id === "transaction-history" ? allTheme.vibrantturquoise : props.id === "loss-stocks" ? allTheme.blue : allTheme.green};
         color: ${({ theme }) => theme === lightTheme ? lightTheme.text : darkTheme.text};
 
         tr{
