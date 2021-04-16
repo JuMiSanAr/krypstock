@@ -9,6 +9,7 @@ import portfoliosFetch, {specificPortfolioFetch} from '../../store/fetches/portf
 import { portfoliosAction } from '../../store/actions/portfoliosAction';
 import {useDispatch} from "react-redux";
 import {specificPortfolioAction} from "../../store/actions/specificPortfolioAction";
+import {ErrorSpan} from "../../styles/globalParts/textStyles";
 
 
 export const CryptoModal2 = ({ showCryptoModal, setCryptoShowModal, symbol, portfolioname, portfolioID }) => {
@@ -16,6 +17,8 @@ export const CryptoModal2 = ({ showCryptoModal, setCryptoShowModal, symbol, port
     const [buySell, setBuySell] = useState('');
     const [amount, setAmount] = useState(0);
     const [pricePerCoin, setPricePerCoin] = useState(0);
+    const [notEnoughCoins, setNotEnoughCoins] = useState(false);
+
     const type = "C";
 
     const allCryptos = useSelector(state => state.cryptoReducer.allCryptos);
@@ -30,6 +33,7 @@ export const CryptoModal2 = ({ showCryptoModal, setCryptoShowModal, symbol, port
             console.log(buySell, portfolioID, symbol, amount, pricePerCoin,type)
             postNewTransactionFetch(buySell, portfolioID, symbol, amount, pricePerCoin, type)
                 .then(data => {
+                    setCryptoShowModal(false)
                     console.log(data)
                     // console.log('in crypto quicktrade submitHandler', data)
                     specificPortfolioFetch(portfolioID)
@@ -38,7 +42,14 @@ export const CryptoModal2 = ({ showCryptoModal, setCryptoShowModal, symbol, port
                             dispatch(action)
                         })
                 })
-                setCryptoShowModal(false)
+                .catch(error => {
+                    // console.log(error.split('')[error.length-1])
+                    if (error.toString().slice(-1) === '3') {
+                        console.log('error', error)
+                        // console.log("You don't have enough coins to sell")
+                        setNotEnoughCoins(true);
+                    }
+                })
     }
 
   const modalRef = useRef();
@@ -56,13 +67,12 @@ export const CryptoModal2 = ({ showCryptoModal, setCryptoShowModal, symbol, port
             setBidPrice(Number(crypto[0].bidPrice).toFixed(2)) 
         } else if (buySell === 'S') {
             setAskPrice(Number(crypto[0].askPrice).toFixed(2));
-        } 
-    // else {
-    //     console.log('symbol', symbol)
-    // }
+        }
 }, [symbol, buySell])
 
-
+    useEffect( () => {
+        setNotEnoughCoins(false)
+    }, [symbol, buySell, portfolioID, amount])
 // fetching portfolio list here becuase it takes time
 // to get portfolio list from redux store unless 
 // we go back to portfolio page to fetch
@@ -76,8 +86,6 @@ export const CryptoModal2 = ({ showCryptoModal, setCryptoShowModal, symbol, port
   }, []);
 
 
-
-
   return (
     <>
       {showCryptoModal ? (
@@ -85,26 +93,16 @@ export const CryptoModal2 = ({ showCryptoModal, setCryptoShowModal, symbol, port
             <Background onClick={closeModal} ref={modalRef}>
             <ContentWrapper>
             <ShrinkingComponentWrapper showCryptoModal={showCryptoModal}>
-                <ModalContent> 
-                    <form onSubmit={submitHandler}>
+                <ModalContent>
                         <CryptStockFormSelectWrapper>
-                        <div className="title">
-                           <h4>Crypto Quick Trade</h4> 
+                        <div>
+                            <button value="B" onClick={e => setBuySell(e.target.value)}>BUY</button>
                         </div>
-                        {
-                        !allPortfoliosArray || allPortfoliosArray.length === 0 ?
-                        null
-                        :
-                            <div className="buySell">
-                                <select className="selector" defaultValue={'DEFAULT'} onChange={e => setBuySell(e.target.value)} required>
-                                    <option value="DEFAULT" disabled>Select</option>
-                                    <option value="B">Buy</option>
-                                    <option value="S">Sell</option>
-                                </select>
-                            </div>
-                        }
-                        </CryptStockFormSelectWrapper>  
-                        {
+                        <div>
+                            <button value="S" onClick={e => setBuySell(e.target.value)}>SELL</button>
+                        </div>
+
+                        </CryptStockFormSelectWrapper>{
                          !allPortfoliosArray || allPortfoliosArray.length === 0 ?
                          <div className='empty'>
                              <span>You need a portfolio to trade</span>
@@ -165,15 +163,14 @@ export const CryptoModal2 = ({ showCryptoModal, setCryptoShowModal, symbol, port
                                     </div>
                                 </div>
                             </CrypStockTransacWrapper>
-                            {/* {
-                                incorrectSymbol ? <h3>NOPE</h3> : ''
-                            } */}
+                            {
+                                 notEnoughCoins ? <ErrorSpan><em>Not enough coins to sell at this amount</em></ErrorSpan> : ''
+                            }
                             <ButtonWrapper>
-                                <button type="submit" value="Submit">Submit</button>
+                                <button type="submit" value="Submit" onClick={submitHandler}>Submit</button>
                             </ButtonWrapper>
                         </>
                         }
-                    </form>
                 </ModalContent>
                 <CloseModalButton
                 aria-label='Close modal'
