@@ -17,17 +17,17 @@ export const SearchPageInput = styled.div`
     select{
        
         height: 45px;
-        width: 294px;
+        width: 75%;
         /* margin-right: 5px; */
-        border: none;
+        border: #d7d5de 2px solid;
         border-radius: 10px;
         //border-bottom-left-radius: 20px;
-        font-size:20px;
-        padding: 5px 0 5px 30px;
+        font-size:16px;
+        padding: 5px 10px 5px 10px;
         margin: 5px;
         cursor: pointer;
-        color: ${({ theme }) => theme === lightTheme ? darkTheme.text  : lightTheme.text};
-        background-color: ${({ theme }) => theme === lightTheme ? darkTheme.background  : lightTheme.background };
+        color: #d7d5de;//${({ theme }) => theme === lightTheme ? darkTheme.text  : lightTheme.text};
+        background-color: #2C254A;//${({ theme }) => theme === lightTheme ? darkTheme.background  : lightTheme.background };
         /* appearance: none;
         ::-ms-expand{
           display: none;  
@@ -38,19 +38,22 @@ export const SearchPageInput = styled.div`
     }
     input{
         height: 43px;
-        width: 300px;
+        width: 60%;
         margin-right: 5px;
         border:none;
-        text-align: center;
-        font-size:20px;
+        border-radius: 10px;
+        //text-align: center;
+        font-size:16px;
         margin: 5px;
-        color: ${({ theme }) => theme === lightTheme ? darkTheme.text  : lightTheme.text};
-        background-color: ${({ theme }) => theme === lightTheme ? darkTheme.background  : lightTheme.background };
+        padding-left: 10px;
+        color: #868295; //${({ theme }) => theme === lightTheme ? darkTheme.text  : lightTheme.text};
+        background-color: #1F193A;//${({ theme }) => theme === lightTheme ? darkTheme.inputBackground  : lightTheme.inputBackground };
         :focus{
             outline: none;
         }
         ::placeholder {
-            color: ${({ theme }) => theme === lightTheme ? darkTheme.text  : lightTheme.text};
+            padding-left: 10px; 
+            color: #868295;//${({ theme }) => theme === lightTheme ? darkTheme.text  : lightTheme.text};
 }
     }
     button{

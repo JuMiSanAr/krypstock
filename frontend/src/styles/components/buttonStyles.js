@@ -7,12 +7,13 @@ justify-content: center;
 align-items: center;
 `;
 
-const Content = styled.button`
+export const Content = styled.button`
 background-color: #6418C3;
 text-transform: uppercase;
 font-weight: 600;
-height: 50px;
-width: 100%;
+height: 43px;
+width: 12%;
+margin-top:5px;
 border-radius: 10px;
 border: none;
 color: white;
@@ -112,25 +113,3 @@ background-color: #363537;
     outline: none;
 }
 `;
-
-const Button = () => {
-    return (
-        <>
-            <SingleButtonContainer>
-                <Content>Register</Content>
-            </SingleButtonContainer>
-
-            <DoubleButtonContainer>
-                <LeftButton>Crypto</LeftButton>
-                <RightButton>Stock</RightButton>
-            </DoubleButtonContainer>
-
-            <DoubleButtonContainerEx>
-                <LeftButtonEx>Crypto</LeftButtonEx>
-                <RightButtonEx>Stock</RightButtonEx>
-            </DoubleButtonContainerEx>
-        </>
-    )
-}
-
-export default Button;

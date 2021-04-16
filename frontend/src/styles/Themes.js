@@ -18,7 +18,8 @@ export const darkTheme = {
     secondBackground:'#7970A3',
     mobile: '576px',
     footerBackground: '#7970A3',
-    boxShadow: '0px 10px 18px white'
+    boxShadow: '0px 10px 18px white',
+    inputBackground: '#1F193A'
 }
 
 export const allTheme = {
