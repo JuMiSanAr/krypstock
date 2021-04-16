@@ -33,7 +33,7 @@ export const allTheme = {
     darkblue: '#374b97',
     vibrantturquoise: '#01aca3',
     turquoiseGradient: 'linear-gradient(#90F7EC, #32CCBC)',
-    orangeGradient: 'linear-gradient(#FEB692, #EA5455)',
+    orangeGradient: 'linear-gradient(#FEB692, #fe772b)',
     greenGradient: 'linear-gradient(#81FBB8, #28C76F)',
     blueGradient: 'linear-gradient(#ABDCFF , #0396FF)',
     purpleGradient: 'linear-gradient(#a164ec, #6418C3)',

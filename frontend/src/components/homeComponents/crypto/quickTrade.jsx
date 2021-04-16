@@ -21,7 +21,7 @@ export const CryptoQuickTrade = (props) => {
   
     // const dispatch = useDispatch()
     const allPortfoliosArray = useSelector(state => state.portfoliosReducer.portfolios)
-    const [buySell, setBuySell] = useState();
+    const [buySell, setBuySell] = useState("B");
     const [symbol, setSymbol] = useState();
     const [portfolioID, setPortfolioID] = useState();
     const [amount, setAmount] = useState();
@@ -99,8 +99,8 @@ export const CryptoQuickTrade = (props) => {
                 :
                 <SelectorWrapper>
                     <div className="buySell">
-                        <select className="selector" defaultValue={''} onChange={e => setBuySell(e.target.value)} required>
-                            <option value="" disabled>Select</option>
+                        <select className="selector" onChange={e => setBuySell(e.target.value)} required>
+                            {/* <option value="" disabled>Select</option> */}
                             <option value="B">Buy</option>
                             <option value="S">Sell</option>
                         </select>
@@ -210,7 +210,12 @@ export const CryptoQuickTrade = (props) => {
                         notEnoughCoins ? <ErrorSpan><em>Not enough coins to sell at this amount</em></ErrorSpan> : ''
                     }
                     <ButtonWrapper>
-                        <button type="submit" value="Submit">Submit</button>
+                        {
+                            buySell === 'B' ?
+                            <button type="submit" value="Submit">Buy</button>
+                            :
+                            <button type="submit" value="Submit">Sell</button>                          
+                        }
                     </ButtonWrapper>
                 </>
                 }
