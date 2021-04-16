@@ -57,7 +57,7 @@ const PasswordVerification = () => {
         <HeaderWrapper>
             </HeaderWrapper>
              <VerificationWrapper>
-             <img src={logo} out="logo" alt="logo"/>
+             {/* <img src={logo} out="logo" alt="logo"/> */}
                <MainContainerV> 
                <h4>Reset your password</h4>
                <InputWrapper>

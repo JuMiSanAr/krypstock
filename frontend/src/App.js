@@ -41,9 +41,13 @@ function App() {
     <ThemeProvider setOpen={setOpen} theme={themeMode}>
         <>
           <GlobalStyles/>
-           <ToggleButton>
-          <Toggle theme={theme} toggleTheme={themeToggler} />
-           </ToggleButton>
+          {
+               userLoggedMenu ? 
+               <ToggleButton>
+               <Toggle theme={theme} toggleTheme={themeToggler} />
+                </ToggleButton> : ""
+              }
+          
             <Router history={history}>
               {
                userLoggedMenu ? 
