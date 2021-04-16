@@ -17,7 +17,7 @@ export const SearchPageInput = styled.div`
     select{
        
         height: 45px;
-        width: 75%;
+        width: 52%;
         /* margin-right: 5px; */
         border: #d7d5de 2px solid;
         border-radius: 10px;
@@ -38,7 +38,7 @@ export const SearchPageInput = styled.div`
     }
     input{
         height: 43px;
-        width: 60%;
+        width: 80%;
         margin-right: 5px;
         border:none;
         border-radius: 10px;
@@ -134,7 +134,7 @@ export  const Table = styled.table`
         padding: 10px;
     }
     thead{
-        background-color: ${props => props.id === 'crypto' ? allTheme.orange : props.id === "trans-history" ? allTheme.turquoise : allTheme.green};
+        background-color: ${props => props.id === 'crypto' ? allTheme.vibrantorange : props.id === "trans-history" ? allTheme.turquoise : allTheme.green};
         /* border-bottom: 1px solid #ffcc00; */
         color: ${({ theme }) => theme === lightTheme ? lightTheme.text : darkTheme.text};
       
