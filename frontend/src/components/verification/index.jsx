@@ -58,7 +58,7 @@ const Verification = () => {
          <HeaderWrapper>
             </HeaderWrapper>
              <VerificationWrapper>
-             <img src={logo} out="logo" alt="logo"/>
+             {/* <img src={logo} out="logo" alt="logo"/> */}
                <MainContainerV>  
                <h4>Set your password and username</h4>   
                <InputWrapper>

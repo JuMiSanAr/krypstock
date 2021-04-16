@@ -7,7 +7,7 @@ export const VerificationWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   @media only screen and (max-width: 600px) and (min-width: 320px) {
-    margin-top: -670px;
+    margin-top: -600px;
     justify-content: center;
     img{
     z-index: 999;
@@ -24,8 +24,8 @@ export const  MainContainerV = styled.div`
   background: white;
   box-shadow: 0px 5px 15px #888888;
   border-radius: 40px;
-  width:350px;
-  min-height: 500px;
+  width:300px;
+  min-height: 550px;
   .link{
     text-decoration: none;
   }
@@ -48,7 +48,7 @@ export const InputWrapper = styled.div`
   padding-top: 20px;
   input{
     width:250px;
-    height: 40px;
+    height: 50px;
     margin-bottom: 1rem;
     border: solid 1px lightgray;
     padding-left: 1.25rem;
