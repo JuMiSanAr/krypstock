@@ -1,7 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {specificPortfolioFetch} from '../../store/fetches/portfoliosFetches';
-import { specificPortfolioAction } from '../../store/actions/specificPortfolioAction';
 import { ShrinkingComponentWrapper } from '../../styles/globalParts/containerStyles';
 import {InvestmentsContainer, InvestmentFont, HeadlineFont, Desc} from '../../styles/components/portfolioStyles';
 
@@ -53,18 +50,21 @@ const AllInvestments = ({calculations, realtimeData, portfolioCreated}) => {
             setYesterdayValue(yesterdayPrices);
             setCurrentValue(calculateValue.toFixed(2));
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [realtimeData]);
 
     useEffect(() => {
         if (yesterdayValue) {
             setDailyChange((currentValue - yesterdayValue) / yesterdayValue * 100);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [yesterdayValue]);
 
     useEffect(() => {
         if (currentValue > 0) {
             setDifferencePercentage((currentValue - totalInvestments) / totalInvestments * 100);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currentValue]);
 
     useEffect(() => {
@@ -77,6 +77,7 @@ const AllInvestments = ({calculations, realtimeData, portfolioCreated}) => {
                 }
             }, 0))
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [calculations]);
 
     return (
