@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
 import { ShrinkingComponentWrapper } from '../../styles/globalParts/containerStyles';
 import {HeadlineFont, NetworthContainerTop, Headline, OverviewBar, TempDiv, Desc, InvestmentFont, NetworthContainer, IconConatiner, ValueText} from '../../styles/components/portfolioStyles';
-import {useSelector} from 'react-redux';
+// import {useSelector} from 'react-redux';
 import {allTheme} from '../../styles/Themes';
 import {StockModal2} from "../quickTradeModal/stockOverview";
 import {CryptoModal2} from "../quickTradeModal/cryptoOverview";
-import {Content, BuySell} from "../../styles/components/buttonStyles";
+import {BuySell} from "../../styles/components/buttonStyles";
 
 
 const Overview = ({calculations, realtimeData, portfolioname, portfolioID, portfolioCreated}) => {

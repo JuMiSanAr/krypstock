@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {stockFetcherInfo} from "../charts/helperFunctions/stockFetcherInfo";
-import {StockPageInfoItemWrapper, StockPageInfoWrapper} from "../../styles/components/stockStyles/stockPageInfoStyles";
+import {StockPageInfoWrapper} from "../../styles/components/stockStyles/stockPageInfoStyles";
 
 const StockPageInfoCard = (props) => {
 

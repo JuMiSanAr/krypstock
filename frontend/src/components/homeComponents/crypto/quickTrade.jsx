@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {ShrinkingComponentWrapper } from '../../../styles/globalParts/containerStyles';
 import {FormSelectWrapper} from "../../../styles/components/cryptoStyles/bitCoinStyles";
-import {SelectorWrapper, TransacWrapper, ButtonWrapper, BuySelectButton, SellSelectButton, BuySellSelectorWrapper} from '../../../styles/components/cryptoStyles/quickTradeStyles'
+import { TransacWrapper, ButtonWrapper, BuySelectButton, SellSelectButton, BuySellSelectorWrapper} from '../../../styles/components/cryptoStyles/quickTradeStyles'
 import { postNewTransactionFetch } from '../../../store/fetches/transactionFetches'; 
 import { Link } from 'react-router-dom';
 import { ErrorSpan, TitleSpan } from '../../../styles/globalParts/textStyles';
