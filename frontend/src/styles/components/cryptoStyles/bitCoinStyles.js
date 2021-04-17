@@ -13,7 +13,7 @@ export const FormSelectWrapper = styled.div `
    .selector{
      border-style: none;
      border-radius: 5px;
-     width: 65px;
+     width: 75px;
      height: 28px;
      color: ${({ theme }) => theme === lightTheme ? darkTheme.text : lightTheme.text};
      background:${({ theme }) => theme === lightTheme ? darkTheme.body : lightTheme.body};

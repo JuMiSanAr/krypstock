@@ -67,9 +67,9 @@ const LoginPage = () => {
                         />
                     </InputWrapper>
                     <ButtonWrapper>
+                    <span className="errorMessage">{errorMessage ? 'Invalid username or password' : ''}</span>
                         <button onClick={loginHandler}>Login</button>
                         <button><Link className="link linkbutton" to="/sign-up/registration">Registration</Link></button>
-                        <h1>{errorMessage ? 'Invalid username or password' : ''}</h1>
                     </ButtonWrapper>
                     <Link className="link" to="/password-reset"><p>Forgot your password?</p></Link>
 
