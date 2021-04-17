@@ -1,7 +1,6 @@
-
 import styled from "styled-components";
 
-export const VerificationWrapper = styled.div`
+export const VerificationWrapper = styled.div `
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -16,7 +15,7 @@ export const VerificationWrapper = styled.div`
   
 `;
 
-export const  MainContainerV = styled.div`
+export const MainContainerV = styled.div `
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -42,7 +41,7 @@ export const  MainContainerV = styled.div`
   }
 `;
 
-export const InputWrapper = styled.div`
+export const InputWrapper = styled.div `
   display: flex;
   flex-direction: column;
   padding-top: 20px;

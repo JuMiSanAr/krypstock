@@ -1,8 +1,11 @@
 import styled from "styled-components";
-import {darkTheme, lightTheme} from '../Themes';
+import {
+  darkTheme,
+  lightTheme
+} from '../Themes';
 
 
-export const HeaderWrapper = styled.div`
+export const HeaderWrapper = styled.div `
 
  @media only screen and (max-width: 600px) and (min-width: 320px) {
       z-index: -1;
@@ -15,7 +18,7 @@ export const HeaderWrapper = styled.div`
   
 `;
 
-export const LoginWrapper = styled.div`
+export const LoginWrapper = styled.div `
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -31,7 +34,7 @@ export const LoginWrapper = styled.div`
   
 `;
 
-export const MainContainerSI = styled.div`
+export const MainContainerSI = styled.div `
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -58,7 +61,7 @@ export const MainContainerSI = styled.div`
 
 `;
 
-export const InputWrapper = styled.div`
+export const InputWrapper = styled.div `
   display: flex;
   flex-direction: column;
   padding-top: 20px;
@@ -72,7 +75,7 @@ export const InputWrapper = styled.div`
   }
 `;
 
-export const ButtonWrapper = styled.div`
+export const ButtonWrapper = styled.div `
   display: flex;
   flex-direction: column;
      button {

@@ -1,7 +1,9 @@
 import styled from "styled-components";
-import { allTheme } from "../../Themes";
+import {
+    allTheme
+} from "../../Themes";
 
-export const SelectorWrapper = styled.div`
+export const SelectorWrapper = styled.div `
     display:flex;
     .buySell{
         margin-right: 20px;
@@ -9,7 +11,7 @@ export const SelectorWrapper = styled.div`
 `;
 
 
-export const TransacWrapper = styled.div`
+export const TransacWrapper = styled.div `
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
@@ -44,7 +46,7 @@ export const TransacWrapper = styled.div`
     }
 `;
 
-export const ButtonWrapper = styled.div`
+export const ButtonWrapper = styled.div `
     display: flex;
     justify-content:flex-end;
     button{
@@ -68,7 +70,8 @@ export const ButtonWrapper = styled.div`
 `;
 
 
-export const BuySellSelectorWrapper = styled(SelectorWrapper)`
+export const BuySellSelectorWrapper = styled(SelectorWrapper)
+`
     border-radius: 11px;
     width: 35%;
     border: solid 1px ${allTheme.gray};
@@ -78,7 +81,7 @@ export const BuySellSelectorWrapper = styled(SelectorWrapper)`
 `
 
 
-export const BuySelectButton = styled.button`
+export const BuySelectButton = styled.button `
     width: 50%;
     height: 2.25rem;
     border-radius: ${props => props.buySell === "B" ? '10px 10px 10px 10px' : '10px 0 0 10px'};
@@ -95,7 +98,8 @@ export const BuySelectButton = styled.button`
     }
 `
 
-export const SellSelectButton = styled(BuySelectButton)`
+export const SellSelectButton = styled(BuySelectButton)
+`
     border-radius: ${props => props.buySell === "S" ? '10px 10px 10px 10px' : '0 10px 10px 0'};
     border: ${props => props.buySell === "S" ? `solid 1.5px ${allTheme.redSell}` : `none`};
 

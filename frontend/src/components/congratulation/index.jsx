@@ -4,9 +4,9 @@ import history from "../../history";
 import logo from "../../assets/logo/logo_with_name.png";
 // import {WrapDiv} from "../../styles/components/signUpStyles";
 
-import {MainContainerC, InputWrapper} from "../../styles/components/congratulationStyles";
+import { MainContainerC, InputWrapper } from "../../styles/components/congratulationStyles";
 
-import {ButtonWrapper, HeaderWrapper, LoginWrapper} from "../../styles/components/signInStyles";
+import { ButtonWrapper, HeaderWrapper, LoginWrapper } from "../../styles/components/signInStyles";
 
 
 
@@ -19,20 +19,20 @@ const Congratulation = (props) => {
     return (
         <>
 
-        <HeaderWrapper>
+            <HeaderWrapper>
             </HeaderWrapper>
-             <LoginWrapper>
-             <img src={logo} out="logo" alt="logo"/>
-               <MainContainerC> 
-               {/* <h4>Enter your email address</h4>     */}
-               <h4>Check your email for the validation code</h4>
-               <InputWrapper> 
+            <LoginWrapper>
+                <img src={logo} out="logo" alt="logo" />
+                <MainContainerC>
+                    {/* <h4>Enter your email address</h4>     */}
+                    <h4>Check your email for the validation code</h4>
+                    <InputWrapper>
                         <ButtonWrapper>
-                        <button onClick={validateUser}>Validate your account</button>
+                            <button onClick={validateUser}>Validate your account</button>
                         </ButtonWrapper>
-                        
-            </InputWrapper>
-            </MainContainerC> 
+
+                    </InputWrapper>
+                </MainContainerC>
             </LoginWrapper>
 
             {/* <MainContainerC>

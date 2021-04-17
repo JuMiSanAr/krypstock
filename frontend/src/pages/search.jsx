@@ -1,21 +1,23 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     AllComponentsWrapper,
 } from "../styles/globalParts/containerStyles";
 // import AddBoxIcon from '@material-ui/icons/AddBox';
-import {ContentWrapper, SearchPageInput, 
-    Title, SearchWrapperTitle, 
-    TableContainerWrapper, Table, TableWrapper } from '../styles/pages/searchStyles'
+import {
+    ContentWrapper, SearchPageInput,
+    Title, SearchWrapperTitle,
+    TableContainerWrapper, Table, TableWrapper
+} from '../styles/pages/searchStyles'
 import { CryptoTable } from '../components/searchCryptoStockTable/cryptoTable';
 // import TablePagination from '@material-ui/core/TablePagination';
 import { StockTable } from '../components/searchCryptoStockTable/stockTable';
-import {allCryptosAction} from "../store/actions/cryptoActions";
-import {useDispatch, useSelector} from "react-redux";
-import {allStocksAction, allStockSymbolsAction, searchedStocksAction} from "../store/actions/stocksActions";
-import {iexAPIKey, iexSandboxKey} from "../store/constants";
+import { allCryptosAction } from "../store/actions/cryptoActions";
+import { useDispatch, useSelector } from "react-redux";
+import { allStocksAction, allStockSymbolsAction, searchedStocksAction } from "../store/actions/stocksActions";
+import { iexAPIKey, iexSandboxKey } from "../store/constants";
 import { CryptoModal } from '../components/quickTradeModal/crypto';
 import { StockModal } from '../components/quickTradeModal/stock';
-import {Content} from '../styles/components/buttonStyles';
+import { Content } from '../styles/components/buttonStyles';
 
 
 const Search = () => {
@@ -50,12 +52,12 @@ const Search = () => {
         if (currentStockSymbols.length) {
             fetch(`https://sandbox.iexapis.com/stable/stock/market/batch?types=quote&symbols=${currentStockSymbols}&token=${iexSandboxKey}`)
                 .then(res => res.json())
-                .then(data=> {
+                .then(data => {
                     const fetchedData = Object.values(data).map(singleData => singleData.quote);
                     const notNullData = fetchedData.filter(asset => asset.latestPrice)
                     const action = searchedStocksAction(notNullData.slice(0, 10));
                     dispatch(action);
-            })
+                })
         }
     }, [currentStockSymbols]);
 
@@ -63,14 +65,14 @@ const Search = () => {
         fetch('https://api.binance.com/api/v3/ticker/24hr')
             .then(res => res.json())
             .then(data => {
-                const usdtFiltered = data.filter(item => item.symbol.includes("USDT")&&
-                        !((item.symbol).slice(0, 4) === 'USDT') &&
-                        !item.symbol.includes("UPUSDT") &&
-                        !item.symbol.includes("BULLUSDT") &&
-                        !item.symbol.includes("BEARUSDT") &&
-                        !item.symbol.includes("STUSDT") &&
-                        !item.symbol.includes("DOWNUSDT") &&
-                        !item.symbol.includes("ESUSDT"));
+                const usdtFiltered = data.filter(item => item.symbol.includes("USDT") &&
+                    !((item.symbol).slice(0, 4) === 'USDT') &&
+                    !item.symbol.includes("UPUSDT") &&
+                    !item.symbol.includes("BULLUSDT") &&
+                    !item.symbol.includes("BEARUSDT") &&
+                    !item.symbol.includes("STUSDT") &&
+                    !item.symbol.includes("DOWNUSDT") &&
+                    !item.symbol.includes("ESUSDT"));
                 const action = allCryptosAction(usdtFiltered);
                 dispatch(action);
             });
@@ -113,13 +115,13 @@ const Search = () => {
     }
 
     const searchHandler = () => {
-         if(select === "Stock" && search !== ""){
-             const exactMatches = allSymbols.filter(symbol => symbol.symbol.toLowerCase() === search.toLowerCase() || symbol.name.toLowerCase() === search.toLowerCase());
-             const filteredSymbols = allSymbols.filter(symbol => (symbol.symbol.toLowerCase().includes(search.toLowerCase()) || symbol.name.toLowerCase().includes(search.toLowerCase())) && !exactMatches.includes(symbol));
-             const finalSymbols = exactMatches.concat(filteredSymbols);
-             let string = '';
+        if (select === "Stock" && search !== "") {
+            const exactMatches = allSymbols.filter(symbol => symbol.symbol.toLowerCase() === search.toLowerCase() || symbol.name.toLowerCase() === search.toLowerCase());
+            const filteredSymbols = allSymbols.filter(symbol => (symbol.symbol.toLowerCase().includes(search.toLowerCase()) || symbol.name.toLowerCase().includes(search.toLowerCase())) && !exactMatches.includes(symbol));
+            const finalSymbols = exactMatches.concat(filteredSymbols);
+            let string = '';
 
-             finalSymbols.slice(0, 21).forEach((symbol, index) => {
+            finalSymbols.slice(0, 21).forEach((symbol, index) => {
 
                 string += symbol.symbol;
                 if (index !== 20) {
@@ -134,24 +136,24 @@ const Search = () => {
             //         <StockTable key={index} symbol={symbol}/>
             //     )
             // }))
-            }else if(select === "Crypto" && search !== ""){
-                const filteredCrypto = allCryptos.filter(crypto => crypto.symbol.includes(search.toUpperCase()))
-                setShowingCryptos(filteredCrypto.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((symbol, index) => {
-                    return (
-                    <CryptoTable setStockSymbol={setStockSymbol} setSymbolCrypto={setSymbolCrypto} setCryptoShowModal={setCryptoShowModal} key={index} symbol={symbol}/>       
+        } else if (select === "Crypto" && search !== "") {
+            const filteredCrypto = allCryptos.filter(crypto => crypto.symbol.includes(search.toUpperCase()))
+            setShowingCryptos(filteredCrypto.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((symbol, index) => {
+                return (
+                    <CryptoTable setStockSymbol={setStockSymbol} setSymbolCrypto={setSymbolCrypto} setCryptoShowModal={setCryptoShowModal} key={index} symbol={symbol} />
                 )
             }))
-            } else if (search !== '') {
+        } else if (search !== '') {
             const filteredCrypto = allCryptos.filter(crypto => crypto.symbol.includes(search.toUpperCase()));
             setShowingCryptos(filteredCrypto.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((symbol, index) => {
                 return (
-                    <CryptoTable setStockSymbol={setStockSymbol} setSymbolCrypto={setSymbolCrypto} setCryptoShowModal={setCryptoShowModal} key={index} symbol={symbol}/>
+                    <CryptoTable setStockSymbol={setStockSymbol} setSymbolCrypto={setSymbolCrypto} setCryptoShowModal={setCryptoShowModal} key={index} symbol={symbol} />
                 )
             }))
 
-             const exactMatches = allSymbols.filter(symbol => symbol.symbol.toLowerCase() === search.toLowerCase() || symbol.name.toLowerCase() === search.toLowerCase());
-             const filteredSymbols = allSymbols.filter(symbol => (symbol.symbol.toLowerCase().includes(search.toLowerCase()) || symbol.name.toLowerCase().includes(search.toLowerCase())) && !exactMatches.includes(symbol));
-             const finalSymbols = exactMatches.concat(filteredSymbols);
+            const exactMatches = allSymbols.filter(symbol => symbol.symbol.toLowerCase() === search.toLowerCase() || symbol.name.toLowerCase() === search.toLowerCase());
+            const filteredSymbols = allSymbols.filter(symbol => (symbol.symbol.toLowerCase().includes(search.toLowerCase()) || symbol.name.toLowerCase().includes(search.toLowerCase())) && !exactMatches.includes(symbol));
+            const finalSymbols = exactMatches.concat(filteredSymbols);
             let string = '';
 
             finalSymbols.slice(0, 21).forEach((symbol, index) => {
@@ -161,22 +163,22 @@ const Search = () => {
                 }
             })
             setCurrentStockSymbols(string);
-         } else {
-            if(allCryptos.length){
+        } else {
+            if (allCryptos.length) {
                 setShowingCryptos(allCryptos.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((symbol, index) => {
                     return (
-                        <CryptoTable setStockSymbol={setStockSymbol} setSymbolCrypto={setSymbolCrypto} setCryptoShowModal={setCryptoShowModal} key={index} symbol={symbol}/>
+                        <CryptoTable setStockSymbol={setStockSymbol} setSymbolCrypto={setSymbolCrypto} setCryptoShowModal={setCryptoShowModal} key={index} symbol={symbol} />
                     )
                 }))
             }
-         }
+        }
     }
 
     useEffect(() => {
-        if(allCryptos.length){
+        if (allCryptos.length) {
             setShowingCryptos(allCryptos.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((symbol, index) => {
                 return (
-                    <CryptoTable setStockSymbol={setStockSymbol} setSymbolCrypto={setSymbolCrypto} setCryptoShowModal={setCryptoShowModal} key={index} symbol={symbol}/>
+                    <CryptoTable setStockSymbol={setStockSymbol} setSymbolCrypto={setSymbolCrypto} setCryptoShowModal={setCryptoShowModal} key={index} symbol={symbol} />
                 )
             }))
         }
@@ -205,77 +207,77 @@ const Search = () => {
                     <AllComponentsWrapper>
                     <SearchWrapperTitle>
                     <Title>
-                      {select}
+                        {select}
                     </Title>
-                    </SearchWrapperTitle> 
-                   <TableContainerWrapper>
-                       {
-                           select !== "Stock" ?
-                    <TableWrapper>
-                    { <Table id="crypto">
-                        <thead>
-                            <tr>
-                            <th className="headcol tableHead">Buy</th>
-                            <th className="tableHead">Symbol</th>
-                            <th className="tableHead">Price (Latest)</th>
-                            <th className="tableHead">Change</th>
-                            <th className="tableHead">Change%</th>
-                            <th className="tableHead">24h Volume</th>
-                            {/*<th className="tableHead">1 Day Chart</th>*/}
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {showingCryptos}
-                        </tbody>
-                        {/*{*/}
-                        {/*allCryptos && allCryptos.length !== 0 ?*/}
-                        {/*<TablePagination */}
-                        {/*    component="div"*/}
-                        {/*    count={allCryptos.length}*/}
-                        {/*    page={page}*/}
-                        {/*    onChangePage={handleChangePage}*/}
-                        {/*    rowsPerPage={rowsPerPage}*/}
-                        {/*    rowsPerPageOptions={[]}*/}
-                        {/*    // style={{color: darkTheme.text}}*/}
-                        {/*/>*/}
-                        {/*: null*/}
+                </SearchWrapperTitle>
+                <TableContainerWrapper>
+                    {
+                        select !== "Stock" ?
+                            <TableWrapper>
+                                {<Table id="crypto">
+                                    <thead>
+                                        <tr>
+                                            <th className="headcol tableHead">Buy</th>
+                                            <th className="tableHead">Symbol</th>
+                                            <th className="tableHead">Price (Latest)</th>
+                                            <th className="tableHead">Change</th>
+                                            <th className="tableHead">Change%</th>
+                                            <th className="tableHead">24h Volume</th>
+                                            {/*<th className="tableHead">1 Day Chart</th>*/}
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {showingCryptos}
+                                    </tbody>
+                                    {/*{*/}
+                                    {/*allCryptos && allCryptos.length !== 0 ?*/}
+                                    {/*<TablePagination */}
+                                    {/*    component="div"*/}
+                                    {/*    count={allCryptos.length}*/}
+                                    {/*    page={page}*/}
+                                    {/*    onChangePage={handleChangePage}*/}
+                                    {/*    rowsPerPage={rowsPerPage}*/}
+                                    {/*    rowsPerPageOptions={[]}*/}
+                                    {/*    // style={{color: darkTheme.text}}*/}
+                                    {/*/>*/}
+                                    {/*: null*/}
 
-                        {/*}*/}
-                    </Table> }
-                    </TableWrapper>
-                               : ''
-                       }
+                                    {/*}*/}
+                                </Table>}
+                            </TableWrapper>
+                            : ''
+                    }
 
-                       {
-                           select !== "Crypto" ?
-                    <TableWrapper>
-                    <Table id="stocks">
-                        <thead>
-                            <tr>
-                            <th className="headcol tableHead">Buy</th>
-                            <th className="tableHead">Symbol</th>
-                            <th className="tableHead">Name</th>
-                            <th className="tableHead">Price (Latest)</th>
-                            <th className="tableHead">Change</th>
-                            <th className="tableHead">Change%</th>
-                            <th className="tableHead">24h Volume</th>
-                            <th className="tableHead">Mkt Cap</th>
-                            {/*<th className="tableHead">1 Day Chart</th>*/}
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {searchedStocks ? searchedStocks.map((symbol, index) => {
-                                return (
-                                    <StockTable setStockSymbol={setStockSymbol} setStockShowModal={setStockShowModal} setStockName={setStockName} key={index} symbol={symbol}/>
-                                )
-                            }) : ''}
-                        </tbody>
-                    </Table>
-                    </TableWrapper>
-                               : ''
-                       }
-                    </TableContainerWrapper>
-                    </AllComponentsWrapper>
+                    {
+                        select !== "Crypto" ?
+                            <TableWrapper>
+                                <Table id="stocks">
+                                    <thead>
+                                        <tr>
+                                            <th className="headcol tableHead">Buy</th>
+                                            <th className="tableHead">Symbol</th>
+                                            <th className="tableHead">Name</th>
+                                            <th className="tableHead">Price (Latest)</th>
+                                            <th className="tableHead">Change</th>
+                                            <th className="tableHead">Change%</th>
+                                            <th className="tableHead">24h Volume</th>
+                                            <th className="tableHead">Mkt Cap</th>
+                                            {/*<th className="tableHead">1 Day Chart</th>*/}
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {searchedStocks ? searchedStocks.map((symbol, index) => {
+                                            return (
+                                                <StockTable setStockSymbol={setStockSymbol} setStockShowModal={setStockShowModal} setStockName={setStockName} key={index} symbol={symbol} />
+                                            )
+                                        }) : ''}
+                                    </tbody>
+                                </Table>
+                            </TableWrapper>
+                            : ''
+                    }
+                </TableContainerWrapper>
+            </AllComponentsWrapper>
         </>
     )
 }

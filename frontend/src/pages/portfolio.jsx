@@ -1,16 +1,16 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { AllComponentsWrapper, ShrinkingComponentWrapper } from '../styles/globalParts/containerStyles';
-import {CakeChartContainer, PortfolioHeadline, LegendContainer, ColorSquare, LegendWrapper, Headline} from '../styles/components/portfolioStyles';
+import { CakeChartContainer, PortfolioHeadline, LegendContainer, ColorSquare, LegendWrapper, Headline } from '../styles/components/portfolioStyles';
 import { PieChart } from 'react-minimal-pie-chart';
 import PortfolioChart from '../components/charts/portfolioChart';
 import AllInvestments from '../components/portfolioComponents/allInvestments';
 import Overview from '../components/portfolioComponents/overview';
-import {specificPortfolioFetch} from "../store/fetches/portfoliosFetches";
-import {specificPortfolioAction} from "../store/actions/specificPortfolioAction";
-import {useDispatch, useSelector} from "react-redux";
+import { specificPortfolioFetch } from "../store/fetches/portfoliosFetches";
+import { specificPortfolioAction } from "../store/actions/specificPortfolioAction";
+import { useDispatch, useSelector } from "react-redux";
 import { allCryptosAction } from '../store/actions/cryptoActions';
-import {allTheme} from '../styles/Themes';
-import {iexSandboxKey} from "../store/constants";
+import { allTheme } from '../styles/Themes';
+import { iexSandboxKey } from "../store/constants";
 
 const Portfolio = (props) => {
 
@@ -32,91 +32,92 @@ const Portfolio = (props) => {
         setPortfolioId(id);
 
         specificPortfolioFetch(id)
-        .then(data => {
-            dispatch(specificPortfolioAction(data))
-            const pieValues = [];
-            const legend = [];
-            const colors = [allTheme.vibrantturquoise, allTheme.darkblue, allTheme.yellow, allTheme.vibrantorange, allTheme.green, allTheme.purple, allTheme.blue];
-            let colorIndex = 0;
-            data.calculations.sort((a, b) => parseFloat(b.invested) - parseFloat(a.invested));
-    
-            data.calculations.forEach((calculation) => {
-               
-                if (calculation.invested > 0 && colorIndex < 6) {
+            .then(data => {
+                dispatch(specificPortfolioAction(data))
+                const pieValues = [];
+                const legend = [];
+                const colors = [allTheme.vibrantturquoise, allTheme.darkblue, allTheme.yellow, allTheme.vibrantorange, allTheme.green, allTheme.purple, allTheme.blue];
+                let colorIndex = 0;
+                data.calculations.sort((a, b) => parseFloat(b.invested) - parseFloat(a.invested));
 
-                    pieValues.push( {
-                        title: calculation.symbol,
-                        value: calculation.invested,
+                data.calculations.forEach((calculation) => {
+
+                    if (calculation.invested > 0 && colorIndex < 6) {
+
+                        pieValues.push({
+                            title: calculation.symbol,
+                            value: calculation.invested,
+                            color: colors[colorIndex]
+                        })
+
+                        colorIndex++;
+
+                    }
+                })
+                console.log(data.calculations)
+
+                if (data.calculations.length >= 7) {
+                    const other = data.calculations.filter((value, index) => index > 5);
+                    console.log(other)
+                    //data.calculations.splice(6)
+
+                    let otherValues = [];
+
+                    for (let i = 0; i < other.length - 1; i++) {
+                        let value = other[i].invested;
+                        otherValues.push(value);
+                    }
+
+                    const sum = otherValues.reduce((a, b) => a + b, 0)
+                    pieValues.push({
+                        title: "Other",
+                        value: sum,
                         color: colors[colorIndex]
                     })
-
-                    colorIndex++;
-                    
-                }
-            })
-            console.log(data.calculations)
-
-            if (data.calculations.length >= 7){
-            const other = data.calculations.filter((value, index) => index > 5);
-            console.log(other)
-            //data.calculations.splice(6)
-
-            let otherValues = [];
-
-            for (let i=0; i<other.length -1;i++){
-                let value = other[i].invested;
-                otherValues.push(value);
-            }
-
-            const sum = otherValues.reduce((a, b) => a + b, 0)
-            pieValues.push( {
-                title: "Other",
-                value: sum,
-                color: colors[colorIndex]
-            })
-            }
-
-            for (let i=0; i<pieValues.length;i++){
-                legend.push({
-                    title: pieValues[i].title,
-                    color: pieValues[i].color});
                 }
 
-            setPieData(pieValues);
-            setLegend(legend);
-            
-
-            data.calculations.forEach(symbol => {
-                if (symbol.type === 'S') {
-                    // setStockSymbols([...stockSymbols, symbol.symbol])
-                    stockSymbols.push(symbol.symbol);
-                } else if (symbol.type === 'C') {
-                    // setCryptoSymbols([...cryptoSymbols, symbol.symbol])
-                    cryptoSymbols.push(symbol.symbol);
+                for (let i = 0; i < pieValues.length; i++) {
+                    legend.push({
+                        title: pieValues[i].title,
+                        color: pieValues[i].color
+                    });
                 }
-            })
 
-            let stocksString = '';
+                setPieData(pieValues);
+                setLegend(legend);
 
-             stockSymbols.forEach((symbol, index) => {
 
-                stocksString += symbol;
-                if (index !== stockSymbols.length-1) {
-                    stocksString += ',';
-                }
-            })
-            if (stocksString !== '') {
-                fetch(`https://sandbox.iexapis.com/stable/stock/market/batch?types=quote&symbols=${stocksString}&token=${iexSandboxKey}`)
-                    .then(res => res.json())
-                    .then(data => {
-                        const fetchedData = Object.entries(data).map(entry => {
+                data.calculations.forEach(symbol => {
+                    if (symbol.type === 'S') {
+                        // setStockSymbols([...stockSymbols, symbol.symbol])
+                        stockSymbols.push(symbol.symbol);
+                    } else if (symbol.type === 'C') {
+                        // setCryptoSymbols([...cryptoSymbols, symbol.symbol])
+                        cryptoSymbols.push(symbol.symbol);
+                    }
+                })
+
+                let stocksString = '';
+
+                stockSymbols.forEach((symbol, index) => {
+
+                    stocksString += symbol;
+                    if (index !== stockSymbols.length - 1) {
+                        stocksString += ',';
+                    }
+                })
+                if (stocksString !== '') {
+                    fetch(`https://sandbox.iexapis.com/stable/stock/market/batch?types=quote&symbols=${stocksString}&token=${iexSandboxKey}`)
+                        .then(res => res.json())
+                        .then(data => {
+                            const fetchedData = Object.entries(data).map(entry => {
                                 return entry[1].quote;
                             }
-                        )
-                        setRealtimeDataStock(fetchedData);
-                    })
-            }
-        })
+                            )
+                            setRealtimeDataStock(fetchedData);
+                        })
+                }
+            })
     }, [])
 
     useEffect(() => {
@@ -157,18 +158,18 @@ const Portfolio = (props) => {
             <AllComponentsWrapper>
                 {
                     portfolioInfo.calculations ? <AllInvestments realtimeData={realtimeDataCombined}
-                                                                 calculations={portfolioInfo.calculations}
-                                                                 portfolioCreated={portfolioInfo.created}/>
-                                                                 : ''
+                        calculations={portfolioInfo.calculations}
+                        portfolioCreated={portfolioInfo.created} />
+                        : ''
                 }
                 {
                     portfolioInfo.calculations ? <Overview calculations={portfolioInfo.calculations}
-                                                           realtimeData={realtimeDataCombined}
-                                                           transactions={portfolioInfo.transactions}
-                                                           portfolioname={portfolioInfo.name}
-                                                           portfolioID={portfolioInfo.id}
-                                                           portfolioCreated={portfolioInfo.created}/>
-                                                           : ''
+                        realtimeData={realtimeDataCombined}
+                        transactions={portfolioInfo.transactions}
+                        portfolioname={portfolioInfo.name}
+                        portfolioID={portfolioInfo.id}
+                        portfolioCreated={portfolioInfo.created} />
+                        : ''
                 }
 
                 <ShrinkingComponentWrapper>
@@ -176,29 +177,29 @@ const Portfolio = (props) => {
                         <Headline>My Investments</Headline>
                         {
                             pieData.length > 0 ? <PieChart
-                            /* label={props => { return props.dataEntry.title;}}
-                            labelStyle={{
-                                fontSize: "7px",
-                                textColor: "white"
-                              }} */
-                            data={pieData}
-                            labelPosition={70}
-                        />  : ''
+                                /* label={props => { return props.dataEntry.title;}}
+                                labelStyle={{
+                                    fontSize: "7px",
+                                    textColor: "white"
+                                  }} */
+                                data={pieData}
+                                labelPosition={70}
+                            /> : ''
                         }
                         <LegendWrapper>
-                        {legend.map((legend, index) =>
-                            <LegendContainer key={index}>
-                                <ColorSquare style={{backgroundColor: legend.color}}></ColorSquare>
-                                <p>{legend.title}</p>
-                            </LegendContainer>
-                        )}
+                            {legend.map((legend, index) =>
+                                <LegendContainer key={index}>
+                                    <ColorSquare style={{ backgroundColor: legend.color }}></ColorSquare>
+                                    <p>{legend.title}</p>
+                                </LegendContainer>
+                            )}
                         </LegendWrapper>
                     </CakeChartContainer>
                 </ShrinkingComponentWrapper>
                 <ShrinkingComponentWrapper>
                     <Headline>Total value over time</Headline>
                     {
-                        portfolioInfo.transactions ? <PortfolioChart data={portfolioInfo.transactions}/> : ''
+                        portfolioInfo.transactions ? <PortfolioChart data={portfolioInfo.transactions} /> : ''
                     }
                 </ShrinkingComponentWrapper>
             </AllComponentsWrapper>
