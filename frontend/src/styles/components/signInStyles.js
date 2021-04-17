@@ -1,8 +1,5 @@
 import styled from "styled-components";
-import {
-  darkTheme,
-  lightTheme
-} from '../Themes';
+
 
 
 export const HeaderWrapper = styled.div `
@@ -54,6 +51,10 @@ export const MainContainerSI = styled.div `
   h4{
    color: #6d82e5;
  }
+ .errorMessage{
+     color: red;
+     font-size: 12px;
+     }
 
   @media only screen and (max-width: 600px) and (min-width: 320px) {
     z-index: 999;
@@ -69,15 +70,21 @@ export const InputWrapper = styled.div `
     width:250px;
     height: 50px;
     margin-bottom: 1rem;
-    border: solid 1px lightgray;
+    border: solid 1px #dadada;
     padding-left: 1.25rem;
     border-radius: 10px;
+    :focus{
+      outline:none;
+      border-color: #9ecaed;
+      box-shadow: 0 0 10px #9ecaed;
+    }
   }
 `;
 
 export const ButtonWrapper = styled.div `
   display: flex;
   flex-direction: column;
+  align-items: center;
      button {
       background-color: #6418C3;
       text-transform: uppercase;
@@ -89,6 +96,13 @@ export const ButtonWrapper = styled.div `
       border: none;
       color: white;
       margin-top: 10px;
+      :focus{
+      outline:none;
+    }
+    :hover{
+      height: 51px;
+      width:276px;
+    }
      /* width:275px;
      height: 35px;
      margin-top: 10px;

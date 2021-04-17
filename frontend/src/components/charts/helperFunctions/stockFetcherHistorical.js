@@ -28,23 +28,42 @@ export const stockFetcherHistorical = (symbol, updateState, timeframe='5dm') => 
 
                         const timestamp = date.getTime()/1000;
 
-                        return {
-                            time: timestamp,
-                            open: obj['open'],
-                            high: obj['high'],
-                            low: obj['low'],
-                            close: obj['close']
+                        if (obj['open']) {
+                            return {
+                                time: timestamp,
+                                open: obj['open'],
+                                high: obj['high'],
+                                low: obj['low'],
+                                close: obj['close']
+                            }
+                        } else if (obj['marketOpen']) {
+                            return {
+                                time: timestamp,
+                                open: obj['marketOpen'],
+                                high: obj['marketHigh'],
+                                low: obj['marketLow'],
+                                close: obj['marketClose']
+                            }
                         }
                     }
-
                     else {
-                        return ({
-                            time: obj['date'],
-                            open: obj['open'],
-                            high: obj['high'],
-                            low: obj['low'],
-                            close: obj['close']
-                        })
+                        if (obj['open']) {
+                            return {
+                                time: obj['date'],
+                                open: obj['open'],
+                                high: obj['high'],
+                                low: obj['low'],
+                                close: obj['close']
+                            }
+                        } else if (obj['marketOpen']) {
+                            return {
+                                time: obj['date'],
+                                open: obj['marketOpen'],
+                                high: obj['marketHigh'],
+                                low: obj['marketLow'],
+                                close: obj['marketClose']
+                            }
+                        }
                     }
                 });
 

@@ -13,7 +13,6 @@ import Search from "../pages/search";
 import NewsPage from "../pages/newsPage";
 import StockPage from "../pages/stockPage";
 import CryptoPage from "../pages/cryptoPage";
-import CryptosPage from "../components/charts/candlesticksCryptoHistorical.jsx";
 import PortfolioList from "../pages/portfolioList";
 
 

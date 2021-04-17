@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import logo from "../assets/logo/logo_with_name.png";
 import loginFetch from "../store/fetches/logInFetches";
 import { Link } from "react-router-dom";
-import { HeaderWrapper, LoginWrapper, InputWrapper, ButtonWrapper, MainContainerSI, WrapDivSI } from "../styles/components/signInStyles";
+import { HeaderWrapper, LoginWrapper, InputWrapper, ButtonWrapper, MainContainerSI } from "../styles/components/signInStyles";
 
 
 const LoginPage = () => {
@@ -67,9 +67,9 @@ const LoginPage = () => {
                         />
                     </InputWrapper>
                     <ButtonWrapper>
+                    <span className="errorMessage">{errorMessage ? 'Invalid username or password' : ''}</span>
                         <button onClick={loginHandler}>Login</button>
                         <button><Link className="link linkbutton" to="/sign-up/registration">Registration</Link></button>
-                        <h1>{errorMessage ? 'Invalid username or password' : ''}</h1>
                     </ButtonWrapper>
                     <Link className="link" to="/password-reset"><p>Forgot your password?</p></Link>
 

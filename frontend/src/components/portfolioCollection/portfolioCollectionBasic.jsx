@@ -14,6 +14,7 @@ const IconTitle = styled.div`
         color: inherit;
         cursor: pointer;
     }
+    }
 `;
 
 export const PortfolioCollectionBasic = ({portfolios}) => {

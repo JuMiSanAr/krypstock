@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Background, CloseModalButton, ContentWrapper, ModalContent, CryptStockFormSelectWrapper, CrypStockTransacWrapper } from '../../styles/components/modalStyles';
 import { useSelector } from "react-redux";
-import { ButtonWrapper } from '../../styles/components/cryptoStyles/quickTradeStyles'
+import { ButtonWrapper} from '../../styles/components/cryptoStyles/quickTradeStyles'
 import { Link } from 'react-router-dom';
 import { ShrinkingComponentWrapper } from '../../styles/globalParts/containerStyles';
 import { postNewTransactionFetch } from '../../store/fetches/transactionFetches';
@@ -10,7 +10,7 @@ import { iexSandboxKey } from '../../store/constants';
 export const StockModal = ({ showStockModal, setStockShowModal, symbol, stockSymbol }) => {
     const allPortfoliosArray = useSelector(state => state.portfoliosReducer.portfolios)
 
-    const [buySell, setBuySell] = useState();
+    const [buySell, setBuySell] = useState("B");
     const [portfolioID, setPortfolioID] = useState();
     const [volume, setVolume] = useState();
     const [pricePerShare, setPricePerShare] = useState();
@@ -79,12 +79,15 @@ export const StockModal = ({ showStockModal, setStockShowModal, symbol, stockSym
                                                 null
                                                 :
                                                 <div className="buySell">
-                                                    <select className="selector" defaultValue={'DEFAULT'} onChange={e => setBuySell(e.target.value)} required>
-                                                        <option value="DEFAULT" disabled>Select</option>
+                                                    <select className="selector" onChange={e => setBuySell(e.target.value)} required>
                                                         <option value="B">Buy</option>
                                                         <option value="S">Sell</option>
                                                     </select>
                                                 </div>
+                                                // <BuySellSelectorWrapper>
+                                                //     <BuySelectButton type="button" buySell={buySell} onClick={e => setBuySell("B")}>BUY</BuySelectButton>
+                                                //     <SellSelectButton type="button" buySell={buySell} onClick={e => setBuySell("S")}>SELL</SellSelectButton>
+                                                // </BuySellSelectorWrapper>
                                         }
                                     </CryptStockFormSelectWrapper>
                                     {
@@ -148,7 +151,13 @@ export const StockModal = ({ showStockModal, setStockShowModal, symbol, stockSym
                                                 }
                                                 <ButtonWrapper>
                                                     {/* <button type="submit" value="Submit">Submit</button> */}
-                                                    <button type="submit" value="Submit" onClick={submitHandler}>Submit</button>
+                                                    {/* <button type="submit" value="Submit" onClick={submitHandler}>Submit</button> */}
+                                                    {
+                                                        buySell === 'B' ?
+                                                        <button onClick={submitHandler}  className="buy" type="submit" value="Submit">Buy</button>
+                                                        :
+                                                        <button onClick={submitHandler} className="sell" type="submit" value="Submit">Sell</button>                          
+                                                    }
                                                 </ButtonWrapper>
                                             </>
                                     }

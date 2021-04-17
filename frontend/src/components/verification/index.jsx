@@ -1,7 +1,5 @@
 import React,{useState} from 'react'
 import {MainContainerV, InputWrapper, VerificationWrapper} from '../../styles/components/verificationStyles'
-import logo from "../../assets/logo/logo_with_name.png";
-import {Link} from 'react-router-dom'
 import {activateAccountFetch} from "../../store/fetches/signup_fetches";
 import history from "../../history";
 import {HeaderWrapper, ButtonWrapper,} from "../../styles/components/signInStyles";
@@ -58,7 +56,6 @@ const Verification = () => {
          <HeaderWrapper>
             </HeaderWrapper>
              <VerificationWrapper>
-             {/* <img src={logo} out="logo" alt="logo"/> */}
                <MainContainerV>  
                <h4>Set your password and username</h4>   
                <InputWrapper>

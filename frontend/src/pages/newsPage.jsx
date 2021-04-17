@@ -1,11 +1,9 @@
-import FooterNav from "../components/footerNav"
-import { DoubleButtonContainer, LeftButton, MainContentWrapper, RightButton } from "../styles/pages/homeStyles";
+// import { DoubleButtonContainer, LeftButton, MainContentWrapper, RightButton } from "../styles/pages/homeStyles";
 import React, { useEffect, useState } from "react";
-import { AllComponentsWrapper, ShrinkingComponentWrapper } from "../styles/globalParts/containerStyles";
 import { iexSandboxKey } from "../store/constants";
 import { stockNewsAction } from "../store/actions/newsActions";
 import { useDispatch, useSelector } from "react-redux";
-import NewsStock from "../components/newsFeed/newsStock";
+// import NewsStock from "../components/newsFeed/newsStock";
 import SingleStockNewsFeed from "../components/newsFeed/singleStockNewsFeed";
 import { ShowMore, HeroHeader, NewsContentWrapper, HeaderTitle } from '../styles/components/stockStyles/newsStyles'
 import SingleCryptoNewsFeed from "../components/newsFeed/singleCryptoNews";
@@ -89,8 +87,6 @@ const NewsPage = () => {
                 </div>
 
             </HeaderTitle>
-
-            {/* <AllComponentsWrapper> */}
             <NewsContentWrapper>
 
                 {/* <h1>News</h1> */}
@@ -118,7 +114,6 @@ const NewsPage = () => {
                         : ''
                 }
             </NewsContentWrapper>
-            {/* </AllComponentsWrapper> */}
             <ShowMore>
                 {
                     newsNumberShown < 30 ?

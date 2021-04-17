@@ -5,6 +5,7 @@ import { Table } from '../../../styles/components/cryptoStyles/cryptoTablesStyle
 import TablePagination from '@material-ui/core/TablePagination';
 import { darkTheme } from '../../../styles/Themes';
 import { useHistory } from 'react-router-dom';
+import { TitleSpan } from '../../../styles/globalParts/textStyles';
 
 
 
@@ -17,7 +18,7 @@ const TopPerformingCrypto = () => {
     const dataAmount = 10;
     //Pagination
     const [page, setPage] = useState(0);
-    const rowsPerPage = 5;
+    const rowsPerPage = 4;
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
     };
@@ -48,7 +49,7 @@ const TopPerformingCrypto = () => {
 
     return (
         <ShrinkingComponentWrapper>
-            <h3>Top 10 Gainers</h3>
+            <TitleSpan>Top 10 Gainers</TitleSpan>
             <Table id="crypto">
                 {
                     topCryptos !== [] && topCryptos.length === dataAmount ?

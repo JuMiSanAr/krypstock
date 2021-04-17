@@ -1,13 +1,14 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Background, CloseModalButton, ContentWrapper, ModalContent, CryptStockFormSelectWrapper, CrypStockTransacWrapper } from '../../styles/components/modalStyles';
 import { useSelector } from "react-redux";
-import { ButtonWrapper } from '../../styles/components/cryptoStyles/quickTradeStyles'
+import { ButtonWrapper} from '../../styles/components/cryptoStyles/quickTradeStyles'
 import { Link } from 'react-router-dom';
 import { ShrinkingComponentWrapper } from '../../styles/globalParts/containerStyles';
 import { postNewTransactionFetch } from '../../store/fetches/transactionFetches';
 import portfoliosFetch from '../../store/fetches/portfoliosFetches';
 import { portfoliosAction } from '../../store/actions/portfoliosAction';
 import { useDispatch } from "react-redux";
+import { TitleSpan } from '../../styles/globalParts/textStyles';
 
 
 export const CryptoModal = ({ showCryptoModal, setCryptoShowModal, symbol }) => {
@@ -83,7 +84,7 @@ export const CryptoModal = ({ showCryptoModal, setCryptoShowModal, symbol }) => 
                                 <form onSubmit={submitHandler}>
                                     <CryptStockFormSelectWrapper>
                                         <div className="title">
-                                            <h4>Crypto Quick Trade</h4>
+                                            <TitleSpan>Crypto Quick Trade</TitleSpan>
                                         </div>
                                         {
                                             !allPortfoliosArray || allPortfoliosArray.length === 0 ?
@@ -96,6 +97,10 @@ export const CryptoModal = ({ showCryptoModal, setCryptoShowModal, symbol }) => 
                                                         <option value="S">Sell</option>
                                                     </select>
                                                 </div>
+                                                // <BuySellSelectorWrapper>
+                                                //     <BuySelectButton type="button" buySell={buySell} onClick={e => setBuySell("B")}>BUY</BuySelectButton>
+                                                //     <SellSelectButton type="button" buySell={buySell} onClick={e => setBuySell("S")}>SELL</SellSelectButton>
+                                                // </BuySellSelectorWrapper>
                                         }
                                     </CryptStockFormSelectWrapper>
                                     {
@@ -167,11 +172,13 @@ export const CryptoModal = ({ showCryptoModal, setCryptoShowModal, symbol }) => 
                                                         </div>
                                                     </div>
                                                 </CrypStockTransacWrapper>
-                                                {/* {
-                                incorrectSymbol ? <h3>NOPE</h3> : ''
-                            } */}
                                                 <ButtonWrapper>
-                                                    <button type="submit" value="Submit">Submit</button>
+                                                    {
+                                                        buySell === 'B' ?
+                                                        <button className="buy" type="submit" value="Submit">Buy</button>
+                                                        :
+                                                        <button className="sell" type="submit" value="Submit">Sell</button>                          
+                                                    }
                                                 </ButtonWrapper>
                                             </>
                                     }
