@@ -54,6 +54,10 @@ export const MainContainerSI = styled.div `
   h4{
    color: #6d82e5;
  }
+ .errorMessage{
+     color: red;
+     font-size: 12px;
+     }
 
   @media only screen and (max-width: 600px) and (min-width: 320px) {
     z-index: 999;
@@ -78,6 +82,7 @@ export const InputWrapper = styled.div `
 export const ButtonWrapper = styled.div `
   display: flex;
   flex-direction: column;
+  align-items: center;
      button {
       background-color: #6418C3;
       text-transform: uppercase;
