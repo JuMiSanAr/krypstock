@@ -32,12 +32,15 @@ export const FullWidthComponentWrapper = styled.div `
 `
 
 
-export const ShrinkingComponentWrapper = styled(FullWidthComponentWrapper)
-`
+export const ShrinkingComponentWrapper = styled(FullWidthComponentWrapper)`  
 
     /* *{
         border: solid 1px red;
     } */
+
+    .portfolioDescripTitle{
+        word-break: break-all;
+    }
 
     .empty {
         min-height: 240px;

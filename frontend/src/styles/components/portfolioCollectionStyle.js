@@ -3,7 +3,8 @@ import styled from "styled-components";
 export const IconTitle = styled.div`
     display: flex;
     align-items: center;
-    h2{
+    h3{
+        margin-top: 20px;
         margin-left: 20px;
         a{
         text-decoration: none;

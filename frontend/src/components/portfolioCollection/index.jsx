@@ -48,13 +48,13 @@ export const PortfolioCollection = () => {
 
             {
                 portfolioData.map((portfolio, index) => {
-                    return (<ShrinkingComponentWrapper key={index}>
-
-                        <IconTitle>
+                    return ( 
+                     <ShrinkingComponentWrapper key={index}> 
+                        <IconTitle className="portfolioDescripTitle">
                             <FolderIcon fontSize="large" />
-                            <h2 onClick={() => { toPortfolio(portfolio.id) }}>{portfolio.name}</h2>
+                            <h3 onClick={() => { toPortfolio(portfolio.id) }}>{portfolio.name}</h3>
                         </IconTitle>
-                        <div>
+                        <div className="portfolioDescripTitle">
                             <p>
                                 {portfolio.description}
                             </p>
@@ -80,8 +80,8 @@ export const PortfolioCollection = () => {
                         <Delete>
                             <DeleteIcon onClick={() => handleWarning (portfolio.id)} />
                         </Delete>
-
-                    </ShrinkingComponentWrapper>)
+                     </ShrinkingComponentWrapper> 
+                    )
                 })
             }
         </>

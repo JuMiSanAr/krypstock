@@ -40,7 +40,7 @@ export const Modal = ({ showModal, setShowModal }) => {
           <ContentWrapper>
             <ShrinkingComponentWrapper showModal={showModal}>
               <ModalContent>
-                <input type="text" name="" onChange={event => setTitle(event.target.value)}
+                <input required maxlength="30" type="text" name="" onChange={event => setTitle(event.target.value)}
                   value={title} placeholder="Title" />
                 <textarea onChange={event => setDescription(event.target.value)}
                   value={description} name="" cols="30" rows="10" maxLength="100"
