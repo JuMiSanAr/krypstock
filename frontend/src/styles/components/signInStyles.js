@@ -73,11 +73,13 @@ export const InputWrapper = styled.div `
     width:250px;
     height: 50px;
     margin-bottom: 1rem;
-    border: solid 1px lightgray;
+    border: solid 1px #dadada;
     padding-left: 1.25rem;
     border-radius: 10px;
     :focus{
       outline:none;
+      border-color: #9ecaed;
+      box-shadow: 0 0 10px #9ecaed;
     }
   }
 `;
@@ -101,7 +103,7 @@ export const ButtonWrapper = styled.div `
       outline:none;
     }
     :hover{
-      height: 52px;
+      height: 51px;
       width:276px;
     }
      /* width:275px;
