@@ -76,6 +76,9 @@ export const InputWrapper = styled.div `
     border: solid 1px lightgray;
     padding-left: 1.25rem;
     border-radius: 10px;
+    :focus{
+      outline:none;
+    }
   }
 `;
 
@@ -94,6 +97,13 @@ export const ButtonWrapper = styled.div `
       border: none;
       color: white;
       margin-top: 10px;
+      :focus{
+      outline:none;
+    }
+    :hover{
+      height: 52px;
+      width:276px;
+    }
      /* width:275px;
      height: 35px;
      margin-top: 10px;
