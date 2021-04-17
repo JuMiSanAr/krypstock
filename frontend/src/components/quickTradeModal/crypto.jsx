@@ -172,9 +172,6 @@ export const CryptoModal = ({ showCryptoModal, setCryptoShowModal, symbol }) => 
                                                         </div>
                                                     </div>
                                                 </CrypStockTransacWrapper>
-                                                {/* {
-                                incorrectSymbol ? <h3>NOPE</h3> : ''
-                            } */}
                                                 <ButtonWrapper>
                                                     {
                                                         buySell === 'B' ?

@@ -42,23 +42,12 @@ export const ModalContent = styled.div `
           outline: none;
       }
   }
-  button {
-    background-color: #6418C3;
-    text-transform: uppercase;
-    font-weight: 600;
-    height: 40px;
-    width: 150px;
-    border-radius: 10px;
-    border: none;
-    color: white;
-  }
   .stock-company-name{
     color: ${({ theme }) => theme === lightTheme ? lightTheme.text : darkTheme.text};
   }
 `;
 
-export const CloseModalButton = styled(MdClose)
-`
+export const CloseModalButton = styled(MdClose)`
   cursor: pointer;
   position: absolute;
   top: 20px;
@@ -74,6 +63,19 @@ export const ContentWrapper = styled.div `
  justify-content: center;
  align-items: center;
  width: 100vw;
+`;
+
+export const SubmitButton = styled.div`
+  button {
+    background-color: #6418C3;
+    text-transform: uppercase;
+    font-weight: 600;
+    height: 40px;
+    width: 150px;
+    border-radius: 10px;
+    border: none;
+    color: white;
+  }
 `;
 
 
@@ -132,4 +134,21 @@ export const CrypStockTransacWrapper = styled.div `
    box-shadow:         inset 0 0 3px #000000;
    text-align: center;
   }
+`;
+
+// Crypto Overview Modal
+
+
+
+export const BackgroundOverview = styled.div `
+  /* width: 100vw; */
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  background-size: cover;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  margin-top: -165px;
 `;
