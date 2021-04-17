@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import FooterNav from '../components/footerNav';
 import CandlestickStockIntraday from "../components/charts/candlesticksStockIntraday";
 import CandlestickStockHistorical from "../components/charts/candlesticksStockHistorical";
 import NewsStock from "../components/newsFeed/newsStock";

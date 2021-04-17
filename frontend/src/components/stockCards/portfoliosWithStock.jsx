@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import portfoliosFetch from "../../store/fetches/portfoliosFetches";
 import {portfoliosAction} from "../../store/actions/portfoliosAction";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {PortfolioCollectionBasic} from "../portfolioCollection/portfolioCollectionBasic";
 import { Link } from 'react-router-dom';
 import styled from "styled-components";

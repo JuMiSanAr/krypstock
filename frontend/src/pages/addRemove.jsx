@@ -1,9 +1,8 @@
 import React, {useEffect} from 'react';
 import {useDispatch} from 'react-redux';
-import FooterNav from '../components/footerNav';
 import { CryptoQuickTrade } from '../components/homeComponents/crypto/quickTrade';
 import StockQuickTrade from '../components/homeComponents/stock/quickTrade';
-import { AllComponentsWrapper, ShrinkingComponentWrapper } from '../styles/globalParts/containerStyles';
+import { AllComponentsWrapper } from '../styles/globalParts/containerStyles';
 import portfoliosFetch from '../store/fetches/portfoliosFetches';
 import { portfoliosAction } from '../store/actions/portfoliosAction';
 import { CenterH2 } from '../styles/globalParts/textStyles';

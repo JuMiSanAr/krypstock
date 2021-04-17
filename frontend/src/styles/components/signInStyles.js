@@ -1,8 +1,5 @@
 import styled from "styled-components";
-import {
-  darkTheme,
-  lightTheme
-} from '../Themes';
+
 
 
 export const HeaderWrapper = styled.div `

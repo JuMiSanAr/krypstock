@@ -1,17 +1,15 @@
-// import { ShrinkingComponentWrapper } from "../../styles/globalParts/containerStyles"
+import React from "react";
 import {StockPageInfoWrapper} from "../../styles/components/stockStyles/stockPageInfoStyles";
-import React, {useEffect, useState} from "react";
-import {iexSandboxKey} from "../../store/constants";
+
+
 
 
 const StockStats = ({keyStats}) => {
 
-
-
     return (
         <>
       
-        {/* <ShrinkingComponentWrapper> */}
+ 
             <StockPageInfoWrapper>
                 <tbody>
                 {
@@ -42,7 +40,7 @@ const StockStats = ({keyStats}) => {
                 }
                 </tbody>
             </StockPageInfoWrapper>
-        {/* </ShrinkingComponentWrapper> */}
+  
         </>
     )
 }

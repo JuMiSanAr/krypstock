@@ -13,8 +13,8 @@ import { CryptoTable } from '../components/searchCryptoStockTable/cryptoTable';
 import { StockTable } from '../components/searchCryptoStockTable/stockTable';
 import { allCryptosAction } from "../store/actions/cryptoActions";
 import { useDispatch, useSelector } from "react-redux";
-import { allStocksAction, allStockSymbolsAction, searchedStocksAction } from "../store/actions/stocksActions";
-import { iexAPIKey, iexSandboxKey } from "../store/constants";
+import { allStockSymbolsAction, searchedStocksAction } from "../store/actions/stocksActions";
+import { iexSandboxKey } from "../store/constants";
 import { CryptoModal } from '../components/quickTradeModal/crypto';
 import { StockModal } from '../components/quickTradeModal/stock';
 import { Content } from '../styles/components/buttonStyles';
@@ -201,7 +201,7 @@ const Search = () => {
                             <option value="Crypto">Crypto</option>
                             <option value="Stock">Stock</option>
                         </select>
-                        <Content type="submit" onClick={() => searchHandler()}><i class="fas fa-search"></i></Content>
+                        <Content type="submit" onClick={() => searchHandler()}><i className="fas fa-search"></i></Content>
                     </SearchPageInput>
                     </ContentWrapper>
                     <AllComponentsWrapper>
