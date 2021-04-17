@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { Background, CloseModalButton, ContentWrapper, ModalContent, CryptStockFormSelectWrapper, CrypStockTransacWrapper } from '../../styles/components/modalStyles';
+import { BackgroundOverview, CloseModalButton, ContentWrapper, ModalContent, CrypStockTransacWrapper, SubmitButton } from '../../styles/components/modalStyles';
 import { useSelector } from "react-redux";
-import { ButtonWrapper } from '../../styles/components/cryptoStyles/quickTradeStyles'
+import { BuySellSelectorWrapper, BuySelectButton, SellSelectButton } from '../../styles/components/cryptoStyles/quickTradeStyles'
 import { Link } from 'react-router-dom';
 import { ShrinkingComponentWrapper } from '../../styles/globalParts/containerStyles';
 import { postNewTransactionFetch } from '../../store/fetches/transactionFetches';
@@ -90,19 +90,20 @@ export const CryptoModal2 = ({ showCryptoModal, setCryptoShowModal, symbol, port
         <>
             {showCryptoModal ? (
 
-                <Background onClick={closeModal} ref={modalRef}>
+                <BackgroundOverview onClick={closeModal} ref={modalRef}>
                     <ContentWrapper>
                         <ShrinkingComponentWrapper showCryptoModal={showCryptoModal}>
                             <ModalContent>
-                                <CryptStockFormSelectWrapper>
-                                    <div>
-                                        <button value="B" onClick={e => setBuySell(e.target.value)}>BUY</button>
-                                    </div>
-                                    <div>
-                                        <button value="S" onClick={e => setBuySell(e.target.value)}>SELL</button>
-                                    </div>
+                                <BuySellSelectorWrapper>
+                           
+                                        <BuySelectButton buySell={buySell} value="B" onClick={e => setBuySell(e.target.value)}>BUY</BuySelectButton>
+                                 
+                              
+                                        <SellSelectButton buySell={buySell} value="S" onClick={e => setBuySell(e.target.value)}>SELL</SellSelectButton>
+                               
 
-                                </CryptStockFormSelectWrapper>{
+                                </BuySellSelectorWrapper>
+                                {
                                     !allPortfoliosArray || allPortfoliosArray.length === 0 ?
                                         <div className='empty'>
                                             <span>You need a portfolio to trade</span>
@@ -166,9 +167,9 @@ export const CryptoModal2 = ({ showCryptoModal, setCryptoShowModal, symbol, port
                                             {
                                                 notEnoughCoins ? <ErrorSpan><em>Not enough coins to sell at this amount</em></ErrorSpan> : ''
                                             }
-                                            <ButtonWrapper>
+                                            <SubmitButton>
                                                 <button type="submit" value="Submit" onClick={submitHandler}>Submit</button>
-                                            </ButtonWrapper>
+                                            </SubmitButton>
                                         </>
                                 }
                             </ModalContent>
@@ -178,7 +179,7 @@ export const CryptoModal2 = ({ showCryptoModal, setCryptoShowModal, symbol, port
                             />
                         </ShrinkingComponentWrapper>
                     </ContentWrapper>
-                </Background>
+                </BackgroundOverview>
             ) : null}
         </>
     );

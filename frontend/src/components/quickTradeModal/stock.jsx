@@ -154,9 +154,9 @@ export const StockModal = ({ showStockModal, setStockShowModal, symbol, stockSym
                                                     {/* <button type="submit" value="Submit" onClick={submitHandler}>Submit</button> */}
                                                     {
                                                         buySell === 'B' ?
-                                                        <button className="buy" type="submit" value="Submit">Buy</button>
+                                                        <button onClick={submitHandler}  className="buy" type="submit" value="Submit">Buy</button>
                                                         :
-                                                        <button className="sell" type="submit" value="Submit">Sell</button>                          
+                                                        <button onClick={submitHandler} className="sell" type="submit" value="Submit">Sell</button>                          
                                                     }
                                                 </ButtonWrapper>
                                             </>

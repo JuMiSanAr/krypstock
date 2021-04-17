@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Background, CloseModalButton, ContentWrapper, ModalContent } from '../../styles/components/modalStyles';
+import { Background, CloseModalButton, ContentWrapper, ModalContent, SubmitButton  } from '../../styles/components/modalStyles';
 import { ShrinkingComponentWrapper } from '../../styles/globalParts/containerStyles';
 import createPortfolioFetch from '../../store/fetches/createPortfolioFetches';
 import { useDispatch, useSelector } from "react-redux";
@@ -46,7 +46,9 @@ export const Modal = ({ showModal, setShowModal }) => {
                   value={description} name="" cols="30" rows="10" maxLength="100"
                   placeholder="Please enter a detail not more than 100 words.">
                 </textarea>
+                <SubmitButton>
                 <button onClick={saveHandler}>Save</button>
+                </SubmitButton> 
               </ModalContent>
               <CloseModalButton
                 aria-label='Close modal'

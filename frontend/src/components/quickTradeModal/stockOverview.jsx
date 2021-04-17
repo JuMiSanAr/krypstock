@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Background, CloseModalButton, ContentWrapper, ModalContent, CryptStockFormSelectWrapper, CrypStockTransacWrapper } from '../../styles/components/modalStyles';
+import {  BackgroundOverview, CloseModalButton, ContentWrapper, ModalContent, CrypStockTransacWrapper, SubmitButton } from '../../styles/components/modalStyles';
 import { useSelector } from "react-redux";
-import { ButtonWrapper, TransacWrapper } from '../../styles/components/cryptoStyles/quickTradeStyles'
+import { BuySellSelectorWrapper, BuySelectButton, SellSelectButton} from '../../styles/components/cryptoStyles/quickTradeStyles'
 import { Link } from 'react-router-dom';
 import { ShrinkingComponentWrapper } from '../../styles/globalParts/containerStyles';
 import { postNewTransactionFetch } from '../../store/fetches/transactionFetches';
@@ -64,18 +64,16 @@ export const StockModal2 = ({ showStockModal, setStockShowModal, symbol, stockSy
         <>
             {showStockModal ? (
 
-                <Background onClick={closeModal} ref={modalRef}>
+                <BackgroundOverview onClick={closeModal} ref={modalRef}>
                     <ContentWrapper>
                         <ShrinkingComponentWrapper showStockModal={showStockModal}>
                             <ModalContent>
-                                <CryptStockFormSelectWrapper>
-                                    <div>
-                                        <button value="B" onClick={e => setBuySell(e.target.value)}>BUY</button>
-                                    </div>
-                                    <div>
-                                        <button value="S" onClick={e => setBuySell(e.target.value)}>SELL</button>
-                                    </div>
-                                </CryptStockFormSelectWrapper>
+                                <BuySellSelectorWrapper>
+                                
+                                        <BuySelectButton buySell={buySell} value="B" onClick={e => setBuySell(e.target.value)}>BUY</BuySelectButton>
+                                        <SellSelectButton buySell={buySell} value="S" onClick={e => setBuySell(e.target.value)}>SELL</SellSelectButton>
+                       
+                                </BuySellSelectorWrapper>
                                 {
                                     !allPortfoliosArray || allPortfoliosArray.length === 0 ?
                                         <div className='empty'>
@@ -136,9 +134,9 @@ export const StockModal2 = ({ showStockModal, setStockShowModal, symbol, stockSy
                                             {
                                                 notEnoughStocks ? <div className="amountInput"><ErrorSpan><em>Not enough stocks to sell at this amount</em></ErrorSpan></div> : ''
                                             }
-                                            <ButtonWrapper>
+                                            <SubmitButton>
                                                 <button type="submit" value="Submit" onClick={submitHandler}>Submit</button>
-                                            </ButtonWrapper>
+                                            </SubmitButton>
                                         </>
                                 }
                             </ModalContent>
@@ -148,7 +146,7 @@ export const StockModal2 = ({ showStockModal, setStockShowModal, symbol, stockSy
                             />
                         </ShrinkingComponentWrapper>
                     </ContentWrapper>
-                </Background>
+                </BackgroundOverview>
             ) : null}
         </>
     );
