@@ -68,7 +68,7 @@ export const PortfolioCollection = () => {
                                 <i className="fa fa-exclamation-triangle" aria-hidden="true"></i>
                             </span>
                             <div className="message">
-                                <p> Are you sure you want to delete ?</p>
+                                <p>Delete this porfolio ?</p>
                                 <button onClick={() => handleDelete(portfolio.id)}>Delete</button>
                             </div>
                             <div onClick={() => setWarning(false)} className="closeIcon">

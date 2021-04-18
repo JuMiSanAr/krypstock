@@ -90,9 +90,9 @@ export const PageWrapper = styled.div `
 export const PortfolioShrinkingWrapper = styled(FullWidthComponentWrapper)`
     /* background-color: #00DBDE;
     background-image: url('https://res.cloudinary.com/tennam/image/upload/v1618750810/Propulsion/Pngtree_blue_gradient_sense_line_4050648.png'), linear-gradient( 179.4deg,  rgba(33,150,243,1) 1.8%, rgba(22,255,245,0.60) 97.1% ); */
-    background-image: url(${linebackground});
-    background-repeat: no-repeat;
-    background-size: cover;
+        /* background-image: url(${linebackground});
+        background-repeat: no-repeat;
+        background-size: cover; */
 
     .portfolioDescripTitle{
         word-break: break-all;
@@ -102,8 +102,13 @@ export const PortfolioShrinkingWrapper = styled(FullWidthComponentWrapper)`
         display: flex;
         align-items: center;
     }
-
     @media (min-width: 450px) {
         width: 40%;
+    }
+
+    @media only screen and (max-width: 600px) and (min-width: 320px) { 
+        background-image: url(${linebackground});
+        background-repeat: no-repeat;
+        background-size: cover;
     }
 `;
