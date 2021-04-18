@@ -31,14 +31,12 @@ export const Warning = styled.div`
     .icon{
         width: 50px;
         height: 40px;
-        background: yellow;
-        border: 1px solid orange;
+        background-image: linear-gradient( 112.7deg,  rgba(253,185,83,1) 11.4%, rgba(255,138,0,1) 70.2% );
         display: flex;
         align-items: center;
         justify-content: center;
-        color: red;
         border-bottom-left-radius: 10px;
-       border-top-left-radius: 10px;
+        border-top-left-radius: 10px;
     }
     .message{
         display: flex;
@@ -54,10 +52,10 @@ export const Warning = styled.div`
             margin-left: 10px;
             height: 30px;
             width: 70px;
-            background: blue;
+            background-image: linear-gradient( 112.7deg,  rgba(253,185,83,1) 11.4%, rgba(255,138,0,1) 70.2% );
             color: white;
             border: none;
-            border-radius:28px;
+            border-radius:10px;
             :active {
                 position:relative;
                 top:1px;
@@ -69,4 +67,8 @@ export const Warning = styled.div`
             }
         }
     }
+`;
+
+export const PortfolioWrapper = styled.div`
+    padding: 5px;
 `;
