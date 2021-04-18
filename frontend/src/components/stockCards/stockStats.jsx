@@ -7,13 +7,9 @@ import {StockPageInfoWrapper} from "../../styles/components/stockStyles/stockPag
 const StockStats = ({keyStats}) => {
 
     return (
-        <>
-      
- 
             <StockPageInfoWrapper>
                 <tbody>
-                {
-                    keyStats ?
+                {keyStats ?
                     <>
                     <tr>
                         <td className='key'>Weekly change %:</td>
@@ -36,12 +32,10 @@ const StockStats = ({keyStats}) => {
                         <td>{keyStats.dividendYield.toFixed(2)}</td>
                     </tr>
                     </>
-                        : ''
+                    : <tr><td>Loading</td></tr>
                 }
                 </tbody>
             </StockPageInfoWrapper>
-  
-        </>
     )
 }
 

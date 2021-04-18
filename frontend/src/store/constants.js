@@ -32,7 +32,6 @@ export const ALL_STOCK_SYMBOLS = 'ALL_STOCK_SYMBOLS';
 export const SEARCHED_STOCKS = 'SEARCHED_STOCKS';
 
 // Base URLs to use for fetching
-export const baseUrlLocal = 'http://localhost:8000/api/';
 export const baseUrlServer = 'https://krypstock.propulsion-learn.ch/api/';
 
 // Header types

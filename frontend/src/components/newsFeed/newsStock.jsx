@@ -58,7 +58,7 @@ const NewsStock = (props) => {
                     //         <p className='news_date'>{stringDate} - By {news.source}</p>
                     //     </NewsWrapper>
                     // </ShrinkingComponentWrapper>
-                    <CryptoNewsWrapper>
+                    <CryptoNewsWrapper key={index}>
                     <CryptoHeadlineWrapper>
                         <img onClick={()=> window.open(news.url, "_blank")} src={news.image} alt=""/>
                         <div>
