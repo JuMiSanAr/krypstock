@@ -1,12 +1,13 @@
 import React, {useState} from 'react';
 import DeleteIcon from '@material-ui/icons/Delete';
 import FolderIcon from '@material-ui/icons/Folder';
-import { ShrinkingComponentWrapper } from '../../styles/globalParts/containerStyles';
+// import { ShrinkingComponentWrapper} from '../../styles/globalParts/containerStyles';
+import { PortfolioShrinkingWrapper } from '../../styles/globalParts/containerStyles';
 import deletePortfolioFetch from '../../store/fetches/deletePortfolioFetches';
 import { useDispatch, useSelector } from "react-redux";
 import { DELETE_PORTFOLIO } from '../../store/constants';
 import { useHistory } from "react-router-dom";
-import {IconTitle, Delete, Warning} from '../../styles/components/portfolioCollectionStyle'
+import {PortfolioWrapper, IconTitle, Delete, Warning} from '../../styles/components/portfolioCollectionStyle'
 
 
 
@@ -48,13 +49,14 @@ export const PortfolioCollection = () => {
 
             {
                 portfolioData.map((portfolio, index) => {
-                    return (<ShrinkingComponentWrapper key={index}>
-
-                        <IconTitle>
+                    return ( 
+                     <PortfolioShrinkingWrapper key={index}> 
+                     <PortfolioWrapper>
+                        <IconTitle className="portfolioDescripTitle">
                             <FolderIcon fontSize="large" />
-                            <h2 onClick={() => { toPortfolio(portfolio.id) }}>{portfolio.name}</h2>
+                            <h3 onClick={() => { toPortfolio(portfolio.id) }}>{portfolio.name}</h3>
                         </IconTitle>
-                        <div>
+                        <div className="portfolioDescripTitle">
                             <p>
                                 {portfolio.description}
                             </p>
@@ -66,7 +68,7 @@ export const PortfolioCollection = () => {
                                 <i className="fa fa-exclamation-triangle" aria-hidden="true"></i>
                             </span>
                             <div className="message">
-                                <p> Are you sure you want to delete ?</p>
+                                <p>Delete this porfolio ?</p>
                                 <button onClick={() => handleDelete(portfolio.id)}>Delete</button>
                             </div>
                             <div onClick={() => setWarning(false)} className="closeIcon">
@@ -80,8 +82,9 @@ export const PortfolioCollection = () => {
                         <Delete>
                             <DeleteIcon onClick={() => handleWarning (portfolio.id)} />
                         </Delete>
-
-                    </ShrinkingComponentWrapper>)
+                        </PortfolioWrapper>
+                     </PortfolioShrinkingWrapper> 
+                    )
                 })
             }
         </>

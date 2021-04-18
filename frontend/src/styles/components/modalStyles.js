@@ -16,7 +16,8 @@ export const Background = styled.div `
   justify-content: center;
   align-items: center;
   z-index: 999;
-  margin-top: -124px;
+  /* margin-top: -124px; */
+  margin-top: -80px;
 `;
 
 export const ModalContent = styled.div `
@@ -150,5 +151,7 @@ export const BackgroundOverview = styled.div `
   justify-content: center;
   align-items: center;
   z-index: 999;
-  margin-top: -165px;
+  /* margin-top: -165px; */
+  margin-top: -120px;
+   
 `;
