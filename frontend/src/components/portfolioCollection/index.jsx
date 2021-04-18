@@ -1,12 +1,13 @@
 import React, {useState} from 'react';
 import DeleteIcon from '@material-ui/icons/Delete';
 import FolderIcon from '@material-ui/icons/Folder';
-import { ShrinkingComponentWrapper } from '../../styles/globalParts/containerStyles';
+// import { ShrinkingComponentWrapper} from '../../styles/globalParts/containerStyles';
+import { PortfolioShrinkingWrapper } from '../../styles/globalParts/containerStyles';
 import deletePortfolioFetch from '../../store/fetches/deletePortfolioFetches';
 import { useDispatch, useSelector } from "react-redux";
 import { DELETE_PORTFOLIO } from '../../store/constants';
 import { useHistory } from "react-router-dom";
-import {IconTitle, Delete, Warning} from '../../styles/components/portfolioCollectionStyle'
+import {PortfolioWrapper, IconTitle, Delete, Warning} from '../../styles/components/portfolioCollectionStyle'
 
 
 
@@ -49,7 +50,8 @@ export const PortfolioCollection = () => {
             {
                 portfolioData.map((portfolio, index) => {
                     return ( 
-                     <ShrinkingComponentWrapper key={index}> 
+                     <PortfolioShrinkingWrapper key={index}> 
+                     <PortfolioWrapper>
                         <IconTitle className="portfolioDescripTitle">
                             <FolderIcon fontSize="large" />
                             <h3 onClick={() => { toPortfolio(portfolio.id) }}>{portfolio.name}</h3>
@@ -80,7 +82,8 @@ export const PortfolioCollection = () => {
                         <Delete>
                             <DeleteIcon onClick={() => handleWarning (portfolio.id)} />
                         </Delete>
-                     </ShrinkingComponentWrapper> 
+                        </PortfolioWrapper>
+                     </PortfolioShrinkingWrapper> 
                     )
                 })
             }
