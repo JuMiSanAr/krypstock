@@ -14,6 +14,7 @@ export const FooterWrapper = styled.div `
     padding-top: 1rem;
     width: 100vw;
     background: white;
+    z-index: 4;
     /* background: ${({ theme }) => theme === lightTheme ? lightTheme.footerBackground : darkTheme.footerBackground}; */
 
     * {
@@ -26,7 +27,7 @@ export const FooterWrapper = styled.div `
     }
     i{
         font-size: 21px;  
-        color:purple;
+        color: #6419c3;
     }
 
     @media (min-width: 450px) {
