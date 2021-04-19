@@ -15,6 +15,7 @@ export const FooterWrapper = styled.div `
     padding-top: 1rem;
     width: 100vw;
     background: white;
+    z-index: 4;
     /* background: ${({ theme }) => theme === lightTheme ? lightTheme.footerBackground : darkTheme.footerBackground}; */
 
     i{
