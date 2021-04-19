@@ -46,9 +46,8 @@ const StockPage = () => {
     return (
         <>
             <AllComponentsWrapper>
-
-                <ShrinkingComponentWrapper>
-                    <h1 className='stockCompanyTitle'>{companyName}</h1>
+            <h1 className='stockCompanyTitle'>{companyName}</h1>
+                <ShrinkingComponentWrapper>   
                     <StockPageInfoCard symbol={symbol} setCompanyName={setCompanyName} setCompanyMarket={setCompanyMarket} />
                 </ShrinkingComponentWrapper>
                 <ShrinkingComponentWrapper>

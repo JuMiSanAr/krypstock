@@ -1,17 +1,20 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Background, CloseModalButton, ContentWrapper, ModalContent, CryptStockFormSelectWrapper, CrypStockTransacWrapper } from '../../styles/components/modalStyles';
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { ButtonWrapper, BuySelectButton, BuySellSelectorWrapper, SellSelectButton} from '../../styles/components/cryptoStyles/quickTradeStyles'
 import { Link } from 'react-router-dom';
 import { ShrinkingComponentWrapper } from '../../styles/globalParts/containerStyles';
 import { postNewTransactionFetch } from '../../store/fetches/transactionFetches';
 import portfoliosFetch from '../../store/fetches/portfoliosFetches';
 import { portfoliosAction } from '../../store/actions/portfoliosAction';
-import { useDispatch } from "react-redux";
 import { TitleSpan } from '../../styles/globalParts/textStyles';
+import { allCryptosAction } from '../../store/actions/cryptoActions';
 
 
 export const CryptoModal = ({ showCryptoModal, setCryptoShowModal, symbol }) => {
+
+    const dispatch = useDispatch();
+
     const allPortfoliosArray = useSelector(state => state.portfoliosReducer.portfolios)
     const [buySell, setBuySell] = useState('B');
     const [portfolioID, setPortfolioID] = useState();
@@ -22,10 +25,6 @@ export const CryptoModal = ({ showCryptoModal, setCryptoShowModal, symbol }) => 
     const allCryptos = useSelector(state => state.cryptoReducer.allCryptos);
     const [bidPrice, setBidPrice] = useState(0);
     const [askPrice, setAskPrice] = useState(0);
-
-    console.log('allCryptos', allCryptos)
-
-    const dispatch = useDispatch();
 
     const submitHandler = (e) => {
         e.preventDefault();
@@ -46,6 +45,7 @@ export const CryptoModal = ({ showCryptoModal, setCryptoShowModal, symbol }) => 
             setCryptoShowModal(false);
         }
     };
+
 
     useEffect(() => {
         const crypto = allCryptos.filter(crypto => crypto.symbol === symbol);
@@ -86,7 +86,7 @@ export const CryptoModal = ({ showCryptoModal, setCryptoShowModal, symbol }) => 
                                 <form onSubmit={submitHandler}>
                                     <CryptStockFormSelectWrapper>
                                         <div className="title">
-                                            <TitleSpan>Crypto Quick Trade</TitleSpan>
+                                            <TitleSpan>Crypto Trade</TitleSpan>
                                         </div>
                                         {
                                             !allPortfoliosArray || allPortfoliosArray.length === 0 ?
