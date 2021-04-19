@@ -13,7 +13,6 @@ export const StockPageDataWrapper = styled.div`
 display: flex;
 flex-direction: column;
 justify-content: space-around;
-padding-left: 10px;
 padding-top:20px;
 a{
     text-decoration: none;
@@ -80,11 +79,11 @@ export const StockPageInfoWrapper = styled.table `
         padding-left: 30px;
     }
 
-    tr:first-child th:first-child {
+    tr:first-child td:first-child {
         border-top-left-radius: 6px;
     }
 
-    tr:first-child th:last-child {
+    tr:first-child td:last-child {
         border-top-right-radius: 6px;
     }
 

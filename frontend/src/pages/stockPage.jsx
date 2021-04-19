@@ -52,8 +52,6 @@ const StockPage = () => {
             <AllComponentsWrapper>
                 <ShrinkingComponentWrapper>
                     <FormSelectWrapper>
-                    <Symbol className='stockCompanyTitle'>{symbol}</Symbol>
-                    
                         <div>
                             <ChartTimeframeButton setChart={setChartTimeframe} />
                         </div>
@@ -81,7 +79,7 @@ const StockPage = () => {
                     <StockPageInfoCard symbol={symbol} setCompanyName={setCompanyName} setCompanyMarket={setCompanyMarket} />
                 </ShrinkingComponentWrapper>
                 <ShrinkingComponentWrapper>
-                    <h3 style={{padding: '10px'}}>Key stats</h3>
+                    <h3>Key stats</h3>
                     <StockStats keyStats={keyStats} />
                 </ShrinkingComponentWrapper>
                 <ShrinkingComponentWrapper>
