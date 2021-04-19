@@ -51,7 +51,7 @@ const WorstPerformingStocks = ({loss_stock}) => {
                     .map((data, index) => {
                         return (
                             <tr key={index}>
-                                <td className="clickStock" onClick={()=> specificStockPage(data.symbol)}>{data.companyName}</td>
+                                <td className="clickStock" onClick={()=> specificStockPage(data.symbol)}>{data.symbol}</td>
                                 <td>{data.latestPrice.toFixed(2)}</td>
                                 <td>
                                     {data.changePercent > 0 ? <i className="fas fa-angle-double-up" style={{color: 'green'}}></i> : data.changePercent < 0 ? <i className="fas fa-angle-double-down" style={{color: 'red'}}></i> : null}    
