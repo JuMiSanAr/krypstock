@@ -35,7 +35,7 @@ const NewsStock = (props) => {
 
     return (
         <>
-            <h3>Latest news about {props.companyName}</h3>
+            <h3 style={{padding: '10px'}}>Latest news about {props.companyName}</h3>
             {allNews.length > 0 ? allNews.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((news, index) => {
 
                 const date = new Date(news.datetime);
@@ -92,5 +92,5 @@ const NewsStock = (props) => {
     )
 }
 
-export default NewsStock
+export default NewsStock;
 
