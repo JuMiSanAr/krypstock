@@ -46,7 +46,7 @@ const TrendyCrypto = () => {
     return (
         <ShrinkingComponentWrapper>
             <TitleSpan>Top 20 Trendy Currencies</TitleSpan>
-            <Table id="crypto">
+            <Table id="crypto-trendy">
                 {
                     trendyCryptos && trendyCryptos.length === dataAmount ?
                         <thead>
@@ -68,10 +68,10 @@ const TrendyCrypto = () => {
                                     <td>{trendyCryptos.indexOf(crypto) + 1}</td>
                                     <td className="clickCrypto" onClick={() => specificCryptoPage(crypto.symbol)}>{crypto.symbol.slice(0, -4)}</td>
                                     <td>{Number(crypto.lastPrice).toFixed(2)}</td>
-                                    <td>
+                                    <td className="change">
                                         {crypto.priceChangePercent > 0 ? <i className="fas fa-angle-double-up" style={{ color: 'green' }}></i> : crypto.priceChangePercent < 0 ? <i className="fas fa-angle-double-down" style={{ color: 'red' }}></i> : null}
                                         {Math.abs(Number(crypto.priceChangePercent)).toFixed(2)}%
-                            </td>
+                                    </td>
                                     <td>{(crypto.quoteVolume / 1000000).toFixed(2)}</td>
                                 </tr>)
                         :
