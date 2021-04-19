@@ -92,5 +92,5 @@ const NewsStock = (props) => {
     )
 }
 
-export default NewsStock
+export default NewsStock;
 
