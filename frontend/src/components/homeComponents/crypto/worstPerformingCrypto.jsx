@@ -45,7 +45,7 @@ const WorstPerformingCrypto = () => {
                     worstCryptos !== [] && worstCryptos.length === dataAmount ?
                         <thead>
                             <tr>
-                                <th colSpan='2'>Currency</th>
+                                <th>Currency</th>
                                 <th>Price</th>
                                 <th>Change %</th>
                             </tr>
@@ -58,7 +58,7 @@ const WorstPerformingCrypto = () => {
                         worstCryptos.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                             .map((crypto, index) =>
                                 <tr key={index}>
-                                    <td>{worstCryptos.indexOf(crypto) + 1}</td>
+                                    {/* <td>{worstCryptos.indexOf(crypto) + 1}</td> */}
                                     <td className="clickCrypto" onClick={() => specificCryptoPage(crypto.symbol)}>{crypto.symbol.slice(0, -4)}</td>
                                     <td>{Number(crypto.lastPrice).toFixed(2)}</td>
                                     <td>
