@@ -15,12 +15,17 @@ export const Table = styled.table `
     height: 260px;
     margin-top: 1rem;
 
+    .change {
+        white-space: nowrap;
+    }
+
+
     .clickCrypto{
         cursor: pointer;
     }
     
     thead{
-        background: ${props => props.id === 'crypto' ? allTheme.greenGradient : props.id === "trans-history" ? allTheme.turquoiseGradient : props.id === 'crypto-worst' ? allTheme.redGradient : allTheme.orangeGradient};
+        background: ${props => props.id === 'crypto-trendy' ? allTheme.yellowGradient : props.id === "trans-history" ? allTheme.turquoiseGradient : props.id === 'crypto-worst' ? allTheme.orangeGradient : allTheme.blueGradient};
         /* border-bottom: 1px solid #ffcc00; */
         color: ${({ theme }) => theme === lightTheme ? lightTheme.text : darkTheme.text};
         tr{

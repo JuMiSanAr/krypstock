@@ -50,7 +50,7 @@ const TopPerformingCrypto = () => {
     return (
         <ShrinkingComponentWrapper>
             <TitleSpan>Top 10 Gainers</TitleSpan>
-            <Table id="crypto">
+            <Table id="crypto-top">
                 {
                     topCryptos !== [] && topCryptos.length === dataAmount ?
                         <thead>
