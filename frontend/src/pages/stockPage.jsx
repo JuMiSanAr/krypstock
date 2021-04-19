@@ -12,7 +12,11 @@ import NoIntradayInfo from "../components/charts/noIntradayInfo";
 import PortfoliosWithStock from "../components/stockCards/portfoliosWithStock";
 import StockStats from "../components/stockCards/stockStats";
 import { iexSandboxKey } from "../store/constants";
+<<<<<<< HEAD
+import {Symbol} from "../styles/components/stockStyles/stockPageInfoStyles";
+=======
 import {PageTitleStyleNoMarginBottom, SubPageTitleStyle} from "../styles/globalParts/titleStyles";
+>>>>>>> dev
 
 const StockPage = () => {
 
@@ -51,7 +55,12 @@ const StockPage = () => {
             <AllComponentsWrapper>
                 <ShrinkingComponentWrapper>
                     <FormSelectWrapper>
+<<<<<<< HEAD
+                    <Symbol className='stockCompanyTitle'>{symbol}</Symbol>
+                    
+=======
 
+>>>>>>> dev
                         <div>
                             <ChartTimeframeButton setChart={setChartTimeframe} />
                         </div>
@@ -75,14 +84,11 @@ const StockPage = () => {
                                 :
                                 ''
                         }
-                        
                     </GraphWrapper>
-                </ShrinkingComponentWrapper>
-                <ShrinkingComponentWrapper>   
                     <StockPageInfoCard symbol={symbol} setCompanyName={setCompanyName} setCompanyMarket={setCompanyMarket} />
                 </ShrinkingComponentWrapper>
                 <ShrinkingComponentWrapper>
-                    <h3>Key stats</h3>
+                    <h3 style={{padding: '10px'}}>Key stats</h3>
                     <StockStats keyStats={keyStats} />
                 </ShrinkingComponentWrapper>
                 <ShrinkingComponentWrapper>
