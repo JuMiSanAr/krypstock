@@ -34,10 +34,8 @@ export const CryptoTable = ({symbol, setSymbolCrypto, setCryptoShowModal}) => {
                     !window.getSelection().toString().length ? toSymbolPage() : ''
                 )
             }}>{slicedSymbol}</td>
-            <td>{symbol.lastPrice}</td>
-            <td>{symbol.priceChange}</td>
+            <td>{parseFloat(symbol.lastPrice).toFixed(2)}</td>
             <td>{symbol.priceChangePercent}</td>
-            <td>{symbol.volume}</td>
             {/*<td><TrendingUpIcon/> {symbol.highPrice}</td>*/}
             </tr>
         }
