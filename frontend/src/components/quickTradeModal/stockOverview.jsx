@@ -28,7 +28,7 @@ export const StockModal2 = ({ showStockModal, setStockShowModal, symbol, portfol
         postNewTransactionFetch(buySell, portfolioID, symbol, volume, pricePerShare, type)
             .then(data => {
                 setStockShowModal(false);
-                console.log('in stock quicktrade submitHandler', data)
+                // console.log('in stock quicktrade submitHandler', data)
                 return specificPortfolioFetch(portfolioID)
             })
             .then(data => {
@@ -59,7 +59,7 @@ export const StockModal2 = ({ showStockModal, setStockShowModal, symbol, portfol
             fetch(`https://sandbox.iexapis.com/stable/stock/${symbol}/price?token=${iexSandboxKey}`)
                 .then(res => res.json())
                 .then(data => {
-                    console.log("useState ~ data", data)
+                    // console.log("useState ~ data", data)
                     setMarketPrice(data)
                 })
                 .catch(error => { console.log('error', error) })

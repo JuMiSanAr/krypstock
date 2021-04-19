@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { AllComponentsWrapper, ShrinkingComponentWrapper } from '../styles/globalParts/containerStyles';
-import { CakeChartContainer, PortfolioHeadline, LegendContainer, ColorSquare, LegendWrapper, Headline } from '../styles/components/portfolioStyles';
+import { CakeChartContainer, LegendContainer, ColorSquare, LegendWrapper, Headline } from '../styles/components/portfolioStyles';
 import { PieChart } from 'react-minimal-pie-chart';
 import PortfolioChart from '../components/charts/portfolioChart';
 import AllInvestments from '../components/portfolioComponents/allInvestments';
@@ -11,10 +11,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { allCryptosAction } from '../store/actions/cryptoActions';
 import { allTheme } from '../styles/Themes';
 import { iexSandboxKey } from "../store/constants";
+import { NaviWrapper } from '../styles/components/naviStyles/menuStyles';
+import Burger from '../components/navi/burger';
+import Menu from '../components/navi/menu';
 
 const Portfolio = (props) => {
 
     const [portfolioId, setPortfolioId] = useState('');
+    const [open, setOpen] = useState(false);
 
     const [realtimeDataStock, setRealtimeDataStock] = useState([]);
     const [realtimeDataCrypto, setRealtimeDataCrypto] = useState([]);
@@ -58,7 +62,6 @@ const Portfolio = (props) => {
 
                 if (data.calculations.length >= 7) {
                     const other = data.calculations.filter((value, index) => index > 5);
-                    console.log(other)
                     //data.calculations.splice(6)
 
                     let otherValues = [];
@@ -154,7 +157,15 @@ const Portfolio = (props) => {
 
     return (
         <>
-            <PortfolioHeadline>{portfolioInfo.name}</PortfolioHeadline>
+            <NaviWrapper>
+                <div>
+                    <Burger open={open} setOpen={setOpen}/> 
+                    <Menu open={open} setOpen={setOpen} />  
+                </div>  
+                <div className="heading">
+                <h2>{portfolioInfo.name}</h2>
+                </div>
+                </NaviWrapper>
             <AllComponentsWrapper>
                 {
                     portfolioInfo.calculations ? <AllInvestments realtimeData={realtimeDataCombined}
@@ -189,7 +200,7 @@ const Portfolio = (props) => {
                         <LegendWrapper>
                             {legend.map((legend, index) =>
                                 <LegendContainer key={index}>
-                                    <ColorSquare style={{ backgroundColor: legend.color }}></ColorSquare>
+                                    <ColorSquare style={{ backgroundColor: legend.color }}/>
                                     <p>{legend.title}</p>
                                 </LegendContainer>
                             )}

@@ -1,18 +1,12 @@
 import {lightTheme, darkTheme, allTheme} from '../Themes'
 import styled from 'styled-components';
 
-export const ContentWrapper = styled.div`
-   img{
-       width: 100%;
-       height: 400px;
-       margin-top:-200px;
-   }
-`;
+
 export const SearchPageInput = styled.div`
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    margin-top: -30px;
+ 
     
     select{
        
@@ -74,11 +68,11 @@ export const SearchPageInput = styled.div`
     }
 `;
 
-export const Title = styled.h1`
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-`;
+// export const Title = styled.h1`
+//     width: 100vw;
+//     display: flex;
+//     justify-content: center;
+// `;
 
 export const TableWrapper = styled.div`
     /* padding: 0 30px 0 30px;  */
@@ -119,17 +113,8 @@ export  const Table = styled.table`
     /* border-width: 2px; */
     /* border-style: solid; */
     color: ${({ theme }) => theme === lightTheme ?lightTheme.text : darkTheme.text};
-    .headcol{
-        position: sticky;
-        left: 0;
-        
-        @media only screen and (max-width: 600px) and (min-width: 320px) {
-        color: ${({ theme }) => theme === lightTheme ?lightTheme.text : lightTheme.text};
-         /* background-color:#2B254A; */
-        background-color: white;
-        }
        
-    }
+    } */
     .tableHead{
         padding: 10px;
     }

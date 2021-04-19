@@ -1,26 +1,7 @@
 import styled from "styled-components";
-import {
-    allTheme,
-    darkTheme,
-    lightTheme
-} from "../../Themes";
+import {allTheme, darkTheme, lightTheme} from "../../Themes";
 
-export const Symbol = styled.h1`
-padding-left: 12px;
-`;
-
-export const StockPageDataWrapper = styled.div`
-display: flex;
-flex-direction: column;
-justify-content: space-around;
-padding-top:20px;
-a{
-    text-decoration: none;
-    color: white;
-}
-`;
-
-export const StockPageInfoWrapper = styled.table `
+export const CryptoPageInfoWrapper = styled.table`
     /* * {
         border: solid 1px red;
     } */
@@ -30,10 +11,9 @@ export const StockPageInfoWrapper = styled.table `
     border-collapse: collapse;
     color: ${({ theme }) => theme === lightTheme ? lightTheme.text : darkTheme.text};;
     /* overflow-y: scroll; */
-    height: 260px;
+    height: 1vh;
     /* display: block; */
     /* table-layout: fixed; */
-    
 
     thead{
         background: ${props => props.id === 'trendy-stocks' ? allTheme.orangeGradient : props.id === "transaction-history" ? allTheme.turquoiseGradient : allTheme.greenGradient};
@@ -69,30 +49,30 @@ export const StockPageInfoWrapper = styled.table `
     tbody tr{
         height: 50px;
         /* display: block; */
-        :nth-child(odd) {
+        :nth-child(2n) {
             background: ${({ theme }) => theme === lightTheme ? darkTheme.secondBackground : lightTheme.secondBackground};;
         }
     }
 
     tbody tr td{
-        //text-align: center;
-        padding-left: 30px;
+        text-align: center;
+        padding: 3px;
     }
 
-    tr:first-child td:first-child {
-        border-top-left-radius: 6px;
+    tr:first-child th:first-child {
+        border-top-left-radius: 15px;
     }
 
-    tr:first-child td:last-child {
-        border-top-right-radius: 6px;
+    tr:first-child th:last-child {
+        border-top-right-radius: 15px;
     }
 
     tr:last-child td:first-child {
-    border-bottom-left-radius: 6px;
+    border-bottom-left-radius: 15px;
     }
 
     tr:last-child td:last-child {
-    border-bottom-right-radius: 6px;
+    border-bottom-right-radius: 15px;
     }
     
     .key {

@@ -10,10 +10,16 @@ import { DoubleButtonContainer, LeftButton, RightButton, MainContentWrapper, All
 import { Redirect } from "react-router-dom"
 import transactionFetch from '../store/fetches/transactionFetches';
 import { transactionsAction } from '../store/actions/transactionsAction';
+// import {PageTitleStyle} from "../styles/globalParts/titleStyles";
+import { NaviWrapper } from '../styles/components/naviStyles/menuStyles';
+import Burger from '../components/navi/burger';
+import Menu from '../components/navi/menu';
 
 const Home = () => {
 
     const dispatch = useDispatch();
+
+    const [open, setOpen] = useState(false);
 
     const token = useSelector(state => state.logInReducer.token);
 
@@ -42,22 +48,35 @@ const Home = () => {
     return (
         <>
             {token ?
-                <AllContentWrapper>
-                    <DoubleButtonContainer>
-                        <LeftButton onClick={() => toggleTab(1)} numberClicked={toggleState}>Crypto</LeftButton>
-                        <RightButton onClick={() => toggleTab(2)} numberClicked={toggleState}>Stock</RightButton>
-                    </DoubleButtonContainer>
-                    <MainContentWrapper>
-                        <div className={toggleState === 1 ? "active-content" : "content"}>
-                            <Crypto />
-                        </div>
-                        <div className={toggleState === 2 ? "active-content" : "content"}>
-                            <Stock />
-                        </div>
-                    </MainContentWrapper>
-                </AllContentWrapper>
+                <>
+              
+                <NaviWrapper>
+                <div>
+                    <Burger open={open} setOpen={setOpen}/> 
+                    <Menu open={open} setOpen={setOpen} />  
+                </div>  
+                <div className="heading">
+                <h2>Dashboard</h2>
+                </div>
+                </NaviWrapper>
+                
+                    <AllContentWrapper>
+                        <DoubleButtonContainer>
+                            <LeftButton onClick={() => toggleTab(1)} numberClicked={toggleState}>Crypto</LeftButton>
+                            <RightButton onClick={() => toggleTab(2)} numberClicked={toggleState}>Stock</RightButton>
+                        </DoubleButtonContainer>
+                        <MainContentWrapper>
+                            <div className={toggleState === 1 ? "active-content" : "content"}>
+                                <Crypto/>
+                            </div>
+                            <div className={toggleState === 2 ? "active-content" : "content"}>
+                                <Stock/>
+                            </div>
+                        </MainContentWrapper>
+                    </AllContentWrapper>
+                </>
                 :
-                <Redirect to='/sign-in' />
+                <Redirect to='/sign-in'/>
             }
 
         </>

@@ -7,10 +7,14 @@ import { useDispatch, useSelector } from "react-redux";
 import SingleStockNewsFeed from "../components/newsFeed/singleStockNewsFeed";
 import { ShowMore, HeroHeader, NewsContentWrapper, HeaderTitle } from '../styles/components/stockStyles/newsStyles'
 import SingleCryptoNewsFeed from "../components/newsFeed/singleCryptoNews";
+import { NaviWrapper } from '../styles/components/naviStyles/menuStyles';
+import Burger from '../components/navi/burger';
+import Menu from '../components/navi/menu';
 
 const NewsPage = () => {
 
     const dispatch = useDispatch();
+    const [open, setOpen] = useState(false);
 
     const apiKey = "c9f83156011c478e9d57aafff581a35d"
     const symbol = "crypto"
@@ -75,17 +79,23 @@ const NewsPage = () => {
 
     return (
         <>
-            <HeroHeader>
-            </HeroHeader>
+                <NaviWrapper>
+                <div>
+                    <Burger open={open} setOpen={setOpen}/> 
+                    <Menu open={open} setOpen={setOpen} />  
+                    </div>  
+                    <div className="heading">
+                    <h2>News</h2>
+                    </div>
+                </NaviWrapper>
+          
             <HeaderTitle>
-                <h1>News</h1>
                 <div className="toggleTitle">
                     <span>/</span>
                     <h3 onClick={() => toggleTab(1)} numberClicked={toggleState}>Crypto</h3>
                     <span>/</span>
                     <h3 onClick={() => toggleTab(2)} numberClicked={toggleState}>Stock</h3>
                 </div>
-
             </HeaderTitle>
             <NewsContentWrapper>
 

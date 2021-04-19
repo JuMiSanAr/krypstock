@@ -24,10 +24,6 @@ export const BitCoin = (props) => {
     const [symbol, setSymbol] = useState('BTCUSDT');
     const [symbolInput, setSymbolInput] = useState('');
 
-    // const type = "C";
-    //
-    // const [incorrectSymbol, setIncorrectSymbol] = useState(false);
-
     const [allSymbols, setAllSymbols] = useState([]);
 
     const [stupidToggle, setStupidToggle] = useState(false);
@@ -87,7 +83,7 @@ export const BitCoin = (props) => {
                 <CryptoWrapper>
                     <FormSelectWrapper>
                         <label htmlFor="company-input">Cryptocurrency</label>
-                        <input id="company-input" className="selector" list="cryptoSymbols" onChange={e => setSymbolInput(`${e.target.value}USDT`)} required />
+                        <input id="company-input" placeholder={symbol==='BTCUSDT'?'BTC':(symbol).slice(0,-4)} className="selector" list="cryptoSymbols" onChange={e => setSymbolInput(`${e.target.value}USDT`)} required />
                         <div >
                             <ChartTimeCrypto setChart2={setChartTimeframe2} />
                         </div>

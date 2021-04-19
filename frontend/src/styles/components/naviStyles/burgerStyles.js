@@ -2,12 +2,12 @@ import styled from 'styled-components';
 import {
   darkTheme,
   lightTheme
-} from "../../../styles/Themes";
+} from "../../Themes";
 
 export const StyledBurger = styled.button `
   position: absolute;
-  top: 5%;
-  left: 2rem;
+  top: 4%;
+  left: 0.5rem;
   display: flex;
   flex-direction: column;
   justify-content: space-around;

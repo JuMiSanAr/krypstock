@@ -2,6 +2,7 @@ import React from 'react'
 import styled from "styled-components";
 import FolderIcon from '@material-ui/icons/Folder';
 import {ShrinkingComponentWrapper } from '../../styles/globalParts/containerStyles';
+import {useHistory} from "react-router-dom";
 
 const IconTitle = styled.div`
     display: flex;
@@ -19,6 +20,12 @@ const IconTitle = styled.div`
 
 export const PortfolioCollectionBasic = ({portfolios}) => {
 
+    const history = useHistory();
+
+    const toPortfolio = (id) => {
+        history.push(`/portfolio/${id}`);
+    }
+
     return (
         <>
              {
@@ -26,7 +33,7 @@ export const PortfolioCollectionBasic = ({portfolios}) => {
                     return (<ShrinkingComponentWrapper key={index}>
                         <IconTitle>
                             <FolderIcon fontSize="large" />
-                            <h3><a href={`https://krypstock.propulsion-learn.ch/portfolio/${portfolio.id}`}>{portfolio.name}</a></h3>
+                            <h3 onClick={() => toPortfolio(portfolio.id)}>{portfolio.name}</h3>
                         </IconTitle>
                     </ShrinkingComponentWrapper>)
                 })

@@ -40,7 +40,7 @@ export const MenuWrapper = styled.div `
     height: 80vh;*/
   /*  border: 1px solid #f2f2eb;
     border-width:1px 1px 1px 0;*/
-    padding: 0 20px 0  20px ;
+    /* padding: 0 20px 0  20px ; */
 `;
 
 export const MenuItemWrapper = styled.div `
@@ -82,5 +82,18 @@ export const MenuContentWrapper = styled.div `
     img{
         height: 100px;
         width: 100px;
+    }
+`;
+
+export const NaviWrapper = styled.div`
+    display: flex;
+    justify-content: center;
+    .heading{
+        margin-top: 10px;
+        /* font-size: 16px; */
+    }
+    .portfolio i{
+        font-size: 30px;
+        color: orange;
     }
 `;
