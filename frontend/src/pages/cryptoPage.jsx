@@ -5,6 +5,7 @@ import { AllComponentsWrapper, ShrinkingComponentWrapper } from "../styles/globa
 import NewsCrypto from "../components/newsFeed/newsCrypto";
 import CandlestickCryptoHistorical from "../components/charts/candlesticksCryptoHistorical";
 import ChartTimeCrypto from "../components/charts/chartSelectTimeCrypto";
+import {PageTitleStyle} from "../styles/globalParts/titleStyles";
 
 const CryptoPage = (props) => {
 
@@ -33,8 +34,8 @@ const CryptoPage = (props) => {
 
     return (
         <>
+            <PageTitleStyle>{symbol}</PageTitleStyle>
             <AllComponentsWrapper>
-                <h1>{symbol}</h1>
                 <ShrinkingComponentWrapper>
                  <FormSelectWrapper>
                 <div className="title">
