@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import overviewBg from '../../assets/bg-krypstock.png'
 
 
 export const PortfolioHeadline = styled.h1 `
@@ -42,6 +43,8 @@ align-items: center;
 justify-content: space-around;
 border-radius: 14px;
 margin: 10px 0;
+background: url(${overviewBg});
+background-size: cover;
 i{
     font-size: 14px;
     color: red;

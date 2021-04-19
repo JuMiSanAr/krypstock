@@ -13,7 +13,7 @@ import PortfoliosWithStock from "../components/stockCards/portfoliosWithStock";
 import StockStats from "../components/stockCards/stockStats";
 import { iexSandboxKey } from "../store/constants";
 
-const StockPage = (props) => {
+const StockPage = () => {
 
     const [chartTimeframe, setChartTimeframe] = useState('day');
 

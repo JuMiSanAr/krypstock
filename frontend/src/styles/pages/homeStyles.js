@@ -60,8 +60,4 @@ export const AllContentWrapper = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-
-    /* * {
-        border: solid 1px red;
-    } */
 `
