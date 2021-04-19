@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import {
-    AllComponentsWrapper,
+    AllComponentsWrapper, ShrinkingComponentWrapper,
 } from "../styles/globalParts/containerStyles";
 // import AddBoxIcon from '@material-ui/icons/AddBox';
 import {
-    ContentWrapper, SearchPageInput,
-    Title, SearchWrapperTitle,
-    TableContainerWrapper, Table, TableWrapper
+SearchPageInput,
+SearchWrapperTitle,
+ Table, TableWrapper
 } from '../styles/pages/searchStyles'
 import { CryptoTable } from '../components/searchCryptoStockTable/cryptoTable';
 // import TablePagination from '@material-ui/core/TablePagination';
@@ -18,6 +18,9 @@ import { iexSandboxKey } from "../store/constants";
 import { CryptoModal } from '../components/quickTradeModal/crypto';
 import { StockModal } from '../components/quickTradeModal/stock';
 import { Content } from '../styles/components/buttonStyles';
+import {NaviWrapper } from '../styles/components/naviStyles/menuStyles';
+import Burger from '../components/navi/burger';
+import Menu from '../components/navi/menu';
 
 
 const Search = () => {
@@ -31,6 +34,8 @@ const Search = () => {
 
 
     /***********/
+
+    const [open, setOpen] = useState(false);
 
     const [page, setPage] = React.useState(0);
     const rowsPerPage = 10;
@@ -192,8 +197,15 @@ const Search = () => {
         <> 
                 <CryptoModal  symbol = {symbolCrypto} showCryptoModal={showCryptoModal} setCryptoShowModal={setCryptoShowModal}/> 
                 <StockModal stockSymbol={stockSymbol}  symbol = {stockName} showStockModal={showStockModal} setStockShowModal={setStockShowModal}/> 
-                  <ContentWrapper>
-                      <img src="https://res.cloudinary.com/tennam/image/upload/v1618181574/Propulsion/1393720.jpg" alt="" /> 
+                <NaviWrapper>
+                <div>
+                    <Burger open={open} setOpen={setOpen}/> 
+                    <Menu open={open} setOpen={setOpen} />  
+                </div>  
+                <div className="heading">
+                <h2>Search</h2>
+                </div>
+                </NaviWrapper>
                   <SearchPageInput>
                   <input placeholder="Search..." onChange={event => setSearch(event.target.value)}/>
                         <select name="" onChange={(val) => handleSelectChange(val.target.value)} >
@@ -203,21 +215,22 @@ const Search = () => {
                         </select>
                         <Content type="submit" onClick={() => searchHandler()}><i className="fas fa-search"></i></Content>
                     </SearchPageInput>
-                    </ContentWrapper>
+         
                     <AllComponentsWrapper>
                     <SearchWrapperTitle>
-                    <Title>
+                    {/* <Title>
                         {select}
-                    </Title>
+                    </Title> */}
                 </SearchWrapperTitle>
-                <TableContainerWrapper>
+            
                     {
                         select !== "Stock" ?
+                        <ShrinkingComponentWrapper>
                             <TableWrapper>
                                 {<Table id="crypto">
                                     <thead>
                                         <tr>
-                                            <th className="headcol tableHead">Buy</th>
+                                            <th className="tableHead">Buy</th>
                                             <th className="tableHead">Symbol</th>
                                             <th className="tableHead">Price (Latest)</th>
                                             <th className="tableHead">Change%</th>
@@ -227,32 +240,20 @@ const Search = () => {
                                     <tbody>
                                         {showingCryptos}
                                     </tbody>
-                                    {/*{*/}
-                                    {/*allCryptos && allCryptos.length !== 0 ?*/}
-                                    {/*<TablePagination */}
-                                    {/*    component="div"*/}
-                                    {/*    count={allCryptos.length}*/}
-                                    {/*    page={page}*/}
-                                    {/*    onChangePage={handleChangePage}*/}
-                                    {/*    rowsPerPage={rowsPerPage}*/}
-                                    {/*    rowsPerPageOptions={[]}*/}
-                                    {/*    // style={{color: darkTheme.text}}*/}
-                                    {/*/>*/}
-                                    {/*: null*/}
-
-                                    {/*}*/}
                                 </Table>}
                             </TableWrapper>
+                        </ShrinkingComponentWrapper>
                             : ''
                     }
 
                     {
                         select !== "Crypto" ?
+                        <ShrinkingComponentWrapper>
                             <TableWrapper>
                                 <Table id="stocks">
                                     <thead>
                                         <tr>
-                                            <th className="headcol tableHead">Buy</th>
+                                            <th className="tableHead">Buy</th>
                                             <th className="tableHead">Symbol</th>
                                             <th className="tableHead">Price (Latest)</th>
                                             <th className="tableHead">Change%</th>
@@ -268,9 +269,10 @@ const Search = () => {
                                     </tbody>
                                 </Table>
                             </TableWrapper>
+                        </ShrinkingComponentWrapper>
                             : ''
                     }
-                </TableContainerWrapper>
+             
             </AllComponentsWrapper>
         </>
     )

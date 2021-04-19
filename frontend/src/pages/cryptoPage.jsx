@@ -5,9 +5,14 @@ import { AllComponentsWrapper, ShrinkingComponentWrapper } from "../styles/globa
 import NewsCrypto from "../components/newsFeed/newsCrypto";
 import CandlestickCryptoHistorical from "../components/charts/candlesticksCryptoHistorical";
 import ChartTimeCrypto from "../components/charts/chartSelectTimeCrypto";
-import {PageTitleStyle} from "../styles/globalParts/titleStyles";
+// import {PageTitleStyle} from "../styles/globalParts/titleStyles";
+import { NaviWrapper } from '../styles/components/naviStyles/menuStyles';
+import Burger from '../components/navi/burger';
+import Menu from '../components/navi/menu';
 
 const CryptoPage = (props) => {
+
+    const [open, setOpen] = useState(false);
 
     const [chartTimeframe2, setChartTimeframe2] = useState('1d');
 
@@ -34,7 +39,16 @@ const CryptoPage = (props) => {
 
     return (
         <>
-            <PageTitleStyle>{symbol}</PageTitleStyle>
+            {/* <PageTitleStyle>{symbol}</PageTitleStyle> */}
+            <NaviWrapper>
+                <div>
+                    <Burger open={open} setOpen={setOpen}/> 
+                    <Menu open={open} setOpen={setOpen} />  
+                </div>  
+                <div className="heading">
+                <h2>{symbol}</h2>
+                </div>
+                </NaviWrapper>
             <AllComponentsWrapper>
                 <ShrinkingComponentWrapper>
                  <FormSelectWrapper>
