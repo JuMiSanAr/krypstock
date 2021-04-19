@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Background, CloseModalButton, ContentWrapper, ModalContent, SubmitButton  } from '../../styles/components/modalStyles';
+import { BackgroundPortfolio, CloseModalButton, ContentWrapper, ModalContent, SubmitButton  } from '../../styles/components/modalStyles';
 import { ShrinkingComponentWrapper } from '../../styles/globalParts/containerStyles';
 import createPortfolioFetch from '../../store/fetches/createPortfolioFetches';
 import { useDispatch, useSelector } from "react-redux";
@@ -36,9 +36,12 @@ export const Modal = ({ showModal, setShowModal }) => {
   return (
     <>
       {showModal ? (
-        <Background onClick={closeModal} ref={modalRef}>
+        <BackgroundPortfolio onClick={closeModal} ref={modalRef}>
           <ContentWrapper>
             <ShrinkingComponentWrapper showModal={showModal}>
+              <div className="portfolioTitle">
+              <h3>Add title and descrption to your portfolio</h3>
+              </div>
               <ModalContent>
                 <input required maxlength="30" type="text" name="" onChange={event => setTitle(event.target.value)}
                   value={title} placeholder="Title" />
@@ -56,7 +59,7 @@ export const Modal = ({ showModal, setShowModal }) => {
               />
             </ShrinkingComponentWrapper>
           </ContentWrapper>
-        </Background>
+        </BackgroundPortfolio>
       ) : null}
     </>
   );
