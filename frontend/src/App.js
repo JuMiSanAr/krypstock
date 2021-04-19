@@ -37,7 +37,6 @@ function App() {
 
   if(!mountedComponent) return <div/>
 
-
   return (
     <ThemeProvider setOpen={setOpen} theme={themeMode}>
         <>

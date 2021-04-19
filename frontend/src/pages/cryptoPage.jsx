@@ -6,6 +6,7 @@ import NewsCrypto from "../components/newsFeed/newsCrypto";
 import CandlestickCryptoHistorical from "../components/charts/candlesticksCryptoHistorical";
 import ChartTimeCrypto from "../components/charts/chartSelectTimeCrypto";
 import {PageTitleStyle} from "../styles/globalParts/titleStyles";
+import PortfoliosWithStock from "../components/stockCards/portfoliosWithStock";
 
 const CryptoPage = (props) => {
 
@@ -31,7 +32,6 @@ const CryptoPage = (props) => {
         // cryptoFetcherHistorical(symbol, setHistoricalData, chartTimeframe);
     }, [chartTimeframe2])
 
-
     return (
         <>
             <PageTitleStyle>{symbol}</PageTitleStyle>
@@ -54,6 +54,9 @@ const CryptoPage = (props) => {
                    :
                    <CandlestickCryptoHistorical data={historicalData} symbol={symbol} timeLength={chartTimeframe2}/>}
                     </GraphWrapper>
+                </ShrinkingComponentWrapper>
+                <ShrinkingComponentWrapper>
+                    <PortfoliosWithStock symbol={symbol} />
                 </ShrinkingComponentWrapper>
                 <ShrinkingComponentWrapper>
                     <NewsCrypto symbol={symbol} />
