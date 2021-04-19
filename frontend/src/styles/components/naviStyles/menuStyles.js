@@ -50,6 +50,9 @@ export const MenuItemWrapper = styled.div `
     padding: 5px;
     cursor: pointer;
     margin: 30px 0 30px 0;
+    i{
+        font-size:23px;
+    }
  
     .move-right-1{
        margin: 0 100px 0 20px;
