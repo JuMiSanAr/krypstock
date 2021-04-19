@@ -2,7 +2,8 @@ import styled from 'styled-components';
 import {
     darkTheme,
     lightTheme,
-    allTheme
+    allTheme,
+    fontSize,
 } from "../../Themes";
 
 export const Table = styled.table `
@@ -41,23 +42,24 @@ export const Table = styled.table `
     }
 
     tbody td{
-        text-align: center;
-        padding: 3px;
+        text-align: left;
+        padding-left: 1.5rem;
+        font-size: ${fontSize.fontSizeS}
     }
 
     tr:first-child th:first-child {
-        border-top-left-radius: 15px;
+        border-top-left-radius: 6px;
     }
 
     tr:first-child th:last-child {
-        border-top-right-radius: 15px;
+        border-top-right-radius: 6px;
     }
 
     tr:last-child td:first-child {
-    border-bottom-left-radius: 15px;
+    border-bottom-left-radius: 6px;
     }
 
     tr:last-child td:last-child {
-    border-bottom-right-radius: 15px;
+    border-bottom-right-radius: 6px;
     }
 `;

@@ -12,9 +12,9 @@ import { specificPortfolioAction } from "../../store/actions/specificPortfolioAc
 import { ErrorSpan } from "../../styles/globalParts/textStyles";
 
 
-export const CryptoModal2 = ({ showCryptoModal, setCryptoShowModal, symbol, portfolioname, portfolioID }) => {
+export const CryptoModal2 = ({ showCryptoModal, setCryptoShowModal, symbol, portfolioname, portfolioID, calculations }) => {
     const allPortfoliosArray = useSelector(state => state.portfoliosReducer.portfolios)
-    const [buySell, setBuySell] = useState('');
+    const [buySell, setBuySell] = useState('B');
     const [amount, setAmount] = useState(0);
     const [pricePerCoin, setPricePerCoin] = useState(0);
     const [notEnoughCoins, setNotEnoughCoins] = useState(false);
@@ -34,14 +34,14 @@ export const CryptoModal2 = ({ showCryptoModal, setCryptoShowModal, symbol, port
         postNewTransactionFetch(buySell, portfolioID, symbol, amount, pricePerCoin, type)
             .then(data => {
                 setCryptoShowModal(false)
+                return specificPortfolioFetch(portfolioID)})
+            .then(data => {
+                console.log('fetched', data)
                 console.log(data)
-                // console.log('in crypto quicktrade submitHandler', data)
-                specificPortfolioFetch(portfolioID)
-                    .then(data => {
-                        const action = specificPortfolioAction(data)
-                        dispatch(action)
-                    })
+                const action = specificPortfolioAction(data)
+                dispatch(action)
             })
+
             .catch(error => {
                 // console.log(error.split('')[error.length-1])
                 if (error.toString().slice(-1) === '3') {
@@ -62,10 +62,9 @@ export const CryptoModal2 = ({ showCryptoModal, setCryptoShowModal, symbol, port
 
     useEffect(() => {
         const crypto = allCryptos.filter(crypto => crypto.symbol === symbol);
-        console.log('crypto.symbol', crypto)
-        if (buySell === 'B') {
+        if (buySell === 'B' && crypto[0]) {
             setBidPrice(Number(crypto[0].bidPrice).toFixed(2))
-        } else if (buySell === 'S') {
+        } else if (buySell === 'S' && crypto[0]) {
             setAskPrice(Number(crypto[0].askPrice).toFixed(2));
         }
     }, [symbol, buySell])
@@ -89,7 +88,6 @@ export const CryptoModal2 = ({ showCryptoModal, setCryptoShowModal, symbol, port
     return (
         <>
             {showCryptoModal ? (
-
                 <BackgroundOverview onClick={closeModal} ref={modalRef}>
                     <ContentWrapper>
                         <ShrinkingComponentWrapper showCryptoModal={showCryptoModal}>
@@ -100,8 +98,6 @@ export const CryptoModal2 = ({ showCryptoModal, setCryptoShowModal, symbol, port
                                  
                               
                                         <SellSelectButton buySell={buySell} value="S" onClick={e => setBuySell(e.target.value)}>SELL</SellSelectButton>
-                               
-
                                 </BuySellSelectorWrapper>
                                 {
                                     !allPortfoliosArray || allPortfoliosArray.length === 0 ?
@@ -131,12 +127,20 @@ export const CryptoModal2 = ({ showCryptoModal, setCryptoShowModal, symbol, port
                                                         <p className="selector">{symbol ? symbol.slice(0, -4) : ''}</p>
                                                     </div>
                                                 </div>
-                                                <div className="amountInput">
+                                                <div className="currSelect amountInput">
                                                     <div>
-                                                        <label>Amount</label>
+                                                        <label htmlFor="company-input">Current quantity</label>
                                                     </div>
                                                     <div>
-                                                        <input className="input" type="text" name="amount" placeholder="amount" value={amount} onChange={e => setAmount(e.target.value)} required />
+                                                        <p className="selector">{calculations ? calculations.filter(calculation => calculation.symbol === symbol)[0].quantity.toFixed(2) : ''}</p>
+                                                    </div>
+                                                </div>
+                                                <div className="amountInput">
+                                                    <div>
+                                                        <label>Transaction quantity</label>
+                                                    </div>
+                                                    <div>
+                                                        <input className="input" type="text" name="amount" placeholder="0" onChange={e => setAmount(e.target.value)} required />
                                                     </div>
                                                 </div>
                                                 <div className="amountInput">
@@ -144,7 +148,7 @@ export const CryptoModal2 = ({ showCryptoModal, setCryptoShowModal, symbol, port
                                                         <p>Price per Coin</p>
                                                     </div>
                                                     <div>
-                                                        <input className="input" type="number" placeholder="0" value={pricePerCoin} onChange={e => setPricePerCoin(e.target.value)} required />
+                                                        <input className="input" type="number" placeholder="0" onChange={e => setPricePerCoin(e.target.value)} required />
                                                     </div>
                                                 </div>
                                                 <div className="amountInput">

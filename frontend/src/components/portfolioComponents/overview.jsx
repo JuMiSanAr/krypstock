@@ -86,8 +86,8 @@ const Overview = ({calculations, realtimeData, portfolioname, portfolioID, portf
     }
 
     return (<>
-            <CryptoModal2  symbol = {`${symbolCrypto}`} showCryptoModal={showCryptoModal} setCryptoShowModal={setCryptoShowModal} portfolioname={portfolioname} portfolioID={portfolioID}/>
-            <StockModal2 stockSymbol={stockSymbol}  symbol = {stockSymbol} showStockModal={showStockModal} setStockShowModal={setStockShowModal} portfolioname={portfolioname} portfolioID={portfolioID}/>
+            <CryptoModal2 calculations={calculations} symbol = {`${symbolCrypto}`} showCryptoModal={showCryptoModal} setCryptoShowModal={setCryptoShowModal} portfolioname={portfolioname} portfolioID={portfolioID}/>
+            <StockModal2 calculations={calculations} stockSymbol={stockSymbol}  symbol = {stockSymbol} showStockModal={showStockModal} setStockShowModal={setStockShowModal} portfolioname={portfolioname} portfolioID={portfolioID}/>
             <ShrinkingComponentWrapper>
             <Headline>Overview</Headline>
             {calculations.map((calculation, index) =>

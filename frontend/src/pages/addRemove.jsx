@@ -6,6 +6,7 @@ import { AllComponentsWrapper } from '../styles/globalParts/containerStyles';
 import portfoliosFetch from '../store/fetches/portfoliosFetches';
 import { portfoliosAction } from '../store/actions/portfoliosAction';
 import { CenterH2 } from '../styles/globalParts/textStyles';
+import {PageTitleStyle} from "../styles/globalParts/titleStyles";
 
 const AddRemovePage = () => {
 
@@ -24,7 +25,7 @@ const AddRemovePage = () => {
 
     return (
         <>
-            <CenterH2>Create New Transaction</CenterH2>
+            <PageTitleStyle>New transaction</PageTitleStyle>
             <AllComponentsWrapper>
                 <StockQuickTrade fromPage='AddRemovePage' />
                 <CryptoQuickTrade fromPage='AddRemovePage' />

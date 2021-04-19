@@ -86,6 +86,7 @@ export const CryptStockFormSelectWrapper = styled.div `
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 10px;
     .title{
       color: ${({ theme }) => theme === lightTheme ? lightTheme.text : darkTheme.text};
     }

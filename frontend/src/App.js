@@ -15,6 +15,7 @@ import { PageWrapper } from "./styles/globalParts/containerStyles";
 
 const MenuWrapper = styled.div`
   margin-bottom: 80px;
+  margin-left: 10px;
 `;
 const ToggleButton = styled.div`
     z-index: 999;
@@ -52,11 +53,11 @@ function App() {
               {
                userLoggedMenu ? 
                <MenuWrapper>
-                <Burger  open={open} setOpen={setOpen}/>
-                <Menu  open={open} setOpen={setOpen} />
+                <Burger open={open} setOpen={setOpen}/>
+                <Menu open={open} setOpen={setOpen} />
                 </MenuWrapper> : ""
               }
-              {userLoggedMenu ? 
+              {userLoggedMenu ?
               <PageWrapper>
                 <OurRouter />
               </PageWrapper> 
