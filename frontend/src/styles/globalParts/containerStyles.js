@@ -18,10 +18,10 @@ export const AllComponentsWrapper = styled.div `
 
 export const FullWidthComponentWrapper = styled.div `
     width: 90%;
-    border-radius: 15px;
-    margin: 1rem; 
+    border-radius: 6px;
+    margin: 0.5rem; 
     background: ${({ theme }) => theme === lightTheme ? lightTheme.background : darkTheme.background};
-    padding: 1.5rem;
+    padding: 1rem;
 
     h3 {
         margin-top: 0;

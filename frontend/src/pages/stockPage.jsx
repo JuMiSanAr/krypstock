@@ -46,16 +46,11 @@ const StockPage = () => {
     return (
         <>
             <AllComponentsWrapper>
-            <h1 className='stockCompanyTitle'>{companyName}</h1>
-                <ShrinkingComponentWrapper>   
-                    <StockPageInfoCard symbol={symbol} setCompanyName={setCompanyName} setCompanyMarket={setCompanyMarket} />
-                </ShrinkingComponentWrapper>
                 <ShrinkingComponentWrapper>
                     <FormSelectWrapper>
-                        <div className="title">
-                            <h3>Price Chart</h3>
-                        </div>
-                        <div >
+                    <h1 className='stockCompanyTitle'>{companyName}</h1>
+                    
+                        <div>
                             <ChartTimeframeButton setChart={setChartTimeframe} />
                         </div>
                     </FormSelectWrapper>
@@ -78,7 +73,11 @@ const StockPage = () => {
                                 :
                                 ''
                         }
+                        
                     </GraphWrapper>
+                </ShrinkingComponentWrapper>
+                <ShrinkingComponentWrapper>   
+                    <StockPageInfoCard symbol={symbol} setCompanyName={setCompanyName} setCompanyMarket={setCompanyMarket} />
                 </ShrinkingComponentWrapper>
                 <ShrinkingComponentWrapper>
                     <h3>Key stats</h3>
