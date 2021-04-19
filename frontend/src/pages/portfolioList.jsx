@@ -17,7 +17,7 @@ justify-content: flex-end;
 i{
   position: fixed;
   top: 83vh;
-  font-size: 25px;
+  font-size: 35px;
   margin: 15px;
   z-index: 10;
   color: orange;
