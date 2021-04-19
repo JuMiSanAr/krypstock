@@ -6,6 +6,7 @@ import NewsCrypto from "../components/newsFeed/newsCrypto";
 import CandlestickCryptoHistorical from "../components/charts/candlesticksCryptoHistorical";
 import ChartTimeCrypto from "../components/charts/chartSelectTimeCrypto";
 import CryptoPageInfoCard from "../components/cryptoCards/cryptoPageInfoCard";
+import {CryptoNewsApiAi} from "../components/homeComponents/crypto/cryptoNewsApiAi";
 
 const CryptoPage = (props) => {
 
@@ -46,6 +47,7 @@ const CryptoPage = (props) => {
                  </ShrinkingComponentWrapper>
                  <ShrinkingComponentWrapper>
                 {/*<NewsCrypto symbol={symbol}/>*/}
+                <CryptoNewsApiAi symbol={symbol}/>
             </ShrinkingComponentWrapper>
         {/* <FooterNav/> */}
     </AllComponentsWrapper>

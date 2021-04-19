@@ -6,7 +6,6 @@ import {CryptoPageInfoWrapper} from "../../styles/components/cryptoStyles/crypto
 const CryptoPageInfoCard = (props) => {
     const [fetchedData,setData]=useState([])
 
-
     useEffect(() => {
         fetch('https://api.binance.com/api/v3/ticker/24hr')
             .then(res => res.json())
@@ -30,22 +29,6 @@ const CryptoPageInfoCard = (props) => {
                 <tr>
                     <td className='key'><h1>{props.symbol}</h1></td>
                 </tr>
-                {/*<tr>*/}
-                {/*    <td className='key'>Country:</td>*/}
-                {/*    <td>{cryptoInfo.country}</td>*/}
-                {/*</tr>*/}
-                {/*<tr>*/}
-                {/*    <td className='key'>Exchange:</td>*/}
-                {/*    <td>{cryptoInfo.exchange}</td>*/}
-                {/*</tr>*/}
-                {/*<tr>*/}
-                {/*    <td className='key'>Industry:</td>*/}
-                {/*    <td>{cryptoInfo.industry}</td>*/}
-                {/*</tr>*/}
-                {/*<tr>*/}
-                {/*    <td className='key'>Website:</td>*/}
-                {/*    <td><a href={cryptoInfo.website} target='_blank' rel='noreferrer'>Click here</a></td>*/}
-                {/*</tr>*/}
             </tbody>
         </CryptoPageInfoWrapper>
     )

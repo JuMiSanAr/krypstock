@@ -4,12 +4,24 @@ import { ShrinkingComponentWrapper } from '../../../styles/globalParts/container
 import TablePagination from '@material-ui/core/TablePagination';
 import { darkTheme } from '../../../styles/Themes';
 import { TitleSpan } from '../../../styles/globalParts/textStyles';
+import {EventRegistry, QueryArticlesIter} from "eventregistry";
 
-export const CryptoNews = () => {
+
+export const CryptoNewsApiAi = (props) => {
 
     const [allNews, setAllNews] = useState([]);
-    const apiKey = "c9f83156011c478e9d57aafff581a35d"
-    const symbol = "crypto"
+    const apiKeyAi = "919a6de0-17d5-49df-b7c9-55de20989583"
+
+    var ers = require("eventregistry");
+
+    const er = new EventRegistry({apiKey: apiKeyAi});
+
+    er.getConceptUri("Bitcoin").then((conceptUri) => {
+    const q = new QueryArticlesIter(er, {conceptUri: conceptUri, sortBy: "date"});
+    q.execQuery((item) => {
+        console.info(item);
+    })
+    });
 
     //Pagination
     const [page, setPage] = useState(0);
@@ -23,14 +35,6 @@ export const CryptoNews = () => {
     }, []);
 
     const fetchNews = () => {
-
-        const API_Call = `https://newsapi.org/v2/everything?q=${symbol}&apiKey=${apiKey}`;
-
-        fetch(API_Call)
-            .then(res => res.json())
-            .then(data => {
-                setAllNews(data.articles);
-            });
     }
 
     return (
