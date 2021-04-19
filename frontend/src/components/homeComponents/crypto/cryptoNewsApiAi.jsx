@@ -12,13 +12,14 @@ export const CryptoNewsApiAi = (props) => {
 
     const [allNews, setAllNews] = useState([]);
     const apiKeyAi = "919a6de0-17d5-49df-b7c9-55de20989583"
-    console.log(typeof(props.symbol).slice(0,-4).toUpperCase(),(props.symbol).slice(0,-4).toLowerCase(),(props.symbol).toUpperCase(),(props.symbol).toLowerCase())
+    //console.log(typeof(props.symbol).slice(0,-4).toUpperCase(),(props.symbol).slice(0,-4).toLowerCase(),(props.symbol).toUpperCase(),(props.symbol).toLowerCase())
     const fetchNews = () => {
       const API_Call = `http://eventregistry.org/api/v1/article/getArticles?apiKey=919a6de0-17d5-49df-b7c9-55de20989583`;
       const method = 'POST';
       const body = {
         action: "getArticles",
-        keyword: [(props.symbol).slice(0,-4).toUpperCase(),(props.symbol).slice(0,-4).toLowerCase(),(props.symbol).toUpperCase(),(props.symbol).toLowerCase()],
+        //keyword: [(props.symbol).slice(0,-4).toUpperCase(),(props.symbol).slice(0,-4).toLowerCase(),(props.symbol).toUpperCase(),(props.symbol).toLowerCase()],
+        keyword: 'to be removed',
         articlesPage: 1,
         articlesCount: 5,
         articlesSortBy: "date",
