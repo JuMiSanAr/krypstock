@@ -14,7 +14,7 @@ import { ErrorSpan } from "../../styles/globalParts/textStyles";
 
 export const CryptoModal2 = ({ showCryptoModal, setCryptoShowModal, symbol, portfolioname, portfolioID, calculations }) => {
     const allPortfoliosArray = useSelector(state => state.portfoliosReducer.portfolios)
-    const [buySell, setBuySell] = useState('');
+    const [buySell, setBuySell] = useState('B');
     const [amount, setAmount] = useState(0);
     const [pricePerCoin, setPricePerCoin] = useState(0);
     const [notEnoughCoins, setNotEnoughCoins] = useState(false);
@@ -62,10 +62,9 @@ export const CryptoModal2 = ({ showCryptoModal, setCryptoShowModal, symbol, port
 
     useEffect(() => {
         const crypto = allCryptos.filter(crypto => crypto.symbol === symbol);
-        console.log('crypto.symbol', crypto)
-        if (buySell === 'B') {
+        if (buySell === 'B' && crypto[0]) {
             setBidPrice(Number(crypto[0].bidPrice).toFixed(2))
-        } else if (buySell === 'S') {
+        } else if (buySell === 'S' && crypto[0]) {
             setAskPrice(Number(crypto[0].askPrice).toFixed(2));
         }
     }, [symbol, buySell])
@@ -144,7 +143,7 @@ export const CryptoModal2 = ({ showCryptoModal, setCryptoShowModal, symbol, port
                                                         <label>Transaction quantity</label>
                                                     </div>
                                                     <div>
-                                                        <input className="input" type="text" name="amount" placeholder="amount" value={amount} onChange={e => setAmount(e.target.value)} required />
+                                                        <input className="input" type="text" name="amount" placeholder="0" onChange={e => setAmount(e.target.value)} required />
                                                     </div>
                                                 </div>
                                                 <div className="amountInput">
@@ -152,7 +151,7 @@ export const CryptoModal2 = ({ showCryptoModal, setCryptoShowModal, symbol, port
                                                         <p>Price per Coin</p>
                                                     </div>
                                                     <div>
-                                                        <input className="input" type="number" placeholder="0" value={pricePerCoin} onChange={e => setPricePerCoin(e.target.value)} required />
+                                                        <input className="input" type="number" placeholder="0" onChange={e => setPricePerCoin(e.target.value)} required />
                                                     </div>
                                                 </div>
                                                 <div className="amountInput">
