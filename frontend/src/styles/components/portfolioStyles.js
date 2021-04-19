@@ -2,6 +2,11 @@ import styled from 'styled-components';
 import overviewBg from '../../assets/bg-krypstock.png'
 
 
+export const AllInvestmentsHeadline = styled.p`
+font-weight: 600;
+font-size: 16px;
+`;
+
 export const PortfolioHeadline = styled.h1 `
 font-size: 22px;
 padding-left: 20px;
