@@ -1,14 +1,16 @@
 import React, { useEffect, useRef, useState } from 'react';
 import {  BackgroundOverview, CloseModalButton, ContentWrapper, ModalContent, CrypStockTransacWrapper, SubmitButton } from '../../styles/components/modalStyles';
-import { useSelector } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import { BuySellSelectorWrapper, BuySelectButton, SellSelectButton} from '../../styles/components/cryptoStyles/quickTradeStyles'
 import { Link } from 'react-router-dom';
 import { ShrinkingComponentWrapper } from '../../styles/globalParts/containerStyles';
 import { postNewTransactionFetch } from '../../store/fetches/transactionFetches';
 import { iexSandboxKey } from "../../store/constants";
 import { ErrorSpan } from "../../styles/globalParts/textStyles";
+import {specificPortfolioFetch} from "../../store/fetches/portfoliosFetches";
+import {specificPortfolioAction} from "../../store/actions/specificPortfolioAction";
 
-export const StockModal2 = ({ showStockModal, setStockShowModal, symbol, stockSymbol, portfolioname, portfolioID }) => {
+export const StockModal2 = ({ showStockModal, setStockShowModal, symbol, portfolioname, portfolioID, calculations }) => {
     const allPortfoliosArray = useSelector(state => state.portfoliosReducer.portfolios)
 
     const [buySell, setBuySell] = useState('B');
@@ -18,13 +20,20 @@ export const StockModal2 = ({ showStockModal, setStockShowModal, symbol, stockSy
     const [notEnoughStocks, setNotEnoughStocks] = useState(false);
     const type = "S";
 
+    const dispatch = useDispatch();
+
     const submitHandler = (e) => {
         e.preventDefault();
         // console.log(buySell, portfolioID, symbol, volume, pricePerShare,type)
-        postNewTransactionFetch(buySell, portfolioID, stockSymbol, volume, pricePerShare, type)
+        postNewTransactionFetch(buySell, portfolioID, symbol, volume, pricePerShare, type)
             .then(data => {
                 setStockShowModal(false);
                 console.log('in stock quicktrade submitHandler', data)
+                return specificPortfolioFetch(portfolioID)
+            })
+            .then(data => {
+                const action = specificPortfolioAction(data)
+                dispatch(action)
             })
             .catch(error => {
                 // console.log(error.split('')[error.length-1])
@@ -46,14 +55,15 @@ export const StockModal2 = ({ showStockModal, setStockShowModal, symbol, stockSy
     };
 
     useEffect(() => {
-        fetch(`https://sandbox.iexapis.com/stable/stock/${symbol}/price?token=${iexSandboxKey}`)
-            .then(res => res.json())
-            .then(data => {
-                console.log("useState ~ data", data)
-                setMarketPrice(data)
-            })
-            .catch(error => { console.log('error', error) })
-
+        if (symbol) {
+            fetch(`https://sandbox.iexapis.com/stable/stock/${symbol}/price?token=${iexSandboxKey}`)
+                .then(res => res.json())
+                .then(data => {
+                    console.log("useState ~ data", data)
+                    setMarketPrice(data)
+                })
+                .catch(error => { console.log('error', error) })
+        }
     }, [symbol, buySell])
 
     useEffect(() => {
@@ -69,10 +79,8 @@ export const StockModal2 = ({ showStockModal, setStockShowModal, symbol, stockSy
                         <ShrinkingComponentWrapper showStockModal={showStockModal}>
                             <ModalContent>
                                 <BuySellSelectorWrapper>
-                                
                                         <BuySelectButton buySell={buySell} value="B" onClick={e => setBuySell(e.target.value)}>BUY</BuySelectButton>
                                         <SellSelectButton buySell={buySell} value="S" onClick={e => setBuySell(e.target.value)}>SELL</SellSelectButton>
-                       
                                 </BuySellSelectorWrapper>
                                 {
                                     !allPortfoliosArray || allPortfoliosArray.length === 0 ?
@@ -102,12 +110,20 @@ export const StockModal2 = ({ showStockModal, setStockShowModal, symbol, stockSy
                                                         <p className="selector">{symbol}</p>
                                                     </div>
                                                 </div>
-                                                <div className="amountInput">
+                                                <div className="currSelect amountInput">
                                                     <div>
-                                                        <p>Quantity</p>
+                                                        <label htmlFor="company-input">Current quantity</label>
                                                     </div>
                                                     <div>
-                                                        <input className="input" type="number" placeholder="0" value={volume} onChange={e => setVolume(e.target.value)} required />
+                                                        <p className="selector">{calculations ? calculations.filter(calculation => calculation.symbol === symbol)[0].quantity.toFixed(2) : ''}</p>
+                                                    </div>
+                                                </div>
+                                                <div className="amountInput">
+                                                    <div>
+                                                        <p>Transaction quantity</p>
+                                                    </div>
+                                                    <div>
+                                                        <input className="input" type="number" placeholder="0" onChange={e => setVolume(e.target.value)} required />
                                                     </div>
                                                 </div>
                                                 <div className="amountInput">
@@ -115,7 +131,7 @@ export const StockModal2 = ({ showStockModal, setStockShowModal, symbol, stockSy
                                                         <p>Price per share</p>
                                                     </div>
                                                     <div>
-                                                        <input className="input" type="number" placeholder="0" value={pricePerShare} onChange={e => setPricePerShare(e.target.value)} required />
+                                                        <input className="input" type="number" placeholder="0" onChange={e => setPricePerShare(e.target.value)} required />
                                                     </div>
                                                 </div>
                                                 <div className="amountInput">
