@@ -98,7 +98,7 @@ useEffect(()=>{
     return (
         <>
             <MarketOverview/>
-            <News stock_news={topFiveNews}/>
+            {/* <News stock_news={topFiveNews}/> */}
             <StockQuickTrade fromPage='HomePage' />
             <TransactionHistory />
             <TrendyStocks stock_volume={stockVolumeData} />
