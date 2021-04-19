@@ -14,10 +14,15 @@ import StockStats from "../components/stockCards/stockStats";
 import { iexSandboxKey } from "../store/constants";
 import {Symbol} from "../styles/components/stockStyles/stockPageInfoStyles";
 import {PageTitleStyleNoMarginBottom, SubPageTitleStyle} from "../styles/globalParts/titleStyles";
+import { NaviWrapper } from '../styles/components/naviStyles/menuStyles';
+import Burger from '../components/navi/burger';
+import Menu from '../components/navi/menu';
 
 const StockPage = () => {
 
     const [chartTimeframe, setChartTimeframe] = useState('day');
+
+    const [open, setOpen] = useState(false);
 
     const [companyName, setCompanyName] = useState('');
     const [companyMarket, setCompanyMarket] = useState('');
@@ -47,7 +52,16 @@ const StockPage = () => {
 
     return (
         <>
-            <PageTitleStyleNoMarginBottom>{symbol}</PageTitleStyleNoMarginBottom>
+            {/* <PageTitleStyleNoMarginBottom>{symbol}</PageTitleStyleNoMarginBottom> */}
+            <NaviWrapper>
+                <div>
+                    <Burger open={open} setOpen={setOpen}/> 
+                    <Menu open={open} setOpen={setOpen} />  
+                </div>  
+                <div className="heading">
+                <h2>{symbol}</h2>
+                </div>
+                </NaviWrapper>
             <SubPageTitleStyle>{companyName}</SubPageTitleStyle>
             <AllComponentsWrapper>
                 <ShrinkingComponentWrapper>

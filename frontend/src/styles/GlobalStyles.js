@@ -30,7 +30,7 @@ export const GlobalStyles = createGlobalStyle `
     margin:0;
     background: ${({ theme }) => theme.body};
     color: ${({ theme }) => theme.text};
-    font-family:Helvetica, Arial, Roboto, sans-serif;
+    font-family:Helvetica, Roboto, sans-serif;
     transition: all 0.50s linear;
     box-sizing: border-box;
   }

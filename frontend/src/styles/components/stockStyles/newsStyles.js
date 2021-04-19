@@ -61,6 +61,7 @@ export const HeadlineWrapper = styled.article `
         width: 300px;
         height: 250px;
         cursor: pointer;
+        border-radius: 5px;
     }
     .publishDetial{
         display: flex;
@@ -109,20 +110,20 @@ export const ShowMore = styled.div `
     justify-content: center;
 `;
 
-export const HeroHeader = styled.header `
-  height: 400px;
-  width: 100vw;
-  margin-top: -200px;
-  background-image: url("https://source.unsplash.com/WYd_PkCa1BY");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+// export const HeroHeader = styled.header `
+//   height: 400px;
+//   width: 100vw;
+//   margin-top: -200px;
+//   background-image: url("https://source.unsplash.com/WYd_PkCa1BY");
+//   background-position: center;
+//   background-repeat: no-repeat;
+//   background-size: cover;
+//   display: flex;
+//   justify-content: flex-end;
+//   align-items: center;
 
 
-`;
+// `;
 
 export const NewsContentWrapper = styled.div `
     display: flex;
@@ -141,18 +142,13 @@ export const NewsContentWrapper = styled.div `
 `;
 
 export const HeaderTitle = styled.div `
-    display: flex;
-    justify-content: flex-start;
-    margin: auto;
-    border-left: 2px solid white;
-    border-bottom: 10px solid white;
     h1{
         margin-left: 30px;
     }
     .toggleTitle{
-        margin-left: 100px;
         display: flex;
         align-items: center;
+        margin-right: auto;
         span{
             margin: 0 20px 0 20px;
         }

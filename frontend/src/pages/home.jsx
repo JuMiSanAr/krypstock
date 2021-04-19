@@ -10,11 +10,16 @@ import { DoubleButtonContainer, LeftButton, RightButton, MainContentWrapper, All
 import { Redirect } from "react-router-dom"
 import transactionFetch from '../store/fetches/transactionFetches';
 import { transactionsAction } from '../store/actions/transactionsAction';
-import {PageTitleStyle} from "../styles/globalParts/titleStyles";
+// import {PageTitleStyle} from "../styles/globalParts/titleStyles";
+import { NaviWrapper } from '../styles/components/naviStyles/menuStyles';
+import Burger from '../components/navi/burger';
+import Menu from '../components/navi/menu';
 
 const Home = () => {
 
     const dispatch = useDispatch();
+
+    const [open, setOpen] = useState(false);
 
     const token = useSelector(state => state.logInReducer.token);
 
@@ -44,7 +49,17 @@ const Home = () => {
         <>
             {token ?
                 <>
-                    <PageTitleStyle>Dashboard</PageTitleStyle>
+              
+                <NaviWrapper>
+                <div>
+                    <Burger open={open} setOpen={setOpen}/> 
+                    <Menu open={open} setOpen={setOpen} />  
+                </div>  
+                <div className="heading">
+                <h2>Dashboard</h2>
+                </div>
+                </NaviWrapper>
+                
                     <AllContentWrapper>
                         <DoubleButtonContainer>
                             <LeftButton onClick={() => toggleTab(1)} numberClicked={toggleState}>Crypto</LeftButton>

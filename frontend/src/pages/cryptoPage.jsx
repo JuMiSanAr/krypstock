@@ -2,14 +2,20 @@ import React, {useEffect, useState} from 'react';
 import CandlestickCryptoIntraday from "../components/charts/candlesticksCryptoIntraday";
 import { FormSelectWrapper, GraphWrapper } from "../styles/components/cryptoStyles/bitCoinStyles";
 import { AllComponentsWrapper, ShrinkingComponentWrapper } from "../styles/globalParts/containerStyles";
-import NewsCrypto from "../components/newsFeed/newsCrypto";
+// import NewsCrypto from "../components/newsFeed/newsCrypto";
 import CandlestickCryptoHistorical from "../components/charts/candlesticksCryptoHistorical";
 import ChartTimeCrypto from "../components/charts/chartSelectTimeCrypto";
+// import {PageTitleStyle} from "../styles/globalParts/titleStyles";
+import { NaviWrapper } from '../styles/components/naviStyles/menuStyles';
+import Burger from '../components/navi/burger';
+import Menu from '../components/navi/menu';
 import CryptoPageInfoCard from "../components/cryptoCards/cryptoPageInfoCard";
-import {CryptoNewsApiAi} from "../components/homeComponents/crypto/cryptoNewsApiAi";
-import {PageTitleStyle} from "../styles/globalParts/titleStyles";
+// import {CryptoNewsApiAi} from "../components/homeComponents/crypto/cryptoNewsApiAi";
+
 
 const CryptoPage = (props) => {
+
+    const [open, setOpen] = useState(false);
 
     const [chartTimeframe2, setChartTimeframe2] = useState('1d');
 
@@ -25,7 +31,15 @@ const CryptoPage = (props) => {
 
     return (
         <>
-            <PageTitleStyle>{symbol}</PageTitleStyle>
+            <NaviWrapper>
+                <div>
+                    <Burger open={open} setOpen={setOpen}/> 
+                    <Menu open={open} setOpen={setOpen} />  
+                </div>  
+                <div className="heading">
+                <h2>{symbol}</h2>
+                </div>
+                </NaviWrapper>
             <AllComponentsWrapper>
 
                 <ShrinkingComponentWrapper>
@@ -51,7 +65,6 @@ const CryptoPage = (props) => {
                 {/*<NewsCrypto symbol={symbol}/>*/}
                 {/* <CryptoNewsApiAi symbol={symbol}/> */}
             </ShrinkingComponentWrapper>
-        {/* <FooterNav/> */}
     </AllComponentsWrapper>
         </>
     )

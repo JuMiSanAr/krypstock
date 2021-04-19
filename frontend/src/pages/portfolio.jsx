@@ -11,11 +11,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { allCryptosAction } from '../store/actions/cryptoActions';
 import { allTheme } from '../styles/Themes';
 import { iexSandboxKey } from "../store/constants";
-import {PageTitleStyle} from "../styles/globalParts/titleStyles";
+import { NaviWrapper } from '../styles/components/naviStyles/menuStyles';
+import Burger from '../components/navi/burger';
+import Menu from '../components/navi/menu';
 
 const Portfolio = (props) => {
 
     const [portfolioId, setPortfolioId] = useState('');
+    const [open, setOpen] = useState(false);
 
     const [realtimeDataStock, setRealtimeDataStock] = useState([]);
     const [realtimeDataCrypto, setRealtimeDataCrypto] = useState([]);
@@ -154,7 +157,15 @@ const Portfolio = (props) => {
 
     return (
         <>
-            <PageTitleStyle>{portfolioInfo.name}</PageTitleStyle>
+            <NaviWrapper>
+                <div>
+                    <Burger open={open} setOpen={setOpen}/> 
+                    <Menu open={open} setOpen={setOpen} />  
+                </div>  
+                <div className="heading">
+                <h2>{portfolioInfo.name}</h2>
+                </div>
+                </NaviWrapper>
             <AllComponentsWrapper>
                 {
                     portfolioInfo.calculations ? <AllInvestments realtimeData={realtimeDataCombined}
