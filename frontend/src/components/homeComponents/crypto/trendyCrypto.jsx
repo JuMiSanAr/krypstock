@@ -51,7 +51,7 @@ const TrendyCrypto = () => {
                     trendyCryptos && trendyCryptos.length === dataAmount ?
                         <thead>
                             <tr>
-                                <th colSpan='2'>Currency</th>
+                                <th>Currency</th>
                                 <th>Price</th>
                                 <th>Change %</th>
                                 <th>Volume (M)</th>
@@ -65,7 +65,7 @@ const TrendyCrypto = () => {
                         trendyCryptos.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                             .map((crypto, index) =>
                                 <tr key={index}>
-                                    <td>{trendyCryptos.indexOf(crypto) + 1}</td>
+                                    {/* <td>{trendyCryptos.indexOf(crypto) + 1}</td> */}
                                     <td className="clickCrypto" onClick={() => specificCryptoPage(crypto.symbol)}>{crypto.symbol.slice(0, -4)}</td>
                                     <td>{Number(crypto.lastPrice).toFixed(2)}</td>
                                     <td className="change">
