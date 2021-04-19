@@ -11,7 +11,7 @@ import { ErrorSpan } from "../../styles/globalParts/textStyles";
 export const StockModal2 = ({ showStockModal, setStockShowModal, symbol, stockSymbol, portfolioname, portfolioID }) => {
     const allPortfoliosArray = useSelector(state => state.portfoliosReducer.portfolios)
 
-    const [buySell, setBuySell] = useState();
+    const [buySell, setBuySell] = useState('B');
     const [volume, setVolume] = useState();
     const [pricePerShare, setPricePerShare] = useState();
     const [marketPrice, setMarketPrice] = useState();
