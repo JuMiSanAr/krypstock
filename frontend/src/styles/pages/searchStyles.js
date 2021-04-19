@@ -11,7 +11,7 @@ export const SearchPageInput = styled.div`
     select{
        
         height: 45px;
-        width: 52%;
+        width: 56%;
         /* margin-right: 5px; */
         border: #d7d5de 2px solid;
         border-radius: 10px;
@@ -32,7 +32,7 @@ export const SearchPageInput = styled.div`
     }
     input{
         height: 43px;
-        width: 80%;
+        width: 84%;
         margin-right: 5px;
         border:none;
         border-radius: 10px;

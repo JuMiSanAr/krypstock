@@ -10,6 +10,7 @@ import SingleCryptoNewsFeed from "../components/newsFeed/singleCryptoNews";
 import { NaviWrapper } from '../styles/components/naviStyles/menuStyles';
 import Burger from '../components/navi/burger';
 import Menu from '../components/navi/menu';
+import { ShrinkingComponentWrapper } from '../styles/globalParts/containerStyles';
 
 const NewsPage = () => {
 
@@ -97,6 +98,7 @@ const NewsPage = () => {
                     <h3 onClick={() => toggleTab(2)} numberClicked={toggleState}>Stock</h3>
                 </div>
             </HeaderTitle>
+            <ShrinkingComponentWrapper>
             <NewsContentWrapper>
 
                 {/* <h1>News</h1> */}
@@ -124,6 +126,7 @@ const NewsPage = () => {
                         : ''
                 }
             </NewsContentWrapper>
+            
             <ShowMore>
                 {
                     newsNumberShown < 30 ?
@@ -132,6 +135,7 @@ const NewsPage = () => {
                 }
             </ShowMore>
 
+        </ShrinkingComponentWrapper>
         </>
     )
 }
