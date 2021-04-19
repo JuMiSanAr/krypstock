@@ -13,15 +13,20 @@ export const FooterWrapper = styled.div `
     padding-bottom: 1rem;
     padding-top: 1rem;
     width: 100vw;
-    background: ${({ theme }) => theme === lightTheme ? lightTheme.footerBackground : darkTheme.footerBackground};
+    background: white;
+    /* background: ${({ theme }) => theme === lightTheme ? lightTheme.footerBackground : darkTheme.footerBackground}; */
 
     * {
         color: ${({ theme }) => theme === lightTheme ? darkTheme.text : lightTheme.text};
         
         :hover {
             cursor: pointer;
-            color: white;
+            /* color: white; */
         }
+    }
+    i{
+        font-size: 21px;  
+        color:purple;
     }
 
     @media (min-width: 450px) {
