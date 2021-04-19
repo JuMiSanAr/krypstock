@@ -5,6 +5,8 @@ import { AllComponentsWrapper, ShrinkingComponentWrapper } from "../styles/globa
 import NewsCrypto from "../components/newsFeed/newsCrypto";
 import CandlestickCryptoHistorical from "../components/charts/candlesticksCryptoHistorical";
 import ChartTimeCrypto from "../components/charts/chartSelectTimeCrypto";
+import CryptoPageInfoCard from "../components/cryptoCards/cryptoPageInfoCard";
+import {CryptoNewsApiAi} from "../components/homeComponents/crypto/cryptoNewsApiAi";
 import {PageTitleStyle} from "../styles/globalParts/titleStyles";
 
 const CryptoPage = (props) => {
@@ -17,18 +19,7 @@ const CryptoPage = (props) => {
     const url = window.location.href;
     const symbol = url.substring(url.lastIndexOf('/') + 1).toUpperCase();
 
-    // const symbol = ('btcusdt').toUpperCase();
-
-    // useEffect(() => {
-    //  WebSocket.close();
-    // }, []);
-
-    // useEffect(() => {
-    //     // cryptoFetcherHistorical(symbol, setHistoricalData, chartTimeframe);
-    // }, [chartTimeframe])
-
     useEffect(() => {
-        // cryptoFetcherHistorical(symbol, setHistoricalData, chartTimeframe);
     }, [chartTimeframe2])
 
 
@@ -36,14 +27,15 @@ const CryptoPage = (props) => {
         <>
             <PageTitleStyle>{symbol}</PageTitleStyle>
             <AllComponentsWrapper>
+
+                <ShrinkingComponentWrapper>
+                    <CryptoPageInfoCard symbol={symbol}/>
+                </ShrinkingComponentWrapper>
                 <ShrinkingComponentWrapper>
                  <FormSelectWrapper>
                 <div className="title">
                    <h3>Price Chart</h3>
                 </div>
-                {/*<div >Ticker*/}
-                {/*    <ChartTimeCryptoframeButton setChart={setChartTimeframe}/>*/}
-                {/*</div>*/}
                 <div >Time
                     <ChartTimeCrypto setChart2={setChartTimeframe2}/>
                 </div>
@@ -54,12 +46,13 @@ const CryptoPage = (props) => {
                    :
                    <CandlestickCryptoHistorical data={historicalData} symbol={symbol} timeLength={chartTimeframe2}/>}
                     </GraphWrapper>
-                </ShrinkingComponentWrapper>
-                <ShrinkingComponentWrapper>
-                    <NewsCrypto symbol={symbol} />
-                </ShrinkingComponentWrapper>
-                {/* <FooterNav/> */}
-            </AllComponentsWrapper>
+                 </ShrinkingComponentWrapper>
+                 <ShrinkingComponentWrapper>
+                {/*<NewsCrypto symbol={symbol}/>*/}
+                {/* <CryptoNewsApiAi symbol={symbol}/> */}
+            </ShrinkingComponentWrapper>
+        {/* <FooterNav/> */}
+    </AllComponentsWrapper>
         </>
     )
 }

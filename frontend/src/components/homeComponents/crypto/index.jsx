@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import TopPerformingCrypto from './topPerformingCrypto';
 import WorstPerformingCrypto from './worstPerformingCrypto';
 import TrendyCrypto from './trendyCrypto';
+import { CryptoNewsApiAi } from './cryptoNewsApiAi';
 
 export const Crypto = () => {
 
@@ -39,6 +40,7 @@ export const Crypto = () => {
             <BitCoin />
             <TrendyCrypto />
             {/*<CryptoNews />*/}
+            <CryptoNewsApiAi/>
             <TopPerformingCrypto />
             <WorstPerformingCrypto />
             <TransactionHistory />
