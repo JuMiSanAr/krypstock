@@ -89,7 +89,6 @@ export const CryptoModal2 = ({ showCryptoModal, setCryptoShowModal, symbol, port
     return (
         <>
             {showCryptoModal ? (
-
                 <BackgroundOverview onClick={closeModal} ref={modalRef}>
                     <ContentWrapper>
                         <ShrinkingComponentWrapper showCryptoModal={showCryptoModal}>
@@ -100,8 +99,6 @@ export const CryptoModal2 = ({ showCryptoModal, setCryptoShowModal, symbol, port
                                  
                               
                                         <SellSelectButton buySell={buySell} value="S" onClick={e => setBuySell(e.target.value)}>SELL</SellSelectButton>
-                               
-
                                 </BuySellSelectorWrapper>
                                 {
                                     !allPortfoliosArray || allPortfoliosArray.length === 0 ?

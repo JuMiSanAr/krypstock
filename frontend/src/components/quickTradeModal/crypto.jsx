@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Background, CloseModalButton, ContentWrapper, ModalContent, CryptStockFormSelectWrapper, CrypStockTransacWrapper } from '../../styles/components/modalStyles';
 import { useSelector } from "react-redux";
-import { ButtonWrapper} from '../../styles/components/cryptoStyles/quickTradeStyles'
+import { ButtonWrapper, BuySelectButton, BuySellSelectorWrapper, SellSelectButton} from '../../styles/components/cryptoStyles/quickTradeStyles'
 import { Link } from 'react-router-dom';
 import { ShrinkingComponentWrapper } from '../../styles/globalParts/containerStyles';
 import { postNewTransactionFetch } from '../../store/fetches/transactionFetches';
@@ -13,7 +13,7 @@ import { TitleSpan } from '../../styles/globalParts/textStyles';
 
 export const CryptoModal = ({ showCryptoModal, setCryptoShowModal, symbol }) => {
     const allPortfoliosArray = useSelector(state => state.portfoliosReducer.portfolios)
-    const [buySell, setBuySell] = useState('');
+    const [buySell, setBuySell] = useState('B');
     const [portfolioID, setPortfolioID] = useState();
     const [amount, setAmount] = useState(0);
     const [pricePerCoin, setPricePerCoin] = useState(0);
@@ -22,6 +22,8 @@ export const CryptoModal = ({ showCryptoModal, setCryptoShowModal, symbol }) => 
     const allCryptos = useSelector(state => state.cryptoReducer.allCryptos);
     const [bidPrice, setBidPrice] = useState(0);
     const [askPrice, setAskPrice] = useState(0);
+
+    console.log('allCryptos', allCryptos)
 
     const dispatch = useDispatch();
 
@@ -47,15 +49,15 @@ export const CryptoModal = ({ showCryptoModal, setCryptoShowModal, symbol }) => 
 
     useEffect(() => {
         const crypto = allCryptos.filter(crypto => crypto.symbol === symbol);
-        if (buySell === 'B') {
+        if (buySell === 'B' && crypto.length > 0) {
             setBidPrice(Number(crypto[0].bidPrice).toFixed(2))
-        } else if (buySell === 'S') {
+        } else if (buySell === 'S' && crypto.length > 0) {
             setAskPrice(Number(crypto[0].askPrice).toFixed(2));
         }
         // else {
         //     console.log('symbol', symbol)
         // }
-    }, [symbol, buySell])
+    }, [symbol, buySell, allCryptos])
 
 
     // fetching portfolio list here becuase it takes time
@@ -90,17 +92,10 @@ export const CryptoModal = ({ showCryptoModal, setCryptoShowModal, symbol }) => 
                                             !allPortfoliosArray || allPortfoliosArray.length === 0 ?
                                                 null
                                                 :
-                                                <div className="buySell">
-                                                    <select className="selector" defaultValue={'DEFAULT'} onChange={e => setBuySell(e.target.value)} required>
-                                                        <option value="DEFAULT" disabled>Select</option>
-                                                        <option value="B">Buy</option>
-                                                        <option value="S">Sell</option>
-                                                    </select>
-                                                </div>
-                                                // <BuySellSelectorWrapper>
-                                                //     <BuySelectButton type="button" buySell={buySell} onClick={e => setBuySell("B")}>BUY</BuySelectButton>
-                                                //     <SellSelectButton type="button" buySell={buySell} onClick={e => setBuySell("S")}>SELL</SellSelectButton>
-                                                // </BuySellSelectorWrapper>
+                                                <BuySellSelectorWrapper>
+                                                    <BuySelectButton type="button" buySell={buySell} onClick={e => setBuySell("B")}>BUY</BuySelectButton>
+                                                    <SellSelectButton type="button" buySell={buySell} onClick={e => setBuySell("S")}>SELL</SellSelectButton>
+                                                </BuySellSelectorWrapper>
                                         }
                                     </CryptStockFormSelectWrapper>
                                     {
