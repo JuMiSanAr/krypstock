@@ -41,7 +41,7 @@ export const OverviewBar = styled.div `
 display: flex;
 align-items: center;
 justify-content: space-around;
-border-radius: 14px;
+border-radius: 6px;
 margin: 10px 0;
 background: url(${overviewBg});
 background-size: cover;
@@ -67,6 +67,7 @@ export const HeadlineFont = styled.p `
 font-weight: 600;
 font-size: 12px;
 margin-bottom: 0;
+
 //padding-bottom: 10px;
 `;
 
