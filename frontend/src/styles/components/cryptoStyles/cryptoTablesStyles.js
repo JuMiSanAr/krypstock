@@ -2,7 +2,8 @@ import styled from 'styled-components';
 import {
     darkTheme,
     lightTheme,
-    allTheme
+    allTheme,
+    fontSize,
 } from "../../Themes";
 
 export const Table = styled.table `
@@ -41,8 +42,9 @@ export const Table = styled.table `
     }
 
     tbody td{
-        text-align: center;
-        padding: 3px;
+        text-align: left;
+        padding-left: 1.5rem;
+        font-size: ${fontSize.fontSizeS}
     }
 
     tr:first-child th:first-child {
