@@ -31,12 +31,8 @@ export const StockTable = ({symbol, setStockName, setStockShowModal, setStockSym
                             !window.getSelection().toString().length ? toSymbolPage() : ''
                         )
                     }}>{symbol.symbol}</td>
-                    <td>{symbol.companyName}</td>
                     <td>{symbol.latestPrice}</td>
-                    <td>{symbol.change}</td>
-                    <td>{symbol.changePercent}</td>
-                    <td>{symbol.volume}</td>
-                    <td>{symbol.marketCap}</td>
+                    <td>{parseFloat(symbol.changePercent).toFixed(3)}</td>
                     {/*<td><TrendingUpIcon/> {symbol.high}</td>*/}
                     </tr>
         </>
