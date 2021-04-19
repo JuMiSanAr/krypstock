@@ -83,7 +83,7 @@ const Menu = ({open, setOpen}) => {
                 <ArrowForwardIosIcon/>
                 </MenuItemWrapper>
                 <MenuItemWrapper>
-                <FolderIcon/>
+                <i className="fa fa-folder-open" aria-hidden="true"></i>
                 <span className="move-right-2" onClick={() => toPortfolios()}>My portfolios</span>
                 <ArrowForwardIosIcon/>
                 </MenuItemWrapper>
@@ -93,12 +93,12 @@ const Menu = ({open, setOpen}) => {
                 <ArrowForwardIosIcon/>
                 </MenuItemWrapper> */}
                 <MenuItemWrapper>
-                <FaSearchDollar size={24}/>
+                <i className="fa fa-search" aria-hidden="true"></i>
                 <span className="move-right-3"  onClick={() => toSearch()}>Search</span>
                 <ArrowForwardIosIcon/>
                 </MenuItemWrapper>
                 <MenuItemWrapper>
-                <BiNews size={24}/>
+                <i className="fas fa-globe"></i>
                 <span className="move-right-4"  onClick={() => toNews()}>News</span>
                 <ArrowForwardIosIcon/>
                 </MenuItemWrapper>

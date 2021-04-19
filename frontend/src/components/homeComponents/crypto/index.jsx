@@ -38,13 +38,13 @@ export const Crypto = () => {
     return (
         <>
             <BitCoin />
+            <CryptoQuickTrade fromPage='HomePage' />
+            <TransactionHistory />
             <TrendyCrypto />
             {/*<CryptoNews />*/}
-            <CryptoNewsApiAi/>
+            {/* <CryptoNewsApiAi/> */}
             <TopPerformingCrypto />
             <WorstPerformingCrypto />
-            <TransactionHistory />
-            <CryptoQuickTrade fromPage='HomePage' />
         </>
     )
 }

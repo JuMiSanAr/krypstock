@@ -16,12 +16,12 @@ display: flex;
 justify-content: flex-end;
 i{
   position: fixed;
-  top: 83vh;
+  top: 76vh;
   font-size: 35px;
-  margin: 15px;
+  margin-right:35px;
   z-index: 10;
   color: orange;
-  text-shadow: 1px 1px 2px #413f3f, 0 0 25px blue, 0 0 5px darkblue;
+  text-shadow:  0 0 25px white, 0 0 5px darkblue;
 
 }
 `;

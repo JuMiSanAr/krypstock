@@ -2,7 +2,8 @@ import styled from 'styled-components';
 import {
     darkTheme,
     lightTheme,
-    allTheme
+    allTheme,
+    fontSize
 } from "../../Themes";
 
 export const StockTable = styled.table `
@@ -11,11 +12,11 @@ export const StockTable = styled.table `
     } */
 
     width: 100%;
-    /* background-color: ${({ theme }) => theme === lightTheme ? darkTheme.body : lightTheme.body}; */
     border-collapse: collapse;
     color: ${({ theme }) => theme === lightTheme ? lightTheme.text : darkTheme.text};;
     height: 260px;
     margin-top: 1rem;
+    table-layout: fixed;
 
     .clickStock{
         cursor: pointer;
@@ -27,26 +28,16 @@ export const StockTable = styled.table `
 
         tr{
             height: 60px;
-            /* display: block; */
         }
     }
 
     tbody{
-        /* display:block; */
         width: 100%;
-        /* overflow-y: auto; */
         height: 200px;
-
-        /* -ms-overflow-style: none;  
-        scrollbar-width: none;  
-        ::-webkit-scrollbar { 
-        display: none;
-        } */
     }
 
     tbody tr{
-        height: 50px;
-        /* display: block; */
+        height: 35px;
         :nth-child(2n) {
             background: ${({ theme }) => theme === lightTheme ? darkTheme.secondBackground : lightTheme.secondBackground};;
         }
@@ -54,7 +45,42 @@ export const StockTable = styled.table `
 
     tbody tr td{
         text-align: center;
-        padding: 3px;
+        font-size: ${fontSize.fontSizeS}
+    }
+
+    .tdDiv {
+        width: 50%;
+        text-align: left;
+        display: inline-block;
+        white-space: nowrap;
+    }
+
+    .tdDivVolume {
+        width: 50%;
+        text-align: right;
+        display: inline-block;
+        white-space: nowrap;
+    }
+
+    .tdDivTransacPrice {
+        width: 60%;
+        text-align: right;
+        display: inline-block;
+        white-space: nowrap;
+    }
+
+    .tdDivType {
+        width: 40%;
+        text-align: left;
+        display: inline-block;
+        white-space: nowrap;
+    }
+
+    .tdDivDate {
+        width: 70%;
+        text-align: left;
+        display: inline-block;
+        white-space: nowrap;
     }
 
     tr:first-child th:first-child {
