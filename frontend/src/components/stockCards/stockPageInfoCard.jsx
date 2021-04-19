@@ -19,42 +19,12 @@ const StockPageInfoCard = (props) => {
 
     return (
         <StockPageDataWrapper>
-           {/*  <tbody>
-                <tr>
-                    <td className='key'>Symbol:</td>
-                    <td>{stockInfo.symbol}</td>
-                </tr>
-                <tr>
-                    <td className='key'>Country:</td>
-                    <td>{stockInfo.country}</td>
-                </tr>
-                <tr>
-                    <td className='key'>Exchange:</td>
-                    <td>{stockInfo.exchange}</td>
-                </tr>
-                <tr>
-                    <td className='key'>Industry:</td>
-                    <td>{stockInfo.industry}</td>
-                </tr>
-                <tr>
-                    <td className='key'>Website:</td>
-                    <td><a href={stockInfo.website} target='_blank' rel='noreferrer'>Click here</a></td>
-                </tr>
-            </tbody> */}
-
-            {/* <HeadlineFont>Current status</HeadlineFont > */}
-                <div>
-                    <Desc>Company</Desc>
-                    <InvestmentFont>
-                        {stockInfo.companyName}
-                    </InvestmentFont>
-                </div>
-            {/* <div>
-                    <Desc>Country</Desc>
-                    <InvestmentFont>
-                        {stockInfo.country}
-                    </InvestmentFont>
-                </div> */}
+            <div>
+                <Desc>Company</Desc>
+                <InvestmentFont>
+                    {stockInfo.companyName}
+                </InvestmentFont>
+            </div>
             <div>
                 <Desc>Exchange</Desc>
                 <InvestmentFont>

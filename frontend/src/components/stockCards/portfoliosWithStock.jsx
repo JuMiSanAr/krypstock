@@ -79,12 +79,12 @@ const PortfoliosWithStock = (props) => {
         <>
             {portfolios.length > 0 ?
                 <>
-                    <h3 style={{padding: '10px'}}>My portfolios with this stock</h3>
+                    <h3>My portfolios with this stock</h3>
                     <PortfolioCollectionBasic portfolios={portfolios}/>
                 </>
                 :
                  <> 
-                    <h3 style={{padding: '10px'}}>My portfolios with this stock</h3>
+                    <h3>My portfolios with this stock</h3>
                     <MessageWrapper>
                     <p>You don't have any profolio</p>
                     <strong>Create your first portfolio</strong>
