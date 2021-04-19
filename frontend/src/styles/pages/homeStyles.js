@@ -27,15 +27,14 @@ export const LeftButton = styled.button`
     text-transform: uppercase;
     font-weight: ${props => props.numberClicked === 1 ? 600 : 1000};
     font-size: 1rem;
-    height: 50px;
-    width: 46%;
-    border-radius: 10px 0 0 10px;
+    height: 45px;
+    width: 30%;
     border: none;
     /* color: ${props => props.numberClicked === 1 ? '#363537' : 'white'}; */
     color: ${props => props.numberClicked === 1 ? 'white' : 'lightgray'};
 
     cursor: pointer;
-    border-radius: 50px 0 0 50px;
+    border-radius: 6px 0 0 6px;
 
     :focus {
         outline: none;
@@ -52,7 +51,7 @@ export const RightButton = styled(LeftButton)`
     border-radius: 0 10px 10px 0;
     font-weight: ${props => props.numberClicked === 1 ? 1000 : 600};
     color: ${props => props.numberClicked === 1 ?  'lightgray' : 'white'};
-    border-radius: 0 50px 50px 0;
+    border-radius: 0 6px 6px 0;
 `;
 
 export const AllContentWrapper = styled.div`
