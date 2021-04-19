@@ -30,7 +30,7 @@ const AllInvestments = ({calculations, realtimeData, portfolioCreated}) => {
 
     const [differencePercentage, setDifferencePercentage] = useState(0);
 
-    const [overallBalance, setOverallBalance] = useState(0);
+    const [currentBalance, setCurrentBalance] = useState(0);
 
     useEffect(() => {
         if (realtimeData.length > 0) {
@@ -69,7 +69,7 @@ const AllInvestments = ({calculations, realtimeData, portfolioCreated}) => {
 
     useEffect(() => {
         if (calculations.length > 0) {
-            setOverallBalance(calculations.reduce((acc, calc) => {
+            setCurrentBalance(calculations.reduce((acc, calc) => {
                 if (calc.overall_balance) {
                     return acc + calc.overall_balance;
                 } else {
@@ -124,25 +124,25 @@ const AllInvestments = ({calculations, realtimeData, portfolioCreated}) => {
                         <div>
                             <Desc>Executed P&L</Desc>
                             <InvestmentFont>
-                                {overallBalance > 0 ? <i className="fas fa-angle-double-up" style={{color: 'green'}}></i> : ''}
-                                {overallBalance < 0 ? <i className="fas fa-angle-double-down" style={{color: 'red'}}></i> : ''}
-                               $ {overallBalance ? overallBalance.toFixed(2) : '0.00'}
+                                {currentBalance > 0 ? <i className="fas fa-angle-double-up" style={{color: 'green'}}></i> : ''}
+                                {currentBalance < 0 ? <i className="fas fa-angle-double-down" style={{color: 'red'}}></i> : ''}
+                               $ {currentBalance ? currentBalance.toFixed(2) : '0.00'}
                             </InvestmentFont>
                         </div>
                         <div>
                             <Desc>Overall balance</Desc>
                             <InvestmentFont>
-                                {(parseFloat(currentValue) - totalInvestments).toFixed(2) > 0 ? <i className="fas fa-angle-double-up" style={{color: 'green'}}></i> : ''}
-                                {(parseFloat(currentValue) - totalInvestments).toFixed(2) < 0 ? <i className="fas fa-angle-double-down" style={{color: 'red'}}></i> : ''}
-                               $ {(parseFloat(currentValue) - totalInvestments).toFixed(2)}
+                                {(parseFloat(currentValue) - totalInvestments + currentBalance).toFixed(2) > 0 ? <i className="fas fa-angle-double-up" style={{color: 'green'}}></i> : ''}
+                                {(parseFloat(currentValue) - totalInvestments + currentBalance).toFixed(2) < 0 ? <i className="fas fa-angle-double-down" style={{color: 'red'}}></i> : ''}
+                               $ {(parseFloat(currentValue) - totalInvestments + currentBalance).toFixed(2)}
                             </InvestmentFont>
                         </div>
                         <div>
                             <Desc>Overall change %</Desc>
                             <InvestmentFont>
-                                {(parseFloat(currentValue) - totalInvestments).toFixed(2) > 0 ? <i className="fas fa-angle-double-up" style={{color: 'green'}}></i> : ''}
-                                {(parseFloat(currentValue) - totalInvestments).toFixed(2) < 0 ? <i className="fas fa-angle-double-down" style={{color: 'red'}}></i> : ''}
-                               $ {((parseFloat(currentValue) - totalInvestments) / totalInvestments * 100).toFixed(2)}
+                                {(parseFloat(currentValue) - totalInvestments + currentBalance).toFixed(2) > 0 ? <i className="fas fa-angle-double-up" style={{color: 'green'}}></i> : ''}
+                                {(parseFloat(currentValue) - totalInvestments + currentBalance).toFixed(2) < 0 ? <i className="fas fa-angle-double-down" style={{color: 'red'}}></i> : ''}
+                               $ {((parseFloat(currentValue) - totalInvestments + currentBalance) / totalInvestments * 100).toFixed(2)}
                             </InvestmentFont>
                         </div>
                     </InvestmentsContainer>
