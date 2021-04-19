@@ -40,8 +40,6 @@ const PortfolioList = () => {
       })
   }, []);
 
- 
-
   return (
     <AllComponentsWrapper>
       <AddIcon>

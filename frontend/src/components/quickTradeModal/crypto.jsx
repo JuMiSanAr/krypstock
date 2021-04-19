@@ -1,17 +1,20 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Background, CloseModalButton, ContentWrapper, ModalContent, CryptStockFormSelectWrapper, CrypStockTransacWrapper } from '../../styles/components/modalStyles';
-import { useSelector } from "react-redux";
-import { ButtonWrapper} from '../../styles/components/cryptoStyles/quickTradeStyles'
+import { useSelector, useDispatch } from "react-redux";
+import { ButtonWrapper, BuySelectButton, BuySellSelectorWrapper, SellSelectButton} from '../../styles/components/cryptoStyles/quickTradeStyles'
 import { Link } from 'react-router-dom';
 import { ShrinkingComponentWrapper } from '../../styles/globalParts/containerStyles';
 import { postNewTransactionFetch } from '../../store/fetches/transactionFetches';
 import portfoliosFetch from '../../store/fetches/portfoliosFetches';
 import { portfoliosAction } from '../../store/actions/portfoliosAction';
-import { useDispatch } from "react-redux";
 import { TitleSpan } from '../../styles/globalParts/textStyles';
+import { allCryptosAction } from '../../store/actions/cryptoActions';
 
 
 export const CryptoModal = ({ showCryptoModal, setCryptoShowModal, symbol }) => {
+
+    const dispatch = useDispatch();
+
     const allPortfoliosArray = useSelector(state => state.portfoliosReducer.portfolios)
     const [buySell, setBuySell] = useState('');
     const [portfolioID, setPortfolioID] = useState();
@@ -23,7 +26,7 @@ export const CryptoModal = ({ showCryptoModal, setCryptoShowModal, symbol }) => 
     const [bidPrice, setBidPrice] = useState(0);
     const [askPrice, setAskPrice] = useState(0);
 
-    const dispatch = useDispatch();
+    console.log("from crypto", allCryptos)
 
     const submitHandler = (e) => {
         e.preventDefault();
@@ -44,6 +47,7 @@ export const CryptoModal = ({ showCryptoModal, setCryptoShowModal, symbol }) => 
             setCryptoShowModal(false);
         }
     };
+
 
     useEffect(() => {
         const crypto = allCryptos.filter(crypto => crypto.symbol === symbol);
@@ -84,23 +88,23 @@ export const CryptoModal = ({ showCryptoModal, setCryptoShowModal, symbol }) => 
                                 <form onSubmit={submitHandler}>
                                     <CryptStockFormSelectWrapper>
                                         <div className="title">
-                                            <TitleSpan>Crypto Quick Trade</TitleSpan>
+                                            <TitleSpan>Crypto Trade</TitleSpan>
                                         </div>
                                         {
                                             !allPortfoliosArray || allPortfoliosArray.length === 0 ?
                                                 null
                                                 :
-                                                <div className="buySell">
-                                                    <select className="selector" defaultValue={'DEFAULT'} onChange={e => setBuySell(e.target.value)} required>
-                                                        <option value="DEFAULT" disabled>Select</option>
-                                                        <option value="B">Buy</option>
-                                                        <option value="S">Sell</option>
-                                                    </select>
-                                                </div>
-                                                // <BuySellSelectorWrapper>
-                                                //     <BuySelectButton type="button" buySell={buySell} onClick={e => setBuySell("B")}>BUY</BuySelectButton>
-                                                //     <SellSelectButton type="button" buySell={buySell} onClick={e => setBuySell("S")}>SELL</SellSelectButton>
-                                                // </BuySellSelectorWrapper>
+                                                // <div className="buySell">
+                                                //     <select className="selector" defaultValue={'DEFAULT'} onChange={e => setBuySell(e.target.value)} required>
+                                                //         <option value="DEFAULT" disabled>Select</option>
+                                                //         <option value="B">Buy</option>
+                                                //         <option value="S">Sell</option>
+                                                //     </select>
+                                                // </div>
+                                                <BuySellSelectorWrapper>
+                                                    <BuySelectButton type="button" buySell={buySell} onClick={e => setBuySell("B")}>BUY</BuySelectButton>
+                                                    <SellSelectButton type="button" buySell={buySell} onClick={e => setBuySell("S")}>SELL</SellSelectButton>
+                                                </BuySellSelectorWrapper>
                                         }
                                     </CryptStockFormSelectWrapper>
                                     {

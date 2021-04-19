@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Background, CloseModalButton, ContentWrapper, ModalContent, CryptStockFormSelectWrapper, CrypStockTransacWrapper } from '../../styles/components/modalStyles';
 import { useSelector } from "react-redux";
-import { ButtonWrapper} from '../../styles/components/cryptoStyles/quickTradeStyles'
+import { ButtonWrapper, BuySelectButton, BuySellSelectorWrapper, SellSelectButton} from '../../styles/components/cryptoStyles/quickTradeStyles'
 import { Link } from 'react-router-dom';
 import { ShrinkingComponentWrapper } from '../../styles/globalParts/containerStyles';
 import { postNewTransactionFetch } from '../../store/fetches/transactionFetches';
@@ -72,22 +72,22 @@ export const StockModal = ({ showStockModal, setStockShowModal, symbol, stockSym
                                     <h3 className="stock-company-name">{symbol}</h3>
                                     <CryptStockFormSelectWrapper>
                                         <div className="title">
-                                            <h4>Stock Quick Trade</h4>
+                                            <h4>Stock Trade</h4>
                                         </div>
                                         {
                                             !allPortfoliosArray || allPortfoliosArray.length === 0 ?
                                                 null
                                                 :
-                                                <div className="buySell">
-                                                    <select className="selector" onChange={e => setBuySell(e.target.value)} required>
-                                                        <option value="B">Buy</option>
-                                                        <option value="S">Sell</option>
-                                                    </select>
-                                                </div>
-                                                // <BuySellSelectorWrapper>
-                                                //     <BuySelectButton type="button" buySell={buySell} onClick={e => setBuySell("B")}>BUY</BuySelectButton>
-                                                //     <SellSelectButton type="button" buySell={buySell} onClick={e => setBuySell("S")}>SELL</SellSelectButton>
-                                                // </BuySellSelectorWrapper>
+                                                // <div className="buySell">
+                                                //     <select className="selector" onChange={e => setBuySell(e.target.value)} required>
+                                                //         <option value="B">Buy</option>
+                                                //         <option value="S">Sell</option>
+                                                //     </select>
+                                                // </div>
+                                                <BuySellSelectorWrapper>
+                                                    <BuySelectButton type="button" buySell={buySell} onClick={e => setBuySell("B")}>BUY</BuySelectButton>
+                                                    <SellSelectButton type="button" buySell={buySell} onClick={e => setBuySell("S")}>SELL</SellSelectButton>
+                                                </BuySellSelectorWrapper>
                                         }
                                     </CryptStockFormSelectWrapper>
                                     {
