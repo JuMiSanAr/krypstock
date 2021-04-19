@@ -8,10 +8,10 @@ import { postNewTransactionFetch } from '../../store/fetches/transactionFetches'
 import { iexSandboxKey } from "../../store/constants";
 import { ErrorSpan } from "../../styles/globalParts/textStyles";
 
-export const StockModal2 = ({ showStockModal, setStockShowModal, symbol, stockSymbol, portfolioname, portfolioID }) => {
+export const StockModal2 = ({ showStockModal, setStockShowModal, symbol, portfolioname, portfolioID, calculations }) => {
     const allPortfoliosArray = useSelector(state => state.portfoliosReducer.portfolios)
 
-    const [buySell, setBuySell] = useState();
+    const [buySell, setBuySell] = useState('B');
     const [volume, setVolume] = useState();
     const [pricePerShare, setPricePerShare] = useState();
     const [marketPrice, setMarketPrice] = useState();
@@ -21,7 +21,7 @@ export const StockModal2 = ({ showStockModal, setStockShowModal, symbol, stockSy
     const submitHandler = (e) => {
         e.preventDefault();
         // console.log(buySell, portfolioID, symbol, volume, pricePerShare,type)
-        postNewTransactionFetch(buySell, portfolioID, stockSymbol, volume, pricePerShare, type)
+        postNewTransactionFetch(buySell, portfolioID, symbol, volume, pricePerShare, type)
             .then(data => {
                 setStockShowModal(false);
                 console.log('in stock quicktrade submitHandler', data)
@@ -46,14 +46,15 @@ export const StockModal2 = ({ showStockModal, setStockShowModal, symbol, stockSy
     };
 
     useEffect(() => {
-        fetch(`https://sandbox.iexapis.com/stable/stock/${symbol}/price?token=${iexSandboxKey}`)
-            .then(res => res.json())
-            .then(data => {
-                console.log("useState ~ data", data)
-                setMarketPrice(data)
-            })
-            .catch(error => { console.log('error', error) })
-
+        if (symbol) {
+            fetch(`https://sandbox.iexapis.com/stable/stock/${symbol}/price?token=${iexSandboxKey}`)
+                .then(res => res.json())
+                .then(data => {
+                    console.log("useState ~ data", data)
+                    setMarketPrice(data)
+                })
+                .catch(error => { console.log('error', error) })
+        }
     }, [symbol, buySell])
 
     useEffect(() => {
@@ -102,9 +103,17 @@ export const StockModal2 = ({ showStockModal, setStockShowModal, symbol, stockSy
                                                         <p className="selector">{symbol}</p>
                                                     </div>
                                                 </div>
+                                                <div className="currSelect amountInput">
+                                                    <div>
+                                                        <label htmlFor="company-input">Current quantity</label>
+                                                    </div>
+                                                    <div>
+                                                        <p className="selector">{calculations ? calculations.filter(calculation => calculation.symbol === symbol)[0].quantity.toFixed(2) : ''}</p>
+                                                    </div>
+                                                </div>
                                                 <div className="amountInput">
                                                     <div>
-                                                        <p>Quantity</p>
+                                                        <p>Transaction quantity</p>
                                                     </div>
                                                     <div>
                                                         <input className="input" type="number" placeholder="0" value={volume} onChange={e => setVolume(e.target.value)} required />

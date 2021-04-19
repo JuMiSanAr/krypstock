@@ -13,6 +13,7 @@ const portfoliosFetch = () => {
 export default portfoliosFetch;
 
 export const specificPortfolioFetch = (id) => {
+    console.log('fetching')
     return fetchAPI(
         `portfolios/${id}/`,
         null,
