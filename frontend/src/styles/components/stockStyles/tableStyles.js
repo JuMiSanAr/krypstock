@@ -22,7 +22,7 @@ export const StockTable = styled.table `
     }
 
     thead{
-        background: ${props => props.id === 'trendy-stocks' ? allTheme.vibrantorange : props.id === "transaction-history" ? allTheme.vibrantturquoise : props.id === "loss-stocks" ? allTheme.blue : allTheme.green};
+        background: ${props => props.id === 'trendy-stocks' ? allTheme.yellowGradient : props.id === "transaction-history" ? allTheme.turquoiseGradient : props.id === "loss-stocks" ? allTheme.orangeGradient : allTheme.blueGradient};
         color: ${({ theme }) => theme === lightTheme ? lightTheme.text : darkTheme.text};
 
         tr{

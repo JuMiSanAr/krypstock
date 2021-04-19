@@ -44,7 +44,7 @@ const TrendyStocks = ({stock_volume}) => {
                     .map((company, index) => {
                         return (
                             <tr key={index}>
-                                <td className="clickStock" onClick={()=> specificStockPage(company.symbol)}>{company.companyName}</td>
+                                <td className="clickStock" onClick={()=> specificStockPage(company.symbol)}>{company.symbol}</td>
                                 <td>{company.latestPrice ? company.latestPrice.toFixed(2) : '0.00' }</td>
                                 <td>
                                     {company.changePercent > 0 ? <i className="fas fa-angle-double-up" style={{color: 'green'}}></i> : company.changePercent < 0 ? <i className="fas fa-angle-double-down" style={{color: 'red'}}></i> : null} 
