@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {stockFetcherInfo} from "../charts/helperFunctions/stockFetcherInfo";
-import {StockPageInfoWrapper} from "../../styles/components/stockStyles/stockPageInfoStyles";
-import { Desc, HeadlineFont, InvestmentFont, InvestmentsContainer } from '../../styles/components/portfolioStyles';
+import {StockPageInfoWrapper, StockPageDataWrapper} from "../../styles/components/stockStyles/stockPageInfoStyles";
+import { Desc, InvestmentFont } from '../../styles/components/portfolioStyles';
 
 const StockPageInfoCard = (props) => {
 
@@ -15,48 +15,16 @@ const StockPageInfoCard = (props) => {
         props.setCompanyName(stockInfo.companyName);
         props.setCompanyMarket(stockInfo.exchange);
     }, [stockInfo]);
+    console.log(stockInfo)
 
     return (
-        <StockPageInfoWrapper>
-           {/*  <tbody>
-                <tr>
-                    <td className='key'>Symbol:</td>
-                    <td>{stockInfo.symbol}</td>
-                </tr>
-                <tr>
-                    <td className='key'>Country:</td>
-                    <td>{stockInfo.country}</td>
-                </tr>
-                <tr>
-                    <td className='key'>Exchange:</td>
-                    <td>{stockInfo.exchange}</td>
-                </tr>
-                <tr>
-                    <td className='key'>Industry:</td>
-                    <td>{stockInfo.industry}</td>
-                </tr>
-                <tr>
-                    <td className='key'>Website:</td>
-                    <td><a href={stockInfo.website} target='_blank' rel='noreferrer'>Click here</a></td>
-                </tr>
-            </tbody> */}
-
-            {/* <HeadlineFont>Current status</HeadlineFont > */}
-            <InvestmentsContainer>
-                <div>
-                    <Desc>Symbol</Desc>
-                    <InvestmentFont>
-                        {stockInfo.symbol}
-                    </InvestmentFont>
-                </div>
-                <div>
-                    <Desc>Country</Desc>
-                    <InvestmentFont>
-                        {stockInfo.country}
-                    </InvestmentFont>
-                </div>
-                
-            </InvestmentsContainer>
+        <StockPageDataWrapper>
+            <div>
+                <Desc>Company</Desc>
+                <InvestmentFont>
+                    {stockInfo.companyName}
+                </InvestmentFont>
+            </div>
             <div>
                 <Desc>Exchange</Desc>
                 <InvestmentFont>
@@ -72,10 +40,10 @@ const StockPageInfoCard = (props) => {
             <div>
                 <Desc>Website</Desc>
                 <InvestmentFont>
-                <a href={stockInfo.website} target='_blank' rel='noreferrer'>Click here</a>
+                    <a href={stockInfo.website} target='_blank' rel='noreferrer'>Click here</a>
                 </InvestmentFont>
             </div>
-        </StockPageInfoWrapper>
+        </StockPageDataWrapper>
     )
 }
 

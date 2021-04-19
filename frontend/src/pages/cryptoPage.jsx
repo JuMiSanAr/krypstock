@@ -2,13 +2,16 @@ import React, {useEffect, useState} from 'react';
 import CandlestickCryptoIntraday from "../components/charts/candlesticksCryptoIntraday";
 import { FormSelectWrapper, GraphWrapper } from "../styles/components/cryptoStyles/bitCoinStyles";
 import { AllComponentsWrapper, ShrinkingComponentWrapper } from "../styles/globalParts/containerStyles";
-import NewsCrypto from "../components/newsFeed/newsCrypto";
+// import NewsCrypto from "../components/newsFeed/newsCrypto";
 import CandlestickCryptoHistorical from "../components/charts/candlesticksCryptoHistorical";
 import ChartTimeCrypto from "../components/charts/chartSelectTimeCrypto";
 // import {PageTitleStyle} from "../styles/globalParts/titleStyles";
 import { NaviWrapper } from '../styles/components/naviStyles/menuStyles';
 import Burger from '../components/navi/burger';
 import Menu from '../components/navi/menu';
+import CryptoPageInfoCard from "../components/cryptoCards/cryptoPageInfoCard";
+// import {CryptoNewsApiAi} from "../components/homeComponents/crypto/cryptoNewsApiAi";
+
 
 const CryptoPage = (props) => {
 
@@ -22,24 +25,12 @@ const CryptoPage = (props) => {
     const url = window.location.href;
     const symbol = url.substring(url.lastIndexOf('/') + 1).toUpperCase();
 
-    // const symbol = ('btcusdt').toUpperCase();
-
-    // useEffect(() => {
-    //  WebSocket.close();
-    // }, []);
-
-    // useEffect(() => {
-    //     // cryptoFetcherHistorical(symbol, setHistoricalData, chartTimeframe);
-    // }, [chartTimeframe])
-
     useEffect(() => {
-        // cryptoFetcherHistorical(symbol, setHistoricalData, chartTimeframe);
     }, [chartTimeframe2])
 
 
     return (
         <>
-            {/* <PageTitleStyle>{symbol}</PageTitleStyle> */}
             <NaviWrapper>
                 <div>
                     <Burger open={open} setOpen={setOpen}/> 
@@ -50,14 +41,15 @@ const CryptoPage = (props) => {
                 </div>
                 </NaviWrapper>
             <AllComponentsWrapper>
+
+                <ShrinkingComponentWrapper>
+                    <CryptoPageInfoCard symbol={symbol}/>
+                </ShrinkingComponentWrapper>
                 <ShrinkingComponentWrapper>
                  <FormSelectWrapper>
                 <div className="title">
                    <h3>Price Chart</h3>
                 </div>
-                {/*<div >Ticker*/}
-                {/*    <ChartTimeCryptoframeButton setChart={setChartTimeframe}/>*/}
-                {/*</div>*/}
                 <div >Time
                     <ChartTimeCrypto setChart2={setChartTimeframe2}/>
                 </div>
@@ -68,12 +60,12 @@ const CryptoPage = (props) => {
                    :
                    <CandlestickCryptoHistorical data={historicalData} symbol={symbol} timeLength={chartTimeframe2}/>}
                     </GraphWrapper>
-                </ShrinkingComponentWrapper>
-                <ShrinkingComponentWrapper>
-                    <NewsCrypto symbol={symbol} />
-                </ShrinkingComponentWrapper>
-                {/* <FooterNav/> */}
-            </AllComponentsWrapper>
+                 </ShrinkingComponentWrapper>
+                 <ShrinkingComponentWrapper>
+                {/*<NewsCrypto symbol={symbol}/>*/}
+                {/* <CryptoNewsApiAi symbol={symbol}/> */}
+            </ShrinkingComponentWrapper>
+    </AllComponentsWrapper>
         </>
     )
 }
