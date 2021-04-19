@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { AllComponentsWrapper, ShrinkingComponentWrapper } from '../styles/globalParts/containerStyles';
-import { CakeChartContainer, PortfolioHeadline, LegendContainer, ColorSquare, LegendWrapper, Headline } from '../styles/components/portfolioStyles';
+import { CakeChartContainer, LegendContainer, ColorSquare, LegendWrapper, Headline } from '../styles/components/portfolioStyles';
 import { PieChart } from 'react-minimal-pie-chart';
 import PortfolioChart from '../components/charts/portfolioChart';
 import AllInvestments from '../components/portfolioComponents/allInvestments';
@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { allCryptosAction } from '../store/actions/cryptoActions';
 import { allTheme } from '../styles/Themes';
 import { iexSandboxKey } from "../store/constants";
+import {PageTitleStyle} from "../styles/globalParts/titleStyles";
 
 const Portfolio = (props) => {
 
@@ -58,7 +59,6 @@ const Portfolio = (props) => {
 
                 if (data.calculations.length >= 7) {
                     const other = data.calculations.filter((value, index) => index > 5);
-                    console.log(other)
                     //data.calculations.splice(6)
 
                     let otherValues = [];
@@ -154,7 +154,7 @@ const Portfolio = (props) => {
 
     return (
         <>
-            <PortfolioHeadline>{portfolioInfo.name}</PortfolioHeadline>
+            <PageTitleStyle>{portfolioInfo.name}</PageTitleStyle>
             <AllComponentsWrapper>
                 {
                     portfolioInfo.calculations ? <AllInvestments realtimeData={realtimeDataCombined}
@@ -189,7 +189,7 @@ const Portfolio = (props) => {
                         <LegendWrapper>
                             {legend.map((legend, index) =>
                                 <LegendContainer key={index}>
-                                    <ColorSquare style={{ backgroundColor: legend.color }}></ColorSquare>
+                                    <ColorSquare style={{ backgroundColor: legend.color }}/>
                                     <p>{legend.title}</p>
                                 </LegendContainer>
                             )}

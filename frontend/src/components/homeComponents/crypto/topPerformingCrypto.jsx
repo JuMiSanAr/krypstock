@@ -18,7 +18,7 @@ const TopPerformingCrypto = () => {
     const dataAmount = 10;
     //Pagination
     const [page, setPage] = useState(0);
-    const rowsPerPage = 4;
+    const rowsPerPage = 10;
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
     };
@@ -36,13 +36,6 @@ const TopPerformingCrypto = () => {
         setTopCryptos(top10Cryptos)
     }, [allCryptos])
 
-    // const cutUSDT = (currency) => {
-    //     let onlyCurrency = currency.split('');
-    //     onlyCurrency.splice(-4, 4);
-    //     onlyCurrency.join('');
-    //     return onlyCurrency;
-    // }
-
     const specificCryptoPage = (symbol) => {
         history.push(`/crypto/${symbol}`)
     }
@@ -55,7 +48,7 @@ const TopPerformingCrypto = () => {
                     topCryptos !== [] && topCryptos.length === dataAmount ?
                         <thead>
                             <tr>
-                                <th colSpan='2'>Currency</th>
+                                <th>Currency</th>
                                 <th>Price</th>
                                 <th>Change %</th>
                             </tr>
@@ -68,7 +61,7 @@ const TopPerformingCrypto = () => {
                         topCryptos.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                             .map((crypto, index) =>
                                 <tr key={index}>
-                                    <td>{topCryptos.indexOf(crypto) + 1}</td>
+                                    {/* <td>{topCryptos.indexOf(crypto) + 1}</td> */}
                                     <td className="clickCrypto" onClick={() => specificCryptoPage(crypto.symbol)}>{crypto.symbol.slice(0, -4)}</td>
                                     <td>{Number(crypto.lastPrice).toFixed(2)}</td>
                                     <td>

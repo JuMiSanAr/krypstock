@@ -7,20 +7,15 @@ import { Modal } from '../components/addPortfolioModal';
 import { PortfolioCollection } from '../components/portfolioCollection';
 import portfoliosFetch from "../store/fetches/portfoliosFetches";
 import { portfoliosAction } from "../store/actions/portfoliosAction";
-
-
-
+import {PageTitleStyle} from "../styles/globalParts/titleStyles";
 
 const AddIcon = styled.div`
     display: flex;
     justify-content: flex-start;
 `;
 
-
 const PortfolioList = () => {
   const [showModal, setShowModal] = useState(false);
-
- 
 
   const openModal = () => {
     setShowModal(prev => !prev);
@@ -34,17 +29,17 @@ const PortfolioList = () => {
   useEffect(() => {
     portfoliosFetch()
       .then(data => {
-        console.log(data)
         const action = portfoliosAction(data);
         dispatch(action);
       })
   }, []);
 
   return (
+      <>
+  <PageTitleStyle>My portfolios</PageTitleStyle>
     <AllComponentsWrapper>
       <AddIcon>
         <AddCircleIcon onClick={openModal} />
-
       </AddIcon>
       <Modal showModal={showModal} setShowModal={setShowModal} />
       {
@@ -58,6 +53,7 @@ const PortfolioList = () => {
       }
 
     </AllComponentsWrapper>
+  </>
   )
 }
 

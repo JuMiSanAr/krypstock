@@ -220,9 +220,7 @@ const Search = () => {
                                             <th className="headcol tableHead">Buy</th>
                                             <th className="tableHead">Symbol</th>
                                             <th className="tableHead">Price (Latest)</th>
-                                            <th className="tableHead">Change</th>
                                             <th className="tableHead">Change%</th>
-                                            <th className="tableHead">24h Volume</th>
                                             {/*<th className="tableHead">1 Day Chart</th>*/}
                                         </tr>
                                     </thead>
@@ -256,12 +254,8 @@ const Search = () => {
                                         <tr>
                                             <th className="headcol tableHead">Buy</th>
                                             <th className="tableHead">Symbol</th>
-                                            <th className="tableHead">Name</th>
                                             <th className="tableHead">Price (Latest)</th>
-                                            <th className="tableHead">Change</th>
                                             <th className="tableHead">Change%</th>
-                                            <th className="tableHead">24h Volume</th>
-                                            <th className="tableHead">Mkt Cap</th>
                                             {/*<th className="tableHead">1 Day Chart</th>*/}
                                         </tr>
                                     </thead>
