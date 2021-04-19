@@ -14,7 +14,7 @@ import { ErrorSpan } from "../../styles/globalParts/textStyles";
 
 export const CryptoModal2 = ({ showCryptoModal, setCryptoShowModal, symbol, portfolioname, portfolioID }) => {
     const allPortfoliosArray = useSelector(state => state.portfoliosReducer.portfolios)
-    const [buySell, setBuySell] = useState('');
+    const [buySell, setBuySell] = useState('B');
     const [amount, setAmount] = useState(0);
     const [pricePerCoin, setPricePerCoin] = useState(0);
     const [notEnoughCoins, setNotEnoughCoins] = useState(false);
