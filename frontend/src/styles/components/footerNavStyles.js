@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import {
     darkTheme,
-    lightTheme
+    lightTheme,
+    allTheme
 } from "../../styles/Themes";
 
 export const FooterWrapper = styled.div `
@@ -14,19 +15,15 @@ export const FooterWrapper = styled.div `
     padding-top: 1rem;
     width: 100vw;
     background: white;
+    z-index: 4;
     /* background: ${({ theme }) => theme === lightTheme ? lightTheme.footerBackground : darkTheme.footerBackground}; */
 
-    * {
-        color: ${({ theme }) => theme === lightTheme ? darkTheme.text : lightTheme.text};
-        
-        :hover {
-            cursor: pointer;
-            /* color: white; */
-        }
-    }
     i{
         font-size: 21px;  
-        color:purple;
+        color: ${allTheme.purple};
+        :hover {
+            cursor: pointer;
+        }
     }
 
     @media (min-width: 450px) {

@@ -17,7 +17,7 @@ export const TransactionHistory = () => {
 
     //Pagination
     const [page, setPage] = React.useState(0);
-    const rowsPerPage = 4;
+    const rowsPerPage = 10;
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
     };
@@ -32,8 +32,9 @@ export const TransactionHistory = () => {
                             <tr>
                                 <th>Currency</th>
                                 <th>Date</th>
+                                <th>Type</th>
+                                <th>Amount</th>
                                 <th>Price</th>
-                                <th>Transaction</th>
                             </tr>
                         </thead>
                         : null
@@ -44,10 +45,31 @@ export const TransactionHistory = () => {
                             allData.filter(data => data.type === 'C').slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                 .map((cryptoData, index) =>
                                     <tr key={"Stock" + index}>
-                                        <td>{cryptoData.symbol.slice(-4) === 'USDT' ? cryptoData.symbol.slice(0, -4) : cryptoData.symbol}</td>
-                                        <td><Moment format="DD.MM.YY">{cryptoData.exec_time}</Moment></td>
-                                        <td>{cryptoData.cost}</td>
-                                        <td>{cryptoData.buy_sell === "B" ? "BUY" : "SELL"}</td>
+                                        <td>
+                                            <div className="tdDiv">
+                                                {cryptoData.symbol.slice(-4) === 'USDT' ? cryptoData.symbol.slice(0, -4) : cryptoData.symbol}
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div className="tdDivDate">
+                                                <Moment format="DD.MM.YY">{cryptoData.exec_time}</Moment>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div className="tdDivType">
+                                                {cryptoData.buy_sell === "B" ? "BUY" : "SELL"}    
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div className="tdDivVolume">
+                                                {Number(cryptoData.quantity).toFixed(2)}
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div className="tdDivTransacPrice">
+                                                {Number(cryptoData.cost).toFixed(2)}
+                                            </div>
+                                        </td>
                                     </tr>
                                 )
                             :
