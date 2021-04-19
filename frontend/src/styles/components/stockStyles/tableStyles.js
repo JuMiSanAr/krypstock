@@ -58,18 +58,18 @@ export const StockTable = styled.table `
     }
 
     tr:first-child th:first-child {
-        border-top-left-radius: 15px;
+        border-top-left-radius: 6px;
     }
 
     tr:first-child th:last-child {
-        border-top-right-radius: 15px;
+        border-top-right-radius: 6px;
     }
 
     tr:last-child td:first-child {
-    border-bottom-left-radius: 15px;
+    border-bottom-left-radius: 6px;
     }
 
     tr:last-child td:last-child {
-    border-bottom-right-radius: 15px;
+    border-bottom-right-radius: 6px;
     }
 `;
