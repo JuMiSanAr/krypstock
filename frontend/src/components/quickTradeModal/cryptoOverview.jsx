@@ -24,20 +24,19 @@ export const CryptoModal2 = ({ showCryptoModal, setCryptoShowModal, symbol, port
     const allCryptos = useSelector(state => state.cryptoReducer.allCryptos);
     const [bidPrice, setBidPrice] = useState(0);
     const [askPrice, setAskPrice] = useState(0);
-    console.log('symbol', allCryptos)
+    // console.log('symbol', allCryptos)
     const dispatch = useDispatch();
 
 
     const submitHandler = (e) => {
         e.preventDefault();
-        console.log(buySell, portfolioID, symbol, amount, pricePerCoin, type)
+        // console.log(buySell, portfolioID, symbol, amount, pricePerCoin, type)
         postNewTransactionFetch(buySell, portfolioID, symbol, amount, pricePerCoin, type)
             .then(data => {
                 setCryptoShowModal(false)
                 return specificPortfolioFetch(portfolioID)})
             .then(data => {
-                console.log('fetched', data)
-                console.log(data)
+                // console.log('fetched', data)
                 const action = specificPortfolioAction(data)
                 dispatch(action)
             })

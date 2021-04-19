@@ -30,8 +30,8 @@ const NewsCrypto = (props) => {
         fetch(API_Call)
             .then(res => res.json())
             .then(data => {
-                    setAllNews(data.articles);
-                });
+                setAllNews(data.articles);
+            });
     }
 
     return (

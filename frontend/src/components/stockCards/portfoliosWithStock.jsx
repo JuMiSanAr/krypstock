@@ -86,8 +86,8 @@ const PortfoliosWithStock = (props) => {
                  <> 
                     <h3>My portfolios with this stock</h3>
                     <MessageWrapper>
-                    <p>You don't have any profolio</p>
-                    <strong>Create your first portfolio</strong>
+                    <p>You don't have any portfolios with this stock</p>
+                    <strong>Go to the list of your portfolios</strong>
                     <Link className='create-portfolio' to="/portfolio-list/">
                     <i className="fa fa-plus-circle" aria-hidden="true"></i>
                     </Link>

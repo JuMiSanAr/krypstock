@@ -11,7 +11,7 @@ import Burger from '../components/navi/burger';
 import Menu from '../components/navi/menu';
 import CryptoPageInfoCard from "../components/cryptoCards/cryptoPageInfoCard";
 // import {CryptoNewsApiAi} from "../components/homeComponents/crypto/cryptoNewsApiAi";
-
+import PortfoliosWithStock from "../components/stockCards/portfoliosWithStock";
 
 const CryptoPage = (props) => {
 
@@ -25,17 +25,13 @@ const CryptoPage = (props) => {
     const url = window.location.href;
     const symbol = url.substring(url.lastIndexOf('/') + 1).toUpperCase();
 
-    useEffect(() => {
-    }, [chartTimeframe2])
-
-
     return (
         <>
             <NaviWrapper>
                 <div>
-                    <Burger open={open} setOpen={setOpen}/> 
-                    <Menu open={open} setOpen={setOpen} />  
-                </div>  
+                    <Burger open={open} setOpen={setOpen}/>
+                    <Menu open={open} setOpen={setOpen} />
+                </div>
                 <div className="heading">
                 <h2>{symbol}</h2>
                 </div>
@@ -61,6 +57,9 @@ const CryptoPage = (props) => {
                    <CandlestickCryptoHistorical data={historicalData} symbol={symbol} timeLength={chartTimeframe2}/>}
                     </GraphWrapper>
                  </ShrinkingComponentWrapper>
+                <ShrinkingComponentWrapper>
+                    <PortfoliosWithStock symbol={symbol} />
+                </ShrinkingComponentWrapper>
                  <ShrinkingComponentWrapper>
                 {/*<NewsCrypto symbol={symbol}/>*/}
                 {/* <CryptoNewsApiAi symbol={symbol}/> */}
