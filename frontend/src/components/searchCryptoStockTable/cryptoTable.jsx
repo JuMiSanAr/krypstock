@@ -24,6 +24,8 @@ export const CryptoTable = ({symbol, setSymbolCrypto, setCryptoShowModal}) => {
         
     }
 
+    // console.log('symbol',symbol.priceChangePercent)
+
     return (
         <>
         {
@@ -33,9 +35,28 @@ export const CryptoTable = ({symbol, setSymbolCrypto, setCryptoShowModal}) => {
                     return (
                         !window.getSelection().toString().length ? toSymbolPage() : ''
                     )
-                }}>{slicedSymbol}</td>
-                <td>{parseFloat(symbol.lastPrice).toFixed(2)}</td>
-                <td>{symbol.priceChangePercent}</td>
+                }}>
+                    <div className="tdDiv">
+                        {slicedSymbol}
+                    </div>
+                </td>
+                <td>
+                    <div className="tdDivWide">
+                        {symbol.priceChangePercent > 0 ? <i className="fas fa-angle-double-up" style={{ color: 'green' }}></i> :
+                        symbol.priceChangePercent < 0 ? <i className="fas fa-angle-double-down" style={{ color: 'red' }}></i> :
+                        null} {Math.abs(Number(symbol.priceChangePercent)).toFixed(2)}%
+                    </div>
+                </td>
+                <td>
+                    <div className="tdDivPrice">
+                        {parseFloat(symbol.lastPrice).toFixed(2)}
+                    </div>
+                </td>
+                <td>
+                    <div className="tdDivVolume">
+                        {(symbol.quoteVolume/1000000).toFixed(2)}
+                    </div>
+                </td>
                 {/*<td><TrendingUpIcon/> {symbol.highPrice}</td>*/}
             </tr>
         }
