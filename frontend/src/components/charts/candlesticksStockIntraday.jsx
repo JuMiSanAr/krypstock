@@ -11,7 +11,7 @@ const CandlestickStockIntraday = (props) => {
                 localization: {
                     locale: 'en-US'
                 },
-                width: window.innerWidth-30,
+                width: window.innerWidth-50,
                 height: window.innerHeight-380,
                 layout: {
                     backgroundColor: 'rgb(0, 0, 0, 0)',
