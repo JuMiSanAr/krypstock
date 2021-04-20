@@ -36,6 +36,7 @@ const LoginPage = () => {
         if (token) {
             history.push('/');
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [token]);
 
 

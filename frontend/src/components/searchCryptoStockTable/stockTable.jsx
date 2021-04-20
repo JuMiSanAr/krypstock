@@ -14,26 +14,44 @@ export const StockTable = ({symbol, setStockName, setStockShowModal, setStockSym
 
 
     const addTransaction = () =>{
-        // //   console.log(symbol.symbol)  
-        //   setShowModal(prev => !prev);
           setStockName(symbol.companyName)
           setStockSymbol(symbol.symbol)
           setStockShowModal(true);
     }
 
+    // console.log(symbol)
 
     return (
         <>
                      <tr>
-                    <td  onClick={() => addTransaction()} className="headcol"><AddBoxIcon className="addIcon"/></td>
-                    <td onClick={() => {
-                        return (
-                            !window.getSelection().toString().length ? toSymbolPage() : ''
-                        )
-                    }}>{symbol.symbol}</td>
-                    <td>{symbol.latestPrice}</td>
-                    <td>{parseFloat(symbol.changePercent).toFixed(3)}</td>
-                    {/*<td><TrendingUpIcon/> {symbol.high}</td>*/}
+                        <td  onClick={() => addTransaction()} className="headcol"><AddBoxIcon className="addIcon"/></td>
+                        <td onClick={() => {
+                            return (
+                                !window.getSelection().toString().length ? toSymbolPage() : ''
+                            )
+                        }}>
+                            <div className="tdDiv">
+                                {symbol.symbol}
+                            </div>
+                        </td>
+                        <td>
+                            <div className="tdDivWide">
+                                {symbol.changePercent > 0 ? <i className="fas fa-angle-double-up" style={{ color: 'green' }}></i> :
+                                symbol.changePercent < 0 ? <i className="fas fa-angle-double-down" style={{ color: 'red' }}></i> :
+                                null} {Math.abs(Number(symbol.changePercent*100)).toFixed(2)}%
+                            </div>
+                        </td>
+                        <td>
+                            <div className="tdDivPrice">
+                                {symbol.latestPrice}
+                            </div>
+                        </td>
+                        <td>
+                            <div className="tdDivVolume">
+                                {(symbol.volume/1000000).toFixed(2)}
+                            </div>
+                        </td>
+                        {/*<td><TrendingUpIcon/> {symbol.high}</td>*/}
                     </tr>
         </>
     )

@@ -35,7 +35,6 @@ export const BitCoin = (props) => {
         fetch("https://api.binance.com/api/v3/exchangeInfo")
             .then(res => res.json())
             .then(data => {
-                // console.log('crypto data.symbols', data.symbols)
                 const nonDuplicatedSymbols = data.symbols.filter(crypto => crypto['quoteAsset'] === 'USDT' &&
                     crypto.symbol.includes("USDT") &&
                     !((crypto.symbol).slice(0, 4) === 'USDT') &&
@@ -50,15 +49,9 @@ export const BitCoin = (props) => {
                     symbolsSet.add(crypto.symbol)
                 }
                 symbolsSet = Array.from(symbolsSet)  //convert set to array
-                // console.log('symbolsSet', symbolsSet)
                 setAllSymbols(symbolsSet);
             })
     }, []);
-
-    useEffect(() => {
-
-        // console.log('allSymbols', allSymbols)
-    }, [allSymbols])
 
     const changeSymbol = () => {
         setSymbol(symbolInput);

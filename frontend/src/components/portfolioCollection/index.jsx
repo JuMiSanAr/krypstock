@@ -23,7 +23,6 @@ export const PortfolioCollection = () => {
 
     const portfolioData = useSelector(state => state.portfoliosReducer.portfolios);
 
-    // console.log("from port collection", portfolioList)
     const handleDelete = (id) => {
         deletePortfolioFetch(id);
         const action = {

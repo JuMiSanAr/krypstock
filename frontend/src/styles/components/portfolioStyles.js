@@ -23,7 +23,7 @@ i{
 }
 `;
 
-export const InvestmentFont = styled.p `
+export const InvestmentFont = styled.div `
 font-weight: 600;
 font-size: 14px;
 

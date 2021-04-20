@@ -11,7 +11,6 @@ import { TitleSpan } from '../../../styles/globalParts/textStyles';
 export const TransactionHistory = () => {
 
     const allData = useSelector(state => state.transactionsReducer.transactions);
-    // console.log("TransactionHistory ~ allData", allData)
 
     const auth = useSelector((state => state.logInReducer.authenticated));
 

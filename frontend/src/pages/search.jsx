@@ -37,7 +37,7 @@ const Search = () => {
 
     const [open, setOpen] = useState(false);
 
-    const [page, setPage] = React.useState(0);
+    const [page] = React.useState(0);
     const rowsPerPage = 10;
 
     const allCryptos = useSelector(state => state.cryptoReducer.allCryptos);
@@ -64,6 +64,7 @@ const Search = () => {
                     dispatch(action);
                 })
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currentStockSymbols]);
 
     useEffect(() => {
@@ -96,7 +97,7 @@ const Search = () => {
                     dispatch(action);
                 });
         }
-
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
@@ -187,11 +188,8 @@ const Search = () => {
                 )
             }))
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [allCryptos])
-
-    // const handleChangePage = (event, newPage) => {
-    //     setPage(newPage);
-    // };
 
     return (
         <> 
@@ -209,9 +207,9 @@ const Search = () => {
                   <SearchPageInput>
                   <input placeholder="Search..." onChange={event => setSearch(event.target.value)}/>
                         <select name="" onChange={(val) => handleSelectChange(val.target.value)} >
-                            <option value="All">All</option>
-                            <option value="Crypto">Crypto</option>
-                            <option value="Stock">Stock</option>
+                            <option id="option-all" value="All">All</option>
+                            <option id="option-crypto" value="Crypto">Crypto</option>
+                            <option id="option-stock" value="Stock">Stock</option>
                         </select>
                         <Content type="submit" onClick={() => searchHandler()}><i className="fas fa-search"></i></Content>
                     </SearchPageInput>
@@ -230,10 +228,11 @@ const Search = () => {
                                 {<Table id="crypto">
                                     <thead>
                                         <tr>
-                                            <th className="tableHead">Buy</th>
+                                            <th className="tableHead">New</th>
                                             <th className="tableHead">Symbol</th>
-                                            <th className="tableHead">Price (Latest)</th>
-                                            <th className="tableHead">Change%</th>
+                                            <th className="tableHead">Change</th>
+                                            <th className="tableHead">Price</th>
+                                            <th className="tableHead">Volume (M)</th>
                                             {/*<th className="tableHead">1 Day Chart</th>*/}
                                         </tr>
                                     </thead>
@@ -253,10 +252,11 @@ const Search = () => {
                                 <Table id="stocks">
                                     <thead>
                                         <tr>
-                                            <th className="tableHead">Buy</th>
+                                            <th className="tableHead">New</th>
                                             <th className="tableHead">Symbol</th>
-                                            <th className="tableHead">Price (Latest)</th>
-                                            <th className="tableHead">Change%</th>
+                                            <th className="tableHead">Change</th>
+                                            <th className="tableHead">Price</th>
+                                            <th className="tableHead">Volume (M)</th>
                                             {/*<th className="tableHead">1 Day Chart</th>*/}
                                         </tr>
                                     </thead>

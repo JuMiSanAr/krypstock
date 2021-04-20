@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { ShrinkingComponentWrapper } from '../../styles/globalParts/containerStyles';
-import {InvestmentsContainer, InvestmentFont, HeadlineFont, Desc, AllInvestmentsHeadline} from '../../styles/components/portfolioStyles';
+import {InvestmentsContainer, InvestmentFont, Desc, AllInvestmentsHeadline} from '../../styles/components/portfolioStyles';
 
 
 const AllInvestments = ({calculations, realtimeData, portfolioCreated}) => {
@@ -99,18 +99,18 @@ const AllInvestments = ({calculations, realtimeData, portfolioCreated}) => {
                 <div>
                     <Desc>Total %</Desc>
                     <InvestmentFont>
-                        {differencePercentage > 0 ? <i className="fas fa-angle-double-up" style={{color: 'green'}}></i> : ''}
-                        {differencePercentage < 0 ? <i className="fas fa-angle-double-down" style={{color: 'red'}}></i> : ''}
+                        {differencePercentage > 0 ? <i className="fas fa-angle-double-up" style={{color: 'green'}}> </i> : ''}
+                        {differencePercentage < 0 ? <i className="fas fa-angle-double-down" style={{color: 'red'}}> </i> : ''}
                         {differencePercentage ? differencePercentage.toFixed(2) : ''}%
                     </InvestmentFont>
                 </div>
                 <div>
                     <Desc>Today %</Desc>
                     <InvestmentFont>
-                        {todayStringDate !== portfolioStringDate && dailyChange > 0 ? <i className="fas fa-angle-double-up" style={{color: 'green'}}></i> : ''}
-                        {todayStringDate !== portfolioStringDate && dailyChange < 0 ? <i className="fas fa-angle-double-down" style={{color: 'red'}}></i> : ''}
-                        {todayStringDate === portfolioStringDate && differencePercentage > 0 ? <i className="fas fa-angle-double-up" style={{color: 'green'}}></i> : ''}
-                        {todayStringDate === portfolioStringDate && differencePercentage < 0 ? <i className="fas fa-angle-double-down" style={{color: 'red'}}></i> : ''}
+                        {todayStringDate !== portfolioStringDate && dailyChange > 0 ? <i className="fas fa-angle-double-up" style={{color: 'green'}}> </i> : ''}
+                        {todayStringDate !== portfolioStringDate && dailyChange < 0 ? <i className="fas fa-angle-double-down" style={{color: 'red'}}> </i> : ''}
+                        {todayStringDate === portfolioStringDate && differencePercentage > 0 ? <i className="fas fa-angle-double-up" style={{color: 'green'}}> </i> : ''}
+                        {todayStringDate === portfolioStringDate && differencePercentage < 0 ? <i className="fas fa-angle-double-down" style={{color: 'red'}}> </i> : ''}
 
                         {dailyChange && todayStringDate !== portfolioStringDate ? dailyChange.toFixed(2) : ''}
                         {dailyChange && todayStringDate === portfolioStringDate ? differencePercentage.toFixed(2) : ''}
@@ -123,25 +123,25 @@ const AllInvestments = ({calculations, realtimeData, portfolioCreated}) => {
                 <div>
                     <Desc>Executed P&L</Desc>
                     <InvestmentFont>
-                        {currentBalance > 0 ? <i className="fas fa-angle-double-up" style={{color: 'green'}}></i> : ''}
-                        {currentBalance < 0 ? <i className="fas fa-angle-double-down" style={{color: 'red'}}></i> : ''}
+                        {currentBalance > 0 ? <i className="fas fa-angle-double-up" style={{color: 'green'}}> </i> : ''}
+                        {currentBalance < 0 ? <i className="fas fa-angle-double-down" style={{color: 'red'}}> </i> : ''}
                         $ {currentBalance ? currentBalance.toFixed(2) : '0.00'}
                     </InvestmentFont>
                 </div>
                 <div>
                     <Desc>Overall balance</Desc>
                     <InvestmentFont>
-                        {(parseFloat(currentValue) - totalInvestments + currentBalance).toFixed(2) > 0 ? <i className="fas fa-angle-double-up" style={{color: 'green'}}></i> : ''}
-                        {(parseFloat(currentValue) - totalInvestments + currentBalance).toFixed(2) < 0 ? <i className="fas fa-angle-double-down" style={{color: 'red'}}></i> : ''}
+                        {(parseFloat(currentValue) - totalInvestments + currentBalance).toFixed(2) > 0 ? <i className="fas fa-angle-double-up" style={{color: 'green'}}> </i> : ''}
+                        {(parseFloat(currentValue) - totalInvestments + currentBalance).toFixed(2) < 0 ? <i className="fas fa-angle-double-down" style={{color: 'red'}}> </i> : ''}
                         $ {(parseFloat(currentValue) - totalInvestments + currentBalance).toFixed(2)}
                     </InvestmentFont>
                 </div>
                 <div>
                     <Desc>Overall change %</Desc>
                     <InvestmentFont>
-                        {(parseFloat(currentValue) - totalInvestments + currentBalance).toFixed(2) > 0 ? <i className="fas fa-angle-double-up" style={{color: 'green'}}></i> : ''}
-                        {(parseFloat(currentValue) - totalInvestments + currentBalance).toFixed(2) < 0 ? <i className="fas fa-angle-double-down" style={{color: 'red'}}></i> : ''}
-                        $ {((parseFloat(currentValue) - totalInvestments + currentBalance) / totalInvestments * 100).toFixed(2)}
+                        {(parseFloat(currentValue) - totalInvestments + currentBalance).toFixed(2) > 0 ? <i className="fas fa-angle-double-up" style={{color: 'green'}}> </i> : ''}
+                        {(parseFloat(currentValue) - totalInvestments + currentBalance).toFixed(2) < 0 ? <i className="fas fa-angle-double-down" style={{color: 'red'}}> </i> : ''}
+                        {((parseFloat(currentValue) - totalInvestments + currentBalance) / totalInvestments * 100).toFixed(2)}%
                     </InvestmentFont>
                 </div>
             </InvestmentsContainer>

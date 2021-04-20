@@ -11,7 +11,6 @@ export const specificPortfolioReducer = (state=initialState, action) => {
             portfolioInfo: action.payload
         }
     }
-    // console.log('in specific reducer', state);
     return state;
     
 }
