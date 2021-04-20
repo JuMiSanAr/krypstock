@@ -40,7 +40,7 @@ export const Modal = ({ showModal, setShowModal }) => {
           <ContentWrapper>
             <ShrinkingComponentWrapper showModal={showModal}>
               <div className="portfolioTitle">
-              <h3>Add title and descrption to your portfolio</h3>
+              <h3>Add title and description</h3>
               </div>
               <ModalContent>
                 <input required maxlength="30" type="text" name="" onChange={event => setTitle(event.target.value)}
