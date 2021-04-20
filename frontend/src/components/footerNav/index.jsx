@@ -17,23 +17,23 @@ const FooterNav = ({ setOpen }) => {
         <FooterWrapper>
             <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
                 {/* <HomeIcon className="iconfocus" onClick={handleMenuState} /> */}
-                <i onClick={handleMenuState} class="fa fa-home" aria-hidden="true"></i>
+                <i onClick={handleMenuState} className="fa fa-home" aria-hidden="true"></i>
             </Link>
             <Link to="/portfolio-list/" style={{ textDecoration: 'none', color: 'inherit' }}>
                 {/* <TrendingUpIcon onClick={handleMenuState} /> */}
-                <i onClick={handleMenuState} class="fa fa-folder-open" aria-hidden="true"></i>
+                <i onClick={handleMenuState} className="fa fa-folder-open" aria-hidden="true"></i>
             </Link>
             <Link to="/add-remove/" style={{ textDecoration: 'none', color: 'inherit' }}>
                 {/* <AddCircleIcon onClick={handleMenuState} /> */}
-                <i onClick={handleMenuState} class="fas fa-wallet"></i>
+                <i onClick={handleMenuState} className="fas fa-wallet"></i>
             </Link>
             <Link to="/search/" style={{ textDecoration: 'none', color: 'inherit' }}>
                 {/* <SearchIcon onClick={handleMenuState} /> */}
-                <i onClick={handleMenuState} class="fa fa-search" aria-hidden="true"></i>
+                <i onClick={handleMenuState} className="fa fa-search" aria-hidden="true"></i>
             </Link>
             <Link to="/news/" style={{ textDecoration: 'none', color: 'inherit' }}>
                 {/* <BiNews size={24} onClick={handleMenuState} /> */}
-                <i onClick={handleMenuState} class="fas fa-globe"></i>
+                <i onClick={handleMenuState} className="fas fa-globe"></i>
 
             </Link>
         </FooterWrapper>

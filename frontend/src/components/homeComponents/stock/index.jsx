@@ -12,7 +12,7 @@ import {iexSandboxKey} from "../../../store/constants";
 import {allStockSymbolsAction, iexStockVolumeAction} from "../../../store/actions/stocksActions";
 /*import SymbolFetch from "../../../store/fetches/symbolFetches";*/
 
-const Stock = (props) => {
+const Stock = () => {
 
     const dispatch = useDispatch();
 
@@ -67,33 +67,6 @@ useEffect(()=>{
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-
-    // useEffect(() => {
-    //
-    //    const API_Call_Gain = `https://sandbox.iexapis.com/stable/stock/market/list/gainers?token=${iexSandboxKey}`;
-    //
-    //     fetch(API_Call_Gain)
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             const action = topGainAction(data);
-    //             dispatch(action);
-    //         });
-    //
-    // /*    SymbolFetch();*/
-    //
-    // }, []);
-    //
-    // useEffect(() => {
-    //
-    //     const API_Call_Loss = `https://sandbox.iexapis.com/stable/stock/market/list/losers?token=${iexSandboxKey}`;
-    //
-    //     fetch(API_Call_Loss)
-    //     .then(res => res.json())
-    //     .then(data => {
-    //         const action = topLossAction(data);
-    //         dispatch(action);
-    //     });
-    // }, []);
 
     return (
         <>

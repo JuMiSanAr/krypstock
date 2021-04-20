@@ -38,11 +38,11 @@ const Home = () => {
 
             transactionFetch()
                 .then(data => {
-                    // console.log("data.results", data.results);
                     const action = transactionsAction(data)
                     dispatch(action);
                 })
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [token]);
 
     return (

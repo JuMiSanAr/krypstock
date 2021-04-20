@@ -10,7 +10,6 @@ const CryptoPageInfoCard = (props) => {
         fetch('https://api.binance.com/api/v3/ticker/24hr')
             .then(res => res.json())
             .then(data => {
-                // console.log(data)
                 const allData = data.map((obj,index) => {
                     const cryptoSymbol=obj.symbol
                     const c=props.symbol
@@ -19,7 +18,6 @@ const CryptoPageInfoCard = (props) => {
                     } return {
                     }
                 })
-                console.log('fetched data',fetchedData["symbol"])
             });
     }, []);
 

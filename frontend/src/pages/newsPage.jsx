@@ -5,7 +5,7 @@ import { stockNewsAction } from "../store/actions/newsActions";
 import { useDispatch, useSelector } from "react-redux";
 // import NewsStock from "../components/newsFeed/newsStock";
 import SingleStockNewsFeed from "../components/newsFeed/singleStockNewsFeed";
-import { ShowMore, HeroHeader, NewsContentWrapper, HeaderTitle } from '../styles/components/stockStyles/newsStyles'
+import { ShowMore, NewsContentWrapper, HeaderTitle } from '../styles/components/stockStyles/newsStyles'
 import SingleCryptoNewsFeed from "../components/newsFeed/singleCryptoNews";
 import { NaviWrapper } from '../styles/components/naviStyles/menuStyles';
 import Burger from '../components/navi/burger';
@@ -32,6 +32,7 @@ const NewsPage = () => {
     useEffect(() => {
         fetchStockNews();
         fetchCryptoNews();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const fetchStockNews = () => {
@@ -58,24 +59,6 @@ const NewsPage = () => {
                 setCryptoNews(data.articles);
             });
     }
-
-    // const fetchCryptoNews = () => {
-    //     const API_Call = `https://cryptopanic.com/api/v1/posts/?auth_token=6f333ed50f0e1e4679a65139765f56c00853296f&kind=news`;
-    //
-    //     const config = {
-    //           mode: 'no-cors',
-    //           headers: {
-    //             "Content-Type": "application/json",
-    //             "Access-Control-Allow-Credentials": "true"
-    //           }
-    //         }
-    //
-    //     fetch(API_Call,config)
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             console.log(data.event);
-    //         });
-    // }
 
     return (
         <>

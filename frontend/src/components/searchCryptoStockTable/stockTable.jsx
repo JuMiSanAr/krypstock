@@ -14,8 +14,6 @@ export const StockTable = ({symbol, setStockName, setStockShowModal, setStockSym
 
 
     const addTransaction = () =>{
-        // //   console.log(symbol.symbol)  
-        //   setShowModal(prev => !prev);
           setStockName(symbol.companyName)
           setStockSymbol(symbol.symbol)
           setStockShowModal(true);

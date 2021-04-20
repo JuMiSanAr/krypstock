@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import CandlestickCryptoIntraday from "../components/charts/candlesticksCryptoIntraday";
 import { FormSelectWrapper, GraphWrapper } from "../styles/components/cryptoStyles/bitCoinStyles";
 import { AllComponentsWrapper, ShrinkingComponentWrapper } from "../styles/globalParts/containerStyles";
@@ -13,14 +13,14 @@ import CryptoPageInfoCard from "../components/cryptoCards/cryptoPageInfoCard";
 // import {CryptoNewsApiAi} from "../components/homeComponents/crypto/cryptoNewsApiAi";
 import PortfoliosWithStock from "../components/stockCards/portfoliosWithStock";
 
-const CryptoPage = (props) => {
+const CryptoPage = () => {
 
     const [open, setOpen] = useState(false);
 
     const [chartTimeframe2, setChartTimeframe2] = useState('1d');
 
-    const [intradayData, setIntradayData] = useState([]);
-    const [historicalData, setHistoricalData] = useState([]);
+    const [intradayData] = useState([]);
+    const [historicalData] = useState([]);
 
     const url = window.location.href;
     const symbol = url.substring(url.lastIndexOf('/') + 1).toUpperCase();
