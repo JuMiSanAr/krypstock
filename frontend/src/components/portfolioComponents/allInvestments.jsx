@@ -104,7 +104,7 @@ const AllInvestments = ({calculations, realtimeData, portfolioCreated}) => {
                         <InvestmentFont>
                             {differencePercentage > 0 ? <i className="fas fa-angle-double-up" style={{color: 'green'}}> </i> : ''}
                             {differencePercentage < 0 ? <i className="fas fa-angle-double-down" style={{color: 'red'}}> </i> : ''}
-                            {differencePercentage ? differencePercentage.toFixed(2) : ''}%
+                            {differencePercentage ? differencePercentage.toFixed(2) : ''} %
                         </InvestmentFont>
                     </div>
                     <div>
@@ -116,8 +116,7 @@ const AllInvestments = ({calculations, realtimeData, portfolioCreated}) => {
                             {todayStringDate === portfolioStringDate && differencePercentage < 0 ? <i className="fas fa-angle-double-down" style={{color: 'red'}}> </i> : ''}
 
                             {dailyChange && todayStringDate !== portfolioStringDate ? dailyChange.toFixed(2) : ''}
-                            {dailyChange && todayStringDate === portfolioStringDate ? differencePercentage.toFixed(2) : ''}
-                            %
+                            {dailyChange && todayStringDate === portfolioStringDate ? differencePercentage.toFixed(2) : ''} %
                         </InvestmentFont>
                     </div>
                     </InvestmentsContainer>
@@ -148,7 +147,7 @@ const AllInvestments = ({calculations, realtimeData, portfolioCreated}) => {
                         <InvestmentFont>
                             {(parseFloat(currentValue) - totalInvestments + currentBalance).toFixed(2) > 0 ? <i className="fas fa-angle-double-up" style={{color: 'green'}}> </i> : ''}
                             {(parseFloat(currentValue) - totalInvestments + currentBalance).toFixed(2) < 0 ? <i className="fas fa-angle-double-down" style={{color: 'red'}}> </i> : ''}
-                            {((parseFloat(currentValue) - totalInvestments + currentBalance) / totalInvestments * 100).toFixed(2)}%
+                            {((parseFloat(currentValue) - totalInvestments + currentBalance) / totalInvestments * 100).toFixed(2)} %
                         </InvestmentFont>
                     </div>
                 </InvestmentsContainer>

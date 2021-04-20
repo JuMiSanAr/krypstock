@@ -76,7 +76,11 @@ export const BitCoin = (props) => {
                 <CryptoWrapper>
                     <FormSelectWrapper>
                         <label htmlFor="company-input">Cryptocurrency</label>
-                        <input id="company-input" placeholder={symbol==='BTCUSDT'?'BTC':(symbol).slice(0,-4)} className="selector" list="cryptoSymbols" onChange={e => setSymbolInput(`${e.target.value}USDT`)} required />
+                        <input id="company-input" placeholder={symbol==='BTCUSDT'?'BTC':(symbol).slice(0,-4)} className="selector" list="cryptoSymbols"
+                               onChange={e => setSymbolInput(`${e.target.value.toUpperCase()}USDT`)}
+                               style={{"textTransform":"uppercase"}}
+                               required />
+
                         <div >
                             <ChartTimeCrypto setChart2={setChartTimeframe2} />
                         </div>

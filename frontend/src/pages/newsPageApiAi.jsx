@@ -34,7 +34,7 @@ const NewsPage = () => {
 
     useEffect(() => {
         fetchStockNews();
-        fetchCryptoNews();
+        // fetchCryptoNews();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 

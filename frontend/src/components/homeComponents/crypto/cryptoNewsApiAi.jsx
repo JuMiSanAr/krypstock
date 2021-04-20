@@ -59,7 +59,7 @@ export const CryptoNewsApiAi = ({symbol}) => {
 
     useEffect(() => {
         if(symbol){
-            fetchNews();
+            // fetchNews();
         }
     }, [symbol]);
 

@@ -30,6 +30,7 @@ export const ModalContent = styled.div `
       border-radius: 5px;
       height: 40px;
       width: 260px;
+      text-align: center;
       :focus{
           outline: none;
       }
@@ -37,6 +38,8 @@ export const ModalContent = styled.div `
   textarea {
     margin-bottom: 10px;
     border-radius: 5px;
+    width: 260px;
+    text-align: center;
     :focus{
           outline: none;
       }
@@ -169,5 +172,5 @@ export const BackgroundPortfolio = styled.div `
   justify-content: center;
   align-items: center;
   z-index: 999;
-  margin-top: -78px; 
+  margin-top: -111px; 
 `;
