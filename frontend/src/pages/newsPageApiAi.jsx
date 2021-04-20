@@ -102,27 +102,16 @@ const NewsPage = () => {
           
             <HeaderTitle>
                 <DoubleButtonContainer>
-                    <LeftButton onClick={() => toggleTab(1)} numberClicked={toggleState}>Crypto</LeftButton>
-                    <RightButton onClick={() => toggleTab(2)} numberClicked={toggleState}>Stock</RightButton>
+                    <LeftButton  className="left-button"  onClick={() => toggleTab(1)} numberClicked={toggleState}>Crypto</LeftButton>
+                    <RightButton className="right-button" onClick={() => toggleTab(2)} numberClicked={toggleState}>Stock</RightButton>
+                    <span className="animation start-crypto"></span> 
                 </DoubleButtonContainer> 
-                {/* <div className="toggleTitle">
-                    <span>/</span>
-                    <h3 onClick={() => toggleTab(1)} numberClicked={toggleState}>Crypto</h3>
-                    <span>/</span>
-                    <h3 onClick={() => toggleTab(2)} numberClicked={toggleState}>Stock</h3>
-                </div> */}
             </HeaderTitle>
             <ShrinkingComponentWrapper>
             <NewsContentWrapper>
 
-                {/* <h1>News</h1> */}
-                {/* <DoubleButtonContainer>
-                    <LeftButton onClick={() => toggleTab(1)} numberClicked={toggleState}>Stock</LeftButton>
-                    <RightButton onClick={() => toggleTab(2)} numberClicked={toggleState}>Crypto</RightButton>
-                </DoubleButtonContainer> */}
-
                 {
-                    allStockNews.length > 0 && toggleState === 1 ?
+                    allStockNews.length > 0 && toggleState === 2 ?
                         allStockNews.slice(0, newsNumberShown).map((news, index) => {
                             return (
                                 <SingleStockNewsFeed key={index} news={news} />
@@ -131,7 +120,7 @@ const NewsPage = () => {
                         : ''
                 }
                 {
-                    crytoNews.length > 0 && toggleState === 2 ?
+                    crytoNews.length > 0 && toggleState === 1 ?
                         crytoNews.slice(0, newsNumberShown).map((news, index) => {
                             return (
                                 <SingleCryptoNewsFeed key={index} news={news} />
