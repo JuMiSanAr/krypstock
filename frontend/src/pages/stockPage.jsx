@@ -12,7 +12,6 @@ import NoIntradayInfo from "../components/charts/noIntradayInfo";
 import PortfoliosWithStock from "../components/stockCards/portfoliosWithStock";
 import StockStats from "../components/stockCards/stockStats";
 import { iexSandboxKey } from "../store/constants";
-import {Symbol} from "../styles/components/stockStyles/stockPageInfoStyles";
 import {PageTitleStyleNoMarginBottom, SubPageTitleStyle} from "../styles/globalParts/titleStyles";
 import { NaviWrapper } from '../styles/components/naviStyles/menuStyles';
 import Burger from '../components/navi/burger';
