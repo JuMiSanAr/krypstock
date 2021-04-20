@@ -8,22 +8,24 @@ import {iexSandboxKey} from "../../../store/constants";
 import {stockNewsAction} from "../../../store/actions/newsActions";
 
 
-export const CryptoNewsApiAi = (props) => {
+export const CryptoNewsApiAi = ({symbol}) => {
 
     const [allNews, setAllNews] = useState([]);
     const apiKeyAi = "919a6de0-17d5-49df-b7c9-55de20989583"
+
     const fetchNews = () => {
-      const API_Call = `http://eventregistry.org/api/v1/article/getArticles?apiKey=919a6de0-17d5-49df-b7c9-55de20989583`;
+      const API_Call = `https://eventregistry.org/api/v1/article/getArticles?apiKey=919a6de0-17d5-49df-b7c9-55de20989583`;
       const method = 'POST';
       const body = {
         action: "getArticles",
-        //keyword: [(props.symbol).slice(0,-4).toUpperCase(),(props.symbol).slice(0,-4).toLowerCase(),(props.symbol).toUpperCase(),(props.symbol).toLowerCase()],
-        keyword: 'to be removed',
+        keyword: [symbol.slice(0,-4).toUpperCase()],
         articlesPage: 1,
         articlesCount: 5,
         articlesSortBy: "date",
         articlesSortByAsc: false,
         articlesArticleBodyLen: -1,
+        ignoreKeyword: 'Read More',
+        ignoreAuthorUri: 'explica_co@explica.co',
         resultType: "articles",
         dataType: [
           "news",
@@ -56,17 +58,16 @@ export const CryptoNewsApiAi = (props) => {
     };
 
     useEffect(() => {
-        fetchNews();
-    }, []);
+        if(symbol){
+            fetchNews();
+        }
+    }, [symbol]);
 
     return (
         <>
             <ShrinkingComponentWrapper >
-
                  <TitleSpan>Latest News</TitleSpan>
-
                     {allNews.length > 0 ? allNews.map((news, index) => {
-
                         return (
                         <CryptoNewsWrapper key={index}>
                             <CryptoHeadlineWrapper>
@@ -75,7 +76,7 @@ export const CryptoNewsApiAi = (props) => {
                                     <h3 onClick={() => window.open(news.url, "_blank")}>{news.title}</h3>
                                     <div className="publishDetial">
                                         <p className='news_date'>By {news.source.title}</p>
-                                        <p className='news_date'>{news.dateTimePub}</p>
+                                        <p className='news_date'> {news.dateTimePub}</p>
                                     </div>
                                 </div>
                             </CryptoHeadlineWrapper>

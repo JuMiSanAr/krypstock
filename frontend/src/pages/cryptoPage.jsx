@@ -2,25 +2,20 @@ import React, {useState} from 'react';
 import CandlestickCryptoIntraday from "../components/charts/candlesticksCryptoIntraday";
 import { FormSelectWrapper, GraphWrapper } from "../styles/components/cryptoStyles/bitCoinStyles";
 import { AllComponentsWrapper, ShrinkingComponentWrapper } from "../styles/globalParts/containerStyles";
-// import NewsCrypto from "../components/newsFeed/newsCrypto";
 import CandlestickCryptoHistorical from "../components/charts/candlesticksCryptoHistorical";
 import ChartTimeCrypto from "../components/charts/chartSelectTimeCrypto";
-// import {PageTitleStyle} from "../styles/globalParts/titleStyles";
 import { NaviWrapper } from '../styles/components/naviStyles/menuStyles';
 import Burger from '../components/navi/burger';
 import Menu from '../components/navi/menu';
 import CryptoPageInfoCard from "../components/cryptoCards/cryptoPageInfoCard";
-// import {CryptoNewsApiAi} from "../components/homeComponents/crypto/cryptoNewsApiAi";
 import PortfoliosWithStock from "../components/stockCards/portfoliosWithStock";
+import {CryptoNewsApiAi} from "../components/homeComponents/crypto/cryptoNewsApiAi";
 
 const CryptoPage = () => {
 
     const [open, setOpen] = useState(false);
 
     const [chartTimeframe2, setChartTimeframe2] = useState('1d');
-
-    const [intradayData] = useState([]);
-    const [historicalData] = useState([]);
 
     const url = window.location.href;
     const symbol = url.substring(url.lastIndexOf('/') + 1).toUpperCase();
@@ -52,9 +47,9 @@ const CryptoPage = () => {
               </FormSelectWrapper>
                  <GraphWrapper>
                  {chartTimeframe2 === '1d'?
-                   <CandlestickCryptoIntraday data={intradayData} symbol={symbol} timeLength={chartTimeframe2}/>
+                   <CandlestickCryptoIntraday symbol={symbol} timeLength={chartTimeframe2}/>
                    :
-                   <CandlestickCryptoHistorical data={historicalData} symbol={symbol} timeLength={chartTimeframe2}/>}
+                   <CandlestickCryptoHistorical symbol={symbol} timeLength={chartTimeframe2}/>}
                     </GraphWrapper>
                  </ShrinkingComponentWrapper>
                 <ShrinkingComponentWrapper>
@@ -62,7 +57,7 @@ const CryptoPage = () => {
                 </ShrinkingComponentWrapper>
                  <ShrinkingComponentWrapper>
                 {/*<NewsCrypto symbol={symbol}/>*/}
-                {/* <CryptoNewsApiAi symbol={symbol}/> */}
+                 <CryptoNewsApiAi symbol={symbol}/>
             </ShrinkingComponentWrapper>
     </AllComponentsWrapper>
         </>

@@ -34,6 +34,9 @@ const Registration = (props) => {
             setErrorEmptyEmail(true);
         }
     }
+const  handleClick = () => {
+    history.push("/sign-in");
+  }
 
     return (
         <>
@@ -63,6 +66,9 @@ const Registration = (props) => {
                             : ''}
                          <ButtonWrapper>
                          <button onClick={sendEmail}>Register</button>
+                        </ButtonWrapper>
+                        <ButtonWrapper>
+                         <button onClick={handleClick}>Login</button>
                         </ButtonWrapper>
                       
                </InputWrapper>

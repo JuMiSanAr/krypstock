@@ -9,10 +9,10 @@ import { TitleSpan } from '../../../styles/globalParts/textStyles';
 
 const TransactionHistory = (props) => {
 
-    const [page, setPage] = useState(0);
-    const rowsPerPage = 4;
     const allData = useSelector(state => state.transactionsReducer.transactions);
-
+    
+    const [page, setPage] = useState(0);
+    const rowsPerPage = 10;
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
     };
@@ -27,8 +27,9 @@ const TransactionHistory = (props) => {
                         <tr>
                             <th>Company</th>
                             <th>Date</th>
+                            <th>Type</th>
+                            <th>Volume</th>
                             <th>Price</th>
-                            <th>Transaction</th>
                         </tr>
                     </thead>
                     : null
@@ -40,10 +41,31 @@ const TransactionHistory = (props) => {
                         .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                         .map( (stockData, index) => 
                             <tr key={"Stock"+ index}>
-                                <td>{stockData.symbol}</td>
-                                <td><Moment format="DD.MM.YY">{stockData.exec_time}</Moment></td>
-                                <td>{stockData.cost}</td>
-                                <td>{stockData.buy_sell === "B" ? "BUY" : "SELL"}</td>
+                                <td>
+                                    <div className="tdDiv">
+                                        {stockData.symbol}
+                                    </div>
+                                </td>
+                                <td>
+                                    <div className="tdDivDate">
+                                        <Moment format="DD.MM.YY">{stockData.exec_time}</Moment>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div className="tdDivType">
+                                        {stockData.buy_sell === "B" ? "BUY" : "SELL"}
+                                    </div>
+                                </td>
+                                <td>
+                                    <div className="tdDivVolume">
+                                        {stockData.quantity}
+                                    </div>
+                                </td>
+                                <td>
+                                    <div className="tdDivTransacPrice">
+                                        {Number(stockData.cost).toFixed(2)}
+                                    </div>
+                                </td>
                             </tr>
                         )
                         :

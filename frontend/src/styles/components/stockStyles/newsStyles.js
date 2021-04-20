@@ -8,8 +8,7 @@ export const FlexDiv = styled.div `
     display: flex;
 `
 
-export const NewsWrapper = styled(FlexDiv)
-`
+export const NewsWrapper = styled(FlexDiv)`
     flex-direction: column;
     justify-content: space-between;
      
@@ -38,21 +37,8 @@ export const NewsWrapper = styled(FlexDiv)
 `
 
 export const HeadlineWrapper = styled.article `
-    /* display: flex;
-    margin-bottom: 10px;
-    padding: 5px;
-    /* img{
-    height: 40px;
-    width: 40px;
-    margin-right: 10px;
-    } */
-    /* img{
-    height: 100px;
-    width: 100px;
-    margin-right: 10px;
-    }  */
-    width: 300px;
     margin: 10px;
+    
     span{
      
         padding: 10px;
@@ -62,6 +48,7 @@ export const HeadlineWrapper = styled.article `
         height: 250px;
         cursor: pointer;
         border-radius: 5px;
+        padding-right: 20px;
     }
     .publishDetial{
         display: flex;
@@ -70,17 +57,13 @@ export const HeadlineWrapper = styled.article `
     }
     h3{
         cursor: pointer;
+        font-size: 16px;
     }
     @media only screen and (max-width: 600px) and (min-width: 320px) {
         display: flex;
         align-items: center;
         justify-content: flex-start;
         margin-bottom: 10px;
-        /* img{
-        height: 40px;
-        width: 40px;
-        margin-right: 10px;
-        } */
         img{
         height: 100px;
         width: 100px;
@@ -137,7 +120,7 @@ export const NewsContentWrapper = styled.div `
         overflow: auto;
         word-break: break-all;
         margin: 0;
-        width: 100vw;
+        //width: 100vw;
     }
 `;
 
@@ -164,7 +147,7 @@ export const HeaderTitle = styled.div `
         flex-wrap: wrap;
         justify-content: center;
         margin: 0;
-        width: 100vw;
+        //width: 100vw;
     }
 `;
 

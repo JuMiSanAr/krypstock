@@ -14,7 +14,7 @@ const TrendyCrypto = () => {
     const dataAmount = 20;
     //Pagination
     const [page, setPage] = useState(0);
-    const rowsPerPage = 4;
+    const rowsPerPage = 10;
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
     };
@@ -45,8 +45,8 @@ const TrendyCrypto = () => {
                         <thead>
                             <tr>
                                 <th>Currency</th>
+                                <th>Change</th>
                                 <th>Price</th>
-                                <th>Change %</th>
                                 <th>Volume (M)</th>
                             </tr>
                         </thead>
@@ -59,13 +59,28 @@ const TrendyCrypto = () => {
                             .map((crypto, index) =>
                                 <tr key={index}>
                                     {/* <td>{trendyCryptos.indexOf(crypto) + 1}</td> */}
-                                    <td className="clickCrypto" onClick={() => specificCryptoPage(crypto.symbol)}>{crypto.symbol.slice(0, -4)}</td>
-                                    <td>{Number(crypto.lastPrice).toFixed(2)}</td>
-                                    <td className="change">
-                                        {crypto.priceChangePercent > 0 ? <i className="fas fa-angle-double-up" style={{ color: 'green' }}></i> : crypto.priceChangePercent < 0 ? <i className="fas fa-angle-double-down" style={{ color: 'red' }}></i> : null}
-                                        {Math.abs(Number(crypto.priceChangePercent)).toFixed(2)}%
+                                    <td className="clickCrypto" onClick={() => specificCryptoPage(crypto.symbol)}>
+                                        <div className='tdDiv'>
+                                            {crypto.symbol.slice(0, -4)}
+                                        </div>
                                     </td>
-                                    <td>{(crypto.quoteVolume / 1000000).toFixed(2)}</td>
+                                    <td>
+                                        <div className='tdDiv'>
+                                            {crypto.priceChangePercent > 0 ? <i className="fas fa-angle-double-up" style={{ color: 'green' }}></i> : 
+                                            crypto.priceChangePercent < 0 ? <i className="fas fa-angle-double-down" style={{ color: 'red' }}></i> : 
+                                            null} {Math.abs(Number(crypto.priceChangePercent)).toFixed(2)}%
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div className='tdDivVolume'>
+                                            {Number(crypto.lastPrice).toFixed(2)}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div className='tdDivVolume'>
+                                            {(crypto.quoteVolume / 1000000).toFixed(2)}
+                                        </div>
+                                    </td>
                                 </tr>)
                         :
                         <tr>

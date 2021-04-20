@@ -12,7 +12,7 @@ import NoIntradayInfo from "../components/charts/noIntradayInfo";
 import PortfoliosWithStock from "../components/stockCards/portfoliosWithStock";
 import StockStats from "../components/stockCards/stockStats";
 import { iexSandboxKey } from "../store/constants";
-import {SubPageTitleStyle} from "../styles/globalParts/titleStyles";
+import {PageTitleStyleNoMarginBottom, SubPageTitleStyle} from "../styles/globalParts/titleStyles";
 import { NaviWrapper } from '../styles/components/naviStyles/menuStyles';
 import Burger from '../components/navi/burger';
 import Menu from '../components/navi/menu';
@@ -53,6 +53,7 @@ const StockPage = () => {
 
     return (
         <>
+            {/* <PageTitleStyleNoMarginBottom>{symbol}</PageTitleStyleNoMarginBottom> */}
             <NaviWrapper>
                 <div>
                     <Burger open={open} setOpen={setOpen}/> 

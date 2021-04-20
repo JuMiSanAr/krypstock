@@ -8,7 +8,7 @@ import TransactionHistory from './transactionHistory';
 import TrendyStocks from './trendyStocks';
 import {useDispatch, useSelector} from "react-redux";
 import {topGainAction, topLossAction} from '../../../store/actions/topGainLossActions'
-import {iexSandboxKey} from "../../../store/constants";
+import {iexAPIKey, iexSandboxKey} from "../../../store/constants";
 import {allStockSymbolsAction, iexStockVolumeAction} from "../../../store/actions/stocksActions";
 /*import SymbolFetch from "../../../store/fetches/symbolFetches";*/
 
@@ -25,7 +25,7 @@ const Stock = () => {
 useEffect(()=>{
 
     const API_Call_News = `https://sandbox.iexapis.com/stable/stock/aapl/news/last/5?token=${iexSandboxKey}`;
-    const API_Volume = `https://sandbox.iexapis.com/stable/stock/market/list/iexvolume?token=${iexSandboxKey}`;
+    const API_Volume = `https://sandbox.iexapis.com/stable/stock/market/list/mostactive?token=${iexSandboxKey}`;
     const API_Call_Gain = `https://sandbox.iexapis.com/stable/stock/market/list/gainers?token=${iexSandboxKey}`;
     const API_Call_Loss = `https://sandbox.iexapis.com/stable/stock/market/list/losers?token=${iexSandboxKey}`;
     const API_Call_Symbols = `https://sandbox.iexapis.com/stable/ref-data/symbols?token=${iexSandboxKey}`;
@@ -37,6 +37,7 @@ useEffect(()=>{
             return fetch(API_Volume)
         .then(res => res.json())
         .then(data => {
+            console.log(data)
             const action = iexStockVolumeAction(data);
             dispatch(action);
             return fetch(API_Call_Gain);
@@ -71,7 +72,7 @@ useEffect(()=>{
     return (
         <>
             <MarketOverview/>
-            <News stock_news={topFiveNews}/>
+            {/* <News stock_news={topFiveNews}/> */}
             <StockQuickTrade fromPage='HomePage' />
             <TransactionHistory />
             <TrendyStocks stock_volume={stockVolumeData} />

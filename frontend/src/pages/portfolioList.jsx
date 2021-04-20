@@ -15,13 +15,13 @@ const AddIcon = styled.div`
 display: flex;
 justify-content: flex-end;
 i{
-  position: fixed;
-  top: 83vh;
-  font-size: 25px;
-  margin: 15px;
+  /* position: fixed;
+  top: 76vh; */
+  font-size: 35px;
+  margin-right:35px;
   z-index: 10;
   color: orange;
-  text-shadow: 1px 1px 2px #413f3f, 0 0 25px blue, 0 0 5px darkblue;
+  text-shadow:  0 0 25px white, 0 0 5px darkblue;
 
 }
 `;
@@ -60,7 +60,12 @@ const PortfolioList = () => {
                 <h2>My portfolios</h2>
                 </div>
                 </NaviWrapper>
+                <AddIcon>
+        {/* <AddCircleIcon onClick={openModal} /> */}
+        <i onClick={openModal} class="fas fa-folder-plus"></i>
+     </AddIcon>
     <AllComponentsWrapper>
+
       <Modal showModal={showModal} setShowModal={setShowModal} />
       {
         portfolioData && portfoliosFetched ? <PortfolioCollection/> : ""
@@ -72,10 +77,7 @@ const PortfolioList = () => {
         !portfolioData && portfoliosFetched ? 'Add a new portfolio, man!' : ""
       }
     </AllComponentsWrapper>
-     <AddIcon> 
-        {/* <AddCircleIcon onClick={openModal} /> */}
-        <i onClick={openModal} className="fas fa-folder-plus"> </i>
-     </AddIcon> 
+
       
   </>
   )

@@ -76,14 +76,14 @@ const Menu = ({open, setOpen}) => {
                 <img src={Logo} alt="logo"/>
             </LogoIconWrapper>
             <MenuContentWrapper>
-                <h2>Hello, {userData ? userData.username : ""}</h2>
+                <h2>Welcome {userData ? userData.username : ""}</h2>
                 <MenuItemWrapper>
                 <DashboardIcon/>
                 <span className="move-right-1" onClick={() => toDashboard()}>Dashboard</span>
                 <ArrowForwardIosIcon/>
                 </MenuItemWrapper>
                 <MenuItemWrapper>
-                <FolderIcon/>
+                <i className="fa fa-folder-open" aria-hidden="true"></i>
                 <span className="move-right-2" onClick={() => toPortfolios()}>My portfolios</span>
                 <ArrowForwardIosIcon/>
                 </MenuItemWrapper>
@@ -93,12 +93,12 @@ const Menu = ({open, setOpen}) => {
                 <ArrowForwardIosIcon/>
                 </MenuItemWrapper> */}
                 <MenuItemWrapper>
-                <FaSearchDollar size={24}/>
+                <i className="fa fa-search" aria-hidden="true"></i>
                 <span className="move-right-3"  onClick={() => toSearch()}>Search</span>
                 <ArrowForwardIosIcon/>
                 </MenuItemWrapper>
                 <MenuItemWrapper>
-                <BiNews size={24}/>
+                <i className="fas fa-globe"></i>
                 <span className="move-right-4"  onClick={() => toNews()}>News</span>
                 <ArrowForwardIosIcon/>
                 </MenuItemWrapper>

@@ -22,17 +22,17 @@ export const CryptoTable = ({symbol, setSymbolCrypto, setCryptoShowModal}) => {
         <>
         {
             <tr>
-            <td onClick={() => addTransaction()} className="headcol"><AddBoxIcon className="addIcon"/></td>
-            <td onClick={() => {
-                return (
-                    !window.getSelection().toString().length ? toSymbolPage() : ''
-                )
-            }}>{slicedSymbol}</td>
-            <td>{parseFloat(symbol.lastPrice).toFixed(2)}</td>
-            <td>{symbol.priceChangePercent}</td>
-            {/*<td><TrendingUpIcon/> {symbol.highPrice}</td>*/}
+                <td onClick={() => addTransaction()} className="headcol"><AddBoxIcon className="addIcon"/></td>
+                <td onClick={() => {
+                    return (
+                        !window.getSelection().toString().length ? toSymbolPage() : ''
+                    )
+                }}>{slicedSymbol}</td>
+                <td>{parseFloat(symbol.lastPrice).toFixed(2)}</td>
+                <td>{symbol.priceChangePercent}</td>
+                {/*<td><TrendingUpIcon/> {symbol.highPrice}</td>*/}
             </tr>
         }
-    </>
+        </>
     )
 }

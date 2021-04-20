@@ -13,11 +13,11 @@ const WorstPerformingCrypto = () => {
     const [worstCryptos, setWorstCryptos] = useState([]);
     const dataAmount = 10;
     //Pagination
-    const [page, setPage] = useState(0);
-    const rowsPerPage = 4;
-    const handleChangePage = (event, newPage) => {
-        setPage(newPage);
-    };
+    // const [page, setPage] = useState(0);
+    // const rowsPerPage = 4;
+    // const handleChangePage = (event, newPage) => {
+    //     setPage(newPage);
+    // };
 
     useEffect(() => {
         const top10WorstCryptos = [];
@@ -46,8 +46,9 @@ const WorstPerformingCrypto = () => {
                         <thead>
                             <tr>
                                 <th>Currency</th>
+                                <th>Change</th>
                                 <th>Price</th>
-                                <th>Change %</th>
+                                <th>Volume</th>
                             </tr>
                         </thead>
                         :
@@ -55,16 +56,33 @@ const WorstPerformingCrypto = () => {
                 }
                 <tbody>
                     {worstCryptos !== [] && worstCryptos.length === dataAmount ?
-                        worstCryptos.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                        worstCryptos
+                            // .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                             .map((crypto, index) =>
                                 <tr key={index}>
                                     {/* <td>{worstCryptos.indexOf(crypto) + 1}</td> */}
-                                    <td className="clickCrypto" onClick={() => specificCryptoPage(crypto.symbol)}>{crypto.symbol.slice(0, -4)}</td>
-                                    <td>{Number(crypto.lastPrice).toFixed(2)}</td>
+                                    <td className="clickCrypto" onClick={() => specificCryptoPage(crypto.symbol)}>
+                                        <div className="tdDiv">
+                                            {crypto.symbol.slice(0, -4)}
+                                        </div>
+                                    </td>
                                     <td>
-                                        {crypto.priceChangePercent > 0 ? <i className="fas fa-angle-double-up" style={{ color: 'green' }}></i> : crypto.priceChangePercent < 0 ? <i className="fas fa-angle-double-down" style={{ color: 'red' }}></i> : null}
-                                        {Math.abs(crypto.priceChangePercent).toFixed(2)}%
-                            </td>
+                                        <div className="tdDiv">
+                                            {crypto.priceChangePercent > 0 ? <i className="fas fa-angle-double-up" style={{ color: 'green' }}></i> 
+                                            : crypto.priceChangePercent < 0 ? <i className="fas fa-angle-double-down" style={{ color: 'red' }}></i> 
+                                            : null} {Math.abs(crypto.priceChangePercent).toFixed(2)}%
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div className="tdDivVolume">
+                                            {Number(crypto.lastPrice).toFixed(2)}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div className='tdDivVolume'>
+                                            {(crypto.quoteVolume / 1000000).toFixed(2)}
+                                        </div>
+                                    </td>
                                 </tr>)
                         :
                         <tr>
@@ -73,7 +91,7 @@ const WorstPerformingCrypto = () => {
                     }
                 </tbody>
             </Table>
-            {
+            {/* {
                 worstCryptos && worstCryptos.length !== 0 ?
                     <TablePagination
                         component="div"
@@ -85,7 +103,7 @@ const WorstPerformingCrypto = () => {
                         style={{ color: darkTheme.text }}
                     />
                     : null
-            }
+            } */}
         </ShrinkingComponentWrapper>
     )
 }

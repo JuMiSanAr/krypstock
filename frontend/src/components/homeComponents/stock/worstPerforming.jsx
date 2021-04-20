@@ -13,11 +13,11 @@ const WorstPerformingStocks = ({loss_stock}) => {
     const history = useHistory()
 
     //Pagination
-    const [page, setPage] = useState(0);
-    const rowsPerPage = 4;
-    const handleChangePage = (event, newPage) => {
-        setPage(newPage);
-    };
+    // const [page, setPage] = useState(0);
+    // const rowsPerPage = 10;
+    // const handleChangePage = (event, newPage) => {
+    //     setPage(newPage);
+    // };
 
     const specificStockPage = (symbol) => {
         history.push(`/stock/${symbol}`)
@@ -27,7 +27,7 @@ const WorstPerformingStocks = ({loss_stock}) => {
         <ShrinkingComponentWrapper>
             <FormSelectWrapper>
                 <div className="title">
-                    <TitleSpan>Top 10 loss stocks</TitleSpan>
+                    <TitleSpan>Top {loss_stock && loss_stock.length > 0 ? loss_stock.length : '10'} loss stocks</TitleSpan>
                 </div>
             </FormSelectWrapper>
             <StockTable id="loss-stocks">
@@ -36,9 +36,9 @@ const WorstPerformingStocks = ({loss_stock}) => {
                     <thead>
                         <tr>
                             <th>Company</th>
+                            <th>Change</th>
                             <th>Price</th>
-                            <th>Change %</th>
-                            <th>Volume</th>
+                            <th>Volume (M)</th>
                         </tr>
                     </thead>
                     : 
@@ -47,17 +47,33 @@ const WorstPerformingStocks = ({loss_stock}) => {
                 <tbody>
                 {
                     loss_stock && loss_stock.length > 0 ?
-                    loss_stock.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                    loss_stock
+                    // .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                     .map((data, index) => {
                         return (
                             <tr key={index}>
-                                <td className="clickStock" onClick={()=> specificStockPage(data.symbol)}>{data.symbol}</td>
-                                <td>{data.latestPrice.toFixed(2)}</td>
-                                <td>
-                                    {data.changePercent > 0 ? <i className="fas fa-angle-double-up" style={{color: 'green'}}></i> : data.changePercent < 0 ? <i className="fas fa-angle-double-down" style={{color: 'red'}}></i> : null}    
-                                    {Math.abs(data.changePercent * 100).toFixed(2)}%
+                                <td className="clickStock" onClick={()=> specificStockPage(data.symbol)}>
+                                    <div className="tdDiv">
+                                        {data.symbol}
+                                    </div>
                                 </td>
-                                <td>{data.volume}</td>
+                                <td>
+                                    <div className="tdDiv">
+                                        {data.changePercent > 0 ? <i className="fas fa-angle-double-up" style={{color: 'green'}}></i> 
+                                        : data.changePercent < 0 ? <i className="fas fa-angle-double-down" style={{color: 'red'}}></i> 
+                                        : null} {Math.abs(data.changePercent * 100).toFixed(2)}%
+                                    </div>
+                                </td>
+                                <td>
+                                    <div className="tdDivVolume">
+                                        {data.latestPrice.toFixed(2)}
+                                    </div>
+                                </td>
+                                <td>
+                                    <div className="tdDivVolume">
+                                        {(data.volume/1000000).toFixed(2)}
+                                    </div>
+                                </td>
                             </tr>
                         )
                     })
@@ -68,7 +84,7 @@ const WorstPerformingStocks = ({loss_stock}) => {
                 }
                 </tbody>
             </StockTable>
-            {
+            {/* {
                 loss_stock && loss_stock.length > 0 ?
                 <TablePagination 
                     component="div"
@@ -81,7 +97,7 @@ const WorstPerformingStocks = ({loss_stock}) => {
                 />
                 : 
                 null
-            }
+            } */}
         </ShrinkingComponentWrapper>
     )
 }

@@ -34,7 +34,6 @@ const FooterNav = ({ setOpen }) => {
             <Link to="/news/" style={{ textDecoration: 'none', color: 'inherit' }}>
                 {/* <BiNews size={24} onClick={handleMenuState} /> */}
                 <i onClick={handleMenuState} className="fas fa-globe"></i>
-
             </Link>
         </FooterWrapper>
     )
