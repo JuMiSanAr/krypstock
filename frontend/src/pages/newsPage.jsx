@@ -75,6 +75,7 @@ const NewsPage = () => {
             </NaviWrapper>
             <h1>News</h1> 
                 <DoubleButtonContainer>
+                    {/*REVERSE STOCK AND CRYPTO BELOW!!*/}
                     <LeftButton onClick={() => toggleTab(1)} numberClicked={toggleState}>Stock</LeftButton>
                     <RightButton onClick={() => toggleTab(2)} numberClicked={toggleState}>Crypto</RightButton>
                 </DoubleButtonContainer> 
