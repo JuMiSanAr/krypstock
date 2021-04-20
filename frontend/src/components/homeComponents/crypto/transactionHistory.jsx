@@ -89,6 +89,12 @@ export const TransactionHistory = () => {
                         rowsPerPage={rowsPerPage}
                         rowsPerPageOptions={[]}
                         style={{ color: darkTheme.text }}
+                        // backIconButtonProps={{
+                        //     style: {padding: 0},
+                        // }}
+                        // nextIconButtonProps={{
+                        //     style: {padding: 0}
+                        // }}
                     />
                     : null
             }

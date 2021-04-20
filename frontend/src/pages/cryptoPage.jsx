@@ -10,17 +10,14 @@ import { NaviWrapper } from '../styles/components/naviStyles/menuStyles';
 import Burger from '../components/navi/burger';
 import Menu from '../components/navi/menu';
 import CryptoPageInfoCard from "../components/cryptoCards/cryptoPageInfoCard";
-// import {CryptoNewsApiAi} from "../components/homeComponents/crypto/cryptoNewsApiAi";
 import PortfoliosWithStock from "../components/stockCards/portfoliosWithStock";
+import {CryptoNewsApiAi} from "../components/homeComponents/crypto/cryptoNewsApiAi";
 
 const CryptoPage = (props) => {
 
     const [open, setOpen] = useState(false);
 
     const [chartTimeframe2, setChartTimeframe2] = useState('1d');
-
-    const [intradayData, setIntradayData] = useState([]);
-    const [historicalData, setHistoricalData] = useState([]);
 
     const url = window.location.href;
     const symbol = url.substring(url.lastIndexOf('/') + 1).toUpperCase();
@@ -52,9 +49,9 @@ const CryptoPage = (props) => {
               </FormSelectWrapper>
                  <GraphWrapper>
                  {chartTimeframe2 === '1d'?
-                   <CandlestickCryptoIntraday data={intradayData} symbol={symbol} timeLength={chartTimeframe2}/>
+                   <CandlestickCryptoIntraday symbol={symbol} timeLength={chartTimeframe2}/>
                    :
-                   <CandlestickCryptoHistorical data={historicalData} symbol={symbol} timeLength={chartTimeframe2}/>}
+                   <CandlestickCryptoHistorical symbol={symbol} timeLength={chartTimeframe2}/>}
                     </GraphWrapper>
                  </ShrinkingComponentWrapper>
                 <ShrinkingComponentWrapper>
@@ -62,7 +59,7 @@ const CryptoPage = (props) => {
                 </ShrinkingComponentWrapper>
                  <ShrinkingComponentWrapper>
                 {/*<NewsCrypto symbol={symbol}/>*/}
-                {/* <CryptoNewsApiAi symbol={symbol}/> */}
+                 <CryptoNewsApiAi symbol={symbol}/>
             </ShrinkingComponentWrapper>
     </AllComponentsWrapper>
         </>

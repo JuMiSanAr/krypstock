@@ -2,7 +2,8 @@ import styled from "styled-components";
 import linebackground from '../../assets/blue-gradient-sense-line.png'
 import {
     darkTheme,
-    lightTheme
+    lightTheme,
+    allTheme
 } from "../Themes";
 
 

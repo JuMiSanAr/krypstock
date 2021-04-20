@@ -10,7 +10,8 @@ import Verification from "../components/verification";
 import Portfolio from "../pages/portfolio";
 import AddRemovePage from "../pages/addRemove";
 import Search from "../pages/search";
-import NewsPage from "../pages/newsPage";
+//import NewsPage from "../pages/newsPage";
+import NewsPageAi from "../pages/newsPageApiAi";
 import StockPage from "../pages/stockPage";
 import CryptoPage from "../pages/cryptoPage";
 import PortfolioList from "../pages/portfolioList";
@@ -29,7 +30,7 @@ function OurRouter() {
         <Route path="/portfolio/:id" exact component={Portfolio} />
         <Route path="/add-remove/" exact component={AddRemovePage} />
         <Route path="/search/" exact component={Search} />
-        <Route path="/news/" exact component={NewsPage} />
+        <Route path="/news/" exact component={NewsPageAi} />
         <Route path="/stock/:symbol" exact component={StockPage} />
         <Route path="/crypto/:symbol" exact component={CryptoPage} />
         <Route path="/portfolio-list/" exact component={PortfolioList} />
