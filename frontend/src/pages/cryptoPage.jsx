@@ -10,8 +10,8 @@ import { NaviWrapper } from '../styles/components/naviStyles/menuStyles';
 import Burger from '../components/navi/burger';
 import Menu from '../components/navi/menu';
 import CryptoPageInfoCard from "../components/cryptoCards/cryptoPageInfoCard";
-// import {CryptoNewsApiAi} from "../components/homeComponents/crypto/cryptoNewsApiAi";
 import PortfoliosWithStock from "../components/stockCards/portfoliosWithStock";
+import {CryptoNewsApiAi} from "../components/homeComponents/crypto/cryptoNewsApiAi";
 
 const CryptoPage = (props) => {
 
@@ -59,7 +59,7 @@ const CryptoPage = (props) => {
                 </ShrinkingComponentWrapper>
                  <ShrinkingComponentWrapper>
                 {/*<NewsCrypto symbol={symbol}/>*/}
-                {/* <CryptoNewsApiAi symbol={symbol}/> */}
+                 <CryptoNewsApiAi symbol={symbol}/>
             </ShrinkingComponentWrapper>
     </AllComponentsWrapper>
         </>
