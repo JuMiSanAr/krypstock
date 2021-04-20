@@ -62,7 +62,7 @@ const Home = () => {
                         <DoubleButtonContainer>
                             <LeftButton className="left-button" onClick={() => toggleTab(1)} numberClicked={toggleState}>Crypto</LeftButton>
                             <RightButton className="right-button" onClick={() => toggleTab(2)} numberClicked={toggleState}>Stock</RightButton>
-                            <div className="animation start-crypto"></div> 
+                            <span className="animation start-crypto"></span> 
                         </DoubleButtonContainer>
                         <MainContentWrapper>
                             <div className={toggleState === 1 ? "active-content" : "content"}>
