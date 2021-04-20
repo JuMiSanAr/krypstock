@@ -102,8 +102,8 @@ const NewsPage = () => {
           
             <HeaderTitle>
                 <DoubleButtonContainer>
-                    <LeftButton onClick={() => toggleTab(1)} numberClicked={toggleState}>Crypto</LeftButton>
-                    <RightButton onClick={() => toggleTab(2)} numberClicked={toggleState}>Stock</RightButton>
+                    <LeftButton onClick={() => toggleTab(1)} numberClicked={toggleState}>Stock</LeftButton>
+                    <RightButton onClick={() => toggleTab(2)} numberClicked={toggleState}>Crypto</RightButton>
                 </DoubleButtonContainer> 
                 {/* <div className="toggleTitle">
                     <span>/</span>
@@ -122,7 +122,7 @@ const NewsPage = () => {
                 </DoubleButtonContainer> */}
 
                 {
-                    allStockNews.length > 0 && toggleState === 1 ?
+                    allStockNews.length > 0 && toggleState === 2 ?
                         allStockNews.slice(0, newsNumberShown).map((news, index) => {
                             return (
                                 <SingleStockNewsFeed key={index} news={news} />
@@ -131,7 +131,7 @@ const NewsPage = () => {
                         : ''
                 }
                 {
-                    crytoNews.length > 0 && toggleState === 2 ?
+                    crytoNews.length > 0 && toggleState === 1 ?
                         crytoNews.slice(0, newsNumberShown).map((news, index) => {
                             return (
                                 <SingleCryptoNewsFeed key={index} news={news} />
