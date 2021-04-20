@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {darkTheme, allTheme, fontSize} from "../Themes";
+import {fontSize} from "../Themes";
 
 export const MainContentWrapper = styled.div`
     .content {
