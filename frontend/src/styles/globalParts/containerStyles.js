@@ -36,6 +36,13 @@ export const FullWidthComponentWrapper = styled.div `
 
 export const ShrinkingComponentWrapper = styled(FullWidthComponentWrapper)`  
 
+    .fa-times-circle{
+        color: red;
+    }
+    .fa-check-circle{
+        color:green;
+    }
+
     /* *{
         border: solid 1px red;
     } */

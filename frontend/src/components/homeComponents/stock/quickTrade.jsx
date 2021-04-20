@@ -24,6 +24,8 @@ const StockQuickTrade = (props) => {
     const [incorrectSymbol, setIncorrectSymbol] = useState(false);
     const [notEnoughStocks, setNotEnoughStocks] = useState(false);
     const [marketPrice, setMarketPrice] = useState(0);
+    const [transSuccess, setTransSucess] = useState(false);
+    const [transUnSuccess , setTransUnSuccess ] = useState(false);
 
     const submitHandler = (e) => {
         if(allSymbols.includes(symbol)) {
@@ -31,9 +33,12 @@ const StockQuickTrade = (props) => {
 
             postNewTransactionFetch(buySell, portfolioID, symbol, volume, pricePerShare, type)
             .then(data => {
+                setTransSucess(true)
+                setTransUnSuccess(false)
                 dispatch(addTransactionAction(data));
             })
             .catch(error => {
+                setTransUnSuccess(true)
                 if (error.toString().slice(-1) === '3') {  //if error is 403
                     console.log('error', error)
                     setNotEnoughStocks(true);
@@ -73,6 +78,8 @@ const StockQuickTrade = (props) => {
     }, [symbol, buySell])
     
     useEffect( () => {
+        setTransSucess(false)
+        setTransUnSuccess(false)
         setNotEnoughStocks(false)
     }, [symbol, buySell, portfolioID, volume])
 
@@ -171,6 +178,13 @@ const StockQuickTrade = (props) => {
                         }
                         {
                             notEnoughStocks ? <ErrorSpan><em>Not enough stocks to sell at this volume</em></ErrorSpan> : ''
+                        }
+                        {
+                        transSuccess && buySell === 'B' ? <div><i className="fas fa-check-circle"></i> <em className="transmessage">Transaction Successful</em></div> :  transSuccess && buySell === 'S' ? <div><i className="fas fa-check-circle"></i> <em className="transmessage">Transaction Successful</em></div> : ""
+                                                  
+                        }
+                        {
+                            transUnSuccess && buySell === 'B' ? <div> <i className="fas fa-times-circle"></i><em className="transmessage">Transaction Unsuccessful</em></div> : transUnSuccess && buySell === 'S' ? <div> <i className="fas fa-times-circle"></i><em className="transmessage">Transaction Unsuccessful</em></div> : ""
                         }
                         <ButtonWrapper>
                             {
