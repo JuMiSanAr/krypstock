@@ -118,7 +118,7 @@ export const NewsContentWrapper = styled.div `
         flex-wrap: wrap;
         justify-content: center;
         overflow: auto;
-        word-break: break-all;
+        word-break: break-word;
         margin: 0;
         //width: 100vw;
     }
