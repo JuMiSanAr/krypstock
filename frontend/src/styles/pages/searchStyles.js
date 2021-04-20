@@ -1,4 +1,4 @@
-import {lightTheme, darkTheme, allTheme} from '../Themes'
+import {lightTheme, darkTheme, allTheme, fontSize} from '../Themes'
 import styled from 'styled-components';
 
 
@@ -118,8 +118,9 @@ export  const Table = styled.table`
     border-collapse: collapse;
     /* border-width: 2px; */
     /* border-style: solid; */
+    table-layout: fixed;
     color: ${({ theme }) => theme === lightTheme ?lightTheme.text : darkTheme.text};
-       
+    
     } */
     .tableHead{
         padding: 10px;
@@ -145,6 +146,35 @@ export  const Table = styled.table`
     tbody td{
         text-align: center;
         padding: 3px;
+        font-size: ${fontSize.fontSizeS};
+    }
+
+    .tdDiv {
+        width: 50%;
+        text-align: left;
+        display: inline-block;
+        white-space: nowrap;
+    }
+
+    .tdDivVolume {
+        width: 45%;
+        text-align: right;
+        display: inline-block;
+        white-space: nowrap;
+    }
+
+    .tdDivWide {
+        width: 65%;
+        text-align: right;
+        display: inline-block;
+        white-space: nowrap;
+    }
+
+    .tdDivPrice {
+        width: 80%;
+        text-align: right;
+        display: inline-block;
+        white-space: nowrap;
     }
 
     tr:first-child th:first-child {
