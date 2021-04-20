@@ -66,7 +66,7 @@ export const stockFetcherHistorical = (symbol, updateState, timeframe='5dm') => 
                         }
                     }
                 });
-
-                updateState(allData);
+                const filteredData = allData.filter(data => data !== undefined)
+                updateState(filteredData);
             });
     }
