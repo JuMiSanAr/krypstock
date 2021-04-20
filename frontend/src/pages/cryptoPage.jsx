@@ -19,9 +19,6 @@ const CryptoPage = (props) => {
 
     const [chartTimeframe2, setChartTimeframe2] = useState('1d');
 
-    const [intradayData, setIntradayData] = useState([]);
-    const [historicalData, setHistoricalData] = useState([]);
-
     const url = window.location.href;
     const symbol = url.substring(url.lastIndexOf('/') + 1).toUpperCase();
 
@@ -52,9 +49,9 @@ const CryptoPage = (props) => {
               </FormSelectWrapper>
                  <GraphWrapper>
                  {chartTimeframe2 === '1d'?
-                   <CandlestickCryptoIntraday data={intradayData} symbol={symbol} timeLength={chartTimeframe2}/>
+                   <CandlestickCryptoIntraday symbol={symbol} timeLength={chartTimeframe2}/>
                    :
-                   <CandlestickCryptoHistorical data={historicalData} symbol={symbol} timeLength={chartTimeframe2}/>}
+                   <CandlestickCryptoHistorical symbol={symbol} timeLength={chartTimeframe2}/>}
                     </GraphWrapper>
                  </ShrinkingComponentWrapper>
                 <ShrinkingComponentWrapper>
