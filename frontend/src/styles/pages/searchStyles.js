@@ -28,8 +28,14 @@ export const SearchPageInput = styled.div`
         } */
         :focus{
             outline: none;
-}
+        }
+
+        #option-all{
+        border: solid 1px yellow;
+        background-color: yellow;
+        }
     }
+
     input{
         height: 43px;
         width: 84%;
@@ -119,7 +125,7 @@ export  const Table = styled.table`
         padding: 10px;
     }
     thead{
-        background-color: ${props => props.id === 'crypto' ? allTheme.vibrantorange : props.id === "trans-history" ? allTheme.turquoise : allTheme.green};
+        background: ${props => props.id === 'crypto' ? allTheme.yellowGradient : props.id === "trans-history" ? allTheme.blueGradient : allTheme.turquoiseGradient};
         /* border-bottom: 1px solid #ffcc00; */
         color: ${({ theme }) => theme === lightTheme ? lightTheme.text : darkTheme.text};
       
@@ -141,19 +147,19 @@ export  const Table = styled.table`
         padding: 3px;
     }
 
-    /* tr:first-child th:first-child {
-        border-top-left-radius: 15px;
+    tr:first-child th:first-child {
+        border-top-left-radius: 6px;
     }
 
     tr:first-child th:last-child {
-        border-top-right-radius: 15px;
+        border-top-right-radius: 6px;
     }
 
     tr:last-child td:first-child {
-    border-bottom-left-radius: 15px;
+    border-bottom-left-radius: 6px;
     }
 
     tr:last-child td:last-child {
-    border-bottom-right-radius: 15px;
-    } */
+    border-bottom-right-radius: 6px;
+    }
 `;

@@ -209,9 +209,9 @@ const Search = () => {
                   <SearchPageInput>
                   <input placeholder="Search..." onChange={event => setSearch(event.target.value)}/>
                         <select name="" onChange={(val) => handleSelectChange(val.target.value)} >
-                            <option value="All">All</option>
-                            <option value="Crypto">Crypto</option>
-                            <option value="Stock">Stock</option>
+                            <option id="option-all" value="All">All</option>
+                            <option id="option-crypto" value="Crypto">Crypto</option>
+                            <option id="option-stock" value="Stock">Stock</option>
                         </select>
                         <Content type="submit" onClick={() => searchHandler()}><i className="fas fa-search"></i></Content>
                     </SearchPageInput>
