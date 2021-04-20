@@ -36,12 +36,12 @@ export const DoubleButtonContainer = styled.div`
         top: 0;
         z-index: 0;
         transition: all 0.5s ease 0s;
-        left: 0;
+        /* left: 0; */
     }
 
     .start-crypto, .left-button:hover~.animation {
         width: 50%;
-        left: 0;
+        left: 0%;
     }
 
     .start-stock, .right-button:hover~.animation {
