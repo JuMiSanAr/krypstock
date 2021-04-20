@@ -59,6 +59,7 @@ class SinglePortfolio(RetrieveUpdateDestroyAPIView):
 class GetCryptoName(ListAPIView):
     '''
     GET: Get the name of a crypto symbol.
+
     '''
 
     # Fetch to external API and return response in endpoint
@@ -67,4 +68,7 @@ class GetCryptoName(ListAPIView):
         symbol = request.data['symbol']
         response = requests.get(f"https://pro-api.coinmarketcap.com/v1/cryptocurrency/info?symbol={symbol}&CMC_PRO_API_KEY=4e360fa9-d8b1-4808-878a-68a47651ead2")
         data = response.json()
-        return Response({f'{symbol} name': data['data'][symbol]['name']})
+        name = data['data'][symbol]['name']
+        description = data['data'][symbol]['description']
+        url = data['data'][symbol]['urls']['website']
+        return Response({'name': name, 'description': description, 'url': url})
