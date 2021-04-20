@@ -15,7 +15,7 @@ const SingleCryptoNewsFeed = ({news}) => {
                 </div>
                 <div className="publishDetial">
                 <p className='news_date'>By {news.source.title}</p>
-                <p className='news_date'>{news.dateTimePub}</p>
+                <p className='news_date'> {news.dateTimePub}</p>
                 </div>
             </div>
         </HeadlineWrapper>
