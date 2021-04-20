@@ -1,4 +1,6 @@
+import requests
 from rest_framework.generics import CreateAPIView, DestroyAPIView, ListAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.response import Response
 
 from permissions.permissions import IsUserOrAdmin
 from portfolio.models import Portfolio
@@ -52,3 +54,33 @@ class SinglePortfolio(RetrieveUpdateDestroyAPIView):
     queryset = Portfolio.objects.all()
     serializer_class = PortfolioSerializerWithCalculation
     permission_classes = [IsUserOrAdmin]
+
+
+class GetCryptoName(ListAPIView):
+    '''
+    GET: Get the name of a crypto symbol.
+    '''
+
+    def get(self, request, *args, **kwargs):
+        # GUILLAUME
+        body = {
+            'action': 'getArticles',
+            'keyword': ['crypto'],
+            'articlesPage': 1,
+            'articlesCount': 30,
+            'articlesSortBy': 'date',
+            'articlesSortByAsc': False,
+            'articlesArticleBodyLen': -1,
+            'resultType': 'articles',
+            'dataType': [
+                "news",
+                "pr"
+            ],
+            'lang': "eng",
+            'apiKey': "919a6de0-17d5-49df-b7c9-55de20989583",
+            'forceMaxDataTimeWindow': 31
+        }
+
+        response = requests.post("https://eventregistry.org/api/v1/article/getArticles?apiKey=919a6de0-17d5-49df-b7c9-55de20989583", data=body)
+        data = response.json()
+        return Response(data)
