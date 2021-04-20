@@ -5,7 +5,7 @@ import { stockNewsAction } from "../store/actions/newsActions";
 import { useDispatch, useSelector } from "react-redux";
 // import NewsStock from "../components/newsFeed/newsStock";
 import SingleStockNewsFeed from "../components/newsFeed/singleStockNewsFeed";
-import { ShowMore, HeroHeader, NewsContentWrapper, HeaderTitle } from '../styles/components/stockStyles/newsStyles'
+import { ShowMore, NewsContentWrapper, HeaderTitle } from '../styles/components/stockStyles/newsStyles'
 import SingleCryptoNewsFeed from "../components/newsFeed/singleCryptoNewsApiAi";
 import { NaviWrapper } from '../styles/components/naviStyles/menuStyles';
 import Burger from '../components/navi/burger';
@@ -19,8 +19,8 @@ const NewsPage = () => {
     const dispatch = useDispatch();
     const [open, setOpen] = useState(false);
 
-    const apiKey = "c9f83156011c478e9d57aafff581a35d"
-    const symbol = "crypto"
+    // const apiKey = "c9f83156011c478e9d57aafff581a35d"
+    // const symbol = "crypto"
 
     const [newsNumberShown, setNewsNumberShown] = useState(9);
     const [crytoNews, setCryptoNews] = useState([]);
@@ -35,6 +35,7 @@ const NewsPage = () => {
     useEffect(() => {
         fetchStockNews();
         fetchCryptoNews();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const fetchStockNews = () => {
@@ -101,8 +102,8 @@ const NewsPage = () => {
           
             <HeaderTitle>
                 <DoubleButtonContainer>
-                    <LeftButton onClick={() => toggleTab(1)} numberClicked={toggleState}>Crypto</LeftButton>
-                    <RightButton onClick={() => toggleTab(2)} numberClicked={toggleState}>Stock</RightButton>
+                    <LeftButton onClick={() => toggleTab(1)} numberClicked={toggleState}>Stock</LeftButton>
+                    <RightButton onClick={() => toggleTab(2)} numberClicked={toggleState}>Crypto</RightButton>
                 </DoubleButtonContainer> 
                 {/* <div className="toggleTitle">
                     <span>/</span>
@@ -121,7 +122,7 @@ const NewsPage = () => {
                 </DoubleButtonContainer> */}
 
                 {
-                    allStockNews.length > 0 && toggleState === 2 ?
+                    allStockNews.length > 0 && toggleState === 1 ?
                         allStockNews.slice(0, newsNumberShown).map((news, index) => {
                             return (
                                 <SingleStockNewsFeed key={index} news={news} />
@@ -130,7 +131,7 @@ const NewsPage = () => {
                         : ''
                 }
                 {
-                    crytoNews.length > 0 && toggleState === 1 ?
+                    crytoNews.length > 0 && toggleState === 2 ?
                         crytoNews.slice(0, newsNumberShown).map((news, index) => {
                             return (
                                 <SingleCryptoNewsFeed key={index} news={news} />
