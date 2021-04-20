@@ -67,8 +67,7 @@ const Overview = ({calculations, realtimeData, portfolioname, portfolioID, portf
                             :
                             <i className="fas fa-angle-double-down" style={{color: 'red'}}></i>
                         }
-                        {percentageChangeTotal > 0 ? <span style={{color: 'green'}}>{percentageChangeTotal.toFixed(2)} %</span> : <span style={{color: 'red'}}>{percentageChangeTotal.toFixed(2)} %</span>} 
-                        </InvestmentFont>
+                        {percentageChangeTotal.toFixed(2)} %</InvestmentFont>
                 </TempDiv>
                 <TempDiv>
                     <Desc>Today</Desc>
@@ -79,8 +78,8 @@ const Overview = ({calculations, realtimeData, portfolioname, portfolioID, portf
                         {todayStringDate === portfolioStringDate && percentageChangeTotal < 0 ? <i className="fas fa-angle-double-down" style={{color: 'red'}}></i> : ''}
 
                         {todayStringDate !== portfolioStringDate ? percentageChangeToday.toFixed(2) : ''}
-                        {todayStringDate === portfolioStringDate ? percentageChangeTotal.toFixed(2) : ''}
-                        %</InvestmentFont>
+                        {todayStringDate === portfolioStringDate ? percentageChangeTotal.toFixed(2) : ''} %
+                        </InvestmentFont>
                 </TempDiv>
             </NetworthContainerTop>
         )
