@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { ShrinkingComponentWrapper } from '../../styles/globalParts/containerStyles';
-import {InvestmentsContainer, InvestmentFont, HeadlineFont, Desc, AllInvestmentsHeadline} from '../../styles/components/portfolioStyles';
+import {InvestmentsContainer, InvestmentFont, Desc, AllInvestmentsHeadline} from '../../styles/components/portfolioStyles';
 
 
 const AllInvestments = ({calculations, realtimeData, portfolioCreated}) => {
