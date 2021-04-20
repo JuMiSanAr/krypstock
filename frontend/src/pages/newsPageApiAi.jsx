@@ -102,24 +102,13 @@ const NewsPage = () => {
           
             <HeaderTitle>
                 <DoubleButtonContainer>
-                    <LeftButton onClick={() => toggleTab(1)} numberClicked={toggleState}>Stock</LeftButton>
-                    <RightButton onClick={() => toggleTab(2)} numberClicked={toggleState}>Crypto</RightButton>
+                    <LeftButton  className="left-button"  onClick={() => toggleTab(1)} numberClicked={toggleState}>Crypto</LeftButton>
+                    <RightButton className="right-button" onClick={() => toggleTab(2)} numberClicked={toggleState}>Stock</RightButton>
+                    <span className="animation start-crypto"></span> 
                 </DoubleButtonContainer> 
-                {/* <div className="toggleTitle">
-                    <span>/</span>
-                    <h3 onClick={() => toggleTab(1)} numberClicked={toggleState}>Crypto</h3>
-                    <span>/</span>
-                    <h3 onClick={() => toggleTab(2)} numberClicked={toggleState}>Stock</h3>
-                </div> */}
             </HeaderTitle>
             <ShrinkingComponentWrapper>
             <NewsContentWrapper>
-
-                {/* <h1>News</h1> */}
-                {/* <DoubleButtonContainer>
-                    <LeftButton onClick={() => toggleTab(1)} numberClicked={toggleState}>Stock</LeftButton>
-                    <RightButton onClick={() => toggleTab(2)} numberClicked={toggleState}>Crypto</RightButton>
-                </DoubleButtonContainer> */}
 
                 {
                     allStockNews.length > 0 && toggleState === 2 ?
