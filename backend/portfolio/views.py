@@ -61,26 +61,10 @@ class GetCryptoName(ListAPIView):
     GET: Get the name of a crypto symbol.
     '''
 
-    def get(self, request, *args, **kwargs):
-        # GUILLAUME
-        body = {
-            'action': 'getArticles',
-            'keyword': ['crypto'],
-            'articlesPage': 1,
-            'articlesCount': 30,
-            'articlesSortBy': 'date',
-            'articlesSortByAsc': False,
-            'articlesArticleBodyLen': -1,
-            'resultType': 'articles',
-            'dataType': [
-                "news",
-                "pr"
-            ],
-            'lang': "eng",
-            'apiKey': "919a6de0-17d5-49df-b7c9-55de20989583",
-            'forceMaxDataTimeWindow': 31
-        }
+    # Fetch to external API and return response in endpoint
 
-        response = requests.post("https://eventregistry.org/api/v1/article/getArticles?apiKey=919a6de0-17d5-49df-b7c9-55de20989583", data=body)
+    def get(self, request, *args, **kwargs):
+        symbol = request.data['symbol']
+        response = requests.get(f"https://pro-api.coinmarketcap.com/v1/cryptocurrency/info?symbol={symbol}&CMC_PRO_API_KEY=4e360fa9-d8b1-4808-878a-68a47651ead2")
         data = response.json()
-        return Response(data)
+        return Response({f'{symbol} name': data['data'][symbol]['name']})
