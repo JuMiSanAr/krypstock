@@ -8,7 +8,6 @@ import { postNewTransactionFetch } from '../../store/fetches/transactionFetches'
 import portfoliosFetch from '../../store/fetches/portfoliosFetches';
 import { portfoliosAction } from '../../store/actions/portfoliosAction';
 import { TitleSpan } from '../../styles/globalParts/textStyles';
-import { allCryptosAction } from '../../store/actions/cryptoActions';
 
 
 export const CryptoModal = ({ showCryptoModal, setCryptoShowModal, symbol }) => {
@@ -28,11 +27,9 @@ export const CryptoModal = ({ showCryptoModal, setCryptoShowModal, symbol }) => 
 
     const submitHandler = (e) => {
         e.preventDefault();
-        console.log(buySell, portfolioID, symbol, amount, pricePerCoin, type)
         postNewTransactionFetch(buySell, portfolioID, symbol, amount, pricePerCoin, type)
-            .then(data => {
+            .then(() => {
                 setCryptoShowModal(false)
-                // console.log('in crypto quicktrade submitHandler', data)
             })
 
 
@@ -43,6 +40,8 @@ export const CryptoModal = ({ showCryptoModal, setCryptoShowModal, symbol }) => 
     const closeModal = e => {
         if (modalRef.current === e.target) {
             setCryptoShowModal(false);
+            setAmount(0);
+            setPricePerCoin(0);
         }
     };
 
@@ -54,13 +53,11 @@ export const CryptoModal = ({ showCryptoModal, setCryptoShowModal, symbol }) => 
         } else if (buySell === 'S' && crypto.length > 0) {
             setAskPrice(Number(crypto[0].askPrice).toFixed(2));
         }
-        // else {
-        //     console.log('symbol', symbol)
-        // }
+
     }, [symbol, buySell, allCryptos])
 
 
-    // fetching portfolio list here becuase it takes time
+    // fetching portfolio list here because it takes time
     // to get portfolio list from redux store unless 
     // we go back to portfolio page to fetch
 
@@ -70,6 +67,7 @@ export const CryptoModal = ({ showCryptoModal, setCryptoShowModal, symbol }) => 
                 const action = portfoliosAction(data);
                 dispatch(action);
             })
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
 
@@ -93,8 +91,8 @@ export const CryptoModal = ({ showCryptoModal, setCryptoShowModal, symbol }) => 
                                                 null
                                                 :
                                                 <BuySellSelectorWrapper>
-                                                    <BuySelectButton type="button" buySell={buySell} onClick={e => setBuySell("B")}>BUY</BuySelectButton>
-                                                    <SellSelectButton type="button" buySell={buySell} onClick={e => setBuySell("S")}>SELL</SellSelectButton>
+                                                    <BuySelectButton type="button" buySell={buySell} onClick={() => setBuySell("B")}>BUY</BuySelectButton>
+                                                    <SellSelectButton type="button" buySell={buySell} onClick={() => setBuySell("S")}>SELL</SellSelectButton>
                                                 </BuySellSelectorWrapper>
                                         }
                                     </CryptStockFormSelectWrapper>
@@ -139,7 +137,7 @@ export const CryptoModal = ({ showCryptoModal, setCryptoShowModal, symbol }) => 
                                                             <label>Amount</label>
                                                         </div>
                                                         <div>
-                                                            <input className="input" type="text" name="amount" placeholder="amount" value={amount} onChange={e => setAmount(e.target.value)} required />
+                                                            <input className="input" type="text" name="amount" placeholder="0" onChange={e => setAmount(e.target.value)} required />
                                                         </div>
                                                     </div>
                                                     <div className="amountInput">
@@ -147,7 +145,7 @@ export const CryptoModal = ({ showCryptoModal, setCryptoShowModal, symbol }) => 
                                                             <p>Price per Coin</p>
                                                         </div>
                                                         <div>
-                                                            <input className="input" type="number" placeholder="0" value={pricePerCoin} onChange={e => setPricePerCoin(e.target.value)} required />
+                                                            <input className="input" type="number" placeholder="0" onChange={e => setPricePerCoin(e.target.value)} required />
                                                         </div>
                                                     </div>
                                                     <div className="amountInput">

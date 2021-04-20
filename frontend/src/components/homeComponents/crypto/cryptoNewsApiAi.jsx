@@ -43,7 +43,6 @@ export const CryptoNewsApiAi = ({symbol}) => {
           headers: headers,
           body: JSON.stringify(body)
       };
-      console.log(JSON.stringify(body))
       fetch(API_Call, config)
                 .then(res => res.json())
                 .then(data => {
@@ -64,7 +63,6 @@ export const CryptoNewsApiAi = ({symbol}) => {
         }
     }, [symbol]);
 
-        console.log(" allNews",allNews)
     return (
         <>
             <ShrinkingComponentWrapper >

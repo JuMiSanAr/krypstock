@@ -35,7 +35,6 @@ const PortfoliosWithStock = (props) => {
 
 
     useEffect(() => {
-        // if (!portfoliosFetched) {
             portfoliosFetch()
                 .then(data => {
                     const action = portfoliosAction(data);
@@ -55,24 +54,8 @@ const PortfoliosWithStock = (props) => {
 
                     setPortfolios(thisPortfolios);
             });
-        // }
-        // else {
-        //     if (portfolios.length > 0) {
-        //         const thisPortfolios = portfolioData.results.filter(portfolio => {
-        //         let result = false;
-        //
-        //         portfolio.calculations.forEach(calculation => {
-        //             if (calculation.symbol === props.symbol) {
-        //                 result = true;
-        //             }
-        //         })
-        //
-        //         return result;
-        //         });
-        //
-        //         setPortfolios(thisPortfolios);
-        //         }
-        // }
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
@@ -89,7 +72,7 @@ const PortfoliosWithStock = (props) => {
                     <p>You don't have any portfolios with this stock</p>
                     <strong>Go to the list of your portfolios</strong>
                     <Link className='create-portfolio' to="/portfolio-list/">
-                    <i className="fa fa-plus-circle" aria-hidden="true"></i>
+                    <i className="fa fa-plus-circle" aria-hidden="true"> </i>
                     </Link>
                    
                     </MessageWrapper>

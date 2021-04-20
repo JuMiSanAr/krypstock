@@ -25,6 +25,7 @@ const AddRemovePage = () => {
                 dispatch(portfoliosAction(data))
             })
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [token]);
 
     return (

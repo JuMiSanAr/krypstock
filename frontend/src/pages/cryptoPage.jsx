@@ -1,11 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import CandlestickCryptoIntraday from "../components/charts/candlesticksCryptoIntraday";
 import { FormSelectWrapper, GraphWrapper } from "../styles/components/cryptoStyles/bitCoinStyles";
 import { AllComponentsWrapper, ShrinkingComponentWrapper } from "../styles/globalParts/containerStyles";
-// import NewsCrypto from "../components/newsFeed/newsCrypto";
 import CandlestickCryptoHistorical from "../components/charts/candlesticksCryptoHistorical";
 import ChartTimeCrypto from "../components/charts/chartSelectTimeCrypto";
-// import {PageTitleStyle} from "../styles/globalParts/titleStyles";
 import { NaviWrapper } from '../styles/components/naviStyles/menuStyles';
 import Burger from '../components/navi/burger';
 import Menu from '../components/navi/menu';
@@ -13,7 +11,7 @@ import CryptoPageInfoCard from "../components/cryptoCards/cryptoPageInfoCard";
 import PortfoliosWithStock from "../components/stockCards/portfoliosWithStock";
 import {CryptoNewsApiAi} from "../components/homeComponents/crypto/cryptoNewsApiAi";
 
-const CryptoPage = (props) => {
+const CryptoPage = () => {
 
     const [open, setOpen] = useState(false);
 

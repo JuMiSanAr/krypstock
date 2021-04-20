@@ -13,7 +13,6 @@ const StockQuickTrade = (props) => {
 
     const dispatch = useDispatch();
     const allPortfoliosArray = useSelector(state => state.portfoliosReducer.portfolios)
-    // console.log('allPortfoliosArray', allPortfoliosArray)
 
     const [buySell, setBuySell] = useState("B");
     const [portfolioID, setPortfolioID] = useState();
@@ -29,15 +28,12 @@ const StockQuickTrade = (props) => {
     const submitHandler = (e) => {
         if(allSymbols.includes(symbol)) {
             e.preventDefault();
-            console.log(buySell, portfolioID, symbol, volume, pricePerShare,type)
-            
+
             postNewTransactionFetch(buySell, portfolioID, symbol, volume, pricePerShare, type)
             .then(data => {
-                console.log('in stock quicktrade submitHandler, data', data)
                 dispatch(addTransactionAction(data));
             })
             .catch(error => {
-                // console.log(error.split('')[error.length-1])
                 if (error.toString().slice(-1) === '3') {  //if error is 403
                     console.log('error', error)
                     setNotEnoughStocks(true);
@@ -55,7 +51,6 @@ const StockQuickTrade = (props) => {
         fetch('https://sandbox.iexapis.com/beta/ref-data/symbols?token=Tpk_fec97062db224c2fb7b0b3836ab0e365')
             .then(res => res.json())
             .then(data => {
-                // console.log('symbols data', data)
                 for (const stock of data) {
                     symbolList.push(stock.symbol)
                 }
@@ -64,12 +59,10 @@ const StockQuickTrade = (props) => {
     }, [])
     
     useEffect( () => {   // get price of specific symbol
-        console.log('symbol',symbol)
         if (allSymbols.includes(symbol)) {
             fetch(`https://sandbox.iexapis.com/stable/stock/${symbol}/price?token=${iexSandboxKey}`)
             .then(res => res.json())
             .then(data => {
-                console.log("useState ~ data", data)
                 setMarketPrice(data)
             })
             .catch( error => {console.log('error', error)})
@@ -93,8 +86,8 @@ const StockQuickTrade = (props) => {
                     null
                     :
                     <BuySellSelectorWrapper>
-                        <BuySelectButton type="button" buySell={buySell} onClick={e => setBuySell("B")}>BUY</BuySelectButton>
-                        <SellSelectButton type="button" buySell={buySell} onClick={e => setBuySell("S")}>SELL</SellSelectButton>
+                        <BuySelectButton type="button" buySell={buySell} onClick={() => setBuySell("B")}>BUY</BuySelectButton>
+                        <SellSelectButton type="button" buySell={buySell} onClick={() => setBuySell("S")}>SELL</SellSelectButton>
                     </BuySellSelectorWrapper>
                     }
                 </FormSelectWrapper>  
@@ -124,7 +117,7 @@ const StockQuickTrade = (props) => {
                             <div className="amountInput">
                                 <label htmlFor="company-input">Symbol</label>
                                 <input 
-                                    id="company-input" 
+                                    id="company-input-stock"
                                     list="stockSymbols" 
                                     name="company" 
                                     style={{"textTransform":"uppercase"}} 
