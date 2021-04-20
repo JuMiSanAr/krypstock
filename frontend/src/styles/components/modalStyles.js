@@ -16,8 +16,6 @@ export const Background = styled.div `
   justify-content: center;
   align-items: center;
   z-index: 999;
-  /* margin-top: -124px; */
-  margin-top: -80px;
 `;
 
 export const ModalContent = styled.div `
@@ -51,8 +49,8 @@ export const ModalContent = styled.div `
 export const CloseModalButton = styled(MdClose)`
   cursor: pointer;
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 70px;
+  right: 15px;
   width: 32px;
   height: 32px;
   padding: 0;
@@ -64,6 +62,9 @@ export const ContentWrapper = styled.div `
  justify-content: center;
  align-items: center;
  width: 100vw;
+ .portfolioTitle{
+   text-align: center;
+ }
 `;
 
 export const SubmitButton = styled.div`
@@ -153,6 +154,20 @@ export const BackgroundOverview = styled.div `
   align-items: center;
   z-index: 999;
   /* margin-top: -165px; */
-  margin-top: -120px;
+  margin-top: -80px;
    
+`;
+
+// portfolio modal background
+
+export const BackgroundPortfolio = styled.div `
+  /* width: 100vw; */
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  margin-top: -78px; 
 `;

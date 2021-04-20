@@ -15,7 +15,7 @@ export const StyledMenu = styled.nav `
   text-align: left;
   padding: 2rem;
   position: absolute;
-  z-index: 3;
+  z-index: 20;
   top: 0;
   left: 0;
   transition: transform 0.3s ease-in-out;
@@ -50,6 +50,9 @@ export const MenuItemWrapper = styled.div `
     padding: 5px;
     cursor: pointer;
     margin: 30px 0 30px 0;
+    i{
+        font-size:23px;
+    }
  
     .move-right-1{
        margin: 0 100px 0 20px;
