@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 // import NewsStock from "../components/newsFeed/newsStock";
 import SingleStockNewsFeed from "../components/newsFeed/singleStockNewsFeed";
 import { ShowMore, HeroHeader, NewsContentWrapper, HeaderTitle } from '../styles/components/stockStyles/newsStyles'
-import SingleCryptoNewsFeed from "../components/newsFeed/singleCryptoNews";
+import SingleCryptoNewsFeed from "../components/newsFeed/singleCryptoNewsApiAi";
 import { NaviWrapper } from '../styles/components/naviStyles/menuStyles';
 import Burger from '../components/navi/burger';
 import Menu from '../components/navi/menu';
@@ -50,14 +50,39 @@ const NewsPage = () => {
 
 
     const fetchCryptoNews = () => {
-
-        const API_Call = `https://newsapi.org/v2/everything?q=${symbol}&apiKey=${apiKey}`;
-
-        fetch(API_Call)
-            .then(res => res.json())
-            .then(data => {
-                setCryptoNews(data.articles);
-            });
+    const API_Call = `http://eventregistry.org/api/v1/article/getArticles?apiKey=919a6de0-17d5-49df-b7c9-55de20989583`;
+      const method = 'POST';
+      const body = {
+        action: "getArticles",
+        keyword: ['crypto','cryptocurrency','cryptocoin','digital currency'],
+        articlesPage: 1,
+        articlesCount: 1,
+        articlesSortBy: "date",
+        articlesSortByAsc: false,
+        articlesArticleBodyLen: -1,
+        resultType: "articles",
+        dataType: [
+          "news",
+          "pr"
+        ],
+        lang: "eng",
+        apiKey: "919a6de0-17d5-49df-b7c9-55de20989583",
+        forceMaxDataTimeWindow: 31
+      };
+      const headers = new Headers({
+          'Content-Type': 'application/json'
+      });
+      const config = {
+          method: method,
+          headers: headers,
+          body: JSON.stringify(body)
+      };
+      console.log(JSON.stringify(body))
+      fetch(API_Call, config)
+                .then(res => res.json())
+                .then(data => {
+                    setCryptoNews(data.articles.results)
+                });
     }
 
     return (
