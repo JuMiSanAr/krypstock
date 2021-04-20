@@ -35,7 +35,7 @@ const AddRemovePage = () => {
                     <Menu open={open} setOpen={setOpen} />  
                 </div>  
                 <div className="heading">
-                <h2>New transaction</h2>
+                    <h2>New transaction</h2>
                 </div>
                 </NaviWrapper>
             <AllComponentsWrapper>

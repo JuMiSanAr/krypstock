@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {darkTheme, allTheme} from "../Themes";
+import {darkTheme, allTheme, fontSize} from "../Themes";
 
 export const MainContentWrapper = styled.div`
     .content {
@@ -29,7 +29,7 @@ export const DoubleButtonContainer = styled.div`
         width: 20%;
     }
 
-    .animation {
+    /* .animation {
         position: absolute;
         height: 100%;
         border-bottom:  solid 3px white;
@@ -47,7 +47,7 @@ export const DoubleButtonContainer = styled.div`
     .start-stock, .right-button:hover~.animation {
         width: 50%;
         left: 50%;
-    }
+    } */
 
     /* border: solid 1px red;
     * {
@@ -62,15 +62,19 @@ export const LeftButton = styled.button`
     background: transparent;
     text-transform: uppercase;
     font-weight: ${props => props.numberClicked === 1 ? 600 : 1000};
-    font-size: 1rem;
+    font-size: ${fontSize.fontSizeDefault};
     height: 45px;
     width: 50%;
     border: none;
     color: ${props => props.numberClicked === 1 ? 'white' : 'lightgray'};
-    /* border-bottom: ${props => props.numberClicked === 1 ? 'solid 2px white' : 'none'}; */
+    border-bottom: ${props => props.numberClicked === 1 ? 'solid 3px white' : 'none'};
     cursor: pointer;
     z-index: 1;
     display: inline-block;
+
+    :hover {
+        font-weight: 600;
+    }
 
     :focus {
         outline: none;
@@ -83,9 +87,12 @@ export const LeftButton = styled.button`
 `;
 
 export const RightButton = styled(LeftButton)`
-    /* border-bottom: ${props => props.numberClicked === 1 ? 'none' : 'solid 2px white'}; */
+    border-bottom: ${props => props.numberClicked === 1 ? 'none' : 'solid 3px white'};
     font-weight: ${props => props.numberClicked === 1 ? 1000 : 600};
     color: ${props => props.numberClicked === 1 ?  'lightgray' : 'white'};
+    :hover {
+        font-weight: 600;
+    }
 `
 
 // export const LeftButton = styled.button`
