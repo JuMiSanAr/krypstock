@@ -42,7 +42,7 @@ export const Crypto = () => {
             <TransactionHistory />
             <TrendyCrypto />
             {/*<CryptoNews />*/}
-            {/* <CryptoNewsApiAi/> */}
+             <CryptoNewsApiAi />
             <TopPerformingCrypto />
             <WorstPerformingCrypto />
         </>
