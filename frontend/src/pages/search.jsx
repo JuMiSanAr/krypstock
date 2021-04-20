@@ -211,7 +211,7 @@ const Search = () => {
                             <option id="option-crypto" value="Crypto">Crypto</option>
                             <option id="option-stock" value="Stock">Stock</option>
                         </select>
-                        <Content type="submit" onClick={() => searchHandler()}><i className="fas fa-search"></i></Content>
+                        <Content type="submit" onClick={() => searchHandler()}><i className="fas fa-search"> </i></Content>
                     </SearchPageInput>
          
                     <AllComponentsWrapper>
