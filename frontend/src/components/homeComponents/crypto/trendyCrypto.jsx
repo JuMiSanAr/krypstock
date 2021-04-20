@@ -26,22 +26,15 @@ const TrendyCrypto = () => {
             allCryptos.sort((a, b) => b.quoteVolume - a.quoteVolume) // sort in descending order
             for (let i = 0; i < dataAmount; i++) {
                 top20TrendyCryptos.push(allCryptos[i]);
-                // console.log('top20trendyCryptos', top20TrendyCryptos)
             }
         }
 
         setTrendyCryptos(top20TrendyCryptos)
-        // console.log('trendy cryptos',trendyCryptos)
-        // console.log('allCryptos', allCryptos)
     }, [allCryptos])
 
     const specificCryptoPage = (symbol) => {
         history.push(`/crypto/${symbol}`)
     }
-
-    // useEffect( () => {
-    //     console.log(trendyCryptos)
-    // }, [trendyCryptos])
 
     return (
         <ShrinkingComponentWrapper>

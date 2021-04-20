@@ -31,12 +31,10 @@ const Verification = () => {
             password2: password2,
         }
         activateAccountFetch(body)
-            .then(data => {
-                console.log(data)
+            .then(() => {
                 history.push('/sign-in')
             })
             .catch(response => {
-                console.log(response)
                 const statusLastChar = response.toString().slice(-1);
 
                 if (statusLastChar === '0') {

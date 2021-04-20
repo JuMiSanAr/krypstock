@@ -12,15 +12,12 @@ export const CryptoQuickTrade = (props) => {
 
     const allTransactions = useSelector(state => state.transactionsReducer.transactions);
     useEffect(() => {
-        // console.log('allData', allTransactions)
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [allTransactions])
 
     const dispatch = useDispatch();
     const allCryptos = useSelector(state => state.cryptoReducer.allCryptos);  //get price
-    // console.log("CryptoQuickTrade ~ allCryptos", allCryptos)
-  
-    // const dispatch = useDispatch()
+
     const allPortfoliosArray = useSelector(state => state.portfoliosReducer.portfolios)
     const [buySell, setBuySell] = useState("B");
     const [symbol, setSymbol] = useState();
@@ -37,17 +34,12 @@ export const CryptoQuickTrade = (props) => {
     const submitHandler = (e) => {
         if (allSymbols.includes(symbol)) {
             e.preventDefault();
-            console.log(buySell, portfolioID, symbol, amount, pricePerCoin,type)
             postNewTransactionFetch(buySell, portfolioID, `${symbol}USDT`, amount, pricePerCoin, type)
                 .then(data => {
-                    console.log('in crypto quicktrade submitHandler', data)
                     dispatch(addTransactionAction(data));
                 })
                 .catch(error => {
-                    // console.log(error.split('')[error.length-1])
                     if (error.toString().slice(-1) === '3') {
-                        console.log('error', error)
-                        // console.log("You don't have enough coins to sell")
                         setNotEnoughCoins(true);
                     }
                 })
@@ -62,17 +54,13 @@ export const CryptoQuickTrade = (props) => {
         const symbolsArray = allCryptos.map( crypto => {
             let singleSymbol = crypto.symbol;
             return singleSymbol.slice(0, -4)})
-        // symbolsArray.sort()
         setAllSymbols(symbolsArray.sort());
-        // console.log("useEffect ~ symbolsArray", symbolsArray)
-        // console.log('allSymbols', allSymbols)
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [allCryptos]);
 
     useEffect( () => {
         if (allSymbols.includes(symbol)) {
             const crypto = allCryptos.filter( crypto => crypto.symbol === `${symbol}USDT`);
-            // console.log("symbolInputHandler ~ crypto", crypto)
             if (buySell === 'B') {
                 setBidPrice(Number(crypto[0].bidPrice).toFixed(2)) 
             } else if (buySell === 'S') {

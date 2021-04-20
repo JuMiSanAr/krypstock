@@ -41,12 +41,14 @@ const StockPage = () => {
                 setKeyStats(data);
                 stockFetcherIntraday(symbol, setIntradayData);
             })
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
         if (chartTimeframe !== 'day') {
             stockFetcherHistorical(symbol, setHistoricalData, chartTimeframe);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [chartTimeframe]);
 
     return (
