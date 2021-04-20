@@ -14,13 +14,25 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+from rest_framework_simplejwt import views as jwt_views
+
+from portfolio.views import GetCryptoName
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('api/admin/', admin.site.urls),
+    path('api/user/', include('user.urls')),
+    path('api/auth/', include('signup.urls')),
+    path('api/transactions/', include('transaction.urls')),
+    path('api/portfolios/', include('portfolio.urls')),
+    path('api/cryptoName/', GetCryptoName.as_view()),
+
+    path('api/auth/token/', jwt_views.TokenObtainPairView.as_view()),
+    path('api/auth/token/refresh/', jwt_views.TokenRefreshView.as_view()),
+    path('api/auth/token/verify/', jwt_views.TokenVerifyView.as_view()),
 ]
 
 if settings.DEBUG:

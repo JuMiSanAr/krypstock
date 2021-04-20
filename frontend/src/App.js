@@ -1,25 +1,78 @@
-import logo from './logo.svg';
-import './App.css';
+import {UseDarkMode} from "./components/darkLightmode/useDarkMode";
+import {darkTheme, lightTheme} from "./styles/Themes";
+import {ThemeProvider} from "styled-components";
+import {GlobalStyles} from "./styles/GlobalStyles";
+// import Toggle from "./components/darkLightmode/toggler";
+import OurRouter from './routes';
+import React, { useState} from "react";
+// import Burger from "./components/navi/burger";
+// import Menu from "./components/navi/menu";
+import history from "./history";
+import { Router } from 'react-router';
+import FooterNav from "./components/footerNav";
+import {useSelector} from "react-redux";
+import { PageWrapper } from "./styles/globalParts/containerStyles";
+
+// const MenuWrapper = styled.div`
+//   margin-bottom: 80px;
+//   margin-left: 10px;
+// `;
+// const ToggleButton = styled.div`
+//     z-index: 999;
+//     width: 100vw;
+//     display:flex;
+//     flex-wrap: wrap;
+//     justify-content: flex-end;
+// `;
+
 
 function App() {
+
+  const userLoggedMenu = useSelector(state => state.logInReducer.authenticated);
+
+  const [theme, themeToggler, mountedComponent] = UseDarkMode();
+  const themeMode = theme === 'dark' ? darkTheme : lightTheme;
+
+  const [open, setOpen] = useState(false);
+
+  if(!mountedComponent) return <div/>
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider setOpen={setOpen} theme={themeMode}>
+        <>
+          <GlobalStyles/>
+          {/* {
+               userLoggedMenu ? 
+               <ToggleButton>
+               <Toggle theme={theme} toggleTheme={themeToggler} />
+                </ToggleButton> : ""
+              }
+           */}
+            <Router history={history}>
+              {/* {
+               userLoggedMenu ? 
+               <MenuWrapper>
+                <Burger open={open} setOpen={setOpen}/>
+                <Menu open={open} setOpen={setOpen} />
+                </MenuWrapper> : ""
+              }  */}
+              {userLoggedMenu ?
+              <PageWrapper>
+                <OurRouter />
+              </PageWrapper> 
+              :
+              <OurRouter />
+              }
+                
+              {
+                userLoggedMenu ? <FooterNav setOpen={setOpen}/>
+                : ""
+              }
+            </Router>
+        </>
+    </ThemeProvider>
   );
 }
 
 export default App;
+
