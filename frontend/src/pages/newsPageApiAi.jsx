@@ -34,7 +34,7 @@ const NewsPage = () => {
 
     useEffect(() => {
         fetchStockNews();
-        fetchCryptoNews();
+        // fetchCryptoNews();
     }, []);
 
     const fetchStockNews = () => {
