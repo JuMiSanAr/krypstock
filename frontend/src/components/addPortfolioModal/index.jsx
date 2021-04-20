@@ -47,7 +47,7 @@ export const Modal = ({ showModal, setShowModal }) => {
                   value={title} placeholder="Title" />
                 <textarea onChange={event => setDescription(event.target.value)}
                   value={description} name="" cols="30" rows="10" maxLength="100"
-                  placeholder="Please enter a detail not more than 100 words.">
+                  placeholder=" Description">
                 </textarea>
                 <SubmitButton>
                 <button onClick={saveHandler}>Save</button>
