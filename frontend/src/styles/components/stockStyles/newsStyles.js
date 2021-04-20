@@ -37,20 +37,6 @@ export const NewsWrapper = styled(FlexDiv)`
 `
 
 export const HeadlineWrapper = styled.article `
-    /* display: flex;
-    margin-bottom: 10px;
-    padding: 5px;
-    /* img{
-    height: 40px;
-    width: 40px;
-    margin-right: 10px;
-    } */
-    /* img{
-    height: 100px;
-    width: 100px;
-    margin-right: 10px;
-    }  */
-    width: 300px;
     margin: 10px;
     
     span{
@@ -71,17 +57,13 @@ export const HeadlineWrapper = styled.article `
     }
     h3{
         cursor: pointer;
+        font-size: 16px;
     }
     @media only screen and (max-width: 600px) and (min-width: 320px) {
         display: flex;
         align-items: center;
         justify-content: flex-start;
         margin-bottom: 10px;
-        /* img{
-        height: 40px;
-        width: 40px;
-        margin-right: 10px;
-        } */
         img{
         height: 100px;
         width: 100px;
