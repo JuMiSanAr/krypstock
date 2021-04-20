@@ -28,7 +28,7 @@ urlpatterns = [
     path('api/auth/', include('signup.urls')),
     path('api/transactions/', include('transaction.urls')),
     path('api/portfolios/', include('portfolio.urls')),
-    path('api/cryptoName/', GetCryptoName.as_view()),
+    path('api/cryptoName/<str:pk>/', GetCryptoName.as_view()),
 
     path('api/auth/token/', jwt_views.TokenObtainPairView.as_view()),
     path('api/auth/token/refresh/', jwt_views.TokenRefreshView.as_view()),

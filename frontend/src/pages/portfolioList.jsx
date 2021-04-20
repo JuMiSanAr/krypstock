@@ -62,7 +62,7 @@ const PortfolioList = () => {
                 </NaviWrapper>
                 <AddIcon>
         {/* <AddCircleIcon onClick={openModal} /> */}
-        <i onClick={openModal} class="fas fa-folder-plus"></i>
+        <i onClick={openModal} className="fas fa-folder-plus"> </i>
      </AddIcon>
     <AllComponentsWrapper>
 
