@@ -12,14 +12,13 @@ export const CryptoNewsApiAi = (props) => {
 
     const [allNews, setAllNews] = useState([]);
     const apiKeyAi = "919a6de0-17d5-49df-b7c9-55de20989583"
-    //console.log(typeof(props.symbol).slice(0,-4).toUpperCase(),(props.symbol).slice(0,-4).toLowerCase(),(props.symbol).toUpperCase(),(props.symbol).toLowerCase())
+
     const fetchNews = () => {
       const API_Call = `http://eventregistry.org/api/v1/article/getArticles?apiKey=919a6de0-17d5-49df-b7c9-55de20989583`;
       const method = 'POST';
       const body = {
         action: "getArticles",
-        //keyword: [(props.symbol).slice(0,-4).toUpperCase(),(props.symbol).slice(0,-4).toLowerCase(),(props.symbol).toUpperCase(),(props.symbol).toLowerCase()],
-        keyword: 'to be removed',
+        keyword: [(props.symbol).slice(0,-4).toUpperCase(),(props.symbol).slice(0,-4).toLowerCase(),(props.symbol).toUpperCase(),(props.symbol).toLowerCase()],
         articlesPage: 1,
         articlesCount: 5,
         articlesSortBy: "date",
@@ -67,11 +66,8 @@ export const CryptoNewsApiAi = (props) => {
     return (
         <>
             <ShrinkingComponentWrapper >
-
                  <TitleSpan>Latest News</TitleSpan>
-
                     {allNews.length > 0 ? allNews.map((news, index) => {
-
                         return (
                         <CryptoNewsWrapper key={index}>
                             <CryptoHeadlineWrapper>
