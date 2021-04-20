@@ -105,8 +105,8 @@ const CandlestickCryptoHistorical = (props) => {
         document.getElementById('chartCryptoHistorical').innerHTML = '';
         if (fetchedData.length>0) {
             const chart = createChart(document.getElementById('chartCryptoHistorical'), {
-                width: 300,
-                height: 200,
+                width: window.innerWidth-30,
+                height: window.innerHeight-400,
                 layout: {
                     backgroundColor: 'rgb(0, 0, 0, 0)',
                     textColor: 'rgba(255, 255, 255, 0.9)',
