@@ -34,7 +34,7 @@ const NewsPage = () => {
 
     useEffect(() => {
         fetchStockNews();
-        // fetchCryptoNews();
+        fetchCryptoNews();
     }, []);
 
     const fetchStockNews = () => {
@@ -52,11 +52,11 @@ const NewsPage = () => {
 
 
     const fetchCryptoNews = () => {
-    const API_Call = `http://eventregistry.org/api/v1/article/getArticles?apiKey=919a6de0-17d5-49df-b7c9-55de20989583`;
+    const API_Call = `https://eventregistry.org/api/v1/article/getArticles?apiKey=919a6de0-17d5-49df-b7c9-55de20989583`;
       const method = 'POST';
       const body = {
         action: "getArticles",
-        keyword: ['crypto','cryptocurrency','cryptocoin','digital currency'],
+        keyword: ['crypto'],
         articlesPage: 1,
         articlesCount: 30,
         articlesSortBy: "date",
