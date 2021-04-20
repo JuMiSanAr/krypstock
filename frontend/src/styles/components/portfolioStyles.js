@@ -12,6 +12,7 @@ display: flex;
 align-items: center;
 justify-content: flex-start;
 padding-bottom: 12px;
+padding-left: 4px;
 i{
     color: green;
     padding: 10px;
@@ -86,12 +87,14 @@ font-weight: 600;
 font-size: 16px;
 padding-bottom: 10px;
 margin-top: 8px;
+padding-left: 3px;
 `;
 
 export const AllInvestmentsHeadline = styled.p`
 font-weight: 600;
 font-size: 16px;
 margin-top: 8px;
+padding-left: 3px;
 `;
 
 export const CakeChartContainer = styled.div `

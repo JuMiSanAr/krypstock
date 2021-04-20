@@ -104,7 +104,7 @@ const AllInvestments = ({calculations, realtimeData, portfolioCreated}) => {
                         <InvestmentFont>
                             {differencePercentage > 0 ? <i className="fas fa-angle-double-up" style={{color: 'green'}}> </i> : ''}
                             {differencePercentage < 0 ? <i className="fas fa-angle-double-down" style={{color: 'red'}}> </i> : ''}
-                            {differencePercentage ? differencePercentage.toFixed(2) : ''}%
+                            {differencePercentage > 0 ? <span style={{color: 'green'}}>{differencePercentage.toFixed(2)} %</span> : <span style={{color: 'red'}}>{differencePercentage.toFixed(2)} %</span>}
                         </InvestmentFont>
                     </div>
                     <div>

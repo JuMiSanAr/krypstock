@@ -67,7 +67,8 @@ const Overview = ({calculations, realtimeData, portfolioname, portfolioID, portf
                             :
                             <i className="fas fa-angle-double-down" style={{color: 'red'}}></i>
                         }
-                        {percentageChangeTotal.toFixed(2)} %</InvestmentFont>
+                        {percentageChangeTotal > 0 ? <span style={{color: 'green'}}>{percentageChangeTotal.toFixed(2)} %</span> : <span style={{color: 'red'}}>{percentageChangeTotal.toFixed(2)} %</span>} 
+                        </InvestmentFont>
                 </TempDiv>
                 <TempDiv>
                     <Desc>Today</Desc>
