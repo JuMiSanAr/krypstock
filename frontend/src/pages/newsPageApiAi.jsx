@@ -54,7 +54,7 @@ const NewsPage = () => {
       const method = 'POST';
       const body = {
         action: "getArticles",
-        keyword: ['crypto','cryptocurrency','cryptocoin','digital currency'],
+        keyword: ['crypto'],
         articlesPage: 1,
         articlesCount: 30,
         articlesSortBy: "date",
