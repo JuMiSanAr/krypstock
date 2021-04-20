@@ -57,7 +57,7 @@ const CryptoPage = () => {
                 </ShrinkingComponentWrapper>
                  <ShrinkingComponentWrapper>
                 {/*<NewsCrypto symbol={symbol}/>*/}
-                 <CryptoNewsApiAi symbol={symbol}/>
+                {/* <CryptoNewsApiAi symbol={symbol}/>*/}
             </ShrinkingComponentWrapper>
     </AllComponentsWrapper>
         </>

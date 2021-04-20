@@ -115,8 +115,8 @@ const CandlestickCryptoIntraday = (props) => {
         if (fetchedData.length > 0) {
             document.getElementById('chartCryptoIntraday').innerHTML = '';
              const chart = createChart(document.getElementById('chartCryptoIntraday'), {
-                width: 300,
-                height: 200,
+                width: window.innerWidth-30,
+                height: window.innerHeight-400,
                 layout: {
                     backgroundColor: 'rgb(0, 0, 0, 0)',
                     textColor: 'rgba(255, 255, 255, 0.9)',

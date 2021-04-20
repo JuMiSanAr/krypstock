@@ -10,8 +10,8 @@ const CandlestickStockHistorical = (props) => {
                 localization: {
                     locale: 'en-US'
                 },
-                width: 300,
-                height: 200,
+                width: window.innerWidth-30,
+                height: window.innerHeight-380,
                 layout: {
                     backgroundColor: 'rgb(0, 0, 0, 0)',
                     textColor: 'rgba(255, 255, 255, 0.9)',
