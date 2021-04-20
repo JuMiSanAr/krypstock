@@ -149,7 +149,7 @@ export const CryptoQuickTrade = (props) => {
                                     name="amount" 
                                     step="0.000001" 
                                     min="0.000001"
-                                    placeholder="1"
+                                    placeholder='1'
                                     value={amount} 
                                     onChange={e => setAmount(e.target.value)} 
                                     required
