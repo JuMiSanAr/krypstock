@@ -8,22 +8,24 @@ import {iexSandboxKey} from "../../../store/constants";
 import {stockNewsAction} from "../../../store/actions/newsActions";
 
 
-export const CryptoNewsApiAi = (props) => {
+export const CryptoNewsApiAi = ({symbol}) => {
 
     const [allNews, setAllNews] = useState([]);
     const apiKeyAi = "919a6de0-17d5-49df-b7c9-55de20989583"
 
     const fetchNews = () => {
-      const API_Call = `http://eventregistry.org/api/v1/article/getArticles?apiKey=919a6de0-17d5-49df-b7c9-55de20989583`;
+      const API_Call = `https://eventregistry.org/api/v1/article/getArticles?apiKey=919a6de0-17d5-49df-b7c9-55de20989583`;
       const method = 'POST';
       const body = {
         action: "getArticles",
-        keyword: [(props.symbol).slice(0,-4).toUpperCase(),(props.symbol).slice(0,-4).toLowerCase(),(props.symbol).toUpperCase(),(props.symbol).toLowerCase()],
+        keyword: [symbol.slice(0,-4).toUpperCase()],
         articlesPage: 1,
         articlesCount: 5,
         articlesSortBy: "date",
         articlesSortByAsc: false,
         articlesArticleBodyLen: -1,
+        ignoreKeyword: 'Read More',
+        ignoreAuthorUri: 'explica_co@explica.co',
         resultType: "articles",
         dataType: [
           "news",
@@ -46,7 +48,7 @@ export const CryptoNewsApiAi = (props) => {
                 .then(res => res.json())
                 .then(data => {
                     // allNews.push(data.articles.results)
-                    //          console.log(" data",data.articles.results)
+                             console.log(" data",data.articles.results)
                     setAllNews(data.articles.results)
                 });
     }
@@ -59,8 +61,10 @@ export const CryptoNewsApiAi = (props) => {
     };
 
     useEffect(() => {
-        fetchNews();
-    }, []);
+        if(symbol){
+            fetchNews();
+        }
+    }, [symbol]);
 
         console.log(" allNews",allNews)
     return (
