@@ -11,6 +11,8 @@ import { NaviWrapper } from '../styles/components/naviStyles/menuStyles';
 import Burger from '../components/navi/burger';
 import Menu from '../components/navi/menu';
 import { ShrinkingComponentWrapper } from '../styles/globalParts/containerStyles';
+import {DoubleButtonContainer, LeftButton, RightButton} from '../styles/pages/homeStyles';
+
 
 const NewsPage = () => {
 
@@ -98,12 +100,16 @@ const NewsPage = () => {
                 </NaviWrapper>
           
             <HeaderTitle>
-                <div className="toggleTitle">
+                <DoubleButtonContainer>
+                    <LeftButton onClick={() => toggleTab(1)} numberClicked={toggleState}>Stock</LeftButton>
+                    <RightButton onClick={() => toggleTab(2)} numberClicked={toggleState}>Crypto</RightButton>
+                </DoubleButtonContainer> 
+                {/* <div className="toggleTitle">
                     <span>/</span>
                     <h3 onClick={() => toggleTab(1)} numberClicked={toggleState}>Crypto</h3>
                     <span>/</span>
                     <h3 onClick={() => toggleTab(2)} numberClicked={toggleState}>Stock</h3>
-                </div>
+                </div> */}
             </HeaderTitle>
             <ShrinkingComponentWrapper>
             <NewsContentWrapper>

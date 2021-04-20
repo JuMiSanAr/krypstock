@@ -11,6 +11,7 @@ import { NaviWrapper } from '../styles/components/naviStyles/menuStyles';
 import Burger from '../components/navi/burger';
 import Menu from '../components/navi/menu';
 import { ShrinkingComponentWrapper } from '../styles/globalParts/containerStyles';
+import {DoubleButtonContainer, LeftButton, RightButton} from '../styles/pages/homeStyles';
 
 const NewsPage = () => {
 
@@ -62,62 +63,58 @@ const NewsPage = () => {
 
     return (
         <>
-                <NaviWrapper>
+            <NaviWrapper>
                 <div>
                     <Burger open={open} setOpen={setOpen}/> 
                     <Menu open={open} setOpen={setOpen} />  
-                    </div>  
-                    <div className="heading">
+                </div>  
+                <div className="heading">
                     <h2>News</h2>
-                    </div>
-                </NaviWrapper>
+                </div>
+            </NaviWrapper>
+            <h1>News</h1> 
+                <DoubleButtonContainer>
+                    <LeftButton onClick={() => toggleTab(1)} numberClicked={toggleState}>Stock</LeftButton>
+                    <RightButton onClick={() => toggleTab(2)} numberClicked={toggleState}>Crypto</RightButton>
+                </DoubleButtonContainer> 
           
-            <HeaderTitle>
+            {/* <HeaderTitle>
                 <div className="toggleTitle">
                     <span>/</span>
                     <h3 onClick={() => toggleTab(1)} numberClicked={toggleState}>Crypto</h3>
                     <span>/</span>
                     <h3 onClick={() => toggleTab(2)} numberClicked={toggleState}>Stock</h3>
                 </div>
-            </HeaderTitle>
+            </HeaderTitle> */}
             <ShrinkingComponentWrapper>
-            <NewsContentWrapper>
-
-                {/* <h1>News</h1> */}
-                {/* <DoubleButtonContainer>
-                    <LeftButton onClick={() => toggleTab(1)} numberClicked={toggleState}>Stock</LeftButton>
-                    <RightButton onClick={() => toggleTab(2)} numberClicked={toggleState}>Crypto</RightButton>
-                </DoubleButtonContainer> */}
-
-                {
-                    allStockNews.length > 0 && toggleState === 2 ?
-                        allStockNews.slice(0, newsNumberShown).map((news, index) => {
-                            return (
-                                <SingleStockNewsFeed key={index} news={news} />
-                            )
-                        })
-                        : ''
-                }
-                {
-                    crytoNews.length > 0 && toggleState === 1 ?
-                        crytoNews.slice(0, newsNumberShown).map((news, index) => {
-                            return (
-                                <SingleCryptoNewsFeed key={index} news={news} />
-                            )
-                        })
-                        : ''
-                }
-            </NewsContentWrapper>
-            
-            <ShowMore>
-                {
-                    newsNumberShown < 30 ?
-                        <h3 onClick={() => setNewsNumberShown(newsNumberShown + 5)}>Show more</h3>
-                        : ''
-                }
-            </ShowMore>
-
-        </ShrinkingComponentWrapper>
+                <NewsContentWrapper>
+                    {
+                        allStockNews.length > 0 && toggleState === 2 ?
+                            allStockNews.slice(0, newsNumberShown).map((news, index) => {
+                                return (
+                                    <SingleStockNewsFeed key={index} news={news} />
+                                )
+                            })
+                            : ''
+                    }
+                    {
+                        crytoNews.length > 0 && toggleState === 1 ?
+                            crytoNews.slice(0, newsNumberShown).map((news, index) => {
+                                return (
+                                    <SingleCryptoNewsFeed key={index} news={news} />
+                                )
+                            })
+                            : ''
+                    }
+                </NewsContentWrapper>
+                <ShowMore>
+                    {
+                        newsNumberShown < 30 ?
+                            <h3 onClick={() => setNewsNumberShown(newsNumberShown + 5)}>Show more</h3>
+                            : ''
+                    }
+                </ShowMore>
+            </ShrinkingComponentWrapper>
         </>
     )
 }
