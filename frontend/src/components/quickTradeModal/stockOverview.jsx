@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import {  BackgroundOverview, CloseModalButton, ContentWrapper, ModalContent, CrypStockTransacWrapper, SubmitButton } from '../../styles/components/modalStyles';
 import {useDispatch, useSelector} from "react-redux";
-import { BuySellSelectorWrapper, BuySelectButton, SellSelectButton} from '../../styles/components/cryptoStyles/quickTradeStyles'
+import {ButtonWrapper, BuySellSelectorWrapper, BuySelectButton, SellSelectButton} from '../../styles/components/cryptoStyles/quickTradeStyles'
 import { Link } from 'react-router-dom';
 import { ShrinkingComponentWrapper } from '../../styles/globalParts/containerStyles';
 import { postNewTransactionFetch } from '../../store/fetches/transactionFetches';
@@ -19,6 +19,8 @@ export const StockModal2 = ({ showStockModal, setStockShowModal, symbol, portfol
     const [marketPrice, setMarketPrice] = useState();
     const [notEnoughStocks, setNotEnoughStocks] = useState(false);
     const type = "S";
+    const [transSuccess, setTransSucess] = useState(false);
+    const [transUnSuccess , setTransUnSuccess ] = useState(false);
 
     const dispatch = useDispatch();
 
@@ -26,7 +28,9 @@ export const StockModal2 = ({ showStockModal, setStockShowModal, symbol, portfol
         e.preventDefault();
         postNewTransactionFetch(buySell, portfolioID, symbol, volume, pricePerShare, type)
             .then(data => {
-                setStockShowModal(false);
+                setTransSucess(true)
+                setTransUnSuccess(false)
+                // setStockShowModal(false);
                 return specificPortfolioFetch(portfolioID)
             })
             .then(data => {
@@ -34,6 +38,7 @@ export const StockModal2 = ({ showStockModal, setStockShowModal, symbol, portfol
                 dispatch(action)
             })
             .catch(error => {
+                setTransUnSuccess(true)
                 if (error.toString().slice(-1) === '3') {
                     setNotEnoughStocks(true);
                 }
@@ -44,6 +49,8 @@ export const StockModal2 = ({ showStockModal, setStockShowModal, symbol, portfol
 
     const closeModal = e => {
         e.preventDefault();
+        setTransSucess(false)
+        setTransUnSuccess(false)
         if (modalRef.current === e.target) {
             setStockShowModal(false);
         }
@@ -144,9 +151,24 @@ export const StockModal2 = ({ showStockModal, setStockShowModal, symbol, portfol
                                             {
                                                 notEnoughStocks ? <div className="amountInput"><ErrorSpan><em>Not enough stocks to sell at this amount</em></ErrorSpan></div> : ''
                                             }
-                                            <SubmitButton>
+                                              {
+                                                transSuccess && buySell === 'B' ? <div><i className="fas fa-check-circle"></i> <em className="transmessage">Transaction Successful</em></div> :  transSuccess && buySell === 'S' ? <div><i className="fas fa-check-circle"></i> <em className="transmessage">Transaction Successful</em></div> : ""
+                                                  
+                                             }
+                                             {
+                                                 transUnSuccess && buySell === 'B' ? <div> <i className="fas fa-times-circle"></i><em className="transmessage">Transaction Unsuccessful</em></div> : transUnSuccess && buySell === 'S' ? <div> <i className="fas fa-times-circle"></i><em className="transmessage">Transaction Unsuccessful</em></div> : ""
+                                             }
+                                            {/* <SubmitButton>
                                                 <button type="submit" value="Submit" onClick={submitHandler}>Submit</button>
-                                            </SubmitButton>
+                                            </SubmitButton> */}
+                                             <ButtonWrapper>
+                                                    {
+                                                        buySell === 'B' ?
+                                                        <button onClick={submitHandler}  className="buy" type="submit" value="Submit">Buy</button>
+                                                        :
+                                                        <button onClick={submitHandler} className="sell" type="submit" value="Submit">Sell</button>                          
+                                                    }
+                                             </ButtonWrapper>
                                         </>
                                 }
                             </ModalContent>
