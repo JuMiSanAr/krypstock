@@ -30,14 +30,13 @@ export const CryptoModal2 = ({ showCryptoModal, setCryptoShowModal, symbol, port
     const submitHandler = (e) => {
         e.preventDefault();
         postNewTransactionFetch(buySell, portfolioID, symbol, amount, pricePerCoin, type)
-            .then(data => {
+            .then(() => {
                 setCryptoShowModal(false)
                 return specificPortfolioFetch(portfolioID)})
             .then(data => {
                 const action = specificPortfolioAction(data)
                 dispatch(action)
             })
-
             .catch(error => {
                 if (error.toString().slice(-1) === '3') {
                     setNotEnoughCoins(true);
@@ -60,6 +59,7 @@ export const CryptoModal2 = ({ showCryptoModal, setCryptoShowModal, symbol, port
         } else if (buySell === 'S' && crypto[0]) {
             setAskPrice(Number(crypto[0].askPrice).toFixed(2));
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [symbol, buySell])
 
     useEffect(() => {
@@ -75,6 +75,7 @@ export const CryptoModal2 = ({ showCryptoModal, setCryptoShowModal, symbol, port
                 const action = portfoliosAction(data);
                 dispatch(action);
             })
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
 

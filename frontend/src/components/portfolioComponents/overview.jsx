@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { ShrinkingComponentWrapper } from '../../styles/globalParts/containerStyles';
-import {HeadlineFont, NetworthContainerTop, Headline, OverviewBar, TempDiv, Desc, InvestmentFont, NetworthContainer, IconConatiner, ValueText} from '../../styles/components/portfolioStyles';
+import {HeadlineFont, NetworthContainerTop, Headline, OverviewBar, TempDiv, Desc, InvestmentFont, NetworthContainer, IconConatiner} from '../../styles/components/portfolioStyles';
 // import {useSelector} from 'react-redux';
 import {allTheme} from '../../styles/Themes';
 import {StockModal2} from "../quickTradeModal/stockOverview";
@@ -96,8 +96,8 @@ const Overview = ({calculations, realtimeData, portfolioname, portfolioID, portf
                 <OverviewBar key={index} style={{backgroundColor: getBackgroundColor()}}>
                     <IconConatiner>
                         {calculation.type === "S"
-                        ? <i className="fas fa-briefcase"></i>
-                        : <i className="fab fa-btc"></i>
+                        ? <i className="fas fa-briefcase"> </i>
+                        : <i className="fab fa-btc"> </i>
                         }
                         <HeadlineFont>{calculation.symbol}</HeadlineFont>
 
@@ -138,7 +138,10 @@ const Overview = ({calculations, realtimeData, portfolioname, portfolioID, portf
                         getPercentageChanges(calculation.symbol, calculation.type)
                         : ''} 
                 </OverviewBar>
-            )}})}
+            )}
+                else {
+                    return ''
+                }})}
         </ShrinkingComponentWrapper>
         </>
 )}
