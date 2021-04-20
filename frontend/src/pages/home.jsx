@@ -36,11 +36,11 @@ const Home = () => {
 
             transactionFetch()
                 .then(data => {
-                    // console.log("data.results", data.results);
                     const action = transactionsAction(data)
                     dispatch(action);
                 })
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [token]);
 
     return (
@@ -62,7 +62,7 @@ const Home = () => {
                         <DoubleButtonContainer>
                             <LeftButton className="left-button" onClick={() => toggleTab(1)} numberClicked={toggleState}>Crypto</LeftButton>
                             <RightButton className="right-button" onClick={() => toggleTab(2)} numberClicked={toggleState}>Stock</RightButton>
-                            <div className="animation start-crypto"></div>
+                            <div className="animation start-crypto"></div> 
                         </DoubleButtonContainer>
                         <MainContentWrapper>
                             <div className={toggleState === 1 ? "active-content" : "content"}>

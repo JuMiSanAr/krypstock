@@ -33,11 +33,9 @@ const PasswordVerification = () => {
         }
         activatePasswordAccountFetch(body)
             .then(data => {
-                console.log(data)
                 history.push('/sign-in')
             })
             .catch(response => {
-                console.log(response)
                 const statusLastChar = response.toString().slice(-1);
 
                 if (statusLastChar === '0') {

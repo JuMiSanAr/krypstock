@@ -45,6 +45,7 @@ const PortfolioList = () => {
         const action = portfoliosAction(data);
         dispatch(action);
       })
+      // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -59,12 +60,12 @@ const PortfolioList = () => {
                 <h2>My portfolios</h2>
                 </div>
                 </NaviWrapper>
-                <AddIcon> 
+                <AddIcon>
         {/* <AddCircleIcon onClick={openModal} /> */}
         <i onClick={openModal} class="fas fa-folder-plus"></i>
-     </AddIcon> 
+     </AddIcon>
     <AllComponentsWrapper>
-   
+
       <Modal showModal={showModal} setShowModal={setShowModal} />
       {
         portfolioData && portfoliosFetched ? <PortfolioCollection/> : ""
@@ -76,7 +77,7 @@ const PortfolioList = () => {
         !portfolioData && portfoliosFetched ? 'Add a new portfolio, man!' : ""
       }
     </AllComponentsWrapper>
-    
+
       
   </>
   )

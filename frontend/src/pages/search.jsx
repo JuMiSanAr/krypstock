@@ -37,7 +37,7 @@ const Search = () => {
 
     const [open, setOpen] = useState(false);
 
-    const [page, setPage] = React.useState(0);
+    const [page] = React.useState(0);
     const rowsPerPage = 10;
 
     const allCryptos = useSelector(state => state.cryptoReducer.allCryptos);
@@ -64,6 +64,7 @@ const Search = () => {
                     dispatch(action);
                 })
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currentStockSymbols]);
 
     useEffect(() => {
@@ -96,7 +97,7 @@ const Search = () => {
                     dispatch(action);
                 });
         }
-
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
@@ -187,11 +188,8 @@ const Search = () => {
                 )
             }))
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [allCryptos])
-
-    // const handleChangePage = (event, newPage) => {
-    //     setPage(newPage);
-    // };
 
     return (
         <> 
@@ -230,7 +228,7 @@ const Search = () => {
                                 {<Table id="crypto">
                                     <thead>
                                         <tr>
-                                            <th className="tableHead">Buy</th>
+                                            <th className="tableHead">New</th>
                                             <th className="tableHead">Symbol</th>
                                             <th className="tableHead">Price (Latest)</th>
                                             <th className="tableHead">Change%</th>
@@ -253,7 +251,7 @@ const Search = () => {
                                 <Table id="stocks">
                                     <thead>
                                         <tr>
-                                            <th className="tableHead">Buy</th>
+                                            <th className="tableHead">New</th>
                                             <th className="tableHead">Symbol</th>
                                             <th className="tableHead">Price (Latest)</th>
                                             <th className="tableHead">Change%</th>

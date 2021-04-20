@@ -24,28 +24,22 @@ export const CryptoModal2 = ({ showCryptoModal, setCryptoShowModal, symbol, port
     const allCryptos = useSelector(state => state.cryptoReducer.allCryptos);
     const [bidPrice, setBidPrice] = useState(0);
     const [askPrice, setAskPrice] = useState(0);
-    // console.log('symbol', allCryptos)
     const dispatch = useDispatch();
 
 
     const submitHandler = (e) => {
         e.preventDefault();
-        // console.log(buySell, portfolioID, symbol, amount, pricePerCoin, type)
         postNewTransactionFetch(buySell, portfolioID, symbol, amount, pricePerCoin, type)
             .then(data => {
                 setCryptoShowModal(false)
                 return specificPortfolioFetch(portfolioID)})
             .then(data => {
-                // console.log('fetched', data)
                 const action = specificPortfolioAction(data)
                 dispatch(action)
             })
 
             .catch(error => {
-                // console.log(error.split('')[error.length-1])
                 if (error.toString().slice(-1) === '3') {
-                    console.log('error', error)
-                    // console.log("You don't have enough coins to sell")
                     setNotEnoughCoins(true);
                 }
             })

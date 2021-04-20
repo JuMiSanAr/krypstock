@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {stockFetcherInfo} from "../charts/helperFunctions/stockFetcherInfo";
-import {StockPageInfoWrapper, StockPageDataWrapper} from "../../styles/components/stockStyles/stockPageInfoStyles";
+import {StockPageDataWrapper} from "../../styles/components/stockStyles/stockPageInfoStyles";
 import { Desc, InvestmentFont } from '../../styles/components/portfolioStyles';
 
 const StockPageInfoCard = (props) => {
@@ -9,13 +9,14 @@ const StockPageInfoCard = (props) => {
 
     useEffect(() => {
         stockFetcherInfo(props.symbol, setStockInfo);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
         props.setCompanyName(stockInfo.companyName);
         props.setCompanyMarket(stockInfo.exchange);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [stockInfo]);
-    console.log(stockInfo)
 
     return (
         <StockPageDataWrapper>

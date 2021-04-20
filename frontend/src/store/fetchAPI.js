@@ -32,16 +32,16 @@ export const fetchAPI = (url, body, method, headers = true, expectData = true, f
     return fetch(thisUrl, config)
             .then(response => {
                 if (response.status >= 200 && response.status < 300) {
-                  console.log('200 ok')
+                  // console.log('200 ok')
                   if(expectData){
-                    console.log('in the data')
+                    // console.log('in the data')
                     return response.json();
                   } else {
-                    console.log('no data');
+                    // console.log('no data');
                     return true;
                   }
                 } else {
-                  console.log('error');
+                  // console.log('error');
                   throw Error(`${response.status}`);
                 }
             })

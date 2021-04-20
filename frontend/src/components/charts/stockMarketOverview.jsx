@@ -1,4 +1,3 @@
-import React, {useState, useEffect} from "react";
 import Chart from "react-apexcharts";
 import {allTheme} from "../../styles/Themes";
 

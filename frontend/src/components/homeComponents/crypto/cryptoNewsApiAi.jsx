@@ -43,12 +43,9 @@ export const CryptoNewsApiAi = ({symbol}) => {
           headers: headers,
           body: JSON.stringify(body)
       };
-      console.log(JSON.stringify(body))
       fetch(API_Call, config)
                 .then(res => res.json())
                 .then(data => {
-                    // allNews.push(data.articles.results)
-                             console.log(" data",data.articles.results)
                     setAllNews(data.articles.results)
                 });
     }
@@ -66,7 +63,6 @@ export const CryptoNewsApiAi = ({symbol}) => {
         }
     }, [symbol]);
 
-        console.log(" allNews",allNews)
     return (
         <>
             <ShrinkingComponentWrapper >
@@ -80,7 +76,7 @@ export const CryptoNewsApiAi = ({symbol}) => {
                                     <h3 onClick={() => window.open(news.url, "_blank")}>{news.title}</h3>
                                     <div className="publishDetial">
                                         <p className='news_date'>By {news.source.title}</p>
-                                        <p className='news_date'>{news.dateTimePub}</p>
+                                        <p className='news_date'> {news.dateTimePub}</p>
                                     </div>
                                 </div>
                             </CryptoHeadlineWrapper>
