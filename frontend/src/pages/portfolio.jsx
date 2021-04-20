@@ -184,7 +184,7 @@ const Portfolio = () => {
                     <CakeChartContainer>
                         <Headline>My Investments</Headline>
                         {
-                            pieData.length > 0 ? <PieChart
+                            pieData.length > 0 ? <PieChart style={{marginBottom: '18px'}}
 
                                 data={pieData}
                                 labelPosition={70}

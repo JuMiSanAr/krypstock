@@ -134,12 +134,12 @@ const StockQuickTrade = (props) => {
                                 </datalist>
                             </div>
                             <div className="amountInput">
-                                <p>Volume</p>
+                                <p>Quantity</p>
                                 <input 
                                     type="number" 
                                     step="1" 
                                     min="1"
-                                    placeholder="1" 
+                                    placeholder="1"
                                     value={volume} 
                                     onChange={e => setVolume(e.target.value)} 
                                     required
