@@ -21,11 +21,9 @@ export const StockModal = ({ showStockModal, setStockShowModal, symbol, stockSym
 
     const submitHandler = (e) => {
         e.preventDefault();
-        // console.log(buySell, portfolioID, symbol, volume, pricePerShare,type)
         postNewTransactionFetch(buySell, portfolioID, stockSymbol, volume, pricePerShare, type)
             .then(data => {
                 setStockShowModal(false);
-                // console.log('in stock quicktrade submitHandler', data)
             })
             .catch(error => {
                 if (error.toString().slice(-1) === '3') {
@@ -36,7 +34,6 @@ export const StockModal = ({ showStockModal, setStockShowModal, symbol, stockSym
     }
 
     useEffect( () => {   // get price of specific symbol
-        // console.log('stock symbol',stockSymbol)
         if (stockSymbol) {
             fetch(`https://sandbox.iexapis.com/stable/stock/${stockSymbol}/price?token=${iexSandboxKey}`)
                 .then(res => res.json())
@@ -56,6 +53,8 @@ export const StockModal = ({ showStockModal, setStockShowModal, symbol, stockSym
         e.preventDefault();
         if (modalRef.current === e.target) {
             setStockShowModal(false);
+            setVolume(0);
+            setPricePerShare(0);
         }
     };
 
@@ -122,7 +121,7 @@ export const StockModal = ({ showStockModal, setStockShowModal, symbol, stockSym
                                                             <p>Quantity</p>
                                                         </div>
                                                         <div>
-                                                            <input className="input" type="number" placeholder="0" value={volume} onChange={e => setVolume(e.target.value)} required />
+                                                            <input className="input" type="number" placeholder="0" onChange={e => setVolume(e.target.value)} required />
                                                         </div>
                                                     </div>
                                                     <div className="amountInput">
@@ -130,7 +129,7 @@ export const StockModal = ({ showStockModal, setStockShowModal, symbol, stockSym
                                                             <p>Price per share</p>
                                                         </div>
                                                         <div>
-                                                            <input className="input" type="number" placeholder="0" value={pricePerShare} onChange={e => setPricePerShare(e.target.value)} required />
+                                                            <input className="input" type="number" placeholder="0" onChange={e => setPricePerShare(e.target.value)} required />
                                                         </div>
                                                     </div>
                                                     <div className="amountInput">

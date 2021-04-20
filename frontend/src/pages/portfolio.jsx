@@ -15,9 +15,8 @@ import { NaviWrapper } from '../styles/components/naviStyles/menuStyles';
 import Burger from '../components/navi/burger';
 import Menu from '../components/navi/menu';
 
-const Portfolio = (props) => {
+const Portfolio = () => {
 
-    const [portfolioId, setPortfolioId] = useState('');
     const [open, setOpen] = useState(false);
 
     const [realtimeDataStock, setRealtimeDataStock] = useState([]);
@@ -25,15 +24,14 @@ const Portfolio = (props) => {
 
     const [realtimeDataCombined, setRealtimeDataCombined] = useState([]);
 
-    const [stockSymbols, setStockSymbols] = useState([]);
-    const [cryptoSymbols, setCryptoSymbols] = useState([]);
+    const [stockSymbols] = useState([]);
+    const [cryptoSymbols] = useState([]);
 
     const allCryptoInfo = useSelector(state => state.cryptoReducer.allCryptos);
 
     useEffect(() => {
         const url = window.location.href;
         const id = url.substring(url.lastIndexOf('/') + 1);
-        setPortfolioId(id);
 
         specificPortfolioFetch(id)
             .then(data => {
@@ -58,11 +56,9 @@ const Portfolio = (props) => {
 
                     }
                 })
-                console.log(data.calculations)
 
                 if (data.calculations.length >= 7) {
                     const other = data.calculations.filter((value, index) => index > 5);
-                    //data.calculations.splice(6)
 
                     let otherValues = [];
 
@@ -92,10 +88,8 @@ const Portfolio = (props) => {
 
                 data.calculations.forEach(symbol => {
                     if (symbol.type === 'S') {
-                        // setStockSymbols([...stockSymbols, symbol.symbol])
                         stockSymbols.push(symbol.symbol);
                     } else if (symbol.type === 'C') {
-                        // setCryptoSymbols([...cryptoSymbols, symbol.symbol])
                         cryptoSymbols.push(symbol.symbol);
                     }
                 })
@@ -121,12 +115,14 @@ const Portfolio = (props) => {
                         })
                 }
             })
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     useEffect(() => {
         if (allCryptoInfo.length) {
             setRealtimeDataCrypto(allCryptoInfo.filter(crypto => cryptoSymbols.includes(crypto.symbol)));
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [allCryptoInfo]);
 
     useEffect(() => {
@@ -150,6 +146,7 @@ const Portfolio = (props) => {
                 const action = allCryptosAction(usdtFiltered);
                 dispatch(action);
             })
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const dispatch = useDispatch()
@@ -188,11 +185,7 @@ const Portfolio = (props) => {
                         <Headline>My Investments</Headline>
                         {
                             pieData.length > 0 ? <PieChart
-                                /* label={props => { return props.dataEntry.title;}}
-                                labelStyle={{
-                                    fontSize: "7px",
-                                    textColor: "white"
-                                  }} */
+
                                 data={pieData}
                                 labelPosition={70}
                             /> : ''

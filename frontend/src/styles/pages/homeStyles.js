@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {darkTheme, allTheme, fontSize} from "../Themes";
+import {fontSize} from "../Themes";
 
 export const MainContentWrapper = styled.div`
     .content {
@@ -49,11 +49,10 @@ export const DoubleButtonContainer = styled.div`
         left: 50%;
     } */
 
-    /* border: solid 1px red;
+     /* border: solid 1px red;
     * {
         border: solid 1px red;
     } */
-
 `;
 
 

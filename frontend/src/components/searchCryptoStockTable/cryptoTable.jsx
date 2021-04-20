@@ -1,8 +1,5 @@
-import React, {useState} from 'react'
 import AddBoxIcon from "@material-ui/icons/AddBox";
 import {useHistory} from "react-router-dom";
-
-
 
 
 export const CryptoTable = ({symbol, setSymbolCrypto, setCryptoShowModal}) => {
@@ -17,11 +14,8 @@ export const CryptoTable = ({symbol, setSymbolCrypto, setCryptoShowModal}) => {
 
 
     const addTransaction = () =>{
-        // //   console.log(symbol.symbol) 
-          setSymbolCrypto(symbol.symbol) 
-        //   setShowModal(prev => !prev);
+        setSymbolCrypto(symbol.symbol)
         setCryptoShowModal(true);
-        
     }
 
     // console.log('symbol',symbol.priceChangePercent)
