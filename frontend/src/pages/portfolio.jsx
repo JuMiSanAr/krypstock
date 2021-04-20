@@ -171,7 +171,7 @@ const Portfolio = (props) => {
                     portfolioInfo.calculations ? <AllInvestments realtimeData={realtimeDataCombined}
                         calculations={portfolioInfo.calculations}
                         portfolioCreated={portfolioInfo.created} />
-                        : ''
+                        : 'No Data Available'
                 }
                 {
                     portfolioInfo.calculations ? <Overview calculations={portfolioInfo.calculations}
@@ -180,7 +180,7 @@ const Portfolio = (props) => {
                         portfolioname={portfolioInfo.name}
                         portfolioID={portfolioInfo.id}
                         portfolioCreated={portfolioInfo.created} />
-                        : ''
+                        : 'No Data Available'
                 }
 
                 <ShrinkingComponentWrapper>

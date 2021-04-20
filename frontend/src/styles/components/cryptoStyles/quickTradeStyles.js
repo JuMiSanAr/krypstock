@@ -30,17 +30,21 @@ export const TransacWrapper = styled.div `
         min-height: 55px;
         
         input{
-            width: 80px;
-            height: 25px;
+            width: 85px;
+            height: 28px;
             text-align: center;
             outline: none;
+            border-radius: 6px;
+            border:none;
         }
 
         select{
             width: 120px;
-            height: 25px;
+            height: 28px;
             text-align: center;
             outline: none;
+            border: none;
+            border-radius: 6px;
             /* margin-bottom: 1rem; */
         }
     }
