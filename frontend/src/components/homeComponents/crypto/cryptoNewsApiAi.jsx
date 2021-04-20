@@ -20,7 +20,7 @@ export const CryptoNewsApiAi = (props) => {
         action: "getArticles",
         keyword: [(props.symbol).slice(0,-4).toUpperCase(),(props.symbol).slice(0,-4).toLowerCase(),(props.symbol).toUpperCase(),(props.symbol).toLowerCase()],
         articlesPage: 1,
-        articlesCount: 1,
+        articlesCount: 5,
         articlesSortBy: "date",
         articlesSortByAsc: false,
         articlesArticleBodyLen: -1,

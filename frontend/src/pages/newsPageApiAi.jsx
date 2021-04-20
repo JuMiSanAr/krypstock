@@ -32,7 +32,7 @@ const NewsPage = () => {
 
     useEffect(() => {
         fetchStockNews();
-        fetchCryptoNews();
+        // fetchCryptoNews();
     }, []);
 
     const fetchStockNews = () => {
@@ -56,7 +56,7 @@ const NewsPage = () => {
         action: "getArticles",
         keyword: ['crypto','cryptocurrency','cryptocoin','digital currency'],
         articlesPage: 1,
-        articlesCount: 1,
+        articlesCount: 30,
         articlesSortBy: "date",
         articlesSortByAsc: false,
         articlesArticleBodyLen: -1,
