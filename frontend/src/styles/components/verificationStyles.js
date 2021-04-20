@@ -22,7 +22,7 @@ export const MainContainerV = styled.div `
   align-items: center;
   background: white;
   box-shadow: 0px 5px 15px #888888;
-  border-radius: 40px;
+  border-radius: 20px;
   width:300px;
   min-height: 550px;
   .link{
