@@ -10,10 +10,19 @@ export const FormSelectWrapper = styled.div `
    justify-content: space-between;
     align-items: center;
 
+    /* border: solid 1px red;
+    * {
+        border: solid 1px red;
+    } */
+    input {
+        padding-left: 1rem;
+        height: 20px;
+    }
+
    .selector{
      border-style: none;
      border-radius: 5px;
-     width: 75px;
+     width: 90px;
      height: 28px;
      color: ${({ theme }) => theme === lightTheme ? darkTheme.text : lightTheme.text};
      background:${({ theme }) => theme === lightTheme ? darkTheme.body : lightTheme.body};
