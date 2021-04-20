@@ -134,7 +134,7 @@ const StockQuickTrade = (props) => {
                                 </datalist>
                             </div>
                             <div className="amountInput">
-                                <p>Volume</p>
+                                <p>Quantity</p>
                                 <input 
                                     type="number" 
                                     step="1" 

@@ -141,7 +141,7 @@ export const CryptoQuickTrade = (props) => {
                             </datalist>
                         </div>  
                         <div className="transacItem amountInput">
-                            <label>Amount</label>
+                            <label>Quantity</label>
                             {
                                 buySell === 'B' ?
                                 <input 
@@ -149,7 +149,7 @@ export const CryptoQuickTrade = (props) => {
                                     name="amount" 
                                     step="0.000001" 
                                     min="0.000001"
-                                    placeholder={amount} 
+                                    placeholder='1'
                                     value={amount} 
                                     onChange={e => setAmount(e.target.value)} 
                                     required
