@@ -102,8 +102,8 @@ const NewsPage = () => {
           
             <HeaderTitle>
                 <DoubleButtonContainer>
-                    <LeftButton onClick={() => toggleTab(1)} numberClicked={toggleState}>Stock</LeftButton>
-                    <RightButton onClick={() => toggleTab(2)} numberClicked={toggleState}>Crypto</RightButton>
+                    <LeftButton onClick={() => toggleTab(1)} numberClicked={toggleState}>Crypto</LeftButton>
+                    <RightButton onClick={() => toggleTab(2)} numberClicked={toggleState}>Stock</RightButton>
                 </DoubleButtonContainer> 
                 {/* <div className="toggleTitle">
                     <span>/</span>
