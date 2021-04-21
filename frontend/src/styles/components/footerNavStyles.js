@@ -17,13 +17,10 @@ export const FooterWrapper = styled.div `
     background: white;
     z-index: 4;
     /* background: ${({ theme }) => theme === lightTheme ? lightTheme.footerBackground : darkTheme.footerBackground}; */
-    /* transition: all 0.4s; */
 
     i{
         font-size: 21px;  
-        /* color: ${allTheme.purple}; */
-        /* color: white; */
-
+        transition: all 0.4s;
         :hover {
             cursor: pointer;
         }

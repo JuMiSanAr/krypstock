@@ -22,7 +22,7 @@ const Stock = () => {
      const [topFiveNews, setTopFiveNews] = useState([]);
 
 
-useEffect(()=>{
+useEffect(() => {
 
     const API_Call_News = `https://sandbox.iexapis.com/stable/stock/aapl/news/last/5?token=${iexSandboxKey}`;
     const API_Volume = `https://sandbox.iexapis.com/stable/stock/market/list/mostactive?token=${iexSandboxKey}`;
