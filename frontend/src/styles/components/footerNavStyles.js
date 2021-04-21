@@ -38,7 +38,7 @@ export const FooterWrapper = styled.div `
 
     }
 
-    .add-remove {
+    .new-transaction {
         color: ${props => props.currentPage === '/new-transaction/' ? allTheme.purple : 'lightgray'};
     }
 
