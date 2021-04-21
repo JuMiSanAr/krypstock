@@ -61,6 +61,7 @@ export const ButtonWrapper = styled.div `
         border-radius: 10px;
         border: none;
         color: white;
+        transition: all 0.6s;
     }
 
     .buy{

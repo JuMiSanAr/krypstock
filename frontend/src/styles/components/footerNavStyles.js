@@ -17,7 +17,7 @@ export const FooterWrapper = styled.div `
     background: white;
     z-index: 4;
     /* background: ${({ theme }) => theme === lightTheme ? lightTheme.footerBackground : darkTheme.footerBackground}; */
-    /* transition: all 0.4s; */
+    transition: all 1s;
 
     i{
         font-size: 21px;  
@@ -31,6 +31,8 @@ export const FooterWrapper = styled.div `
 
     .home {
         color: ${props => props.currentPage === '/' ? allTheme.purple : allTheme.lightPurple};
+    transition: all 1s;
+
     }
 
     .portfolio {
