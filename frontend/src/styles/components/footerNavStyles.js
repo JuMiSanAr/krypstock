@@ -20,10 +20,34 @@ export const FooterWrapper = styled.div `
 
     i{
         font-size: 21px;  
-        color: ${allTheme.purple};
+        /* color: ${allTheme.purple}; */
+        /* color: white; */
+        /* transition: al 0.4s; */
+
         :hover {
             cursor: pointer;
         }
+    }
+
+    .home {
+        color: ${props => props.currentPage === '/' ? 'purple' : 'lightgray'};
+    }
+
+    .portfolio {
+        color: ${props => props.currentPage === '/portfolio-list/' ? 'purple' : 'lightgray'}
+
+    }
+
+    .add-remove {
+        color: ${props => props.currentPage === '/add-remove/' ? 'purple' : 'lightgray'};
+    }
+
+    .search {
+        color: ${props => props.currentPage === '/search/' ? 'purple' : 'lightgray'};
+    }
+
+    .news {
+        color: ${props => props.currentPage === '/news/' ? 'purple' : 'lightgray'};
     }
 
     @media (min-width: 450px) {
