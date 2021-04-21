@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import {activatePasswordAccountFetch} from "../../store/fetches/signup_fetches";
 import history from "../../history";
 // import {WrapDiv} from "../../styles/components/signUpStyles";
+import logo from '../../assets/logo/logo_with_name.png'
 
 import { MainContainerV, InputWrapper, VerificationWrapper } from '../../styles/components/verificationStyles'
 import { HeaderWrapper, ButtonWrapper, } from "../../styles/components/signInStyles";
@@ -54,8 +55,9 @@ const PasswordVerification = () => {
             <HeaderWrapper>
             </HeaderWrapper>
             <VerificationWrapper>
-                {/* <img src={logo} out="logo" alt="logo"/> */}
+              
                 <MainContainerV>
+                <img className="verfication" src={logo} out="logo" alt="logo"/>
                     <h4>Reset your password</h4>
                     <InputWrapper>
                         <input
