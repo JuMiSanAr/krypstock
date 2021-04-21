@@ -23,7 +23,7 @@ const TrendyStocks = ({stock_volume}) => {
 
     return (
         <ShrinkingComponentWrapper>
-            <TitleSpan>Top {stock_volume.length ? stock_volume.length : ''} Trendy Stocks</TitleSpan>
+            <TitleSpan>Top Trendy Stocks</TitleSpan>
             <StockTable id="trendy-stocks">
                 {
                     stock_volume && stock_volume.length > 0 ? 
