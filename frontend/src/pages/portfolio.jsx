@@ -111,8 +111,8 @@ const Portfolio = () => {
                         .then(data => {
                             console.log(data)
                             const fetchedData = Object.entries(data).map(entry => {
-                                return entry[1].quote;
-                            }
+                                    return entry[1].quote;
+                                }
                             )
                             setRealtimeDataStock(fetchedData);
                         })
@@ -160,57 +160,59 @@ const Portfolio = () => {
         <>
             <NaviWrapper>
                 <div>
-                    <Burger open={open} setOpen={setOpen}/> 
-                    <Menu open={open} setOpen={setOpen} />  
-                </div>  
-                <div className="heading">
-                <h2>{portfolioInfo.name}</h2>
+                    <Burger open={open} setOpen={setOpen}/>
+                    <Menu open={open} setOpen={setOpen}/>
                 </div>
-                </NaviWrapper>
-            <AllComponentsWrapper>
-                {
-                    portfolioInfo.calculations ? <AllInvestments realtimeData={realtimeDataCombined}
-                        calculations={portfolioInfo.calculations}
-                        portfolioCreated={portfolioInfo.created} />
-                        : 'No Data Available'
-                }
-                {
-                    portfolioInfo.calculations ? <Overview calculations={portfolioInfo.calculations}
-                        realtimeData={realtimeDataCombined}
-                        transactions={portfolioInfo.transactions}
-                        portfolioname={portfolioInfo.name}
-                        portfolioID={portfolioInfo.id}
-                        portfolioCreated={portfolioInfo.created} />
-                        : 'No Data Available'
-                }
+                <div className="heading">
+                    <h2>{portfolioInfo.name}</h2>
+                </div>
+            </NaviWrapper>
+            {portfolioInfo.calculations && realtimeDataCombined && stockSymbols && cryptoSymbols ?
+                <AllComponentsWrapper>
+                    {portfolioInfo.calculations.length ?
+                        <>
 
-                <ShrinkingComponentWrapper>
-                    <CakeChartContainer>
-                        <Headline>My Investments</Headline>
-                        {
-                            pieData.length > 0 ? <PieChart style={{marginBottom: '18px'}}
+                            <AllInvestments realtimeData={realtimeDataCombined}
+                                            calculations={portfolioInfo.calculations}
+                                            portfolioCreated={portfolioInfo.created}/>
 
-                                data={pieData}
-                                labelPosition={70}
-                            /> : ''
-                        }
-                        <LegendWrapper>
-                            {legend.map((legend, index) =>
-                                <LegendContainer key={index}>
-                                    <ColorSquare style={{ backgroundColor: legend.color }}/>
-                                    <p>{legend.title}</p>
-                                </LegendContainer>
-                            )}
-                        </LegendWrapper>
-                    </CakeChartContainer>
-                </ShrinkingComponentWrapper>
-                <ShrinkingComponentWrapper>
-                    <Headline>Total value over time</Headline>
-                    {
-                        portfolioInfo.transactions ? <PortfolioChart data={portfolioInfo.transactions} /> : ''
-                    }
-                </ShrinkingComponentWrapper>
-            </AllComponentsWrapper>
+
+                            <Overview calculations={portfolioInfo.calculations}
+                                      realtimeData={realtimeDataCombined}
+                                      transactions={portfolioInfo.transactions}
+                                      portfolioname={portfolioInfo.name}
+                                      portfolioID={portfolioInfo.id}
+                                      portfolioCreated={portfolioInfo.created}/>
+
+
+                            <ShrinkingComponentWrapper>
+                                <CakeChartContainer>
+                                    <Headline>My Investments</Headline>
+                                    {
+                                        pieData.length > 0 ? <PieChart style={{marginBottom: '18px'}}
+
+                                                                       data={pieData}
+                                                                       labelPosition={70}
+                                        /> : ''
+                                    }
+                                    <LegendWrapper>
+                                        {legend.map((legend, index) =>
+                                            <LegendContainer key={index}>
+                                                <ColorSquare style={{backgroundColor: legend.color}}/>
+                                                <p>{legend.title}</p>
+                                            </LegendContainer>
+                                        )}
+                                    </LegendWrapper>
+                                </CakeChartContainer>
+                            </ShrinkingComponentWrapper>
+                            <ShrinkingComponentWrapper>
+                                <Headline>Total value over time</Headline>
+                                <PortfolioChart data={portfolioInfo.transactions}/>
+                            </ShrinkingComponentWrapper>
+                        </>
+                        : 'No transactions yet'}
+                </AllComponentsWrapper>
+                : ''}
         </>
     )
 }

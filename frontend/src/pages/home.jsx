@@ -47,7 +47,6 @@ const Home = () => {
         <>
             {token ?
                 <>
-              
                 <NaviWrapper>
                 <div>
                     <Burger open={open} setOpen={setOpen}/> 
@@ -76,7 +75,6 @@ const Home = () => {
                 :
                 <Redirect to='/sign-in'/>
             }
-
         </>
     )
 }

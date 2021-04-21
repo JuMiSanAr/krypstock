@@ -101,7 +101,6 @@ console.log(realtimeData, calculations)
                         : <i className="fab fa-btc"> </i>
                         }
                         <HeadlineFont>{calculation.symbol}</HeadlineFont>
-
                     
                     {calculation.type === "S"
                         ? <>
