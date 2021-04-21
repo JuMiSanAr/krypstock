@@ -3,7 +3,7 @@ import { ShrinkingComponentWrapper } from '../../styles/globalParts/containerSty
 import {InvestmentsContainer, InvestmentFont, Desc, AllInvestmentsHeadline} from '../../styles/components/portfolioStyles';
 
 
-const AllInvestments = ({calculations, realtimeData, portfolioCreated}) => {
+const AllInvestments = ({calculations, realtimeData, portfolioCreated, transactions}) => {
 
     const todayDate = new Date()
     const month = ("0" + (todayDate.getMonth() + 1)).slice(-2);
@@ -26,11 +26,27 @@ const AllInvestments = ({calculations, realtimeData, portfolioCreated}) => {
         return total;
     }
 
+    const calculateTotalInvestmentsHistorical = (transactions) => {
+        let total = 0;
+
+        transactions.forEach(transaction => {
+            if(transaction.buy_sell === "B") {
+                total += parseFloat(transaction.cost)
+            } 
+           
+        });
+
+        return total;
+    }
+
     const totalInvestments = calculateTotalInvestments(calculations).toFixed(2);
+    const totalHistoricalInvestment = calculateTotalInvestmentsHistorical(transactions).toFixed(2)
 
     const [differencePercentage, setDifferencePercentage] = useState(0);
 
     const [currentBalance, setCurrentBalance] = useState(0);
+
+
 
     useEffect(() => {
         if (realtimeData.length > 0) {
@@ -68,18 +84,22 @@ const AllInvestments = ({calculations, realtimeData, portfolioCreated}) => {
     }, [currentValue]);
 
     useEffect(() => {
+    
         if (calculations.length > 0) {
-            setCurrentBalance(calculations.reduce((acc, calc) => {
-                if (calc.overall_balance) {
+            const tempCal = calculations.reduce((acc, calc) => {
+                if (calc.overall_balance >= 0 || calc.overall_balance <= 0) { 
+                  
                     return acc + calc.overall_balance;
+                   
                 } else {
                     return acc + calc.previous_balance;
                 }
-            }, 0))
+            }, 0)
+      
+            setCurrentBalance(tempCal)
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [calculations]);
-
     return (
         <>
             <ShrinkingComponentWrapper>
@@ -137,7 +157,7 @@ const AllInvestments = ({calculations, realtimeData, portfolioCreated}) => {
                         <InvestmentFont>
                             {(parseFloat(currentValue) - totalInvestments + currentBalance).toFixed(2) > 0 ? <i className="fas fa-angle-double-up" style={{color: 'green'}}> </i> : ''}
                             {(parseFloat(currentValue) - totalInvestments + currentBalance).toFixed(2) < 0 ? <i className="fas fa-angle-double-down" style={{color: 'red'}}> </i> : ''}
-                            $ {(parseFloat(currentValue) - totalInvestments + currentBalance).toFixed(2)}
+                            $ {(parseFloat(currentValue) - parseFloat(totalInvestments) + parseFloat(currentBalance)).toFixed(2)}
                         </InvestmentFont>
                     </div>
                 </InvestmentsContainer>
@@ -145,9 +165,9 @@ const AllInvestments = ({calculations, realtimeData, portfolioCreated}) => {
                     <div>
                         <Desc>Overall change %</Desc>
                         <InvestmentFont>
-                            {(parseFloat(currentValue) - totalInvestments + currentBalance).toFixed(2) > 0 ? <i className="fas fa-angle-double-up" style={{color: 'green'}}> </i> : ''}
-                            {(parseFloat(currentValue) - totalInvestments + currentBalance).toFixed(2) < 0 ? <i className="fas fa-angle-double-down" style={{color: 'red'}}> </i> : ''}
-                            {((parseFloat(currentValue) - totalInvestments + currentBalance) / totalInvestments * 100).toFixed(2)} %
+                            {(parseFloat(currentValue) - totalHistoricalInvestment + currentBalance).toFixed(2) > 0 ? <i className="fas fa-angle-double-up" style={{color: 'green'}}> </i> : ''}
+                            {(parseFloat(currentValue) - totalHistoricalInvestment + currentBalance).toFixed(2) < 0 ? <i className="fas fa-angle-double-down" style={{color: 'red'}}> </i> : ''}
+                            {((parseFloat(currentValue) - totalHistoricalInvestment + currentBalance) / totalHistoricalInvestment * 100).toFixed(2)} %
                         </InvestmentFont>
                     </div>
                 </InvestmentsContainer>
