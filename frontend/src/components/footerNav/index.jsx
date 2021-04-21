@@ -10,13 +10,13 @@ import { FooterWrapper } from '../../styles/components/footerNavStyles';
 
 const FooterNav = ({ setOpen }) => {
 
-    const [currentPage, setCurrentPage] = useState('');
+    const [currentPage, setCurrentPage] = useState(window.location.pathname);
 
-    const handleMenuState = () => {
-        setCurrentPage(window.location.pathname);
-        // setOpen(false);
-        console.log(currentPage)
-    }
+    // const handleMenuState = () => {
+    //     setCurrentPage(window.location.pathname);
+    //     // setOpen(false);
+    //     console.log(currentPage)
+    // }
     
     useEffect( () => {
         console.log('updating')
