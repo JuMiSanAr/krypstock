@@ -31,6 +31,8 @@ export const ALL_STOCKS = 'ALL_STOCKS';
 export const ALL_STOCK_SYMBOLS = 'ALL_STOCK_SYMBOLS';
 export const SEARCHED_STOCKS = 'SEARCHED_STOCKS';
 
+export const CURRENT_PAGE = 'CURRENT_PAGE';
+
 // Base URLs to use for fetching
 export const baseUrlServer = 'https://krypstock.propulsion-learn.ch/api/';
 

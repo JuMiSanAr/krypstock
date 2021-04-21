@@ -38,8 +38,8 @@ export const FooterWrapper = styled.div `
 
     }
 
-    .add-remove {
-        color: ${props => props.currentPage === '/add-remove/' ? allTheme.purple : 'lightgray'};
+    .new-transaction {
+        color: ${props => props.currentPage === '/new-transaction/' ? allTheme.purple : 'lightgray'};
     }
 
     .search {

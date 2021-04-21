@@ -55,10 +55,10 @@ export const MenuItemWrapper = styled.div `
     }
  
     .move-right-1{
-       margin: 0 100px 0 20px;
+       margin: 0 105px 0 20px;
    }
    .move-right-2{
-       margin: 0 88px 0 20px;
+       margin: 0 90px 0 20px;
    }
    .move-right-3{
     margin: 0 135px 0 20px;
@@ -70,7 +70,7 @@ export const MenuItemWrapper = styled.div `
        margin: 0 135px 0 20px;
    }
    .move-right-6{
-       margin: 0 100px 0 20px;
+       margin: 0 70px 0 20px;
    }
 `;
 
@@ -78,6 +78,7 @@ export const LogoIconWrapper = styled.div `
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin: 0;
     img{
         height: 180px;
     }
