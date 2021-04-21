@@ -17,12 +17,12 @@ export const FooterWrapper = styled.div `
     background: white;
     z-index: 4;
     /* background: ${({ theme }) => theme === lightTheme ? lightTheme.footerBackground : darkTheme.footerBackground}; */
+    /* transition: all 0.4s; */
 
     i{
         font-size: 21px;  
         /* color: ${allTheme.purple}; */
         /* color: white; */
-        /* transition: al 0.4s; */
 
         :hover {
             cursor: pointer;
@@ -30,24 +30,24 @@ export const FooterWrapper = styled.div `
     }
 
     .home {
-        color: ${props => props.currentPage === '/' ? 'purple' : 'lightgray'};
+        color: ${props => props.currentPage === '/' ? allTheme.purple : allTheme.lightPurple};
     }
 
     .portfolio {
-        color: ${props => props.currentPage === '/portfolio-list/' ? 'purple' : 'lightgray'}
+        color: ${props => props.currentPage === '/portfolio-list/' ? allTheme.purple : allTheme.lightPurple}
 
     }
 
-    .add-remove {
-        color: ${props => props.currentPage === '/add-remove/' ? 'purple' : 'lightgray'};
+    .new-transaction {
+        color: ${props => props.currentPage === '/new-transaction/' ? allTheme.purple : 'lightgray'};
     }
 
     .search {
-        color: ${props => props.currentPage === '/search/' ? 'purple' : 'lightgray'};
+        color: ${props => props.currentPage === '/search/' ? allTheme.purple : allTheme.lightPurple};
     }
 
     .news {
-        color: ${props => props.currentPage === '/news/' ? 'purple' : 'lightgray'};
+        color: ${props => props.currentPage === '/news/' ? allTheme.purple : allTheme.lightPurple};
     }
 
     @media (min-width: 450px) {

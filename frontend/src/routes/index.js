@@ -28,7 +28,7 @@ function OurRouter() {
         <Route path="/password-reset/" exact component={PasswordReset} />
         <Route path="/password-verification/" exact component={PasswordVerification} />
         <Route path="/portfolio/:id" exact component={Portfolio} />
-        <Route path="/add-remove/" exact component={AddRemovePage} />
+        <Route path="/new-transaction/" exact component={AddRemovePage} />
         <Route path="/search/" exact component={Search} />
         <Route path="/news/" exact component={NewsPageAi} />
         <Route path="/stock/:symbol" exact component={StockPage} />

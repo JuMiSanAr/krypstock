@@ -6,44 +6,47 @@ import { Link } from 'react-router-dom';
 // import SearchIcon from '@material-ui/icons/Search';
 // import AnnouncementIcon from '@material-ui/icons/Announcement';
 import { FooterWrapper } from '../../styles/components/footerNavStyles';
+import {currentPageAction} from "../../store/actions/currentPageActions";
+import {useDispatch, useSelector} from "react-redux";
 // import { BiNews } from 'react-icons/bi';
 
-const FooterNav = ({ setOpen }) => {
+const FooterNav = () => {
 
-    const [currentPage, setCurrentPage] = useState(window.location.pathname);
+    const currentPage = useSelector(state => state.currentPageReducer.currentPage);
 
-    // const handleMenuState = () => {
-    //     setCurrentPage(window.location.pathname);
-    //     // setOpen(false);
-    //     console.log(currentPage)
-    // }
+    const dispatch = useDispatch();
+
+    const handleMenuState = (path) => {
+        const action = currentPageAction(path);
+        dispatch(action);
+    }
     
-    useEffect( () => {
-        console.log('updating')
-    }, [currentPage])
+    // useEffect( () => {
+    //     console.log('updating')
+    // }, [currentPage])
 
 
     return (
         <FooterWrapper currentPage={currentPage}>
             <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
                 {/* <HomeIcon className="iconfocus" onClick={handleMenuState} /> */}
-                <i onClick={() => setCurrentPage('/')} className="fa fa-home home" aria-hidden="true"></i>
+                <i onClick={() => handleMenuState('/')} className="fa fa-home home" aria-hidden="true"> </i>
             </Link>
             <Link to="/portfolio-list/" style={{ textDecoration: 'none', color: 'inherit' }}>
                 {/* <TrendingUpIcon onClick={handleMenuState} /> */}
-                <i onClick={() => setCurrentPage('/portfolio-list/')} className="fa fa-folder-open portfolio" aria-hidden="true"></i>
+                <i onClick={() => handleMenuState('/portfolio-list/')} className="fa fa-folder-open portfolio" aria-hidden="true"> </i>
             </Link>
-            <Link to="/add-remove/" style={{ textDecoration: 'none', color: 'inherit' }}>
+            <Link to="/new-transaction/" style={{ textDecoration: 'none', color: 'inherit' }}>
                 {/* <AddCircleIcon onClick={handleMenuState} /> */}
-                <i onClick={() => setCurrentPage('/add-remove/')} className="fas fa-wallet add-remove"></i>
+                <i onClick={() => handleMenuState('/new-transaction/')} className="fas fa-wallet new-transaction"> </i>
             </Link>
             <Link to="/search/" style={{ textDecoration: 'none', color: 'inherit' }}>
                 {/* <SearchIcon onClick={handleMenuState} /> */}
-                <i onClick={() => setCurrentPage('/search/')} className="fa fa-search search" aria-hidden="true"></i>
+                <i onClick={() => handleMenuState('/search/')} className="fa fa-search search" aria-hidden="true"> </i>
             </Link>
             <Link to="/news/" style={{ textDecoration: 'none', color: 'inherit' }}>
                 {/* <BiNews size={24} onClick={handleMenuState} /> */}
-                <i onClick={() => setCurrentPage('/news/')} className="fas fa-globe news"></i>
+                <i onClick={() => handleMenuState('/news/')} className="fas fa-globe news"> </i>
             </Link>
         </FooterWrapper>
     )
