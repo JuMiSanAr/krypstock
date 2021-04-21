@@ -5,7 +5,9 @@ import {
 } from "../../Themes";
 
 export const StyledBurger = styled.button `
-  position: absolute;
+  /* position: absolute; */
+  position: ${({ open }) => open ? 'fixed ': 'absolute'};
+  overflow:  ${({ open }) => open ? 'hidden ': ''};
   top: 4%;
   left: 1.6rem;
   display: flex;
