@@ -6,7 +6,6 @@ padding-top: 20px;
 `;
 
 export const Link = styled.a`
-color: allTheme.purple;
 `;
 
 export const CryptoPageInfoWrapper = styled.table`
