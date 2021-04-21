@@ -28,8 +28,6 @@ export const FooterWrapper = styled.div `
 
     .home {
         color: ${props => props.currentPage === '/' ? allTheme.purple : allTheme.lightPurple};
-    transition: all 1s;
-
     }
 
     .portfolio {
