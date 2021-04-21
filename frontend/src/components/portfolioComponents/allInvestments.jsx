@@ -32,10 +32,8 @@ const AllInvestments = ({calculations, realtimeData, portfolioCreated, transacti
         transactions.forEach(transaction => {
             if(transaction.buy_sell === "B") {
                 total += parseFloat(transaction.cost)
-            } 
-           
+            }
         });
-
         return total;
     }
 
@@ -87,11 +85,10 @@ const AllInvestments = ({calculations, realtimeData, portfolioCreated, transacti
     
         if (calculations.length > 0) {
             const tempCal = calculations.reduce((acc, calc) => {
-                if (calc.overall_balance >= 0 || calc.overall_balance <= 0) { 
-                  
+                if (calc.overall_balance >= 0 || calc.overall_balance <= 0) {
                     return acc + calc.overall_balance;
-                   
                 } else {
+
                     return acc + calc.previous_balance;
                 }
             }, 0)
@@ -145,7 +142,7 @@ const AllInvestments = ({calculations, realtimeData, portfolioCreated, transacti
                 <AllInvestmentsHeadline>Historical</AllInvestmentsHeadline>
                 <InvestmentsContainer>
                     <div>
-                        <Desc>Executed P&L</Desc>
+                        <Desc>Realized P&L</Desc>
                         <InvestmentFont>
                             {currentBalance > 0 ? <i className="fas fa-angle-double-up" style={{color: 'green'}}> </i> : ''}
                             {currentBalance < 0 ? <i className="fas fa-angle-double-down" style={{color: 'red'}}> </i> : ''}
