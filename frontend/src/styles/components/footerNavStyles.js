@@ -39,7 +39,7 @@ export const FooterWrapper = styled.div `
     }
 
     .new-transaction {
-        color: ${props => props.currentPage === '/new-transaction/' ? allTheme.purple : 'lightgray'};
+        color: ${props => props.currentPage === '/new-transaction/' ? allTheme.purple : allTheme.lightPurple};
     }
 
     .search {
