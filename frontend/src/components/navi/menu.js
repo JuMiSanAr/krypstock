@@ -40,6 +40,11 @@ const Menu = ({open, setOpen}) => {
         history.push('/portfolio-list');
         setOpen(false)
     }
+    const toTransaction = () => {
+        history.push('/add-remove');
+        setOpen(false)
+    }
+
     const toSearch = () => {
         history.push('/search');
         setOpen(false)
@@ -83,6 +88,11 @@ const Menu = ({open, setOpen}) => {
                 <MenuItemWrapper>
                 <i className="fa fa-folder-open" aria-hidden="true"></i>
                 <span className="move-right-2" onClick={() => toPortfolios()}>My portfolios</span>
+                <ArrowForwardIosIcon/>
+                </MenuItemWrapper>
+                <MenuItemWrapper>
+                <i className="fas fa-wallet add-remove" aria-hidden="true"></i>
+                <span className="move-right-6" onClick={() => toTransaction()}>Transaction</span>
                 <ArrowForwardIosIcon/>
                 </MenuItemWrapper>
                 {/* <MenuItemWrapper>

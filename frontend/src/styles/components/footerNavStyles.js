@@ -30,24 +30,24 @@ export const FooterWrapper = styled.div `
     }
 
     .home {
-        color: ${props => props.currentPage === '/' ? 'purple' : 'lightgray'};
+        color: ${props => props.currentPage === '/' ? allTheme.purple : 'lightgray'};
     }
 
     .portfolio {
-        color: ${props => props.currentPage === '/portfolio-list/' ? 'purple' : 'lightgray'}
+        color: ${props => props.currentPage === '/portfolio-list/' ? allTheme.purple : 'lightgray'}
 
     }
 
-    .new-transaction {
-        color: ${props => props.currentPage === '/new-transaction/' ? 'purple' : 'lightgray'};
+    .add-remove {
+        color: ${props => props.currentPage === '/new-transaction/' ? allTheme.purple : 'lightgray'};
     }
 
     .search {
-        color: ${props => props.currentPage === '/search/' ? 'purple' : 'lightgray'};
+        color: ${props => props.currentPage === '/search/' ? allTheme.purple : 'lightgray'};
     }
 
     .news {
-        color: ${props => props.currentPage === '/news/' ? 'purple' : 'lightgray'};
+        color: ${props => props.currentPage === '/news/' ? allTheme.purple : 'lightgray'};
     }
 
     @media (min-width: 450px) {
