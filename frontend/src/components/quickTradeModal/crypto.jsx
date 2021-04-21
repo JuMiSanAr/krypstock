@@ -24,12 +24,19 @@ export const CryptoModal = ({ showCryptoModal, setCryptoShowModal, symbol }) => 
     const allCryptos = useSelector(state => state.cryptoReducer.allCryptos);
     const [bidPrice, setBidPrice] = useState(0);
     const [askPrice, setAskPrice] = useState(0);
+    const [transSuccess, setTransSucess] = useState(false);
+    const [transUnSuccess , setTransUnSuccess ] = useState(false);
 
     const submitHandler = (e) => {
         e.preventDefault();
         postNewTransactionFetch(buySell, portfolioID, symbol, amount, pricePerCoin, type)
             .then(() => {
-                setCryptoShowModal(false)
+                setTransSucess(true)
+                setTransUnSuccess(false)
+                // setCryptoShowModal(false)
+            })
+            .catch(error => {
+                setTransUnSuccess(true)
             })
 
 
@@ -38,6 +45,8 @@ export const CryptoModal = ({ showCryptoModal, setCryptoShowModal, symbol }) => 
     const modalRef = useRef();
 
     const closeModal = e => {
+        setTransSucess(false)
+        setTransUnSuccess(false)
         if (modalRef.current === e.target) {
             setCryptoShowModal(false);
             setAmount(0);
@@ -165,6 +174,13 @@ export const CryptoModal = ({ showCryptoModal, setCryptoShowModal, symbol }) => 
                                                         </div>
                                                     </div>
                                                 </CrypStockTransacWrapper>
+                                                {
+                                                transSuccess && buySell === 'B' ? <div><i className="fas fa-check-circle"></i> <em className="transmessage">Transaction Successful</em></div> :  transSuccess && buySell === 'S' ? <div><i className="fas fa-check-circle"></i> <em className="transmessage">Transaction Successful</em></div> : ""
+                                                  
+                                             }
+                                             {
+                                                 transUnSuccess && buySell === 'B' ? <div> <i className="fas fa-times-circle"></i><em className="transmessage">Transaction Unsuccessful</em></div> : transUnSuccess && buySell === 'S' ? <div> <i className="fas fa-times-circle"></i><em className="transmessage">Transaction Unsuccessful</em></div> : ""
+                                             }
                                                 <ButtonWrapper>
                                                     {
                                                         buySell === 'B' ?
