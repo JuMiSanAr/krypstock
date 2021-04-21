@@ -32,8 +32,6 @@ const Menu = ({open, setOpen}) => {
     const isHidden = !!open;
 /*  const tabIndex = isHidden ? 0 : -1;*/
 
-  
-
     const toDashboard = () => {
         history.push('/');
         setOpen(false)
