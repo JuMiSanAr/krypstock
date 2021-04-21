@@ -28,14 +28,14 @@ const AllInvestments = ({calculations, realtimeData, portfolioCreated, transacti
 
     const calculateTotalInvestmentsHistorical = (transactions) => {
         let total = 0;
-        console.log("transactions", transactions)
+
         transactions.forEach(transaction => {
             if(transaction.buy_sell === "B") {
                 total += parseFloat(transaction.cost)
             } 
            
         });
-        console.log("from calculations", total)
+
         return total;
     }
 
@@ -84,18 +84,18 @@ const AllInvestments = ({calculations, realtimeData, portfolioCreated, transacti
     }, [currentValue]);
 
     useEffect(() => {
-        console.log("calculations", calculations)
+    
         if (calculations.length > 0) {
             const tempCal = calculations.reduce((acc, calc) => {
                 if (calc.overall_balance >= 0 || calc.overall_balance <= 0) { 
-                    console.log("cal from overall", acc + calc.overall_balance, typeof(calc.overall_balance))
+                  
                     return acc + calc.overall_balance;
                    
                 } else {
                     return acc + calc.previous_balance;
                 }
             }, 0)
-            console.log("tempcal", tempCal)
+      
             setCurrentBalance(tempCal)
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
