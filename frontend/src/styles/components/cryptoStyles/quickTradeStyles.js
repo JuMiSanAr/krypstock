@@ -36,6 +36,7 @@ export const TransacWrapper = styled.div `
             outline: none;
             border-radius: 6px;
             border:none;
+            background: ${lightTheme.body};
         }
 
         select{
@@ -45,6 +46,8 @@ export const TransacWrapper = styled.div `
             outline: none;
             border: none;
             border-radius: 6px;
+            background: ${lightTheme.body};
+
             /* margin-bottom: 1rem; */
         }
     }
