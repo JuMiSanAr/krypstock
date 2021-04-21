@@ -43,6 +43,7 @@ const Overview = ({calculations, realtimeData, portfolioname, portfolioID, portf
     }
 
     const getPercentageChanges = (symbol, type) => {
+        console.log(symbol, type)
         const thisCalc = calculations.filter(calc => calc.symbol === symbol)[0];
         const thisRealtime = realtimeData.filter(data => data.symbol === symbol)[0];
 
@@ -133,6 +134,7 @@ console.log(realtimeData, calculations)
                             <InvestmentFont>{calculation.quantity.toFixed(2)}</InvestmentFont>
                         </TempDiv>
                     </NetworthContainer>
+                    
                     {realtimeData.length === calculations.length ?
                         getPercentageChanges(calculation.symbol, calculation.type)
                         : ''} 

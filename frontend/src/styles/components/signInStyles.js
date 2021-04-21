@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
-
+export const LogoStyle = styled.img`
+padding: 25px 34px 20px 20px;
+`;
 
 export const HeaderWrapper = styled.div `
 
@@ -41,6 +43,7 @@ export const MainContainerSI = styled.div `
   border-radius: 20px;
   width:300px;
   min-height: 350px;
+  margin-top:100px;
   .link{
     text-decoration: none;
   }

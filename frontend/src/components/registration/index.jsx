@@ -43,8 +43,9 @@ const  handleClick = () => {
          <HeaderWrapper>
             </HeaderWrapper>
              <LoginWrapper>
-             <img src={logo} out="logo" alt="logo"/>
-               <MainContainerR> 
+
+               <MainContainerR>
+                   <img src={logo} out="logo" alt="logo"/>
                <h4>Enter your email address</h4>    
                <InputWrapper>
                          <input

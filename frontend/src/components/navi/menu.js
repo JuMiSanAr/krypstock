@@ -9,7 +9,7 @@ import {
     MenuWrapper
 } from "../../styles/components/naviStyles/menuStyles";
 import Logo from "../../assets/logo/logo_with_name.png";
-import FolderIcon from "@material-ui/icons/Folder";
+// import FolderIcon from "@material-ui/icons/Folder";
 // import SettingsIcon from "@material-ui/icons/Settings";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import {useHistory} from "react-router-dom";
@@ -19,8 +19,8 @@ import { loginUserAction } from '../../store/actions/loginUserAction';
 import {useDispatch} from 'react-redux';
 import {loginAction} from "../../store/actions/loginActions";
 
-import {BiNews} from 'react-icons/bi';
-import {FaSearchDollar} from 'react-icons/fa';
+// import {BiNews} from 'react-icons/bi';
+// import {FaSearchDollar} from 'react-icons/fa';
 import {currentPageAction} from "../../store/actions/currentPageActions";
 
 const Menu = ({open, setOpen}) => {
