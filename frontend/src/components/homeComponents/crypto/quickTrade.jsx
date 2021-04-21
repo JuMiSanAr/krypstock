@@ -30,15 +30,20 @@ export const CryptoQuickTrade = (props) => {
     const [notEnoughCoins, setNotEnoughCoins] = useState(false);
     const [bidPrice, setBidPrice] = useState(0);
     const [askPrice, setAskPrice] = useState(0);
+    const [transSuccess, setTransSucess] = useState(false);
+    const [transUnSuccess , setTransUnSuccess ] = useState(false);
     
     const submitHandler = (e) => {
         if (allSymbols.includes(symbol)) {
             e.preventDefault();
             postNewTransactionFetch(buySell, portfolioID, `${symbol}USDT`, amount, pricePerCoin, type)
                 .then(data => {
+                    setTransSucess(true)
+                    setTransUnSuccess(false)
                     dispatch(addTransactionAction(data));
                 })
                 .catch(error => {
+                    setTransUnSuccess(true)
                     if (error.toString().slice(-1) === '3') {
                         setNotEnoughCoins(true);
                     }
@@ -74,6 +79,8 @@ export const CryptoQuickTrade = (props) => {
     }, [symbol, buySell])
     
     useEffect( () => {
+        setTransSucess(false)
+        setTransUnSuccess(false)
         setNotEnoughCoins(false)
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [symbol, buySell, portfolioID, amount])
@@ -141,7 +148,7 @@ export const CryptoQuickTrade = (props) => {
                             </datalist>
                         </div>  
                         <div className="transacItem amountInput">
-                            <label>Amount</label>
+                            <label>Quantity</label>
                             {
                                 buySell === 'B' ?
                                 <input 
@@ -149,7 +156,7 @@ export const CryptoQuickTrade = (props) => {
                                     name="amount" 
                                     step="0.000001" 
                                     min="0.000001"
-                                    placeholder={amount} 
+                                    placeholder='1'
                                     value={amount} 
                                     onChange={e => setAmount(e.target.value)} 
                                     required
@@ -193,6 +200,13 @@ export const CryptoQuickTrade = (props) => {
                     }
                     {
                         notEnoughCoins ? <ErrorSpan><em>Not enough coins to sell at this amount</em></ErrorSpan> : ''
+                    }
+                    {
+                        transSuccess && buySell === 'B' ? <div><i className="fas fa-check-circle"></i> <em className="transmessage">Transaction Successful</em></div> :  transSuccess && buySell === 'S' ? <div><i className="fas fa-check-circle"></i> <em className="transmessage">Transaction Successful</em></div> : ""
+                                                  
+                    }
+                    {
+                        transUnSuccess && buySell === 'B' ? <div> <i className="fas fa-times-circle"></i><em className="transmessage">Transaction Unsuccessful</em></div> : transUnSuccess && buySell === 'S' ? <div> <i className="fas fa-times-circle"></i><em className="transmessage">Transaction Unsuccessful</em></div> : ""
                     }
                     <ButtonWrapper>
                         {

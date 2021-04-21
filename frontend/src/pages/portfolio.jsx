@@ -168,7 +168,7 @@ const Portfolio = () => {
                     portfolioInfo.calculations ? <AllInvestments realtimeData={realtimeDataCombined}
                         calculations={portfolioInfo.calculations}
                         portfolioCreated={portfolioInfo.created} />
-                        : ''
+                        : 'No Data Available'
                 }
                 {
                     portfolioInfo.calculations ? <Overview calculations={portfolioInfo.calculations}
@@ -177,14 +177,14 @@ const Portfolio = () => {
                         portfolioname={portfolioInfo.name}
                         portfolioID={portfolioInfo.id}
                         portfolioCreated={portfolioInfo.created} />
-                        : ''
+                        : 'No Data Available'
                 }
 
                 <ShrinkingComponentWrapper>
                     <CakeChartContainer>
                         <Headline>My Investments</Headline>
                         {
-                            pieData.length > 0 ? <PieChart
+                            pieData.length > 0 ? <PieChart style={{marginBottom: '18px'}}
 
                                 data={pieData}
                                 labelPosition={70}

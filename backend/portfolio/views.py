@@ -65,7 +65,7 @@ class GetCryptoName(ListAPIView):
     # Fetch to external API and return response in endpoint
 
     def get(self, request, *args, **kwargs):
-        symbol = request.data['symbol']
+        symbol = kwargs['pk']
         response = requests.get(f"https://pro-api.coinmarketcap.com/v1/cryptocurrency/info?symbol={symbol}&CMC_PRO_API_KEY=4e360fa9-d8b1-4808-878a-68a47651ead2")
         data = response.json()
         name = data['data'][symbol]['name']

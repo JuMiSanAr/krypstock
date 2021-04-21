@@ -2,11 +2,6 @@ import styled from 'styled-components';
 import overviewBg from '../../assets/bg-krypstock.png'
 
 
-export const AllInvestmentsHeadline = styled.p`
-font-weight: 600;
-font-size: 16px;
-`;
-
 export const PortfolioHeadline = styled.h1 `
 font-size: 22px;
 padding-left: 20px;
@@ -15,13 +10,24 @@ padding-left: 20px;
 export const InvestmentsContainer = styled.div `
 display: flex;
 align-items: center;
-justify-content: space-between;
-padding-bottom: 10px;
+justify-content: flex-start;
+padding-bottom: 12px;
+padding-left: 4px;
 i{
     color: green;
     padding: 10px;
 }
+> * {
+    width: 50%;
+}
 `;
+
+
+/* export const InvestmentsDiv = styled.div`
+> * {
+    width: 50%;
+}
+`; */
 
 export const InvestmentFont = styled.div `
 font-weight: 600;
@@ -80,6 +86,15 @@ export const Headline = styled.p `
 font-weight: 600;
 font-size: 16px;
 padding-bottom: 10px;
+margin-top: 8px;
+padding-left: 3px;
+`;
+
+export const AllInvestmentsHeadline = styled.p`
+font-weight: 600;
+font-size: 16px;
+margin-top: 8px;
+padding-left: 3px;
 `;
 
 export const CakeChartContainer = styled.div `
