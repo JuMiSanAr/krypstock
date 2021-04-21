@@ -25,7 +25,6 @@ const FooterNav = () => {
     //     console.log('updating')
     // }, [currentPage])
 
-
     return (
         <FooterWrapper currentPage={currentPage}>
             <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>

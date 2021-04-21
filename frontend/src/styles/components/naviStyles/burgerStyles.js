@@ -7,7 +7,7 @@ import {
 export const StyledBurger = styled.button `
   /* position: absolute; */
   position: ${({ open }) => open ? 'fixed ': 'absolute'};
-  overflow:  ${({ open }) => open ? 'hidden ': ''};
+  /* overflow:  ${({ open }) => open ? 'hidden ': ''}; */
   top: 4%;
   left: 1.6rem;
   display: flex;
@@ -45,4 +45,9 @@ export const StyledBurger = styled.button `
       transform: ${({ open }) => open ? 'rotate(-45deg)' : 'rotate(0)'};
     }
   }
+/* 
+  @media only screen and (max-width: 600px) and (min-width: 320px) {
+    position: ${({ open }) => open ? 'fixed ': 'absolute'};
+    overflow:  ${({ open }) => open ? 'hidden ': ''};
+  } */
 `;
