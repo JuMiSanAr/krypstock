@@ -10,50 +10,43 @@ import { FooterWrapper } from '../../styles/components/footerNavStyles';
 
 const FooterNav = ({ setOpen }) => {
 
-    const [currentPage, setCurrentPage] = useState('home');
+    const [currentPage, setCurrentPage] = useState('');
 
     const handleMenuState = () => {
-        setOpen(false);
-
-        // let currentPath = window.location.pathname;
-        // setCurrentPage(currentPath);
+        setCurrentPage(window.location.pathname);
+        // setOpen(false);
+        console.log(currentPage)
     }
+    
+    useEffect( () => {
+        console.log('updating')
+    }, [currentPage])
 
-    // useEffect( () => {
-    //     console.log(currentPage)
-    // }, [currentPage])
 
     return (
-        <FooterWrapper>
+        <FooterWrapper currentPage={currentPage}>
             <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
                 {/* <HomeIcon className="iconfocus" onClick={handleMenuState} /> */}
-                <i onClick={() => {handleMenuState(); setCurrentPage(window.location.pathname); console.log(currentPage);}} className="fa fa-home home" aria-hidden="true" currentPage={currentPage}></i>
+                <i onClick={() => setCurrentPage('/')} className="fa fa-home home" aria-hidden="true"></i>
             </Link>
             <Link to="/portfolio-list/" style={{ textDecoration: 'none', color: 'inherit' }}>
                 {/* <TrendingUpIcon onClick={handleMenuState} /> */}
-                <i onClick={() => {handleMenuState(); setCurrentPage(window.location.pathname); console.log(currentPage);}} className="fa fa-folder-open portfolio" aria-hidden="true" currentPage={currentPage}></i>
+                <i onClick={() => setCurrentPage('/portfolio-list/')} className="fa fa-folder-open portfolio" aria-hidden="true"></i>
             </Link>
             <Link to="/add-remove/" style={{ textDecoration: 'none', color: 'inherit' }}>
                 {/* <AddCircleIcon onClick={handleMenuState} /> */}
-                <i onClick={() => {handleMenuState(); setCurrentPage(window.location.pathname); console.log(currentPage);}} className="fas fa-wallet add-remove" currentPage={currentPage}></i>
+                <i onClick={() => setCurrentPage('/add-remove/')} className="fas fa-wallet add-remove"></i>
             </Link>
             <Link to="/search/" style={{ textDecoration: 'none', color: 'inherit' }}>
                 {/* <SearchIcon onClick={handleMenuState} /> */}
-                <i onClick={() => {handleMenuState(); setCurrentPage(window.location.pathname); console.log(currentPage);}} className="fa fa-search search" aria-hidden="true" currentPage={currentPage}></i>
+                <i onClick={() => setCurrentPage('/search/')} className="fa fa-search search" aria-hidden="true"></i>
             </Link>
             <Link to="/news/" style={{ textDecoration: 'none', color: 'inherit' }}>
                 {/* <BiNews size={24} onClick={handleMenuState} /> */}
-                <i onClick={() => {handleMenuState(); setCurrentPage(window.location.pathname); console.log(currentPage);}} className="fas fa-globe news" currentPage={currentPage}></i>
+                <i onClick={() => setCurrentPage('/news/')} className="fas fa-globe news"></i>
             </Link>
         </FooterWrapper>
     )
 }
 
 export default FooterNav
-
-// 
-// setCurrentPage('home');
-// setCurrentPage('portfolio');
-// setCurrentPage('add-remove');
-// setCurrentPage('search');
-// setCurrentPage('news');

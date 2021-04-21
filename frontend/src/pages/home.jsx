@@ -57,7 +57,6 @@ const Home = () => {
                 <h2>Dashboard</h2>
                 </div>
                 </NaviWrapper>
-                
                     <AllContentWrapper>
                         <DoubleButtonContainer>
                             <LeftButton className="left-button" onClick={() => toggleTab(1)} numberClicked={toggleState}>Crypto</LeftButton>
