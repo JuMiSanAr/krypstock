@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import {CryptoPageInfoWrapper} from "../../styles/components/cryptoStyles/cryptoPageInfoStyles";
+import {CryptoPageInfoWrapper, MainContainer, Link} from "../../styles/components/cryptoStyles/cryptoPageInfoStyles";
 
-
+ 
 const CryptoPageInfoCard = (props) => {
 
     const [fetchedData,setData]=useState([])
@@ -34,17 +34,17 @@ const CryptoPageInfoCard = (props) => {
 
     return (
         <CryptoPageInfoWrapper>
-            <div>
+            {/* <div>
                     {fetchedData.name}
-            </div>
-            <div>
+            </div> */}
+            <MainContainer>
                     {fetchedData.description}
-            </div>
-            <div>
-                    <a href={fetchedData.url} target='_blank' rel='noreferrer'>Website</a>
-            </div>
+            </MainContainer>
+            <MainContainer>
+                    <Link href={fetchedData.url} target='_blank' rel='noreferrer'>Go to Website</Link>
+            </MainContainer>
         </CryptoPageInfoWrapper>
     )
 }
 
-export default CryptoPageInfoCard
+export default CryptoPageInfoCard;

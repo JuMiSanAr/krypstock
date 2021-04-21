@@ -11,6 +11,7 @@ import CryptoPageInfoCard from "../components/cryptoCards/cryptoPageInfoCard";
 import PortfoliosWithStock from "../components/stockCards/portfoliosWithStock";
 import {CryptoNewsApiAi} from "../components/homeComponents/crypto/cryptoNewsApiAi";
 
+
 const CryptoPage = () => {
 
     const [open, setOpen] = useState(false);
@@ -32,10 +33,6 @@ const CryptoPage = () => {
                 </div>
                 </NaviWrapper>
             <AllComponentsWrapper>
-
-                <ShrinkingComponentWrapper>
-                    <CryptoPageInfoCard symbol={symbol}/>
-                </ShrinkingComponentWrapper>
                 <ShrinkingComponentWrapper>
                  <FormSelectWrapper>
                 <div className="title">
@@ -51,14 +48,15 @@ const CryptoPage = () => {
                    :
                    <CandlestickCryptoHistorical symbol={symbol} timeLength={chartTimeframe2}/>}
                     </GraphWrapper>
+                    <CryptoPageInfoCard symbol={symbol}/>
                  </ShrinkingComponentWrapper>
                 <ShrinkingComponentWrapper>
                     <PortfoliosWithStock symbol={symbol} />
                 </ShrinkingComponentWrapper>
-                 <ShrinkingComponentWrapper>
-                {/*<NewsCrypto symbol={symbol}/>*/}
-                {/* <CryptoNewsApiAi symbol={symbol}/>*/}
-            </ShrinkingComponentWrapper>
+                {/*  <ShrinkingComponentWrapper>
+                <NewsCrypto symbol={symbol}/>
+                <CryptoNewsApiAi symbol={symbol}/>
+            </ShrinkingComponentWrapper> */}
     </AllComponentsWrapper>
         </>
     )
