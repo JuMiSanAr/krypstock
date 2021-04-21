@@ -238,6 +238,9 @@ import Menu from '../components/navi/menu';
 
 const Portfolio = () => {
 
+    const dispatch = useDispatch()
+    const portfolioInfo = useSelector(state => state.specificPortfolioReducer.portfolioInfo)
+
     const [open, setOpen] = useState(false);
 
     const [realtimeDataStock, setRealtimeDataStock] = useState([]);
@@ -257,88 +260,90 @@ const Portfolio = () => {
         specificPortfolioFetch(id)
             .then(data => {
                 dispatch(specificPortfolioAction(data))
-                const pieValues = [];
-                const legend = [];
-                const colors = [allTheme.vibrantturquoise, allTheme.darkblue, allTheme.yellow, allTheme.vibrantorange, allTheme.green, allTheme.purple, allTheme.blue];
-                let colorIndex = 0;
-                data.calculations.sort((a, b) => parseFloat(b.invested) - parseFloat(a.invested));
-
-                data.calculations.forEach((calculation) => {
-
-                    if (calculation.invested > 0 && colorIndex < 6) {
-
-                        pieValues.push({
-                            title: calculation.symbol,
-                            value: calculation.invested,
-                            color: colors[colorIndex]
-                        })
-
-                        colorIndex++;
-
-                    }
-                })
-
-                if (data.calculations.length >= 7) {
-                    const other = data.calculations.filter((value, index) => index > 5);
-
-                    let otherValues = [];
-
-                    for (let i = 0; i < other.length - 1; i++) {
-                        let value = other[i].invested;
-                        otherValues.push(value);
-                    }
-
-                    const sum = otherValues.reduce((a, b) => a + b, 0)
-                    pieValues.push({
-                        title: "Other",
-                        value: sum,
-                        color: colors[colorIndex]
-                    })
-                }
-
-                for (let i = 0; i < pieValues.length; i++) {
-                    legend.push({
-                        title: pieValues[i].title,
-                        color: pieValues[i].color
-                    });
-                }
-
-                setPieData(pieValues);
-                setLegend(legend);
-
 
                 data.calculations.forEach(symbol => {
-                    if (symbol.type === 'S') {
-                        stockSymbols.push(symbol.symbol);
-                    } else if (symbol.type === 'C') {
-                        cryptoSymbols.push(symbol.symbol);
-                    }
-                })
-
-                let stocksString = '';
-
-                stockSymbols.forEach((symbol, index) => {
-
-                    stocksString += symbol;
-                    if (index !== stockSymbols.length - 1) {
-                        stocksString += ',';
-                    }
-                })
-                if (stocksString !== '') {
-                    fetch(`https://sandbox.iexapis.com/stable/stock/market/batch?types=quote&symbols=${stocksString}&token=${iexSandboxKey}`)
-                        .then(res => res.json())
-                        .then(data => {
-                            console.log(data)
-                            const fetchedData = Object.entries(data).map(entry => {
-                                    return entry[1].quote;
-                                }
-                            )
-                            setRealtimeDataStock(fetchedData);
-                        })
+                if (symbol.type === 'S') {
+                    stockSymbols.push(symbol.symbol);
+                } else if (symbol.type === 'C') {
+                    cryptoSymbols.push(symbol.symbol);
                 }
             })
+
+            let stocksString = '';
+
+            stockSymbols.forEach((symbol, index) => {
+
+                stocksString += symbol;
+                if (index !== stockSymbols.length - 1) {
+                    stocksString += ',';
+                }
+            })
+            if (stocksString !== '') {
+                fetch(`https://sandbox.iexapis.com/stable/stock/market/batch?types=quote&symbols=${stocksString}&token=${iexSandboxKey}`)
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data)
+                        const fetchedData = Object.entries(data).map(entry => {
+                                return entry[1].quote;
+                            }
+                        )
+                        setRealtimeDataStock(fetchedData);
+                    })
+            }
+            });
+    }, []);
+
+    useEffect(() => {
+        if(portfolioInfo.calculations) {
+            const pieValues = [];
+            const legend = [];
+            const colors = [allTheme.vibrantturquoise, allTheme.darkblue, allTheme.yellow, allTheme.vibrantorange, allTheme.green, allTheme.purple, allTheme.blue];
+            let colorIndex = 0;
+            portfolioInfo.calculations.sort((a, b) => parseFloat(b.invested) - parseFloat(a.invested));
+
+            portfolioInfo.calculations.forEach((calculation) => {
+
+                if (calculation.invested > 0 && colorIndex < 6) {
+
+                    pieValues.push({
+                        title: calculation.symbol,
+                        value: calculation.invested,
+                        color: colors[colorIndex]
+                    })
+                    colorIndex++;
+                }
+            })
+
+            if (portfolioInfo.calculations.length >= 7) {
+                const other = portfolioInfo.calculations.filter((value, index) => index > 5);
+
+                let otherValues = [];
+
+                for (let i = 0; i < other.length - 1; i++) {
+                    let value = other[i].invested;
+                    otherValues.push(value);
+                }
+
+                const sum = otherValues.reduce((a, b) => a + b, 0)
+                pieValues.push({
+                    title: "Other",
+                    value: sum,
+                    color: colors[colorIndex]
+                })
+            }
+
+            for (let i = 0; i < pieValues.length; i++) {
+                legend.push({
+                    title: pieValues[i].title,
+                    color: pieValues[i].color
+                });
+            }
+
+            setPieData(pieValues);
+            setLegend(legend);
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, [portfolioInfo])
 
     useEffect(() => {
         if (allCryptoInfo.length) {
@@ -370,9 +375,6 @@ const Portfolio = () => {
             })
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-
-    const dispatch = useDispatch()
-    const portfolioInfo = useSelector(state => state.specificPortfolioReducer.portfolioInfo)
 
     return (
         <>

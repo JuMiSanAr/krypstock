@@ -28,6 +28,7 @@ export const CryptoModal2 = ({ showCryptoModal, setCryptoShowModal, symbol, port
     const [askPrice, setAskPrice] = useState(0);
     const dispatch = useDispatch();
 
+    const [transactionModalAmount, setTransactionModalAmount] = useState(0);
 
     const submitHandler = (e) => {
         e.preventDefault();
@@ -86,6 +87,18 @@ export const CryptoModal2 = ({ showCryptoModal, setCryptoShowModal, symbol, port
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
+    useEffect(() => {
+        if (calculations && symbol) {
+            console.log(symbol)
+            const thisCalc = calculations.filter(calculation => calculation.symbol === symbol);
+            console.log(thisCalc)
+                if (thisCalc[0].quantity) {
+                    setTransactionModalAmount(thisCalc[0].quantity.toFixed(2));
+                } else {
+                    setTransactionModalAmount(0);
+                }
+        }
+    }, [calculations, symbol]);
 
     return (
         <>
@@ -134,14 +147,7 @@ export const CryptoModal2 = ({ showCryptoModal, setCryptoShowModal, symbol, port
                                                         <label htmlFor="company-input">Current quantity</label>
                                                     </div>
                                                     <div>
-                                                        <p className="selector">{calculations ? () => {
-                                                            const thisCalc = calculations.filter(calculation => calculation.symbol === symbol);
-                                                            if (thisCalc[0].quantity) {
-                                                                return thisCalc[0].quantity.toFixed(2);
-                                                            } else {
-                                                                return ''
-                                                            }
-                                                        } : ''}</p>
+                                                        <p className="selector">{transactionModalAmount}</p>
                                                     </div>
                                                 </div>
                                                 <div className="amountInput">
