@@ -20,10 +20,9 @@ export const StyledMenu = styled.nav `
   left: 0;
   transition: transform 0.3s ease-in-out;
 
-
-  @media (max-width: ${({ theme }) => theme.mobile}) {
-      width: 100%;
-    }
+  @media only screen and (max-width: 600px) and (min-width: 320px) {
+    width: 100%;
+  }
  `;
 
 /*export const MainWrapper = styled.div`
@@ -80,7 +79,8 @@ export const LogoIconWrapper = styled.div `
     align-items: center;
     margin: 0;
     img{
-        height: 180px;
+        height: 70px;
+        margin-bottom: 2rem;
     }
 `;
 
