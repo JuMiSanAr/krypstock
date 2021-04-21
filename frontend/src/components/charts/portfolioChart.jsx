@@ -22,33 +22,43 @@ const PortfolioChart = ({data}) => {
 
   useEffect(() => {
 
-    const graphData = [];
-      data.forEach((transaction, index) => {
+    let graphData = [];
+      data.reverse().forEach((transaction) => {
       const stringDate = transaction.exec_time.slice(0, 10)
-      if (index === 0) {
-        graphData.push({
-          time: stringDate,
-          value: parseInt(transaction.cost)
-        })
-      } else {
+          if (transaction.active) {
+              if (!graphData.length) {
+                  graphData.push({
+                      time: stringDate,
+                      value: parseFloat(transaction.cost)
+                  })
+              } else {
 
-        const lastItem = graphData[graphData.length -1];
+                  const lastItem = graphData[graphData.length -1];
 
-        if (stringDate === lastItem.time) {
-          if (transaction.buy_sell === "B") {
-            lastItem.value += parseInt(transaction.cost)
-          } else {
-            lastItem.value -= parseInt(transaction.cost)
+                  if (stringDate === lastItem.time) {
+                      if (transaction.buy_sell === "B") {
+                          lastItem.value += parseFloat(transaction.cost)
+                      } else {
+                          lastItem.value -= parseFloat(transaction.cost)
+                      }
+                  } else {
+                      if (transaction.buy_sell === "B") {
+                          graphData.push({
+                              time: stringDate,
+                              value: lastItem.value + parseFloat(transaction.cost)
+                          })
+                      } else {
+                          graphData.push({
+                              time: stringDate,
+                              value: lastItem.value - parseFloat(transaction.cost)
+                          })
+                      }
+                  }
+              }
           }
-        } else {
-            graphData.push({
-              time: stringDate,
-              value: parseInt(transaction.cost)
-        })
-        }
-      }
     })
 
+    console.log(graphData)
     document.getElementById('portfolioChart').innerHTML = '';
     const chart = createChart(document.getElementById('portfolioChart'), {
     width: 300,
@@ -77,10 +87,11 @@ const PortfolioChart = ({data}) => {
 });
 
   areaSeries.setData(
-    demoHardcodedValues
+      graphData
+    // demoHardcodedValues
   );
   // eslint-disable-next-line react-hooks/exhaustive-deps
-}, [])
+}, [data])
   
    
   return (

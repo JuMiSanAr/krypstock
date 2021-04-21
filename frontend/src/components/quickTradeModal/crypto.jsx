@@ -154,7 +154,7 @@ export const CryptoModal = ({ showCryptoModal, setCryptoShowModal, symbol }) => 
                                                             <p>Price per Coin</p>
                                                         </div>
                                                         <div>
-                                                            <input className="input" type="number" placeholder="0" onChange={e => setPricePerCoin(e.target.value)} required />
+                                                            <input className="input" type="text" placeholder="0" onChange={e => setPricePerCoin(e.target.value)} required />
                                                         </div>
                                                     </div>
                                                     <div className="amountInput">
