@@ -43,6 +43,7 @@ const Overview = ({calculations, realtimeData, portfolioname, portfolioID, portf
     }
 
     const getPercentageChanges = (symbol, type) => {
+        console.log(symbol, type)
         const thisCalc = calculations.filter(calc => calc.symbol === symbol)[0];
         const thisRealtime = realtimeData.filter(data => data.symbol === symbol)[0];
 
@@ -84,7 +85,7 @@ const Overview = ({calculations, realtimeData, portfolioname, portfolioID, portf
             </NetworthContainerTop>
         )
     }
-
+console.log(realtimeData, calculations)
     return (<>
             <CryptoModal2 calculations={calculations} symbol = {`${symbolCrypto}`} showCryptoModal={showCryptoModal} setCryptoShowModal={setCryptoShowModal} portfolioname={portfolioname} portfolioID={portfolioID}/>
             <StockModal2 calculations={calculations} stockSymbol={stockSymbol}  symbol = {stockSymbol} showStockModal={showStockModal} setStockShowModal={setStockShowModal} portfolioname={portfolioname} portfolioID={portfolioID}/>
@@ -134,6 +135,7 @@ const Overview = ({calculations, realtimeData, portfolioname, portfolioID, portf
                             <InvestmentFont>{calculation.quantity.toFixed(2)}</InvestmentFont>
                         </TempDiv>
                     </NetworthContainer>
+                    
                     {realtimeData.length === calculations.length ?
                         getPercentageChanges(calculation.symbol, calculation.type)
                         : ''} 

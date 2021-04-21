@@ -95,7 +95,7 @@ const Portfolio = () => {
                 })
 
                 let stocksString = '';
-
+                console.log(stockSymbols)
                 stockSymbols.forEach((symbol, index) => {
 
                     stocksString += symbol;
@@ -103,16 +103,20 @@ const Portfolio = () => {
                         stocksString += ',';
                     }
                 })
+                console.log(stocksString)
                 if (stocksString !== '') {
+                    console.log('are we here?')
                     fetch(`https://sandbox.iexapis.com/stable/stock/market/batch?types=quote&symbols=${stocksString}&token=${iexSandboxKey}`)
                         .then(res => res.json())
                         .then(data => {
+                            console.log(data)
                             const fetchedData = Object.entries(data).map(entry => {
                                 return entry[1].quote;
                             }
                             )
                             setRealtimeDataStock(fetchedData);
                         })
+                        .catch(error => console.log(error))
                 }
             })
         // eslint-disable-next-line react-hooks/exhaustive-deps
