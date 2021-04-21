@@ -41,10 +41,16 @@ export const ModalContent = styled.div `
       height: 40px;
       width: 260px;
       text-align: center;
+      background: ${lightTheme.body};
       :focus{
           outline: none;
       }
   }
+
+  select{
+    background: ${lightTheme.body};
+  }
+
   textarea {
     margin-bottom: 10px;
     border-radius: 5px;
