@@ -61,13 +61,16 @@ export const MenuItemWrapper = styled.div `
        margin: 0 88px 0 20px;
    }
    .move-right-3{
-    margin: 0 130px 0 20px;
+    margin: 0 135px 0 20px;
    }
    .move-right-4{
-       margin: 0 139px 0 20px;
+       margin: 0 145px 0 20px;
    } 
     .move-right-5{
-       margin: 0 128px 0 20px;
+       margin: 0 135px 0 20px;
+   }
+   .move-right-6{
+       margin: 0 100px 0 20px;
    }
 `;
 
