@@ -118,7 +118,7 @@ export  const Table = styled.table`
     border-collapse: collapse;
     /* border-width: 2px; */
     /* border-style: solid; */
-    table-layout: fixed;
+    /* table-layout: fixed; */
     color: ${({ theme }) => theme === lightTheme ?lightTheme.text : darkTheme.text};
     
     } */
