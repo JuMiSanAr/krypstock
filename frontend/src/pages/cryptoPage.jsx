@@ -10,6 +10,8 @@ import Menu from '../components/navi/menu';
 import CryptoPageInfoCard from "../components/cryptoCards/cryptoPageInfoCard";
 import PortfoliosWithStock from "../components/stockCards/portfoliosWithStock";
 import {CryptoNewsApiAi} from "../components/homeComponents/crypto/cryptoNewsApiAi";
+import {SubPageTitleStyle} from "../styles/globalParts/titleStyles";
+
 
 const CryptoPage = () => {
 
@@ -61,17 +63,16 @@ const CryptoPage = () => {
                 <h2>{symbol}</h2>
                 </div>
                 </NaviWrapper>
+                <SubPageTitleStyle>{cryptoInfo.name}</SubPageTitleStyle>
             <AllComponentsWrapper>
-
-                <ShrinkingComponentWrapper>
-                    <CryptoPageInfoCard symbol={symbol} cryptoInfo={cryptoInfo}/>
-                </ShrinkingComponentWrapper>
+                
                 <ShrinkingComponentWrapper>
                  <FormSelectWrapper>
                 <div className="title">
                    <h3>Price Chart</h3>
                 </div>
-                <div >Time
+                <div style={{display: 'flex', alignItems: 'center'}}>
+                    <p style={{paddingRight: '15px'}}>Time</p>
                     <ChartTimeCrypto setChart2={setChartTimeframe2}/>
                 </div>
               </FormSelectWrapper>
@@ -81,14 +82,15 @@ const CryptoPage = () => {
                    :
                    <CandlestickCryptoHistorical symbol={symbol} timeLength={chartTimeframe2} cryptoInfo={cryptoInfo}/>}
                     </GraphWrapper>
+                    <CryptoPageInfoCard symbol={symbol} cryptoInfo={cryptoInfo}/>
                  </ShrinkingComponentWrapper>
                 <ShrinkingComponentWrapper>
                     <PortfoliosWithStock symbol={symbol} />
                 </ShrinkingComponentWrapper>
-                 <ShrinkingComponentWrapper>
-                {/*<NewsCrypto symbol={symbol}/>*/}
-                {/* <CryptoNewsApiAi symbol={symbol}/>*/}
-            </ShrinkingComponentWrapper>
+                {/*  <ShrinkingComponentWrapper>
+                <NewsCrypto symbol={symbol}/>
+                <CryptoNewsApiAi symbol={symbol}/>
+            </ShrinkingComponentWrapper> */}
     </AllComponentsWrapper>
         </>
     )
