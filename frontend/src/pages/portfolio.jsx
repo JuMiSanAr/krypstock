@@ -171,7 +171,8 @@ const Portfolio = () => {
 
                             <AllInvestments realtimeData={realtimeDataCombined}
                                             calculations={portfolioInfo.calculations}
-                                            portfolioCreated={portfolioInfo.created}/>
+                                            portfolioCreated={portfolioInfo.created}
+                                            transactions={portfolioInfo.transactions}/>
 
 
                             <Overview calculations={portfolioInfo.calculations}
