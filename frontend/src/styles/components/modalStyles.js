@@ -25,6 +25,16 @@ export const ModalContent = styled.div `
   align-items: center;
   line-height: 1.8;
   color: #141414;
+  .fa-check-circle{
+    color: yellowgreen;
+    margin: 0 10px 20px 0;
+  }
+  .fa-times-circle{
+    color: red;
+  }
+  .transmessage{
+    color: white;
+  }
   input{
       margin-bottom: 10px;
       border-radius: 5px;
