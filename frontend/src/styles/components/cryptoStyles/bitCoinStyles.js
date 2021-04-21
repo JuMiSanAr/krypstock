@@ -15,8 +15,9 @@ export const FormSelectWrapper = styled.div `
         border: solid 1px red;
     } */
     input {
-        padding-left: 1rem;
+        /* padding-left: 1rem; */
         height: 20px;
+        padding: 0 2px 0 0.5rem;
     }
 
    .selector{
