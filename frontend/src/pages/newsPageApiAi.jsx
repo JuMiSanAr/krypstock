@@ -5,12 +5,12 @@ import { stockNewsAction } from "../store/actions/newsActions";
 import { useDispatch, useSelector } from "react-redux";
 // import NewsStock from "../components/newsFeed/newsStock";
 import SingleStockNewsFeed from "../components/newsFeed/singleStockNewsFeed";
-import { ShowMore, NewsContentWrapper, HeaderTitle } from '../styles/components/stockStyles/newsStyles'
+import { ShowMore, NewsContentWrapper, HeaderTitle, WrapperBorder } from '../styles/components/stockStyles/newsStyles'
 import SingleCryptoNewsFeed from "../components/newsFeed/singleCryptoNewsApiAi";
 import { NaviWrapper } from '../styles/components/naviStyles/menuStyles';
 import Burger from '../components/navi/burger';
 import Menu from '../components/navi/menu';
-import { ShrinkingComponentWrapper } from '../styles/globalParts/containerStyles';
+import { NewsShrinkingComponent, ShrinkingComponentWrapper } from '../styles/globalParts/containerStyles';
 import {DoubleButtonContainer, LeftButton, RightButton} from '../styles/pages/homeStyles';
 
 
@@ -108,37 +108,35 @@ const NewsPage = () => {
                 </DoubleButtonContainer> 
             </HeaderTitle>
             <ShrinkingComponentWrapper>
-            <NewsContentWrapper>
+                <NewsContentWrapper>
 
-                {
-                    allStockNews.length > 0 && toggleState === 2 ?
-                        allStockNews.slice(0, newsNumberShown).map((news, index) => {
-                            return (
-                                <SingleStockNewsFeed key={index} news={news} />
-                            )
-                        })
-                        : ''
-                }
-                {
-                    crytoNews.length > 0 && toggleState === 1 ?
-                        crytoNews.slice(0, newsNumberShown).map((news, index) => {
-                            return (
-                                <SingleCryptoNewsFeed key={index} news={news} />
-                            )
-                        })
-                        : ''
-                }
-            </NewsContentWrapper>
-            
-            <ShowMore>
-                {
-                    newsNumberShown < 30 ?
-                        <h3 onClick={() => setNewsNumberShown(newsNumberShown + 5)}>Show more</h3>
-                        : ''
-                }
-            </ShowMore>
-
-        </ShrinkingComponentWrapper>
+                    {
+                        allStockNews.length > 0 && toggleState === 2 ?
+                            allStockNews.slice(0, newsNumberShown).map((news, index) => {
+                                return (
+                                    <SingleStockNewsFeed key={index} news={news} />
+                                )
+                            })
+                            : ''
+                    }
+                    {
+                        crytoNews.length > 0 && toggleState === 1 ?
+                            crytoNews.slice(0, newsNumberShown).map((news, index) => {
+                                return (
+                                    <SingleCryptoNewsFeed key={index} news={news} />
+                                )
+                            })
+                            : ''
+                    }
+                </NewsContentWrapper>
+                <ShowMore>
+                    {
+                        newsNumberShown < 30 ?
+                            <h3 onClick={() => setNewsNumberShown(newsNumberShown + 5)}>Show more</h3>
+                            : ''
+                    }
+                </ShowMore>
+            </ShrinkingComponentWrapper>
         </>
     )
 }
