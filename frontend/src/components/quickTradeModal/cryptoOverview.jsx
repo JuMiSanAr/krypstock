@@ -134,7 +134,14 @@ export const CryptoModal2 = ({ showCryptoModal, setCryptoShowModal, symbol, port
                                                         <label htmlFor="company-input">Current quantity</label>
                                                     </div>
                                                     <div>
-                                                        <p className="selector">{calculations ? calculations.filter(calculation => calculation.symbol === symbol)[0].quantity.toFixed(2) : ''}</p>
+                                                        <p className="selector">{calculations ? () => {
+                                                            const thisCalc = calculations.filter(calculation => calculation.symbol === symbol);
+                                                            if (thisCalc[0].quantity) {
+                                                                return thisCalc[0].quantity.toFixed(2);
+                                                            } else {
+                                                                return ''
+                                                            }
+                                                        } : ''}</p>
                                                     </div>
                                                 </div>
                                                 <div className="amountInput">
