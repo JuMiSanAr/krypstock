@@ -10,7 +10,7 @@ import SingleCryptoNewsFeed from "../components/newsFeed/singleCryptoNewsApiAi";
 import { NaviWrapper } from '../styles/components/naviStyles/menuStyles';
 import Burger from '../components/navi/burger';
 import Menu from '../components/navi/menu';
-import { NewsShrinkingComponent, ShrinkingComponentWrapper } from '../styles/globalParts/containerStyles';
+import { NewsShrinkingComponent, ShrinkingComponentWrapper, AllComponentsWrapper } from '../styles/globalParts/containerStyles';
 import {DoubleButtonContainer, LeftButton, RightButton} from '../styles/pages/homeStyles';
 
 
@@ -89,7 +89,7 @@ const NewsPage = () => {
     }
 
     return (
-        <>
+         <>     
                 <NaviWrapper>
                 <div>
                     <Burger open={open} setOpen={setOpen}/> 
@@ -99,14 +99,14 @@ const NewsPage = () => {
                     <h2>News</h2>
                     </div>
                 </NaviWrapper>
-          
-            <HeaderTitle>
+                <HeaderTitle>
                 <DoubleButtonContainer>
                     <LeftButton  className="left-button"  onClick={() => toggleTab(1)} numberClicked={toggleState}>Crypto</LeftButton>
                     <RightButton className="right-button" onClick={() => toggleTab(2)} numberClicked={toggleState}>Stock</RightButton>
                     <span className={`animation ${toggleState === 1 ? 'start-crypto' : 'start-stock'}`}></span> 
                 </DoubleButtonContainer> 
             </HeaderTitle>
+                <AllComponentsWrapper>    
             <ShrinkingComponentWrapper>
                 <NewsContentWrapper>
 
@@ -137,6 +137,7 @@ const NewsPage = () => {
                     }
                 </ShowMore>
             </ShrinkingComponentWrapper>
+        </AllComponentsWrapper>
         </>
     )
 }
