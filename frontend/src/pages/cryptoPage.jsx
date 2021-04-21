@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import CandlestickCryptoIntraday from "../components/charts/candlesticksCryptoIntraday";
 import { FormSelectWrapper, GraphWrapper } from "../styles/components/cryptoStyles/bitCoinStyles";
 import { AllComponentsWrapper, ShrinkingComponentWrapper } from "../styles/globalParts/containerStyles";
@@ -21,6 +21,36 @@ const CryptoPage = () => {
     const url = window.location.href;
     const symbol = url.substring(url.lastIndexOf('/') + 1).toUpperCase();
 
+    const [cryptoInfo,setCryptoInfo]=useState([])
+    const symbolSliced = (symbol).slice(0,-4).toUpperCase()
+
+    const token = localStorage.getItem('token');
+
+//Information regarding cryptocurrency
+    const CryptoInfo = () => {
+      const apiUrl=`https://krypstock.propulsion-learn.ch/api/cryptoName/${symbolSliced}`
+      const method = 'GET';
+      const headers = new Headers({
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+      });
+      const config = {
+          method: method,
+          headers: headers,
+      };
+        fetch(apiUrl,config)
+            .then(res => res.json())
+            .then(data => {
+                 setCryptoInfo(data)
+            });
+    }
+
+    useEffect(() => {
+        CryptoInfo();
+    }, []);
+
+    // console.log(cryptoInfo)
+
     return (
         <>
             <NaviWrapper>
@@ -33,6 +63,10 @@ const CryptoPage = () => {
                 </div>
                 </NaviWrapper>
             <AllComponentsWrapper>
+
+                <ShrinkingComponentWrapper>
+                    <CryptoPageInfoCard symbol={symbol} cryptoInfo={cryptoInfo}/>
+                </ShrinkingComponentWrapper>
                 <ShrinkingComponentWrapper>
                  <FormSelectWrapper>
                 <div className="title">
@@ -44,9 +78,9 @@ const CryptoPage = () => {
               </FormSelectWrapper>
                  <GraphWrapper>
                  {chartTimeframe2 === '1d'?
-                   <CandlestickCryptoIntraday symbol={symbol} timeLength={chartTimeframe2}/>
+                   <CandlestickCryptoIntraday symbol={symbol} timeLength={chartTimeframe2} cryptoInfo={cryptoInfo}/>
                    :
-                   <CandlestickCryptoHistorical symbol={symbol} timeLength={chartTimeframe2}/>}
+                   <CandlestickCryptoHistorical symbol={symbol} timeLength={chartTimeframe2} cryptoInfo={cryptoInfo}/>}
                     </GraphWrapper>
                     <CryptoPageInfoCard symbol={symbol}/>
                  </ShrinkingComponentWrapper>
