@@ -14,7 +14,7 @@ export const StyledMenu = styled.nav `
   height: 100vh;
   text-align: left;
   padding: 2rem;
-  position: absolute;
+  position: ${({ open }) => open ? 'fixed ': 'absolute'};
   z-index: 20;
   top: 0;
   left: 0;
