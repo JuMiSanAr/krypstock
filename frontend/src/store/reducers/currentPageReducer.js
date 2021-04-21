@@ -1,7 +1,7 @@
 import {CURRENT_PAGE} from "../constants";
 
 const initialState = {
-    currentPage: '/'
+    currentPage: window.location.pathname
 }
 
 export const currentPageReducer =( state= initialState, action)=>{
