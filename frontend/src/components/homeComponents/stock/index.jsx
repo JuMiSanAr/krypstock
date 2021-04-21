@@ -37,7 +37,6 @@ useEffect(()=>{
             return fetch(API_Volume)
         .then(res => res.json())
         .then(data => {
-            console.log(data)
             const action = iexStockVolumeAction(data);
             dispatch(action);
             return fetch(API_Call_Gain);
