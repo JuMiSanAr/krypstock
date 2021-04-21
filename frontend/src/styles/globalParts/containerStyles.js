@@ -119,3 +119,16 @@ export const PortfolioShrinkingWrapper = styled(FullWidthComponentWrapper)`
         background-size: cover;
     }
 `;
+
+export const NewsShrinkingComponent = styled.div`
+    width: 90%;
+    border-radius: 6px;
+    margin: 0.5rem; 
+    /* margin: auto; */
+    background: ${({ theme }) => theme === lightTheme ? lightTheme.background : darkTheme.background};
+    padding: 1rem;
+
+    @media (min-width: 450px) {
+        width: 40%;
+    }
+`

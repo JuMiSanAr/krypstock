@@ -1,6 +1,13 @@
 import styled from "styled-components";
 import {allTheme, darkTheme, lightTheme} from "../../Themes";
 
+export const MainContainer = styled.div`
+padding-top: 20px;
+`;
+
+export const Link = styled.a`
+`;
+
 export const CryptoPageInfoWrapper = styled.table`
     /* * {
         border: solid 1px red;
