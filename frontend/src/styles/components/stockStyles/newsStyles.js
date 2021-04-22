@@ -44,9 +44,10 @@ export const NewsWrapper = styled(FlexDiv)`
 
 export const HeadlineWrapper = styled.article `
     margin: 10px;
+  display: flex;
+  justify-content: flex-start;
     
-    span{
-     
+    span{     
         padding: 10px;
     }
     img{

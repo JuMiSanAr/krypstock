@@ -58,7 +58,6 @@ const PortfolioChart = ({data}) => {
           }
     })
 
-    console.log(graphData)
     document.getElementById('portfolioChart').innerHTML = '';
     const chart = createChart(document.getElementById('portfolioChart'), {
     width: 300,

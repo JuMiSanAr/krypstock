@@ -1,6 +1,6 @@
 // import { DoubleButtonContainer, LeftButton, MainContentWrapper, RightButton } from "../styles/pages/homeStyles";
 import React, { useEffect, useState } from "react";
-import { iexSandboxKey } from "../store/constants";
+import {iexAPIKey, iexSandboxKey} from "../store/constants";
 import { stockNewsAction } from "../store/actions/newsActions";
 import { useDispatch, useSelector } from "react-redux";
 // import NewsStock from "../components/newsFeed/newsStock";
@@ -38,7 +38,7 @@ const NewsPage = () => {
     }, []);
 
     const fetchStockNews = () => {
-        const API_Call = `https://sandbox.iexapis.com/stable/time-series/news?range=1m&limit=30&token=${iexSandboxKey}`;
+        const API_Call = `https://cloud.iexapis.com/stable/time-series/news?range=1m&limit=30&token=${iexAPIKey}`;
 
         if (allStockNews.length === 0) {
             fetch(API_Call)

@@ -11,7 +11,7 @@ import { stockFetcherHistorical } from "../components/charts/helperFunctions/sto
 import NoIntradayInfo from "../components/charts/noIntradayInfo";
 import PortfoliosWithStock from "../components/stockCards/portfoliosWithStock";
 import StockStats from "../components/stockCards/stockStats";
-import { iexSandboxKey } from "../store/constants";
+import {iexAPIKey, iexSandboxKey} from "../store/constants";
 import {SubPageTitleStyle} from "../styles/globalParts/titleStyles";
 import { NaviWrapper } from '../styles/components/naviStyles/menuStyles';
 import Burger from '../components/navi/burger';
@@ -35,7 +35,7 @@ const StockPage = () => {
     const [keyStats, setKeyStats] = useState('');
 
     useEffect(() => {
-        fetch(`https://sandbox.iexapis.com/stable/stock/${symbol}/stats?token=${iexSandboxKey}`)
+        fetch(`https://cloud.iexapis.com/stable/stock/${symbol}/stats?token=${iexAPIKey}`)
             .then(res => res.json())
             .then(data => {
                 setKeyStats(data);

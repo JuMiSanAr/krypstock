@@ -24,7 +24,6 @@ const CandlestickCryptoHistorical = (props) => {
     const FetchCrypto = () => {
         var d = new Date();
         let ticker='1h'
-        // console.log(props.timeLength)
       if(props.timeLength==='1w'){
             let fixedDay=d.getDate();
             if (fixedDay>=7){
@@ -88,7 +87,6 @@ const CandlestickCryptoHistorical = (props) => {
                 const allData = data.map((obj,index) => {
 
                     let timeFix=obj[0]/1000
-                    // console.log(timeFix)
                     return {
                         time: timeFix,
                         open: obj[1],
