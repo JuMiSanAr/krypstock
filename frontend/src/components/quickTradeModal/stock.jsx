@@ -5,7 +5,7 @@ import { ButtonWrapper, BuySelectButton, BuySellSelectorWrapper, SellSelectButto
 import { Link } from 'react-router-dom';
 import { ShrinkingComponentWrapper } from '../../styles/globalParts/containerStyles';
 import { postNewTransactionFetch } from '../../store/fetches/transactionFetches';
-import { iexSandboxKey } from '../../store/constants';
+import {iexAPIKey, iexSandboxKey} from '../../store/constants';
 
 export const StockModal = ({ showStockModal, setStockShowModal, symbol, stockSymbol }) => {
     const allPortfoliosArray = useSelector(state => state.portfoliosReducer.portfolios)
@@ -40,12 +40,12 @@ export const StockModal = ({ showStockModal, setStockShowModal, symbol, stockSym
 
     useEffect( () => {   // get price of specific symbol
         if (stockSymbol) {
-            fetch(`https://sandbox.iexapis.com/stable/stock/${stockSymbol}/price?token=${iexSandboxKey}`)
+            fetch(`https://cloud.iexapis.com/stable/stock/${stockSymbol}/price?token=${iexAPIKey}`)
                 .then(res => res.json())
                 .then(data => {
                     setMarketPrice(data)
                 })
-                .catch(error => { console.log('error', error) })
+                // .catch(error => { console.log('error', error) })
         } else {
             setMarketPrice(0)
         }

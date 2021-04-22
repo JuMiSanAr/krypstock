@@ -5,7 +5,7 @@ import { ButtonWrapper, BuySelectButton, BuySellSelectorWrapper, SellSelectButto
 import { ShrinkingComponentWrapper } from '../../../styles/globalParts/containerStyles';
 import { postNewTransactionFetch } from '../../../store/fetches/transactionFetches'; 
 import { Link } from 'react-router-dom';
-import {iexSandboxKey} from '../../../store/constants'
+import {iexAPIKey, iexSandboxKey} from '../../../store/constants'
 import { ErrorSpan, TitleSpan } from '../../../styles/globalParts/textStyles';
 import { addTransactionAction } from '../../../store/actions/transactionsAction';
 
@@ -40,7 +40,6 @@ const StockQuickTrade = (props) => {
             .catch(error => {
                 setTransUnSuccess(true)
                 if (error.toString().slice(-1) === '3') {  //if error is 403
-                    console.log('error', error)
                     setNotEnoughStocks(true);
                 }
             })
@@ -53,7 +52,7 @@ const StockQuickTrade = (props) => {
 
     useEffect( () => {  //get all stock symbols
         const symbolList = []
-        fetch('https://sandbox.iexapis.com/beta/ref-data/symbols?token=Tpk_fec97062db224c2fb7b0b3836ab0e365')
+        fetch(`https://cloud.iexapis.com/beta/ref-data/symbols?token=${iexAPIKey}`)
             .then(res => res.json())
             .then(data => {
                 for (const stock of data) {
@@ -65,12 +64,12 @@ const StockQuickTrade = (props) => {
     
     useEffect( () => {   // get price of specific symbol
         if (allSymbols.includes(symbol)) {
-            fetch(`https://sandbox.iexapis.com/stable/stock/${symbol}/price?token=${iexSandboxKey}`)
+            fetch(`https://cloud.iexapis.com/stable/stock/${symbol}/price?token=${iexAPIKey}`)
             .then(res => res.json())
             .then(data => {
                 setMarketPrice(data)
             })
-            .catch( error => {console.log('error', error)})
+            // .catch( error => {console.log('error', error)})
         } else {
             setMarketPrice(0)
         }

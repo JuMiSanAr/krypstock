@@ -18,8 +18,6 @@ export const CryptoTable = ({symbol, setSymbolCrypto, setCryptoShowModal}) => {
         setCryptoShowModal(true);
     }
 
-    // console.log('symbol',symbol.priceChangePercent)
-
     return (
         <>
         {
