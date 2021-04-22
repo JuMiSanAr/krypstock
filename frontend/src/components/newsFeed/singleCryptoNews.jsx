@@ -8,7 +8,7 @@ const SingleCryptoNewsFeed = ({news}) => {
         <NewsWrapper>
         <HeadlineWrapper>
             <img onClick={()=> window.open(news.url, "_blank")} src={news.urlToImage} alt=""/>
-            <div>
+            <div className='news-item-text'>
                 <h3 onClick={()=> window.open(news.url, "_blank")}>{news.title}</h3>
                 <div className="summary">
                     <p>{news.description}</p>

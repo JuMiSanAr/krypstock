@@ -279,7 +279,7 @@ const Portfolio = () => {
                 }
             })
             if (stocksString !== '') {
-                fetch(`https://sandbox.iexapis.com/stable/stock/market/batch?types=quote&symbols=${stocksString}&token=${iexSandboxKey}`)
+                fetch(`https://cloud.iexapis.com/stable/stock/market/batch?types=quote&symbols=${stocksString}&token=${iexAPIKey}`)
                     .then(res => res.json())
                     .then(data => {
                         const fetchedData = Object.entries(data).map(entry => {

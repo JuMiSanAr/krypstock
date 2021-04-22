@@ -35,7 +35,7 @@ const SingleStockNewsFeed = ({news}) => {
     <NewsWrapper>
         <HeadlineWrapper>
             <img onClick={()=> window.open(news.url, "_blank")} src={news.image} alt=""/>
-            <div>
+            <div className='news-item-text'>
                 <h3 onClick={()=> window.open(news.url, "_blank")}>{news.headline}</h3>
                 <div className="summary">
                     <p>{news.summary}</p>
