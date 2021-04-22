@@ -144,7 +144,7 @@ align-items: center;
 padding: 5px;
 
 .crypto-logo{
-    width: 30px;
+    width: 23px;
 }
 `;
 
