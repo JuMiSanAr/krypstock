@@ -4,8 +4,6 @@ import { ShrinkingComponentWrapper } from '../../../styles/globalParts/container
 import TablePagination from '@material-ui/core/TablePagination';
 import { darkTheme } from '../../../styles/Themes';
 import { TitleSpan } from '../../../styles/globalParts/textStyles';
-import {iexSandboxKey} from "../../../store/constants";
-import {stockNewsAction} from "../../../store/actions/newsActions";
 
 
 export const CryptoNewsApiAi = ({symbol}) => {
