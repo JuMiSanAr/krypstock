@@ -120,15 +120,14 @@ export const PortfolioShrinkingWrapper = styled(FullWidthComponentWrapper)`
     }
 `;
 
-export const NewsShrinkingComponent = styled.div`
-    width: 90%;
-    border-radius: 6px;
-    margin: 0.5rem; 
-    /* margin: auto; */
-    background: ${({ theme }) => theme === lightTheme ? lightTheme.background : darkTheme.background};
-    padding: 1rem;
+// export const NewsShrinkingComponent = styled.div`
+//     width: 90%;
+//     border-radius: 6px;
+//     /* margin: auto; */
+//     background: ${({ theme }) => theme === lightTheme ? lightTheme.background : darkTheme.background};
+//     padding: 1rem;
 
-    @media (min-width: 450px) {
-        width: 40%;
-    }
-`
+//     @media (min-width: 450px) {
+//         width: 40%;
+//     }
+// `
