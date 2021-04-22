@@ -20,11 +20,16 @@ export default portfoliosFetch;
 
 export const specificPortfolioFetch = (id) => {
 
+    const token = localStorage.getItem('token');
+
     return fetchAPI(
         `portfolios/${id}/`,
         null,
         'GET',
-        headersWithToken
+        {
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${token}`
+}
     )
 }
 
