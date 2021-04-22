@@ -36,6 +36,7 @@ export const TransacWrapper = styled.div `
             outline: none;
             border-radius: 6px;
             border:none;
+            background: ${lightTheme.body};
         }
 
         select{
@@ -45,6 +46,8 @@ export const TransacWrapper = styled.div `
             outline: none;
             border: none;
             border-radius: 6px;
+            background: ${lightTheme.body};
+
             /* margin-bottom: 1rem; */
         }
     }
@@ -61,6 +64,7 @@ export const ButtonWrapper = styled.div `
         border-radius: 10px;
         border: none;
         color: white;
+        transition: all 0.6s;
     }
 
     .buy{

@@ -9,7 +9,7 @@ import {
     MenuWrapper
 } from "../../styles/components/naviStyles/menuStyles";
 import Logo from "../../assets/logo/logo_with_name.png";
-import FolderIcon from "@material-ui/icons/Folder";
+// import FolderIcon from "@material-ui/icons/Folder";
 // import SettingsIcon from "@material-ui/icons/Settings";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import {useHistory} from "react-router-dom";
@@ -19,8 +19,9 @@ import { loginUserAction } from '../../store/actions/loginUserAction';
 import {useDispatch} from 'react-redux';
 import {loginAction} from "../../store/actions/loginActions";
 
-import {BiNews} from 'react-icons/bi';
-import {FaSearchDollar} from 'react-icons/fa';
+// import {BiNews} from 'react-icons/bi';
+// import {FaSearchDollar} from 'react-icons/fa';
+import {currentPageAction} from "../../store/actions/currentPageActions";
 
 const Menu = ({open, setOpen}) => {
     
@@ -32,32 +33,42 @@ const Menu = ({open, setOpen}) => {
     const isHidden = !!open;
 /*  const tabIndex = isHidden ? 0 : -1;*/
 
-  
-
     const toDashboard = () => {
-        history.push('/');
         setOpen(false)
+        history.push('/');
+        const action = currentPageAction('/');
+        dispatch(action);
     }
     const toPortfolios = () => {
-        history.push('/portfolio-list');
         setOpen(false)
+        history.push('/portfolio-list');
+        const action = currentPageAction('/portfolio-list/');
+        dispatch(action);
+    }
+    const toTransaction = () => {
+        setOpen(false)
+        history.push('/new-transaction');
+        const action = currentPageAction('/new-transaction/');
+        dispatch(action);
     }
     const toSearch = () => {
+        setOpen(false)
         history.push('/search');
-        setOpen(false)
+        const action = currentPageAction('/search/');
+        dispatch(action);
     }
-
     const toNews = () => {
-        history.push('/news');
         setOpen(false)
+        history.push('/news');
+        const action = currentPageAction('/news/');
+        dispatch(action);
     }
-
     const logout = () => {
+        setOpen(false)
         localStorage.removeItem('token');
         const actions=loginAction(null,false)
         dispatch(actions)
         history.push('/sign-in');
-        setOpen(false)
     }
     
 
@@ -76,7 +87,7 @@ const Menu = ({open, setOpen}) => {
                 <img src={Logo} alt="logo"/>
             </LogoIconWrapper>
             <MenuContentWrapper>
-                <h2>Welcome {userData ? userData.username : ""}</h2>
+                <h2>Welcome, {userData ? userData.username : ""}</h2>
                 <MenuItemWrapper>
                 <DashboardIcon/>
                 <span className="move-right-1" onClick={() => toDashboard()}>Dashboard</span>
@@ -85,6 +96,11 @@ const Menu = ({open, setOpen}) => {
                 <MenuItemWrapper>
                 <i className="fa fa-folder-open" aria-hidden="true"></i>
                 <span className="move-right-2" onClick={() => toPortfolios()}>My portfolios</span>
+                <ArrowForwardIosIcon/>
+                </MenuItemWrapper>
+                <MenuItemWrapper>
+                <i className="fas fa-wallet new-transaction" aria-hidden="true"></i>
+                <span className="move-right-6" onClick={() => toTransaction()}>New transaction</span>
                 <ArrowForwardIosIcon/>
                 </MenuItemWrapper>
                 {/* <MenuItemWrapper>

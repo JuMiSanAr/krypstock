@@ -14,16 +14,15 @@ export const StyledMenu = styled.nav `
   height: 100vh;
   text-align: left;
   padding: 2rem;
-  position: absolute;
+  position: ${({ open }) => open ? 'fixed ': 'absolute'};
   z-index: 20;
   top: 0;
   left: 0;
   transition: transform 0.3s ease-in-out;
 
-
-  @media (max-width: ${({ theme }) => theme.mobile}) {
-      width: 100%;
-    }
+  @media only screen and (max-width: 600px) and (min-width: 320px) {
+    width: 100%;
+  }
  `;
 
 /*export const MainWrapper = styled.div`
@@ -55,19 +54,22 @@ export const MenuItemWrapper = styled.div `
     }
  
     .move-right-1{
-       margin: 0 100px 0 20px;
+       margin: 0 105px 0 20px;
    }
    .move-right-2{
-       margin: 0 88px 0 20px;
+       margin: 0 90px 0 20px;
    }
    .move-right-3{
-    margin: 0 130px 0 20px;
+    margin: 0 135px 0 20px;
    }
    .move-right-4{
-       margin: 0 139px 0 20px;
+       margin: 0 145px 0 20px;
    } 
     .move-right-5{
-       margin: 0 128px 0 20px;
+       margin: 0 135px 0 20px;
+   }
+   .move-right-6{
+       margin: 0 70px 0 20px;
    }
 `;
 
@@ -75,8 +77,10 @@ export const LogoIconWrapper = styled.div `
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin: 0;
     img{
-        height: 180px;
+        height: 70px;
+        margin-bottom: 2rem;
     }
 `;
 

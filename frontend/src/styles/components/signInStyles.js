@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
-
+export const LogoStyle = styled.img`
+padding: 25px 34px 20px 20px;
+`;
 
 export const HeaderWrapper = styled.div `
 
@@ -12,7 +14,6 @@ export const HeaderWrapper = styled.div `
        margin-top:-200px;
        clip-path: circle(63.4% at 49% 26%);
   }
-  
 `;
 
 export const LoginWrapper = styled.div `
@@ -28,7 +29,6 @@ export const LoginWrapper = styled.div `
     z-index: 999;
   }
   }
-  
 `;
 
 export const MainContainerSI = styled.div `
@@ -41,6 +41,7 @@ export const MainContainerSI = styled.div `
   border-radius: 20px;
   width:300px;
   min-height: 350px;
+  margin-top:100px;
   .link{
     text-decoration: none;
   }

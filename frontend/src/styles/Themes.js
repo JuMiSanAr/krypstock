@@ -35,6 +35,7 @@ export const allTheme = {
     greenBuy: '#71b945',
     gray: '#554E77',
     vibrantturquoise: '#01aca3',
+    lightPurple: '#afa9c8',
     turquoiseGradient: 'linear-gradient(#01aca3, #35426a)',
     orangeGradient: 'linear-gradient(#fe772b, #523b5c)',
     greenGradient: 'linear-gradient(#81FBB8, #28C76F)',

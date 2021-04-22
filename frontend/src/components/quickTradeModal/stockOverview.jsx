@@ -22,6 +22,8 @@ export const StockModal2 = ({ showStockModal, setStockShowModal, symbol, portfol
     const [transSuccess, setTransSucess] = useState(false);
     const [transUnSuccess , setTransUnSuccess ] = useState(false);
 
+    const [transactionModalAmount, setTransactionModalAmount] = useState(0);
+
     const dispatch = useDispatch();
 
     const submitHandler = (e) => {
@@ -71,6 +73,18 @@ export const StockModal2 = ({ showStockModal, setStockShowModal, symbol, portfol
         setNotEnoughStocks(false)
     }, [symbol, buySell, portfolioID, volume])
 
+    useEffect(() => {
+        if (calculations && symbol) {
+            const thisCalc = calculations.filter(calculation => calculation.symbol === symbol);
+            console.log(thisCalc)
+                if (thisCalc[0].quantity) {
+                    setTransactionModalAmount(thisCalc[0].quantity.toFixed(2));
+                } else {
+                    setTransactionModalAmount(0);
+                }
+        }
+    }, [calculations, symbol]);
+
     return (
         <>
             {showStockModal ? (
@@ -116,7 +130,7 @@ export const StockModal2 = ({ showStockModal, setStockShowModal, symbol, portfol
                                                         <label htmlFor="company-input">Current quantity</label>
                                                     </div>
                                                     <div>
-                                                        <p className="selector">{calculations ? calculations.filter(calculation => calculation.symbol === symbol)[0].quantity.toFixed(2) : ''}</p>
+                                                        <p className="selector">{transactionModalAmount}</p>
                                                     </div>
                                                 </div>
                                                 <div className="amountInput">

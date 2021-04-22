@@ -14,6 +14,7 @@ import { transactionsAction } from '../store/actions/transactionsAction';
 import { NaviWrapper } from '../styles/components/naviStyles/menuStyles';
 import Burger from '../components/navi/burger';
 import Menu from '../components/navi/menu';
+import {currentPageAction} from "../store/actions/currentPageActions";
 
 const Home = () => {
 
@@ -39,6 +40,9 @@ const Home = () => {
                     const action = transactionsAction(data)
                     dispatch(action);
                 })
+
+            const action = currentPageAction('/');
+            dispatch(action);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [token]);
@@ -47,7 +51,6 @@ const Home = () => {
         <>
             {token ?
                 <>
-              
                 <NaviWrapper>
                 <div>
                     <Burger open={open} setOpen={setOpen}/> 
@@ -57,12 +60,11 @@ const Home = () => {
                 <h2>Dashboard</h2>
                 </div>
                 </NaviWrapper>
-                
                     <AllContentWrapper>
                         <DoubleButtonContainer>
                             <LeftButton className="left-button" onClick={() => toggleTab(1)} numberClicked={toggleState}>Crypto</LeftButton>
                             <RightButton className="right-button" onClick={() => toggleTab(2)} numberClicked={toggleState}>Stock</RightButton>
-                            <span className="animation start-crypto"></span> 
+                            <span className={`animation ${toggleState === 1 ? 'start-crypto' :'start-stock'}`}></span> 
                         </DoubleButtonContainer>
                         <MainContentWrapper>
                             <div className={toggleState === 1 ? "active-content" : "content"}>
@@ -77,7 +79,6 @@ const Home = () => {
                 :
                 <Redirect to='/sign-in'/>
             }
-
         </>
     )
 }

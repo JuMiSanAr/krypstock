@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import logo from "../assets/logo/logo_with_name.png";
 import loginFetch from "../store/fetches/logInFetches";
 import { Link } from "react-router-dom";
-import { HeaderWrapper, LoginWrapper, InputWrapper, ButtonWrapper, MainContainerSI } from "../styles/components/signInStyles";
+import { HeaderWrapper, LoginWrapper, InputWrapper, ButtonWrapper, MainContainerSI, LogoStyle } from "../styles/components/signInStyles";
 
 
 const LoginPage = () => {
@@ -46,8 +46,9 @@ const LoginPage = () => {
             <HeaderWrapper>
             </HeaderWrapper>
             <LoginWrapper>
-                <img src={logo} out="logo" alt="logo" />
+
                 <MainContainerSI>
+                    <LogoStyle src={logo} out="logo" alt="logo" />
                     <InputWrapper>
                         <input
                             required

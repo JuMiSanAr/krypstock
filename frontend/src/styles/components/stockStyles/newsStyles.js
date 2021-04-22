@@ -7,6 +7,12 @@ import {
 export const FlexDiv = styled.div `
     display: flex;
 `
+export const WrapperBorder = styled.div`
+    border: solid 1px red;
+    * {
+        border: solid 1px red;
+    }
+`
 
 export const NewsWrapper = styled(FlexDiv)`
     flex-direction: column;
@@ -113,6 +119,7 @@ export const NewsContentWrapper = styled.div `
     flex-wrap: wrap;
     justify-content: center;
     margin: auto;
+
     @media only screen and (max-width: 600px) and (min-width: 320px) {
         display: flex;
         flex-wrap: wrap;
@@ -120,7 +127,7 @@ export const NewsContentWrapper = styled.div `
         overflow: auto;
         word-break: break-word;
         margin: 0;
-        //width: 100vw;
+        /* width: 100%; */
     }
 `;
 
