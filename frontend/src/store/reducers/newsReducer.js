@@ -1,8 +1,9 @@
-import {ALL_CRYPTO_NEWS, ALL_STOCK_NEWS} from "../constants";
+import {ALL_CRYPTO_NEWS, ALL_STOCK_NEWS, tempNewsStocks} from "../constants";
 
 const initialState = {
     cryptoNews: [],
-    stockNews: []
+    // Temporary initial state (limited tokens from API)
+    stockNews: tempNewsStocks
 }
 
 export const newsReducer = (state=initialState, action)=>{

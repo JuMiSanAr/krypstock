@@ -99,9 +99,9 @@ const StockPage = () => {
                 <ShrinkingComponentWrapper>
                     <PortfoliosWithStock symbol={symbol} />
                 </ShrinkingComponentWrapper>
-                <ShrinkingComponentWrapper>
-                    <NewsStock symbol={symbol} companyName={companyName} />
-                </ShrinkingComponentWrapper>
+                {/*<ShrinkingComponentWrapper>*/}
+                {/*    <NewsStock symbol={symbol} companyName={companyName} />*/}
+                {/*</ShrinkingComponentWrapper>*/}
             </AllComponentsWrapper>
         </>
     )

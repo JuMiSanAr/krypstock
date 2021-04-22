@@ -33,7 +33,7 @@ const NewsPage = () => {
     const allStockNews = useSelector(state => state.newsReducer.stockNews);
 
     useEffect(() => {
-        fetchStockNews();
+        // fetchStockNews();
         fetchCryptoNews();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
@@ -88,12 +88,12 @@ const NewsPage = () => {
     }
 
     return (
-         <>     
+         <>
                 <NaviWrapper>
                 <div>
-                    <Burger open={open} setOpen={setOpen}/> 
-                    <Menu open={open} setOpen={setOpen} />  
-                    </div>  
+                    <Burger open={open} setOpen={setOpen}/>
+                    <Menu open={open} setOpen={setOpen} />
+                    </div>
                     <div className="heading">
                     <h2>News</h2>
                     </div>
@@ -102,10 +102,10 @@ const NewsPage = () => {
                 <DoubleButtonContainer>
                     <LeftButton  className="left-button"  onClick={() => toggleTab(1)} numberClicked={toggleState}>Crypto</LeftButton>
                     <RightButton className="right-button" onClick={() => toggleTab(2)} numberClicked={toggleState}>Stock</RightButton>
-                    <span className={`animation ${toggleState === 1 ? 'start-crypto' : 'start-stock'}`}></span> 
-                </DoubleButtonContainer> 
+                    <span className={`animation ${toggleState === 1 ? 'start-crypto' : 'start-stock'}`}></span>
+                </DoubleButtonContainer>
             </HeaderTitle>
-                <AllComponentsWrapper>    
+                <AllComponentsWrapper>
             <ShrinkingComponentWrapper>
                 <NewsContentWrapper>
 
