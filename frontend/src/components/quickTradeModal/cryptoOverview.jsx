@@ -89,9 +89,7 @@ export const CryptoModal2 = ({ showCryptoModal, setCryptoShowModal, symbol, port
 
     useEffect(() => {
         if (calculations && symbol) {
-            console.log(symbol)
             const thisCalc = calculations.filter(calculation => calculation.symbol === symbol);
-            console.log(thisCalc)
                 if (thisCalc[0].quantity) {
                     setTransactionModalAmount(thisCalc[0].quantity.toFixed(2));
                 } else {

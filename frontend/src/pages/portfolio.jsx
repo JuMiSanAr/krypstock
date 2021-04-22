@@ -231,7 +231,7 @@ import { specificPortfolioAction } from "../store/actions/specificPortfolioActio
 import { useDispatch, useSelector } from "react-redux";
 import { allCryptosAction } from '../store/actions/cryptoActions';
 import { allTheme } from '../styles/Themes';
-import { iexSandboxKey } from "../store/constants";
+import {iexAPIKey, iexSandboxKey} from "../store/constants";
 import { NaviWrapper } from '../styles/components/naviStyles/menuStyles';
 import Burger from '../components/navi/burger';
 import Menu from '../components/navi/menu';
@@ -279,7 +279,7 @@ const Portfolio = () => {
                 }
             })
             if (stocksString !== '') {
-                fetch(`https://sandbox.iexapis.com/stable/stock/market/batch?types=quote&symbols=${stocksString}&token=${iexSandboxKey}`)
+                fetch(`https://cloud.iexapis.com/stable/stock/market/batch?types=quote&symbols=${stocksString}&token=${iexAPIKey}`)
                     .then(res => res.json())
                     .then(data => {
                         const fetchedData = Object.entries(data).map(entry => {

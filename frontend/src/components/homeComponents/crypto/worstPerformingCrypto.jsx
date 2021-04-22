@@ -30,7 +30,6 @@ const WorstPerformingCrypto = () => {
         }
 
         setWorstCryptos(top10WorstCryptos)
-        // console.log(worstCryptos)
     }, [allCryptos])
 
     const specificCryptoPage = (symbol) => {

@@ -5,7 +5,7 @@ import {ButtonWrapper, BuySellSelectorWrapper, BuySelectButton, SellSelectButton
 import { Link } from 'react-router-dom';
 import { ShrinkingComponentWrapper } from '../../styles/globalParts/containerStyles';
 import { postNewTransactionFetch } from '../../store/fetches/transactionFetches';
-import { iexSandboxKey } from "../../store/constants";
+import {iexAPIKey, iexSandboxKey} from "../../store/constants";
 import { ErrorSpan } from "../../styles/globalParts/textStyles";
 import {specificPortfolioFetch} from "../../store/fetches/portfoliosFetches";
 import {specificPortfolioAction} from "../../store/actions/specificPortfolioAction";
@@ -60,12 +60,12 @@ export const StockModal2 = ({ showStockModal, setStockShowModal, symbol, portfol
 
     useEffect(() => {
         if (symbol) {
-            fetch(`https://sandbox.iexapis.com/stable/stock/${symbol}/price?token=${iexSandboxKey}`)
+            fetch(`https://cloud.iexapis.com/stable/stock/${symbol}/price?token=${iexAPIKey}`)
                 .then(res => res.json())
                 .then(data => {
                     setMarketPrice(data)
                 })
-                .catch(error => { console.log('error', error) })
+                // .catch(error => { console.log('error', error) })
         }
     }, [symbol, buySell])
 
@@ -76,7 +76,6 @@ export const StockModal2 = ({ showStockModal, setStockShowModal, symbol, portfol
     useEffect(() => {
         if (calculations && symbol) {
             const thisCalc = calculations.filter(calculation => calculation.symbol === symbol);
-            console.log(thisCalc)
                 if (thisCalc[0].quantity) {
                     setTransactionModalAmount(thisCalc[0].quantity.toFixed(2));
                 } else {
