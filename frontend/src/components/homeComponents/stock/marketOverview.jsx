@@ -12,7 +12,7 @@ const MarketOverview = () => {
     const [render, setRender] = useState(false);
 
     useEffect (() => {
-        fetch(`https://cloud.iexapis.com/stable/stock/market/sector-performance?token=${iexAPIKey}`)
+        fetch(`https://sandbox.iexapis.com/stable/stock/market/sector-performance?token=${iexSandboxKey}`)
             .then(res => res.json())
             .then(data => {
                 setSectorData(data);
