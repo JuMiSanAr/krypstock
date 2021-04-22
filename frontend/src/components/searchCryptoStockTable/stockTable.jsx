@@ -19,8 +19,6 @@ export const StockTable = ({symbol, setStockName, setStockShowModal, setStockSym
           setStockShowModal(true);
     }
 
-    // console.log(symbol)
-
     return (
         <>
                      <tr>

@@ -50,8 +50,6 @@ const CryptoPage = () => {
         CryptoInfo();
     }, []);
 
-    // console.log(cryptoInfo)
-
     return (
         <>
             <NaviWrapper>
@@ -87,10 +85,10 @@ const CryptoPage = () => {
                 <ShrinkingComponentWrapper>
                     <PortfoliosWithStock symbol={symbol} />
                 </ShrinkingComponentWrapper>
-                {/*  <ShrinkingComponentWrapper>
-                <NewsCrypto symbol={symbol}/>
-                <CryptoNewsApiAi symbol={symbol}/>
-            </ShrinkingComponentWrapper> */}
+                {  <ShrinkingComponentWrapper>
+                {/*<NewsCrypto symbol={symbol}/>*/}
+                {/*<CryptoNewsApiAi symbol={symbol}/>*/}
+            </ShrinkingComponentWrapper> }
     </AllComponentsWrapper>
         </>
     )

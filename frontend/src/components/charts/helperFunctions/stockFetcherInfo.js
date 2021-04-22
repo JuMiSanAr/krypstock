@@ -1,4 +1,4 @@
-import {iexSandboxKey} from "../../../store/constants";
+import {iexAPIKey, iexSandboxKey} from "../../../store/constants";
 
 
 export const stockFetcherInfo = (symbol, updateState) => {

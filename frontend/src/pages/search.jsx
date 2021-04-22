@@ -14,7 +14,7 @@ import { StockTable } from '../components/searchCryptoStockTable/stockTable';
 import { allCryptosAction } from "../store/actions/cryptoActions";
 import { useDispatch, useSelector } from "react-redux";
 import { allStockSymbolsAction, searchedStocksAction } from "../store/actions/stocksActions";
-import { iexSandboxKey } from "../store/constants";
+import {iexAPIKey, iexSandboxKey} from "../store/constants";
 import { CryptoModal } from '../components/quickTradeModal/crypto';
 import { StockModal } from '../components/quickTradeModal/stock';
 import { Content } from '../styles/components/buttonStyles';

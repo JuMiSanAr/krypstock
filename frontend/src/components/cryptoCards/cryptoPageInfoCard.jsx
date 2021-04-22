@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from 'react';
-import {CryptoPageInfoWrapper, MainContainer, Link} from "../../styles/components/cryptoStyles/cryptoPageInfoStyles";
-import {allTheme} from "../../styles/Themes";
+import React from 'react';
+import {CryptoPageInfoWrapper, MainContainer} from "../../styles/components/cryptoStyles/cryptoPageInfoStyles";
+// import {allTheme} from "../../styles/Themes";
  
 const CryptoPageInfoCard = (props) => {
     //
@@ -104,7 +104,7 @@ const CryptoPageInfoCard = (props) => {
                     {/*{condition?<p id='description'>{text1}<b>{slice1}</b>{text2}<b>{slice2}</b>{text3}<b>{slice3}</b>{text4}<b>{slice4}</b>{text5}</p>:""}*/}
                 </MainContainer>
                 <MainContainer>
-                        <a style={{textDecoration: 'underline', color: allTheme.vibrantturquoise}} href={props.cryptoInfo.url} target='_blank' rel='noreferrer'>Go to Website</a>
+                        <a style={{textDecoration: 'none', color:'#ffffff'}} href={props.cryptoInfo.url} target='_blank' rel='noreferrer'>Go to Website</a>
                 </MainContainer>
             </CryptoPageInfoWrapper></>
             : ''}

@@ -5,7 +5,7 @@ import { ButtonWrapper, BuySelectButton, BuySellSelectorWrapper, SellSelectButto
 import { Link } from 'react-router-dom';
 import { ShrinkingComponentWrapper } from '../../styles/globalParts/containerStyles';
 import { postNewTransactionFetch } from '../../store/fetches/transactionFetches';
-import { iexSandboxKey } from '../../store/constants';
+import {iexAPIKey, iexSandboxKey} from '../../store/constants';
 
 export const StockModal = ({ showStockModal, setStockShowModal, symbol, stockSymbol }) => {
     const allPortfoliosArray = useSelector(state => state.portfoliosReducer.portfolios)
@@ -45,7 +45,7 @@ export const StockModal = ({ showStockModal, setStockShowModal, symbol, stockSym
                 .then(data => {
                     setMarketPrice(data)
                 })
-                .catch(error => { console.log('error', error) })
+                // .catch(error => { console.log('error', error) })
         } else {
             setMarketPrice(0)
         }

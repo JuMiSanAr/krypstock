@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { ShrinkingComponentWrapper } from '../../../styles/globalParts/containerStyles';
 import { TitleSpan } from '../../../styles/globalParts/textStyles';
-import {iexSandboxKey} from "../../../store/constants";
+import {iexAPIKey, iexSandboxKey} from "../../../store/constants";
 import StockMarketOvewviewChart from "../../charts/stockMarketOverview";
 // import Graph from '../../../assets/stock_graph.png'
 
