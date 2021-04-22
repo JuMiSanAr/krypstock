@@ -24,11 +24,11 @@ const Stock = () => {
 
 useEffect(() => {
 
-    const API_Call_News = `https://sandbox.iexapis.com/stable/stock/aapl/news/last/5?token=${iexSandboxKey}`;
-    const API_Volume = `https://sandbox.iexapis.com/stable/stock/market/list/mostactive?token=${iexSandboxKey}`;
-    const API_Call_Gain = `https://sandbox.iexapis.com/stable/stock/market/list/gainers?token=${iexSandboxKey}`;
-    const API_Call_Loss = `https://sandbox.iexapis.com/stable/stock/market/list/losers?token=${iexSandboxKey}`;
-    const API_Call_Symbols = `https://sandbox.iexapis.com/stable/ref-data/symbols?token=${iexSandboxKey}`;
+    const API_Call_News = `https://cloud.iexapis.com/stable/stock/aapl/news/last/5?token=${iexAPIKey}`;
+    const API_Volume = `https://cloud.iexapis.com/stable/stock/market/list/mostactive?token=${iexAPIKey}`;
+    const API_Call_Gain = `https://cloud.iexapis.com/stable/stock/market/list/gainers?token=${iexAPIKey}`;
+    const API_Call_Loss = `https://cloud.iexapis.com/stable/stock/market/list/losers?token=${iexAPIKey}`;
+    const API_Call_Symbols = `https://cloud.iexapis.com/stable/ref-data/symbols?token=${iexAPIKey}`;
 
     fetch(API_Call_News)
         .then(res => res.json())

@@ -47,7 +47,7 @@ const WorstPerformingCrypto = () => {
                                 <th>Currency</th>
                                 <th>Change</th>
                                 <th>Price</th>
-                                <th>Volume</th>
+                                <th>Volume (M)</th>
                             </tr>
                         </thead>
                         :
