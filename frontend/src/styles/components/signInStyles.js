@@ -14,7 +14,6 @@ export const HeaderWrapper = styled.div `
        margin-top:-200px;
        clip-path: circle(63.4% at 49% 26%);
   }
-  
 `;
 
 export const LoginWrapper = styled.div `
@@ -30,7 +29,6 @@ export const LoginWrapper = styled.div `
     z-index: 999;
   }
   }
-  
 `;
 
 export const MainContainerSI = styled.div `
