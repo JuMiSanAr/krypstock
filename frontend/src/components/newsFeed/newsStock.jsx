@@ -19,7 +19,7 @@ const NewsStock = (props) => {
     };
 
     useEffect(() => {
-        fetchNews();
+        // fetchNews();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
