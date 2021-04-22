@@ -282,7 +282,6 @@ const Portfolio = () => {
                 fetch(`https://sandbox.iexapis.com/stable/stock/market/batch?types=quote&symbols=${stocksString}&token=${iexSandboxKey}`)
                     .then(res => res.json())
                     .then(data => {
-                        console.log(data)
                         const fetchedData = Object.entries(data).map(entry => {
                                 return entry[1].quote;
                             }

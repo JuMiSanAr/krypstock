@@ -14,6 +14,7 @@ import { transactionsAction } from '../store/actions/transactionsAction';
 import { NaviWrapper } from '../styles/components/naviStyles/menuStyles';
 import Burger from '../components/navi/burger';
 import Menu from '../components/navi/menu';
+import {currentPageAction} from "../store/actions/currentPageActions";
 
 const Home = () => {
 
@@ -39,6 +40,9 @@ const Home = () => {
                     const action = transactionsAction(data)
                     dispatch(action);
                 })
+
+            const action = currentPageAction('/');
+            dispatch(action);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [token]);

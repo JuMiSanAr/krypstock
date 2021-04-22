@@ -20,10 +20,6 @@ const FooterNav = () => {
         const action = currentPageAction(path);
         dispatch(action);
     }
-    
-    // useEffect( () => {
-    //     console.log('updating')
-    // }, [currentPage])
 
     return (
         <FooterWrapper currentPage={currentPage}>
