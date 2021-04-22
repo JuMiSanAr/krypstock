@@ -24,7 +24,7 @@ const NewsStock = (props) => {
     }, []);
 
     const fetchNews = () => {
-        const API_Call = `https://cloud.iexapis.com/stable/stock/${props.symbol}/news/last/${last}?token=${iexAPIKey}`;
+        const API_Call = `https://sandbox.iexapis.com/stable/stock/${props.symbol}/news/last/${last}?token=${iexSandboxKey}`;
 
         fetch(API_Call)
             .then(res => res.json())

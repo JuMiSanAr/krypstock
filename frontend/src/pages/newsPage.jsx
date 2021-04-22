@@ -38,7 +38,7 @@ const NewsPage = () => {
     }, []);
 
     const fetchStockNews = () => {
-        const API_Call = `https://cloud.iexapis.com/stable/time-series/news?range=1m&limit=30&token=${iexAPIKey}`;
+        const API_Call = `https://sandbox.iexapis.com/stable/time-series/news?range=1m&limit=30&token=${iexSandboxKey}`;
 
         if (allStockNews.length === 0) {
             fetch(API_Call)
