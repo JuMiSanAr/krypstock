@@ -4,11 +4,17 @@ import {headersWithToken} from "../constants";
 
 // GET all user transaction
 const transactionFetch = () => {
+
+    const token = localStorage.getItem('token');
+
     return fetchAPI(
         'transactions/',
         null,
         'GET',
-        headersWithToken
+        {
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${token}`
+}
     )
 }
 
@@ -30,4 +36,3 @@ export const postNewTransactionFetch = (buySell, portfolioID, company, volume, p
         headersWithToken
     )
 }
-
