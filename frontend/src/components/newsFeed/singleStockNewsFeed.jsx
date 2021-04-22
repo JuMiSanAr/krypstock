@@ -34,7 +34,7 @@ const SingleStockNewsFeed = ({news}) => {
 
     <NewsWrapper>
         <HeadlineWrapper>
-            <img onClick={()=> window.open(news.url, "_blank")} src={news.image} alt=""/>
+            <img onClick={()=> window.open(news.url, "_blank")} src={news.image ? news.image : 'https://res.cloudinary.com/tennam/image/upload/v1619100648/Propulsion/default-pshe-square.jpg'} alt=""/>
             <div className='news-item-text'>
                 <h3 onClick={()=> window.open(news.url, "_blank")}>{news.headline}</h3>
                 <div className="summary">
