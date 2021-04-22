@@ -52,7 +52,7 @@ const StockQuickTrade = (props) => {
 
     useEffect( () => {  //get all stock symbols
         const symbolList = []
-        fetch(`https://sandbox.iexapis.com/beta/ref-data/symbols?token=${iexSandboxKey}`)
+        fetch(`https://cloud.iexapis.com/beta/ref-data/symbols?token=${iexAPIKey}`)
             .then(res => res.json())
             .then(data => {
                 for (const stock of data) {
@@ -64,7 +64,7 @@ const StockQuickTrade = (props) => {
     
     useEffect( () => {   // get price of specific symbol
         if (allSymbols.includes(symbol)) {
-            fetch(`https://sandbox.iexapis.com/stable/stock/${symbol}/price?token=${iexSandboxKey}`)
+            fetch(`https://cloud.iexapis.com/stable/stock/${symbol}/price?token=${iexAPIKey}`)
             .then(res => res.json())
             .then(data => {
                 setMarketPrice(data)
