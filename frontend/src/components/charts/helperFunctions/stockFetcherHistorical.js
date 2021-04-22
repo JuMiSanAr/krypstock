@@ -5,13 +5,13 @@ export const stockFetcherHistorical = (symbol, updateState, timeframe='5dm') => 
         let historicalStock_API_Call = '';
 
         if (timeframe === '5dm') {
-            historicalStock_API_Call = `https://cloud.iexapis.com/stable/stock/${symbol}/chart/${timeframe}?token=${iexAPIKey}&chartInterval=2`;
+            historicalStock_API_Call = `https://sandbox.iexapis.com/stable/stock/${symbol}/chart/${timeframe}?token=${iexSandboxKey}&chartInterval=2`;
         }
         else if (timeframe === '1mm') {
-            historicalStock_API_Call = `https://cloud.iexapis.com/stable/stock/${symbol}/chart/${timeframe}?token=${iexAPIKey}&chartInterval=4`;
+            historicalStock_API_Call = `https://sandbox.iexapis.com/stable/stock/${symbol}/chart/${timeframe}?token=${iexSandboxKey}&chartInterval=4`;
         }
         else {
-            historicalStock_API_Call = `https://cloud.iexapis.com/stable/stock/${symbol}/chart/${timeframe}?token=${iexAPIKey}`;
+            historicalStock_API_Call = `https://sandbox.iexapis.com/stable/stock/${symbol}/chart/${timeframe}?token=${iexSandboxKey}`;
         }
 
         fetch(historicalStock_API_Call)

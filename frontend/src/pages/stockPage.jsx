@@ -35,7 +35,7 @@ const StockPage = () => {
     const [keyStats, setKeyStats] = useState('');
 
     useEffect(() => {
-        fetch(`https://cloud.iexapis.com/stable/stock/${symbol}/stats?token=${iexAPIKey}`)
+        fetch(`https://sandbox.iexapis.com/stable/stock/${symbol}/stats?token=${iexSandboxKey}`)
             .then(res => res.json())
             .then(data => {
                 setKeyStats(data);
