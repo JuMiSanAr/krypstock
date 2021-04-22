@@ -8,10 +8,10 @@ export const FlexDiv = styled.div `
     display: flex;
 `
 export const WrapperBorder = styled.div`
-    /* border: solid 1px red;
+    border: solid 1px red;
     * {
         border: solid 1px red;
-    } */
+    }
 `
 
 export const NewsWrapper = styled(FlexDiv)`
