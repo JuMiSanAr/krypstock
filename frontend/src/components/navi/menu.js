@@ -68,6 +68,10 @@ const Menu = ({open, setOpen}) => {
         const actions=loginAction(null,false)
         // const actions = logoutAction()
         dispatch(actions)
+
+        const logoutAction = loginUserAction([])
+        dispatch(logoutAction)
+
         history.push('/sign-in');
     }
     
