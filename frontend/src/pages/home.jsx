@@ -15,6 +15,8 @@ import { NaviWrapper } from '../styles/components/naviStyles/menuStyles';
 import Burger from '../components/navi/burger';
 import Menu from '../components/navi/menu';
 import {currentPageAction} from "../store/actions/currentPageActions";
+import { loginUserDataFetch } from '../store/fetches/loginUserDataFetches';
+import { loginUserAction } from '../store/actions/loginUserAction';
 
 const Home = () => {
 
@@ -31,18 +33,23 @@ const Home = () => {
     useEffect(() => {
         if (token) {
             portfoliosFetch()
-                .then(data => {
-                    dispatch(portfoliosAction(data))
-                })
-
+            .then(data => {
+                dispatch(portfoliosAction(data))
+            })
+            
             transactionFetch()
-                .then(data => {
-                    const action = transactionsAction(data)
-                    dispatch(action);
-                })
-
+            .then(data => {
+                const action = transactionsAction(data)
+                dispatch(action);
+            })
+            
             const action = currentPageAction('/');
             dispatch(action);
+
+            loginUserDataFetch()
+            .then(data => {
+                dispatch(loginUserAction(data))
+            })
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [token]);

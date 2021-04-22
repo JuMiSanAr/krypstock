@@ -24,6 +24,7 @@ const LoginPage = () => {
             .then(data => {
                 localStorage.setItem('token', data.access);
                 const action = loginAction(data.access, true);
+
                 dispatch(action);
 
             })

@@ -12,6 +12,7 @@ export const logInReducer =( state= initialState, action)=>{
             token: action.payload.token,
             authenticated: action.payload.status
         }
-    }
+    } 
+
     return state;
 }

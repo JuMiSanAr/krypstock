@@ -142,6 +142,10 @@ flex-direction: column;
 justify-content: center;
 align-items: center;
 padding: 5px;
+
+.crypto-logo{
+    width: 23px;
+}
 `;
 
 export const LegendContainer = styled.div `
