@@ -17,8 +17,7 @@ import {useSelector} from "react-redux";
 import { loginUserDataFetch } from '../../store/fetches/loginUserDataFetches';
 import { loginUserAction } from '../../store/actions/loginUserAction';
 import {useDispatch} from 'react-redux';
-import {loginAction} from "../../store/actions/loginActions";
-
+import {loginAction, logoutAction} from "../../store/actions/loginActions";
 // import {BiNews} from 'react-icons/bi';
 // import {FaSearchDollar} from 'react-icons/fa';
 import {currentPageAction} from "../../store/actions/currentPageActions";
@@ -67,11 +66,15 @@ const Menu = ({open, setOpen}) => {
         setOpen(false)
         localStorage.removeItem('token');
         const actions=loginAction(null,false)
+        // const actions = logoutAction()
         dispatch(actions)
+
+        const logoutAction = loginUserAction([])
+        dispatch(logoutAction)
+
         history.push('/sign-in');
     }
     
-
     useEffect(() => {
         loginUserDataFetch()
         .then(data => {

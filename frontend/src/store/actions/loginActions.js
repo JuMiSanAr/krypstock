@@ -9,3 +9,13 @@ export const loginAction = (token, status) => {
         }
     }
 };
+
+// export const logoutAction = () => {
+//     return {
+//         type: 'logout',
+//         payload: {
+//             token: undefined,
+//             status: false
+//         }
+//     }
+// }

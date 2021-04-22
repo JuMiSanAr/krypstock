@@ -6,7 +6,7 @@ import {allTheme} from '../../styles/Themes';
 import {StockModal2} from "../quickTradeModal/stockOverview";
 import {CryptoModal2} from "../quickTradeModal/cryptoOverview";
 import {BuySell} from "../../styles/components/buttonStyles";
-
+import cryptoLogo from "../../assets/Cryptocurrency_Logo.png";
 
 const Overview = ({calculations, realtimeData, portfolioname, portfolioID, portfolioCreated}) => {
 
@@ -97,7 +97,7 @@ const Overview = ({calculations, realtimeData, portfolioname, portfolioID, portf
                     <IconConatiner>
                         {calculation.type === "S"
                         ? <i className="fas fa-briefcase"> </i>
-                        : <i className="fab fa-btc"> </i>
+                        : <img className="crypto-logo" src={cryptoLogo} alt="cryptocurrency-logo"/>
                         }
                         <HeadlineFont>{calculation.symbol}</HeadlineFont>
                     
