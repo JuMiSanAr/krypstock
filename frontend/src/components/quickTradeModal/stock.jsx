@@ -40,7 +40,7 @@ export const StockModal = ({ showStockModal, setStockShowModal, symbol, stockSym
 
     useEffect( () => {   // get price of specific symbol
         if (stockSymbol) {
-            fetch(`https://cloud.iexapis.com/stable/stock/${stockSymbol}/price?token=${iexAPIKey}`)
+            fetch(`https://sandbox.iexapis.com/stable/stock/${stockSymbol}/price?token=${iexSandboxKey}`)
                 .then(res => res.json())
                 .then(data => {
                     setMarketPrice(data)
