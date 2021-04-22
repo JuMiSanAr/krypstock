@@ -55,7 +55,7 @@ const Search = () => {
 
     useEffect(() => {
         if (currentStockSymbols.length) {
-            fetch(`https://sandbox.iexapis.com/stable/stock/market/batch?types=quote&symbols=${currentStockSymbols}&token=${iexSandboxKey}`)
+            fetch(`https://cloud.iexapis.com/stable/stock/market/batch?types=quote&symbols=${currentStockSymbols}&token=${iexAPIKey}`)
                 .then(res => res.json())
                 .then(data => {
                     const fetchedData = Object.values(data).map(singleData => singleData.quote);
@@ -84,7 +84,7 @@ const Search = () => {
             });
 
         if (!allSymbols.length) {
-            fetch(`https://sandbox.iexapis.com/stable/ref-data/symbols?token=${iexSandboxKey}`)
+            fetch(`https://cloud.iexapis.com/stable/ref-data/symbols?token=${iexAPIKey}`)
                 .then(res => res.json())
                 .then(data => {
                     const symbolNameList = data.map(symbol => {

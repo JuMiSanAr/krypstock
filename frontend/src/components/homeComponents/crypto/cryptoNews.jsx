@@ -7,6 +7,7 @@ import { TitleSpan } from '../../../styles/globalParts/textStyles';
 
 export const CryptoNews = () => {
 
+    // NOT IN USE (replaced by cryptoNewsApiAi.jsx)
     const [allNews, setAllNews] = useState([]);
     const apiKey = "c9f83156011c478e9d57aafff581a35d"
     const symbol = "crypto"

@@ -44,8 +44,7 @@ export const NewsWrapper = styled(FlexDiv)`
 
 export const HeadlineWrapper = styled.article `
     margin: 10px;
-  display: flex;
-  justify-content: flex-start;
+  width: 400px;
     
     span{     
         padding: 10px;
@@ -66,11 +65,14 @@ export const HeadlineWrapper = styled.article `
         cursor: pointer;
         font-size: 16px;
     }
+
     @media only screen and (max-width: 600px) and (min-width: 320px) {
         display: flex;
         align-items: center;
         justify-content: flex-start;
         margin-bottom: 10px;
+      width: 350px;
+        
         img{
         height: 100px;
         width: 100px;

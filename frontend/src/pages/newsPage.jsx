@@ -15,6 +15,7 @@ import {DoubleButtonContainer, LeftButton, RightButton} from '../styles/pages/ho
 
 const NewsPage = () => {
 
+    // NOT IN USE (replaced by newsPageApiAi.jsx)
     const dispatch = useDispatch();
     const [open, setOpen] = useState(false);
 
@@ -38,7 +39,7 @@ const NewsPage = () => {
     }, []);
 
     const fetchStockNews = () => {
-        const API_Call = `https://sandbox.iexapis.com/stable/time-series/news?range=1m&limit=30&token=${iexSandboxKey}`;
+        const API_Call = `https://cloud.iexapis.com/stable/time-series/news?range=1m&limit=30&token=${iexAPIKey}`;
 
         if (allStockNews.length === 0) {
             fetch(API_Call)
