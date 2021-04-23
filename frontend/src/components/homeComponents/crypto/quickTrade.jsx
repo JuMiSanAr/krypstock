@@ -36,6 +36,7 @@ export const CryptoQuickTrade = (props) => {
     const submitHandler = (e) => {
         if (allSymbols.includes(symbol)) {
             e.preventDefault();
+                    console.log(buySell, portfolioID, symbol, amount, pricePerCoin, type)
             postNewTransactionFetch(buySell, portfolioID, `${symbol}USDT`, amount, pricePerCoin, type)
                 .then(data => {
                     setTransSucess(true)
