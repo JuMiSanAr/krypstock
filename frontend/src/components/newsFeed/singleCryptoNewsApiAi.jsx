@@ -4,10 +4,12 @@ import React from "react";
 
 const SingleCryptoNewsFeed = ({news}) => {
 
+    console.log(news)
+
     return (
         <NewsWrapper>
         <HeadlineWrapper>
-            <img onClick={()=> window.open(news.url, "_blank")} src={news.image} alt=""/>
+            <img onClick={()=> window.open(news.url, "_blank")} src={news.image ? news.image : 'https://res.cloudinary.com/tennam/image/upload/v1619100648/Propulsion/default-pshe-square.jpg'} alt=""/>
             <div>
                 <h3 onClick={()=> window.open(news.url, "_blank")}>{news.title}</h3>
                 <div className="summary">
