@@ -29,7 +29,6 @@ export const CryptoModal = ({ showCryptoModal, setCryptoShowModal, symbol }) => 
 
     const submitHandler = (e) => {
         e.preventDefault();
-        console.log(buySell, portfolioID, symbol, amount, pricePerCoin, type)
         postNewTransactionFetch(buySell, portfolioID, symbol, amount, pricePerCoin, type)
             .then(() => {
                 setTransSucess(true)
