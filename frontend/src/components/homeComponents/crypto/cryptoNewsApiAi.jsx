@@ -69,7 +69,7 @@ export const CryptoNewsApiAi = ({symbol}) => {
                         return (
                         <CryptoNewsWrapper key={index}>
                             <CryptoHeadlineWrapper>
-                                <img onClick={() => window.open(news.url, "_blank")} src={news.image} alt="" />
+                                <img onClick={() => window.open(news.url, "_blank")} src={news.image ? news.image : 'https://res.cloudinary.com/tennam/image/upload/v1619100648/Propulsion/default-pshe-square.jpg'} alt="" />
                                 <div>
                                     <h3 onClick={() => window.open(news.url, "_blank")}>{news.title}</h3>
                                     <div className="publishDetial">

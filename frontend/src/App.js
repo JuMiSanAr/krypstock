@@ -25,7 +25,6 @@ import { PageWrapper } from "./styles/globalParts/containerStyles";
 //     justify-content: flex-end;
 // `;
 
-
 function App() {
 
   const userLoggedMenu = useSelector(state => state.logInReducer.authenticated);
