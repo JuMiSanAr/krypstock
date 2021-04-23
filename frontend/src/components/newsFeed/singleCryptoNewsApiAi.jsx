@@ -4,8 +4,6 @@ import React from "react";
 
 const SingleCryptoNewsFeed = ({news}) => {
 
-    console.log(news)
-
     return (
         <NewsWrapper>
         <HeadlineWrapper>
