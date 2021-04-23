@@ -22,6 +22,8 @@ export default transactionFetch;
 
 // POST new transaction
 export const postNewTransactionFetch = (buySell, portfolioID, company, volume, pricePerShare, type) => {
+
+    const token = localStorage.getItem('token');
     return fetchAPI(
         'transactions/new/',
         {
@@ -33,6 +35,9 @@ export const postNewTransactionFetch = (buySell, portfolioID, company, volume, p
             type: type,
         },
         'POST',
-        headersWithToken
+        {
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${token}`
+}
     )
 }
