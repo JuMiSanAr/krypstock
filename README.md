@@ -5,7 +5,7 @@ Krypstock is a tracker that allows investors to monitor their investments by cre
 The user can choose whether they want to add stocks, cryptocurrencies or both to customize their portfolios.
 The website also offers all sorts of real-time data, from candlestick charts to price changes or news.
 
-This is useful for investors who want to try out different scenarios before putting their own money on the line, as well as those who use a particular or multiple exchanges and want to track their assets through a simple and precise tracker such as Krypstock.
+This is useful for investors who want to try out different scenarios before putting their own money on the line, as well as those who use a particular or multiple exchanges and want to track their assets through a simple and precise third-party tracker.
 
 If you want to try Krypstock, you can go to https://krypstock.propulsion-learn.ch and access directly using email: guest@krypstock.com, pwd: adminadmin.
 
