@@ -7,7 +7,7 @@ The website also offers all sorts of real-time data, from candlestick charts to 
 
 This is useful for investors who want to try out different scenarios before putting their own money on the line, as well as those who use a particular or multiple exchanges and want to track their assets through a simple and precise tracker such as Krypstock.
 
-If you want to try Krypstock, you can go to <a href='https://krypstock.propulsion-learn.ch'/> and access directly using email: guest@krypstock.com, pwd: adminadmin.
+If you want to try Krypstock, you can go to https://krypstock.propulsion-learn.ch and access directly using email: guest@krypstock.com, pwd: adminadmin.
 
 The website is only supported for phone devices at the moment, but we are planning on bringing it to web browsers in the future.
 A native app for iOS and Android is also in our plans.
