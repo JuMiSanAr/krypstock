@@ -7,6 +7,8 @@ The website also offers all sorts of real-time data, from candlestick charts to 
 
 This is useful for investors who want to try out different scenarios before putting their own money on the line, as well as those who use a particular or multiple exchanges and want to track their assets through a simple and precise third-party tracker.
 
+![alt tag](https://res.cloudinary.com/tennam/image/upload/v1619779521/Propulsion/Group_1.png)
+
 If you want to try Krypstock, you can go to https://krypstock.propulsion-learn.ch and access directly using email: guest@krypstock.com, pwd: adminadmin.
 
 You can also check the product presentation using the following link: 
