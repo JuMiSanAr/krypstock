@@ -9,7 +9,7 @@ This is useful for investors who want to try out different scenarios before putt
 
 ![alt tag](https://res.cloudinary.com/tennam/image/upload/v1619779521/Propulsion/Group_1.png)
 
-If you want to try Krypstock, you can go to https://krypstock.propulsion-learn.ch and access directly using email: guest@krypstock.com, pwd: adminadmin.
+If you want to try Krypstock, you can go to https://krypstock.propulsion-learn.ch on your phone and access directly using email: guest@krypstock.com, pwd: adminadmin.
 
 You can also check the product presentation using the following link: 
 https://www.linkedin.com/posts/jumisanar_for-all-of-you-interested-in-our-recently-activity-6793806009694466049-3c44
